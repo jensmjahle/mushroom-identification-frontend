@@ -17,5 +17,17 @@ export const sendNewUserRequest = async (text,  images) => {
       throw error;
     }
   }
-  
-  
+
+export const loginAdmin = async (username, password) => {
+  try {
+    const response = await axios.post(`${API_URL}/auth/admin/login`, {
+      username,
+      password,
+    });
+
+    return response.data;
+  } catch (error) {
+    console.error("Login request failed:", error);
+    throw error;
+  }
+};
