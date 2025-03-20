@@ -1,22 +1,22 @@
 <template>
   <div class="login-container">
-    <h2>Admin Login</h2>
+    <h2>{{ t("login.title") }}</h2>
 
     <input
         type="text"
         v-model="username"
-        placeholder="Username"
+        :placeholder="t('login.username')"
         class="input-field"
     />
 
     <input
         type="password"
         v-model="password"
-        placeholder="Password"
+        :placeholder="t('login.password')"
         class="input-field"
     />
 
-    <button @click="handleLogin" class="login-btn">Login</button>
+    <button @click="handleLogin" class="login-btn">{{ t("login.submit") }}</button>
 
     <p v-if="errorMessage" class="error">{{ errorMessage }}</p>
   </div>
@@ -24,6 +24,9 @@
 
 <script setup>
 import { ref } from "vue";
+import { useI18n } from "vue-i18n";
+
+const { t } = useI18n(); 
 
 const props = defineProps(["onLogin"]);
 
@@ -33,14 +36,14 @@ const errorMessage = ref("");
 
 const handleLogin = async () => {
   if (!username.value || !password.value) {
-    errorMessage.value = "Please enter both username and password.";
+    errorMessage.value = t("login.fill_in_both_username_and_password"); 
     return;
   }
 
   try {
     await props.onLogin(username.value, password.value);
   } catch (error) {
-    errorMessage.value = "Invalid login credentials.";
+    errorMessage.value = t("login.error"); 
   }
 };
 </script>

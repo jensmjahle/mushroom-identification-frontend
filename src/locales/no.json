@@ -1,0 +1,9 @@
+{
+  "login": {
+    "title": "Administrator Innlogging",
+    "username": "Brukernavn",
+    "password": "Passord",
+    "submit": "Logg inn",
+    "error": "Ugyldig brukernavn eller passord"
+  }
+}
