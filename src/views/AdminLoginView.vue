@@ -11,12 +11,14 @@ import { loginAdmin as loginAdminAPI } from "../services/apiService";
 
 const router = useRouter();
 
+
 const loginUser = async (username, password) => {  
   try {
     const response = await loginAdminAPI(username, password); 
-
-    if (response.success) {
+console.log(response);
+    if (response.token) {
       alert("Login successful!");
+      sessionStorage.setItem("jwt", response.token); // Store the token in the session storage
       await router.push("/admin-dashboard");
     } else {
       throw new Error("Invalid credentials");
