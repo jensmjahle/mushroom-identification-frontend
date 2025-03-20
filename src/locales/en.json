@@ -4,6 +4,7 @@
     "username": "Username",
     "password": "Password",
     "submit": "Login",
-    "error": "Invalid username or password"
+    "error": "Invalid username or password",
+    "fill_in_both_username_and_password": "Please fill in both username and password"
   }
 }

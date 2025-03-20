@@ -17,7 +17,7 @@ const loginUser = async (username, password) => {
 
     if (response.success) {
       alert("Login successful!");
-      router.push("/admin-dashboard");
+      await router.push("/admin-dashboard");
     } else {
       throw new Error("Invalid credentials");
     }
