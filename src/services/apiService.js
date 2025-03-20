@@ -24,10 +24,28 @@ export const loginAdmin = async (username, password) => {
       username,
       password,
     });
-
+    console.log("Login request successful:", response.data);
     return response.data;
   } catch (error) {
     console.error("Login request failed:", error);
+    throw error;
+  }
+};
+
+export const fetchProtectedData = async () => {
+  try {
+    const token = sessionStorage.getItem("jwt"); 
+    if (!token) throw new Error("No authentication token found");
+
+    const response = await axios.get(`${API_URL}/api/protected-endpoint`, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    });
+
+    return response.data;
+  } catch (error) {
+    console.error("Protected request failed:", error);
     throw error;
   }
 };
