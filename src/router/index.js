@@ -3,8 +3,8 @@ import { parseJwt } from '../utils/jwt';
 
 import HomeView from '../views/user/HomeView.vue';
 import AdminLoginView from '../views/admin/AdminLoginView.vue';
-import AdminDashboard from '../views/admin/AdminDashboard.vue';
 import UserRequestView from '../views/user/UserRequestView.vue';
+import AdminDashboardView from "../views/admin/AdminDashboardView.vue";
 
 const routes = [
   { 
@@ -26,7 +26,7 @@ const routes = [
   {
     path: '/admin/dashboard',
     name: 'admin-dashboard',
-    component: AdminDashboard,
+    component: AdminDashboardView,
     meta: { requiresAdmin: true }
   },
   {
@@ -41,6 +41,11 @@ const router = createRouter({
   routes
 });
 
+/**
+ * Route protection middleware to check if the user is authenticated.
+ * Redirect users to the home page if they are not authenticated.
+ * Redirect admins to the admin login page if they are not authenticated.
+ */
 router.beforeEach((to, from, next) => {
   const token = sessionStorage.getItem('jwt');
   const decoded = token ? parseJwt(token) : null;
