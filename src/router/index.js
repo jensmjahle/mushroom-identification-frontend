@@ -5,6 +5,7 @@ import HomeView from '../views/user/HomeView.vue';
 import AdminLoginView from '../views/admin/AdminLoginView.vue';
 import UserRequestView from '../views/user/UserRequestView.vue';
 import AdminDashboardView from "../views/admin/AdminDashboardView.vue";
+import AdminUserRequestView from "../views/admin/AdminUserRequestView.vue";
 
 const routes = [
   { 
@@ -27,6 +28,12 @@ const routes = [
     path: '/admin/dashboard',
     name: 'admin-dashboard',
     component: AdminDashboardView,
+    meta: { requiresAdmin: true }
+  },
+  {
+    path: '/admin/request/:referenceCode',
+    name: 'admin-request',
+    component: AdminUserRequestView,
     meta: { requiresAdmin: true }
   },
   {

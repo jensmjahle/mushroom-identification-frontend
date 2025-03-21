@@ -4,6 +4,7 @@
 
 <script setup>
 import ChatBox from '../../components/ChatBox.vue';
+
 import { useRoute } from 'vue-router';
 
 const route = useRoute();
