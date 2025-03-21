@@ -1,11 +1,10 @@
 <script setup>
-import HelloWorld from './components/HelloWorld.vue'
-import AdminLoginView from "./views/AdminLoginView.vue";
+import HomeView from "./views/user/HomeView.vue";
 </script>
 
 <template>
   <div id="main">
-    <AdminLoginView />
+    <router-view />
   </div>
 </template>
 
