@@ -29,21 +29,23 @@ export function connectToChat(userRequestId, token, onMessageCallback) {
   stompClient.activate();
 }
 
+
 export function sendMessage(userRequestId, token, message) {
   if (!stompClient || !stompClient.connected) {
     console.error('WebSocket is not connected');
     return;
   }
 
+ 
   stompClient.publish({
     destination: `/app/chat/${userRequestId}`,
     headers: {
-      Authorization: `Bearer ${token}`
+      Authorization: `Bearer ${token}` 
     },
     body: JSON.stringify(message)
   });
-}
 
+}
 export function disconnectFromChat() {
   if (stompClient) {
     stompClient.deactivate();

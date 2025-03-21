@@ -103,12 +103,14 @@ onBeforeUnmount(() => {
 
 .message.left {
   align-self: flex-start;
-  background-color: #f1f1f1;
+  background-color: rebeccapurple;
 }
 
 .message.right {
   align-self: flex-end;
-  background-color: #d1e7dd;
+  background-color: blue;
+  color: #1a1a1a;
+  
 }
 
 .message-meta {
