@@ -44,6 +44,7 @@
 import { ref, onMounted, onBeforeUnmount } from 'vue';
 import { connectToChat, sendMessage, disconnectFromChat } from '../services/chatSocket';
 import { parseJwt } from '../utils/jwt';
+import {fetchChatMessages} from "../services/apiService.js";
 
 const props = defineProps({
   userRequestId: String 
@@ -53,7 +54,6 @@ const messages = ref([]);
 const newMessage = ref('');
 const token = sessionStorage.getItem('jwt');
 const userRole = parseJwt(token)?.role;
-const username = parseJwt(token)?.sub;
 
 const handleIncomingMessage = (msg) => {
   messages.value.push(msg);
@@ -91,6 +91,10 @@ const formatDate = (timestamp) => {
  // Connect to the chat server when the component is mounted.
 onMounted(() => {
   connectToChat(props.userRequestId, token, handleIncomingMessage);
+  fetchChatMessages(props.userRequestId, token).then((data) => {
+    messages.value = data;
+    console.log('messages:', messages.value);
+  });
 });
 
 
