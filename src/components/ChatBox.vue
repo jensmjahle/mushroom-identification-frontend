@@ -45,6 +45,8 @@ import { ref, onMounted, onBeforeUnmount } from 'vue';
 import { connectToChat, sendMessage, disconnectFromChat } from '../services/chatSocket';
 import { parseJwt } from '../utils/jwt';
 import {fetchChatMessages} from "../services/apiService.js";
+import { formatDate } from '../utils/formatters';
+
 
 const props = defineProps({
   userRequestId: String 
@@ -82,10 +84,6 @@ const getSide = (msg) => {
 };
 
 
-// Format the timestamp to a human-readable date and time.
-const formatDate = (timestamp) => {
-  return new Date(timestamp).toLocaleString();
-};
 
 
  // Connect to the chat server when the component is mounted.

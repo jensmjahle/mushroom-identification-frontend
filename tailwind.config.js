@@ -12,6 +12,7 @@ export default {
       colors: {
         primary: '#FFFFFF',
         text: '#f8f4ec',         // Soft Clay
+        textAlt: '#000',      //
         bg: '#d9ccb9',           // Warm Sand
         bgAlt: '#38434f',        // Deep Slate
        
@@ -46,7 +47,15 @@ export default {
           other: '#52796f',     // Bubble for others
           meta: '#f8f4ec',
           border: '#38434f'
-        }
+        },
+        
+        status: {
+          pending: '#fbbf24',     // yellow-400
+          completed: '#10b981',   // green-500
+          rejected: '#ef4444',    // red-500
+          open: '#60a5fa',        // blue-400
+          in_review: '#f97316'     // orange-500 
+        },
       },
     },
   },

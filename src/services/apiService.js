@@ -49,3 +49,13 @@ export const fetchChatMessages = async (userRequestId) => {
     throw error;
   }
 };
+
+export const getPaginatedRequests = async (page = 0, size = 10, token = null) => {
+  const response = await axios.get(`${API_URL}/admin/requests/paginated`, {
+    params: { page, size },
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  });
+  return response.data;
+};

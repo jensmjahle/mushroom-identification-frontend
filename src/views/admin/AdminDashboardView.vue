@@ -1,4 +1,8 @@
 <template>
   <h1>Admin dashboard</h1>
-  <p>Admin dashboard view</p>
+  <RequestsList />
+  
 </template>
+<script setup>
+import RequestsList from "../../components/RequestsList.vue";
+</script>
