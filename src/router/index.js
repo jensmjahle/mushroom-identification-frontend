@@ -14,7 +14,7 @@ const routes = [
     component: HomeView 
   },
   { 
-    path: '/request/:referenceCode',
+    path: '/request/:userRequestId',
     name: 'user-request', 
     component: UserRequestView,
     meta: { requiresUser: true }
@@ -31,7 +31,7 @@ const routes = [
     meta: { requiresAdmin: true }
   },
   {
-    path: '/admin/request/:referenceCode',
+    path: '/admin/request/:userRequestId',
     name: 'admin-request',
     component: AdminUserRequestView,
     meta: { requiresAdmin: true }
