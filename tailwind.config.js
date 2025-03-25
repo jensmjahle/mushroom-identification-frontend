@@ -56,6 +56,13 @@ export default {
           open: '#60a5fa',        // blue-400
           in_review: '#f97316'     // orange-500 
         },
+
+        role: {
+          superuser: '#f59e0b', // amber
+          moderator: '#3b82f6', // blue
+          user: '#10b981'       // green
+        }
+
       },
     },
   },
