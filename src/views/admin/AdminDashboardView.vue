@@ -1,7 +1,9 @@
 <template>
-  <h1>Admin dashboard</h1>
-  <router-view />
+  <p>Hello {{name}}, pick "next from que" on the left to get started</p>
 </template>
-<script setup>
 
+<script setup>
+import {parseJwt} from "../../utils/jwt.js";
+
+const name = parseJwt(sessionStorage.getItem('jwt')).sub;
 </script>
