@@ -1,7 +1,7 @@
 <template>
   <nav class="bg-bgAlt text-white fixed top-0 left-0 w-full z-50 shadow-md">
     <div class="max-w-screen-xl mx-auto px-4 py-3 flex items-center justify-between">
-      <!-- Left: Back & logo -->
+      <!-- Logo & Back button -->
       <div class="flex items-center space-x-4">
         <button
             v-if="showBackButton"
@@ -10,46 +10,60 @@
         >
           ← Back
         </button>
-        <router-link to="/" class="font-bold text-xl tracking-wide hover:text-button">
+        <router-link to="/" class="font-bold text-xl tracking-wide hover:text-button whitespace-nowrap">
           Fleinsoppkontroll
         </router-link>
       </div>
 
-      <!-- Right: Admin section -->
-      <div v-if="isAdmin" class="relative flex items-center space-x-2">
-        <!-- User Role Badge -->
+      <!-- Desktop admin info -->
+      <div class="hidden sm:flex items-center space-x-4" v-if="isAdmin">
         <div :class="['flex items-center space-x-1 text-xs font-medium px-3 py-1 rounded-full text-white', getRoleClass(role)]">
           <ShieldCheck class="w-4 h-4" />
           <span class="capitalize">{{ role.toLowerCase() }}</span>
         </div>
-        <span class="text-sm font-semibold">{{ username }}</span>
-        <button
-            @click="toggleDropdown"
-            class="w-10 h-10 rounded-full bg-button hover:bg-button-hover flex items-center justify-center focus:outline-none"
-        >
-          <span class="text-white font-bold uppercase">
-            {{ role.charAt(0) }}
-          </span>
+        <span class="text-sm font-semibold truncate">{{ username }}</span>
+        <div class="relative">
+          <button
+              @click="toggleDropdown"
+              class="w-10 h-10 rounded-full bg-button hover:bg-button-hover flex items-center justify-center"
+          >
+            <span class="text-white font-bold uppercase">{{ role.charAt(0) }}</span>
+          </button>
+          <div
+              v-if="dropdownOpen"
+              class="absolute right-0 mt-2 top-full w-40 bg-white rounded-md shadow-lg z-50 text-left"
+          >
+            <ul class="py-2 text-sm text-gray-700">
+              <li>
+                <button @click="logout" class="block w-full text-left px-4 py-2 hover:bg-gray-100">Log out</button>
+                <button @click="settings" class="block w-full text-left px-4 py-2 hover:bg-gray-100">Settings</button>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mobile hamburger -->
+      <div class="sm:hidden relative">
+        <button @click="toggleMobileMenu">
+          <Menu class="w-6 h-6 text-text hover:text-button" />
         </button>
 
-        <!-- Dropdown menu -->
         <div
-            v-if="dropdownOpen"
-            class="absolute right-0 mt-2 top-full w-40 bg-white rounded-md shadow-lg z-50 text-left"
+            v-if="mobileMenuOpen"
+            class="absolute right-0 top-full mt-2 w-48 bg-white text-black rounded-md shadow-md z-50"
         >
-          <ul class="py-2 text-sm text-gray-700">
+          <div v-if="isAdmin" class="p-4 border-b">
+            <div :class="['flex items-center space-x-1 text-xs font-medium px-3 py-1 rounded-full text-white', getRoleClass(role)]">
+              <ShieldCheck class="w-4 h-4" />
+              <span class="capitalize">{{ role.toLowerCase() }}</span>
+            </div>
+            <p class="text-sm mt-1">{{ username }}</p>
+          </div>
+          <ul class="text-sm">
             <li>
-              <button
-                  @click="logout"
-                  class="block w-full text-left px-4 py-2 hover:bg-gray-100"
-              >
-                Log out
-              </button>
-              <button
-                  @click="settings"
-                  class="block w-full text-left px-4 py-2 hover:bg-gray-100">
-                Settings
-              </button>
+              <button @click="settings" class="block w-full text-left px-4 py-2 hover:bg-gray-100">Settings</button>
+              <button @click="logout" class="block w-full text-left px-4 py-2 hover:bg-gray-100">Log out</button>
             </li>
           </ul>
         </div>
@@ -58,11 +72,12 @@
   </nav>
 </template>
 
+
 <script setup>
 import {ref, computed, onMounted, onBeforeUnmount} from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { parseJwt } from '../utils/jwt';
-import { ShieldCheck } from 'lucide-vue-next';
+import { ShieldCheck, Menu } from 'lucide-vue-next';
 
 
 const router = useRouter();
@@ -73,6 +88,7 @@ ref(null);
 const token = sessionStorage.getItem('jwt');
 const role = ref(null);
 const username = ref(null);
+const mobileMenuOpen = ref(false);
 
 onMounted(() => {
   if (token) {
@@ -95,6 +111,10 @@ const showBackButton = computed(() => {
   return route.path !== '/' && route.path !== '/admin/dashboard';
 });
 
+const toggleMobileMenu = () => {
+  mobileMenuOpen.value = !mobileMenuOpen.value;
+};
+
 const goBack = () => router.back();
 
 const toggleDropdown = () => {
@@ -104,6 +124,7 @@ const toggleDropdown = () => {
 const handleClickOutsideDropdown = (e) => {
   if (!e.target.closest('.relative')) {
     dropdownOpen.value = false;
+    mobileMenuOpen.value = false;
   }
 };
 
