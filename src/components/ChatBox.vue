@@ -1,44 +1,41 @@
-
 <template>
-  <div class="flex flex-col h-[70vh]  border border-chat-border rounded-lg overflow-hidden bg-bg">
+  <div class="flex flex-col h-[70vh] max-h-[80vh] w-full max-w-screen-md mx-auto border border-chat-border rounded-lg overflow-hidden bg-bg">
     <!-- Messages -->
     <div class="flex-1 p-4 overflow-y-auto flex flex-col space-y-3">
-    <div
+      <div
           v-for="msg in messages"
           :key="msg.messageId"
           :class="[
-    'max-w-[70%] px-4 py-2 rounded-lg break-words text-sm shadow-sm',
-    getSide(msg) === 'me'
-      ? 'self-end bg-chat-me text-white'
-      : 'self-start bg-chat-other text-white'
-  ]"
+          'px-4 py-2 rounded-lg break-words text-sm shadow-sm w-fit max-w-[85%] sm:max-w-[70%]',
+          getSide(msg) === 'me'
+            ? 'self-end bg-chat-me text-white'
+            : 'self-start bg-chat-other text-white'
+        ]"
       >
         <p class="text-xs text-chat-meta mb-1">
-         {{ formatDate(msg.createdAt) }}
+          {{ formatDate(msg.createdAt) }}
         </p>
         <p>{{ msg.content }}</p>
       </div>
-
     </div>
 
     <!-- Input area -->
-    <div class="flex items-center border-t border-chat-border p-3 bg-bgAlt">
+    <div class="flex flex-col sm:flex-row items-center border-t border-chat-border p-3 bg-bgAlt gap-2 sm:gap-0">
       <input
           v-model="newMessage"
           @keyup.enter="send"
           placeholder="Type a message..."
-          class="flex-grow px-3 py-2 border border-chat-border rounded-md focus:outline-none focus:ring-2 focus:ring-button2 hover:border-button2-border text-chat-me bg-white"
+          class="flex-grow w-full px-3 py-2 border border-chat-border rounded-md focus:outline-none focus:ring-2 focus:ring-button2 hover:border-button2-border text-chat-me bg-white"
       />
       <button
           @click="send"
-          class="ml-2 bg-button hover:bg-button-hover text-white px-4 py-2 rounded-md transition border border-button-border"
+          class="sm:ml-2 w-full sm:w-auto bg-button hover:bg-button-hover text-white px-4 py-2 rounded-md transition border border-button-border"
       >
         Send
       </button>
     </div>
   </div>
 </template>
-
 
 <script setup>
 import { ref, onMounted, onBeforeUnmount } from 'vue';
