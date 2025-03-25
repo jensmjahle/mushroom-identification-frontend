@@ -6,6 +6,8 @@ import AdminLoginView from '../views/admin/AdminLoginView.vue';
 import UserRequestView from '../views/user/UserRequestView.vue';
 import AdminDashboardView from "../views/admin/AdminDashboardView.vue";
 import AdminUserRequestView from "../views/admin/AdminUserRequestView.vue";
+import AppAdminLayout from "../layouts/AppAdminLayout.vue";
+import RequestsList from "../components/RequestsList.vue";
 
 const routes = [
   { 
@@ -13,8 +15,30 @@ const routes = [
     name: 'home', 
     component: HomeView 
   },
+  {
+    path: '/admin',
+    component: AppAdminLayout,
+    meta: { requiresAdmin: true },
+    children: [
+      {
+        path: 'dashboard',
+        name: 'admin-dashboard',
+        component: AdminDashboardView
+      },
+      {
+        path: 'requests/:userRequestId',
+        name: 'admin-request',
+        component: AdminUserRequestView
+      },
+      {
+        path: 'requests',
+        name: 'admin-all-requests',
+        component: RequestsList
+      }
+    ]
+  },
   { 
-    path: '/request/:referenceCode',
+    path: '/request/:userRequestId',
     name: 'user-request', 
     component: UserRequestView,
     meta: { requiresUser: true }
@@ -23,18 +47,6 @@ const routes = [
     path: '/admin/login', 
     name: 'admin-login',
     component: AdminLoginView
-  },
-  {
-    path: '/admin/dashboard',
-    name: 'admin-dashboard',
-    component: AdminDashboardView,
-    meta: { requiresAdmin: true }
-  },
-  {
-    path: '/admin/request/:referenceCode',
-    name: 'admin-request',
-    component: AdminUserRequestView,
-    meta: { requiresAdmin: true }
   },
   {
     path: '/:pathMatch(.*)*',

@@ -32,20 +32,30 @@ export const loginAdmin = async (username, password) => {
   }
 };
 
-export const fetchProtectedData = async () => {
+
+export const fetchChatMessages = async (userRequestId) => {
   try {
-    const token = sessionStorage.getItem("jwt"); 
+    const token = sessionStorage.getItem("jwt");
     if (!token) throw new Error("No authentication token found");
 
-    const response = await axios.get(`${API_URL}/api/protected-endpoint`, {
+    const response = await axios.get(`${API_URL}/api/messages/${userRequestId}/history`, {
       headers: {
         Authorization: `Bearer ${token}`
       }
     });
-
     return response.data;
   } catch (error) {
-    console.error("Protected request failed:", error);
+    console.error("Chat messages request failed:", error);
     throw error;
   }
+};
+
+export const getPaginatedRequests = async (page = 0, size = 10, token = null) => {
+  const response = await axios.get(`${API_URL}/admin/requests/paginated`, {
+    params: { page, size },
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  });
+  return response.data;
 };

@@ -1,25 +1,38 @@
 <template>
-  <div class="chatbox">
-    <div class="messages">
+  <div class="flex flex-col h-[70vh] max-h-[80vh] w-full max-w-screen-md mx-auto border border-chat-border rounded-lg overflow-hidden bg-bg">
+    <!-- Messages -->
+    <div class="flex-1 p-4 overflow-y-auto flex flex-col space-y-3">
       <div
           v-for="msg in messages"
           :key="msg.messageId"
-          :class="['message', getSide(msg.senderType)]"
+          :class="[
+          'px-4 py-2 rounded-lg break-words text-sm shadow-sm w-fit max-w-[85%] sm:max-w-[70%]',
+          getSide(msg) === 'me'
+            ? 'self-end bg-chat-me text-white'
+            : 'self-start bg-chat-other text-white'
+        ]"
       >
-        <p class="message-meta">
-          {{ msg.senderType }} — {{ formatDate(msg.createdAt) }}
+        <p class="text-xs text-chat-meta mb-1">
+          {{ formatDate(msg.createdAt) }}
         </p>
-        <p class="message-content">{{ msg.content }}</p>
+        <p>{{ msg.content }}</p>
       </div>
     </div>
 
-    <div class="input-area">
+    <!-- Input area -->
+    <div class="flex flex-col sm:flex-row items-center border-t border-chat-border p-3 bg-bgAlt gap-2 sm:gap-0">
       <input
           v-model="newMessage"
           @keyup.enter="send"
           placeholder="Type a message..."
+          class="flex-grow w-full px-3 py-2 border border-chat-border rounded-md focus:outline-none focus:ring-2 focus:ring-button2 hover:border-button2-border text-chat-me bg-white"
       />
-      <button @click="send">Send</button>
+      <button
+          @click="send"
+          class="sm:ml-2 w-full sm:w-auto bg-button hover:bg-button-hover text-white px-4 py-2 rounded-md transition border border-button-border"
+      >
+        Send
+      </button>
     </div>
   </div>
 </template>
@@ -28,6 +41,9 @@
 import { ref, onMounted, onBeforeUnmount } from 'vue';
 import { connectToChat, sendMessage, disconnectFromChat } from '../services/chatSocket';
 import { parseJwt } from '../utils/jwt';
+import {fetchChatMessages} from "../services/apiService.js";
+import { formatDate } from '../utils/formatters';
+
 
 const props = defineProps({
   userRequestId: String 
@@ -37,7 +53,6 @@ const messages = ref([]);
 const newMessage = ref('');
 const token = sessionStorage.getItem('jwt');
 const userRole = parseJwt(token)?.role;
-const username = parseJwt(token)?.sub;
 
 const handleIncomingMessage = (msg) => {
   messages.value.push(msg);
@@ -56,88 +71,32 @@ const send = () => {
   newMessage.value = '';
 };
 
-const getSide = (senderType) => {
-  if (userRole === 'USER') {
-    return senderType === 'USER' ? 'left' : 'right';
-  } else {
-    return senderType === 'ADMIN' ? 'right' : 'left';
-  }
+
+const getSide = (msg) => {
+  console.log('my role:', userRole);
+  console.log('msg senderType:', msg.senderType);
+
+  const mySenderType = userRole === 'USER' ? 'USER' : 'ADMIN';
+  return msg.senderType === mySenderType ? 'me' : 'other';
 };
 
-const formatDate = (timestamp) => {
-  return new Date(timestamp).toLocaleString();
-};
 
+
+
+ // Connect to the chat server when the component is mounted.
 onMounted(() => {
   connectToChat(props.userRequestId, token, handleIncomingMessage);
+  fetchChatMessages(props.userRequestId, token).then((data) => {
+    messages.value = data;
+    console.log('messages:', messages.value);
+  });
 });
 
+
+// Disconnect from the chat server when the component is unmounted.
 onBeforeUnmount(() => {
   disconnectFromChat();
 });
 </script>
 
-<style scoped>
-.chatbox {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  overflow: hidden;
-}
 
-.messages {
-  flex-grow: 1;
-  padding: 10px;
-  overflow-y: auto;
-}
-
-.message {
-  max-width: 70%;
-  margin: 8px 0;
-  padding: 10px;
-  border-radius: 10px;
-  word-wrap: break-word;
-}
-
-.message.left {
-  align-self: flex-start;
-  background-color: rebeccapurple;
-}
-
-.message.right {
-  align-self: flex-end;
-  background-color: blue;
-  color: #1a1a1a;
-  
-}
-
-.message-meta {
-  font-size: 0.75rem;
-  color: #666;
-  margin-bottom: 4px;
-}
-
-.input-area {
-  display: flex;
-  padding: 10px;
-  border-top: 1px solid #ddd;
-}
-
-.input-area input {
-  flex-grow: 1;
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  margin-right: 8px;
-}
-
-.input-area button {
-  padding: 8px 12px;
-  border: none;
-  border-radius: 6px;
-  background-color: #007bff;
-  color: white;
-}
-</style>
