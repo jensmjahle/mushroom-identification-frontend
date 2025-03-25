@@ -1,5 +1,5 @@
 <template>
-  <div class="w-1/6 bg-bg text-textAlt ml-2 rounded-lg mx-auto">
+  <div class="w-1/6 bg-bg text-textAlt ml-2 rounded-lg">
     <ul class="p-4 space-y-2 w-fill">
       <button class="block w-full text-left px-4 py-2 hover:bg-button-hover bg-button">Next from Que</button>
       <button class="block w-full text-left px-4 py-2 hover:bg-button2-hover bg-button2">Put Back into Que</button>

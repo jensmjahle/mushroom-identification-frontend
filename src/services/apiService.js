@@ -67,4 +67,13 @@ export const getUserRequestAdmin = async (userRequestId, token = null) => {
     }
   });
   return response.data;
-}
+};
+
+export const getUserRequestImages = async (userRequestId, token = null) => {
+  const response = await axios.get(`${API_URL}/admin/requests/${userRequestId}/images`, {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  });
+  return response.data;
+};
