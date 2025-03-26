@@ -73,9 +73,6 @@ const send = () => {
 
 
 const getSide = (msg) => {
-  console.log('my role:', userRole);
-  console.log('msg senderType:', msg.senderType);
-
   const mySenderType = userRole === 'USER' ? 'USER' : 'ADMIN';
   return msg.senderType === mySenderType ? 'me' : 'other';
 };
@@ -88,7 +85,6 @@ onMounted(() => {
   connectToChat(props.userRequestId, token, handleIncomingMessage);
   fetchChatMessages(props.userRequestId, token).then((data) => {
     messages.value = data;
-    console.log('messages:', messages.value);
   });
 });
 

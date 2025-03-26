@@ -46,8 +46,14 @@ const mushrooms = ref([]);
 
 onMounted(() => {
   getUserRequestImages(props.userRequestId, token).then((data) => {
-    // Assuming `data.imageUrls` is an array of image URLs
-    mushrooms.value = data.imageUrls || [];
+    console.log("raw data" + data);
+    const BASE_URL = 'http://localhost:8080';
+    const imageUrls = (data || [])
+    .filter(msg => msg.messageType === "IMAGE")
+    .map(msg => `${BASE_URL}/api/images?token=${msg.content}`);
+    console.log("imageUrls " + imageUrls);
+    mushrooms.value = imageUrls;
   });
 });
+
 </script>
