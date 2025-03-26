@@ -59,3 +59,21 @@ export const getPaginatedRequests = async (page = 0, size = 10, token = null) =>
   });
   return response.data;
 };
+
+export const getUserRequestAdmin = async (userRequestId, token = null) => {
+  const response = await axios.get(`${API_URL}/admin/requests/${userRequestId}`, {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  });
+  return response.data;
+};
+
+export const getUserRequestImages = async (userRequestId, token = null) => {
+  const response = await axios.get(`${API_URL}/api/images/${userRequestId}/images`, {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  });
+  return response.data;
+};
