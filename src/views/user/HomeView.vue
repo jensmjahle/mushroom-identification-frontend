@@ -2,7 +2,7 @@
 <template>
   <div class="flex flex-col items-center justify-center min-h-screen bg-bg px-4 text-center">
     <img
-        src="../../../public/assets/logo.svg"
+        src="/assets/logo.svg"
         alt="Fleinsoppkontroll Logo"
         class="w-56 h-auto mb-6"
     />

@@ -15,6 +15,7 @@ export default {
         textAlt: '#000',      //
         bg: '#d9ccb9',           // Warm Sand
         bgAlt: '#38434f',        // Deep Slate
+        bgAlt2: '#FFFFFF',          // Soft Clay
        
 
         button: {

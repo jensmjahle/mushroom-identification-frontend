@@ -29,7 +29,7 @@ const routes = [
         meta: { requiresUser: true }
       },
       {
-        path: '/new',
+        path: 'new',
         name: 'new-request',
         component:NewRequestView,
       }
