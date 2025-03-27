@@ -2,21 +2,24 @@ import axios from 'axios';
 
 const API_URL = 'http://localhost:8080';
 
-export const sendNewUserRequest = async (text,  images) => {
-  const requestBody = {
-    text: text,
-    images: images
-  };
-  
+export const sendNewUserRequest = async (text, images) => {
+  const formData = new FormData();
+  formData.append('text', text);
+  images.forEach(image => formData.append('images', image)); // multiple images
+
   try {
-    const response = await axios.post(`${API_URL}/api/requests/create`,
-        requestBody);
+    const response = await axios.post(`${API_URL}/api/requests/create`, formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    });
     return response.data;
   } catch (error) {
-      console.error('Error while sending new user request', error);
-      throw error;
-    }
+    console.error('Error while sending new user request', error);
+    throw error;
   }
+};
+
 
 export const loginAdmin = async (username, password) => {
   try {
@@ -77,3 +80,4 @@ export const getUserRequestImages = async (userRequestId, token = null) => {
   });
   return response.data;
 };
+

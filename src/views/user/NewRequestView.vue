@@ -56,7 +56,7 @@
           v-model="text"
           rows="4"
           placeholder="Write here..."
-          class="w-full p-3 border rounded bg-gray-50 resize-none focus:outline-none focus:ring-2 focus:ring-button2"
+          class="w-full p-3 border text-textAlt rounded bg-gray-50 resize-none focus:outline-none focus:ring-2 focus:ring-button2"
       ></textarea>
     </div>
 
@@ -65,7 +65,7 @@
       <button
           @click="submitRequest"
           :disabled="!isValid"
-          class="bg-button hover:bg-button-hover text-white px-6 py-2 rounded disabled:opacity-50"
+          class="bg-button hover:bg-button-hover text-text px-6 py-2 rounded disabled:opacity-50"
       >
         Submit Request
       </button>
@@ -76,6 +76,7 @@
 <script setup>
 import { ref, computed } from 'vue';
 import axios from 'axios';
+import {sendNewUserRequest} from "../../services/apiService.js";
 
 const steps = [
   {
@@ -129,24 +130,16 @@ const isValid = computed(() => {
   return text.value.trim() !== '' && images.value.length > 0;
 });
 
-const submitRequest = async () => {
-  const formData = new FormData();
-  formData.append('text', text.value);
-  images.value.forEach(file => formData.append('images', file));
 
+const submitRequest = async () => {
   try {
-    const response = await axios.post('/api/requests/create', formData, {
-      headers: {
-        'Content-Type': 'multipart/form-data'
-      }
-    });
-    alert(`Request submitted! Reference code: ${response.data}`);
+    const referenceCode = await sendNewUserRequest(text.value, images.value);
+    alert(`Request submitted! Reference code: ${referenceCode}`);
     text.value = '';
     images.value = [];
     previewUrls.value = [];
-  } catch (err) {
-    console.error('Error submitting:', err);
-    alert('Failed to submit your request.');
+  } catch (error) {
+    alert('Failed to submit the request.');
   }
 };
 </script>
