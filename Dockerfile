@@ -1,32 +1,29 @@
-# Build stage
-FROM node:18-alpine AS builder
+# Use Debian-based Node.js image instead of Alpine
+FROM node:18
 
+# Set the working directory
 WORKDIR /app
 
-# Install dependencies
+# Copy package files
 COPY package.json package-lock.json ./
-RUN npm install
 
-# Copy app source and build it
+# Clean install
+RUN npm ci
+
+# Copy source files
 COPY . .
+
+# Build the Vite app
 RUN npm run build
 
-# Production stage
-FROM node:18-alpine
-
-# Install a lightweight static server
+# Install a simple static file server
 RUN npm install -g serve
 
-WORKDIR /app
+# Set working directory for production
+WORKDIR /app/dist
 
-# Copy built app from previous stage
-COPY --from=builder /app/dist .
-
-# Cloud Run requires the container to listen on $PORT
-ENV PORT=8080
-
-# Expose the required port
+# Expose the port Cloud Run expects
 EXPOSE 8080
 
-# Serve the built static files
-CMD ["serve", "-s", ".", "-l", "8080"]
+# Run the static server on the required port
+CMD ["serve", "-l", "8080", "."]
