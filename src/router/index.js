@@ -8,12 +8,32 @@ import AdminDashboardView from "../views/admin/AdminDashboardView.vue";
 import AdminUserRequestView from "../views/admin/AdminUserRequestView.vue";
 import AppAdminLayout from "../layouts/AppAdminLayout.vue";
 import RequestsList from "../components/RequestsList.vue";
+import AppUserLayout from "../layouts/AppUserLayout.vue";
+import NewRequestView from "../views/user/NewRequestView.vue";
 
 const routes = [
   { 
     path: '/', 
     name: 'home', 
-    component: HomeView 
+    component: HomeView
+  },
+  {
+    path: '/user',
+    name: 'user',
+    component: AppUserLayout,
+    children: [
+      {
+        path: 'request/:userRequestId',
+        name: 'user-request',
+        component: UserRequestView,
+        meta: { requiresUser: true }
+      },
+      {
+        path: '/new',
+        name: 'new-request',
+        component:NewRequestView,
+      }
+    ]
   },
   {
     path: '/admin',
@@ -36,12 +56,6 @@ const routes = [
         component: RequestsList
       }
     ]
-  },
-  { 
-    path: '/request/:userRequestId',
-    name: 'user-request', 
-    component: UserRequestView,
-    meta: { requiresUser: true }
   },
   {
     path: '/admin/login', 
