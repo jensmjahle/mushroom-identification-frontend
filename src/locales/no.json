@@ -1,9 +1,32 @@
 {
   "login": {
-    "title": "Administrator Innlogging",
+    "title": "Administratorinnlogging",
     "username": "Brukernavn",
     "password": "Passord",
     "submit": "Logg inn",
-    "error": "Ugyldig brukernavn eller passord"
+    "error": "Ugyldig brukernavn eller passord",
+    "fill_in_both_username_and_password": "Vennligst fyll inn både brukernavn og passord"
+  },
+  "submit": {
+    "title": "Send inn din sopphenvendelse",
+    "steps": [
+      {
+        "title": "Ta et bilde av soppen",
+        "description": "Sørg for at bildet er klart og viser hele soppen."
+      },
+      {
+        "title": "Ta med omgivelsene",
+        "description": "Ta et nytt bilde av området hvor soppen ble funnet."
+      },
+      {
+        "title": "Flere vinkler",
+        "description": "Fotografer soppen ovenfra og fra siden om mulig."
+      }
+    ],
+    "imageUpload": "Last opp bilder",
+    "removeImage": "Fjern bilde",
+    "message": "Skriv en melding til oss",
+    "placeholder": "Skriv her...",
+    "button": "Send forespørsel"
   }
 }

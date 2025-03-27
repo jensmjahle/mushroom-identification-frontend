@@ -2,7 +2,7 @@
   <div class="bg-bgAlt2 border border-chat-border rounded-lg shadow p-4 w-full max-w-2xl mx-auto">
     <!-- Header -->
     <div class="text-center mb-6">
-      <h1 class="text-2xl font-bold text-textAlt">Submit Your Mushroom Request</h1>
+      <h1 class="text-2xl font-bold text-textAlt">{{ $t('submit.title') }}</h1>
     </div>
 
     <!-- Collapsible Steps -->
@@ -11,17 +11,17 @@
           @click="toggleStep(index)"
           class="w-full text-left px-4 py-3 bg-bgAlt text-text font-semibold hover:bg-button2 transition"
       >
-        {{ index + 1 }}. {{ step.title }}
+        {{ index + 1 }}. {{ $t(`submit.steps.${index}.title`) }}
       </button>
       <div v-if="activeStep === index" class="px-4 py-3 text-sm bg-white text-chat-other border-t">
-        <p>{{ step.description }}</p>
-        <img v-if="step.image" :src="step.image" alt="Step Visualized" class="mt-2 rounded shadow max-w-full">
+        <p>{{ $t(`submit.steps.${index}.description`) }}</p>
+        <img v-if="step.image" :src="step.image" alt="Step Visualized" class="mt-2 rounded shadow max-w-full" />
       </div>
     </div>
 
     <!-- Image Upload -->
     <div class="mb-6">
-      <label class="block mb-2 font-semibold text-textAlt">Upload Images</label>
+      <label class="block mb-2 font-semibold text-textAlt">{{ $t('submit.imageUpload') }}</label>
       <input
           type="file"
           multiple
@@ -41,7 +41,7 @@
           <button
               @click="removeImage(index)"
               class="absolute top-2 right-2 bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs hover:bg-red-600"
-              title="Remove image"
+              :title="$t('submit.removeImage')"
           >
             ×
           </button>
@@ -51,11 +51,11 @@
 
     <!-- Text Input -->
     <div class="mb-6">
-      <label class="block mb-2 font-semibold text-textAlt">Write us a message</label>
+      <label class="block mb-2 font-semibold text-textAlt">{{ $t('submit.message') }}</label>
       <textarea
           v-model="text"
           rows="4"
-          placeholder="Write here..."
+          :placeholder="$t('submit.placeholder')"
           class="w-full p-3 border text-textAlt rounded bg-gray-50 resize-none focus:outline-none focus:ring-2 focus:ring-button2"
       ></textarea>
     </div>
@@ -67,7 +67,7 @@
           :disabled="!isValid"
           class="bg-button hover:bg-button-hover text-text px-6 py-2 rounded disabled:opacity-50"
       >
-        Submit Request
+        {{ $t('submit.button') }}
       </button>
     </div>
   </div>
@@ -75,31 +75,14 @@
 
 <script setup>
 import { ref, computed } from 'vue';
-import axios from 'axios';
 import {sendNewUserRequest} from "../../services/apiService.js";
 
 const steps = [
-  {
-    title: 'Take a picture of the mushroom',
-    description: 'Make sure the mushroom is clearly visible in good lighting.',
-    image: '/assets/step1.jpg'
-  },
-  {
-    title: 'Note the environment',
-    description: 'Forest, field, stump, etc. This helps us identify the species.',
-    image: '/assets/step2.jpg'
-  },
-  {
-    title: 'Avoid touching unknown mushrooms',
-    description: 'Use gloves or tools to handle if needed.',
-    image: null
-  },
-  {
-    title: 'Submit your request',
-    description: 'Describe the mushroom and where you found it. Include any other relevant information.',
-    image: null
-  }
+  { image: '/assets/step1.jpg' },
+  { image: '/assets/step2.jpg' },
+  { image: null },
 ];
+
 
 const activeStep = ref(null);
 const toggleStep = (index) => {
@@ -118,7 +101,7 @@ const handleImageUpload = (event) => {
     previewUrls.value.push(URL.createObjectURL(file));
   });
 
-  event.target.value = ''; // reset input so re-uploading same file works
+  event.target.value = ''; // reset input so re-uploading the same file works
 };
 
 const removeImage = (index) => {

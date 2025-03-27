@@ -6,5 +6,27 @@
     "submit": "Login",
     "error": "Invalid username or password",
     "fill_in_both_username_and_password": "Please fill in both username and password"
+  },
+  "submit": {
+    "title": "Submit Your Mushroom Request",
+    "steps": [
+      {
+        "title": "Take a photo of the mushroom",
+        "description": "Make sure the photo is clear and shows the whole mushroom."
+      },
+      {
+        "title": "Include surroundings",
+        "description": "Take another photo of the environment where the mushroom was found."
+      },
+      {
+        "title": "Multiple angles",
+        "description": "Photograph the mushroom from above and from the side if possible."
+      }
+    ],
+    "imageUpload": "Upload Images",
+    "removeImage": "Remove image",
+    "message": "Write us a message",
+    "placeholder": "Write here...",
+    "button": "Submit Request"
   }
 }
