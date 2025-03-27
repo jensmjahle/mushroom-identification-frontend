@@ -1,20 +1,32 @@
-# Use an official Node.js runtime as a parent image
-FROM node:18-alpine
+# Build stage
+FROM node:18-alpine AS builder
 
-# Set the working directory in the container
 WORKDIR /app
 
-# Copy package.json and package-lock.json
-COPY package.json package-lock.json ./
-
 # Install dependencies
+COPY package.json package-lock.json ./
 RUN npm install
 
-# Copy the rest of the application
+# Copy app source and build it
 COPY . .
+RUN npm run build
 
-# Expose port 5173 (default Vite port)
-EXPOSE 5173
+# Production stage
+FROM node:18-alpine
 
-# Start Vite server
-CMD ["npm", "run", "dev", "--", "--host"]
+# Install a lightweight static server
+RUN npm install -g serve
+
+WORKDIR /app
+
+# Copy built app from previous stage
+COPY --from=builder /app/dist .
+
+# Cloud Run requires the container to listen on $PORT
+ENV PORT=8080
+
+# Expose the required port
+EXPOSE 8080
+
+# Serve the built static files
+CMD ["serve", "-s", ".", "-l", "8080"]
