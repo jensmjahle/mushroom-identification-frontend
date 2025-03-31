@@ -28,5 +28,9 @@
     "message": "Write us a message",
     "placeholder": "Write here...",
     "button": "Submit Request"
+  },
+  "sideMenu" : {
+    "completedTitle" : "Completed",
+    "nextFromQue" : "Next from Que"
   }
 }

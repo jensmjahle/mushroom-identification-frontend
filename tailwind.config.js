@@ -10,21 +10,30 @@ export default {
         hero: "url('/assets/background.svg')"
       },
       colors: {
+        /*
         primary: '#FFFFFF',
         text: '#f8f4ec',         // Soft Clay
         textAlt: '#000',      //
         bg: '#d9ccb9',           // Warm Sand
         bgAlt: '#38434f',        // Deep Slate
         bgAlt2: '#FFFFFF',          // Soft Clay
-       
+        
+         */
+        primary: '#FFFFFF',
+        textAlt: '#f8f4ec',       
+        text: '#000',      
+        bg: '#d9ccb9',           
+        bgAlt: '#38434f',       
+        bgAlt2: '#C6C6C6',
+
 
         button: {
-          DEFAULT: '#f28f3b',   // Bright Ember
+          DEFAULT: '#93DA8B',   // Bright Ember
           hover: '#e07b21',     // Darker version for hover
           border: '#c56d20'
         },
         button2: {
-          DEFAULT: '#52796f',   // Dusty Teal
+          DEFAULT: '#C08CD8',   // Dusty Teal
           hover: '#3d5a50',     // Slightly darker teal
           border: '#415c56'
         },
@@ -54,7 +63,7 @@ export default {
           pending: '#fbbf24',     // yellow-400
           completed: '#10b981',   // green-500
           rejected: '#ef4444',    // red-500
-          open: '#60a5fa',        // blue-400
+          new: '#60a5fa',        // blue-400
           in_review: '#f97316'     // orange-500 
         },
 

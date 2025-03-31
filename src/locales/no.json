@@ -28,5 +28,8 @@
     "message": "Skriv en melding til oss",
     "placeholder": "Skriv her...",
     "button": "Send forespørsel"
+  },
+  "sideMenu" : {
+    "completedTitle" : "Fullførte"
   }
 }
