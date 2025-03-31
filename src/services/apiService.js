@@ -35,7 +35,6 @@ export const loginAdmin = async (username, password) => {
   }
 };
 
-
 export const fetchChatMessages = async (userRequestId) => {
   try {
     const token = sessionStorage.getItem("jwt");
@@ -80,4 +79,15 @@ export const getUserRequestImages = async (userRequestId, token = null) => {
   });
   return response.data;
 };
+
+export const getCountOfRequestFromStatus = async (requestStatus, token = null) => {
+  const response = await axios.get(`${API_URL}/admin/requests/count`, {
+    params: { status: requestStatus },
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  });
+  return response.data;
+};
+
 
