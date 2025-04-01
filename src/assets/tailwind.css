@@ -44,4 +44,9 @@ html, body, #app {
   .nav-bar {
     @apply bg-transparent fixed top-0 left-0 w-full z-50 text-text;
   }
+  .vertical-box {
+    @apply items-center justify-center
+    rounded-lg
+    mx-4 sm:mx-8 md:mx-20 lg:mx-40;
+  }
 }

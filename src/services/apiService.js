@@ -70,6 +70,14 @@ export const getUserRequestAdmin = async (userRequestId, token = null) => {
   });
   return response.data;
 };
+export const getUserRequest = async (userRequestId, token = null) => {
+  const response = await axios.get(`${API_URL}/api/requests/retrieve`, {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  });
+  return response.data;
+};
 
 export const getUserRequestImages = async (userRequestId, token = null) => {
   const response = await axios.get(`${API_URL}/api/images/${userRequestId}/images`, {

@@ -1,20 +1,24 @@
 :root {
-  --color-primary: #1e1e1e;
-  --color-text: #f8f4ec;
-  --color-text-alt: #d9ccb9;
-  --color-bg: #FFFFFF;
+  --color-text: #000;
+  --color-text-faded: #000;
+  --color-text-alt: #000;
+  --color-text-alt-faded: #726e6e;
+  --color-bg: #ffffff;
   --color-bg-alt: #E8E8E8;
   --color-bg-alt2: #2d3748;
 
   --color-button: #4ade80; 
+  --color-button-meta: #000;
   --color-button-hover: #22c55e;
   --color-button-border: #15803d;
 
-  --color-button2: #8b5cf6; 
+  --color-button2: #8b5cf6;
+  --color-button2-meta: #000;
   --color-button2-hover: #7c3aed;
   --color-button2-border: #5b21b6;
 
-  --color-button3: #374151; 
+  --color-button3: #374151;
+  --color-button3-meta: #f8f4ec;
   --color-button3-hover: #1f2937;
   --color-button3-border: #111827;
 
@@ -33,11 +37,21 @@
   --color-chat-other-meta: #212121;
   --color-chat-other-border: #000000;
 
-  --color-status-pending: #facc15;
-  --color-status-completed: #22c55e;
+  --color-status-pending: #F4E87F;
+  --color-status-pending-text: #18181B;
+  --color-status-pending-border: #F4E87F;
+  --color-status-completed: #93DA8B;
+  --color-status-completed-text: #18181B;
+  --color-status-completed-border: #93DA8B;
   --color-status-rejected: #f87171;
-  --color-status-new: #3b82f6;
+  --color-status-rejected-text: #ffffff;
+  --color-status-rejected-border: #ffffff;
+  --color-status-new: #ffffff;
+  --color-status-new-text: #C08CD8;
+  --color-status-new-border: #C08CD8;
   --color-status-in-review: #fb923c;
+  --color-status-in-review-text: #ffffff;
+  --color-status-in-review-border: #ffffff;
 
   --color-role-superuser: #fbbf24;
   --color-role-moderator: #60a5fa;
