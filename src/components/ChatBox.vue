@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-col h-[70vh] max-h-[80vh] w-full max-w-screen-md mx-auto border border-chat-me_border rounded-lg overflow-hidden bg-bg">
     <!-- Messages -->
-    <div class="flex-1 p-4 overflow-y-auto flex flex-col space-y-3">
+    <div class="flex-1 p-4 overflow-y-auto flex flex-col space-y-3"  ref="messageContainer">
       <div
           v-for="msg in messages"
           :key="msg.messageId"
@@ -43,7 +43,7 @@
           v-model="newMessage"
           @keyup.enter="send"
           placeholder="Type a message..."
-          class="flex-grow w-full px-3 py-2 border border-chat-me_border rounded-md focus:outline-none focus:ring-2 focus:ring-button2 hover:border-button2-border text-chat-me bg-white"
+          class="flex-grow w-full px-3 py-2 border border-chat-me_border rounded-md focus:outline-none focus:ring-2 focus:ring-button2 hover:border-button2-border text-text bg-bg"
       />
       <button
           @click="send"
@@ -57,7 +57,7 @@
 
 
 <script setup>
-import { ref, onMounted, onBeforeUnmount } from 'vue';
+import {ref, onMounted, onBeforeUnmount, nextTick, watch} from 'vue';
 import { connectToChat, sendMessage, disconnectFromChat } from '../services/chatSocket';
 import { parseJwt } from '../utils/jwt';
 import {fetchChatMessages} from "../services/apiService.js";
@@ -72,11 +72,25 @@ const messages = ref([]);
 const newMessage = ref('');
 const token = sessionStorage.getItem('jwt');
 const userRole = parseJwt(token)?.role;
+const messageContainer = ref(null);
 
 const handleIncomingMessage = (msg) => {
   messages.value.push(msg);
 };
 
+
+const scrollToBottom = () => {
+  nextTick(() => {
+    if (messageContainer.value) {
+      messageContainer.value.scrollTop = messageContainer.value.scrollHeight;
+    }
+  });
+};
+
+// Watch for changes in messages and scroll
+watch(messages, () => {
+  scrollToBottom();
+});
 const send = () => {
   if (!newMessage.value.trim()) return;
 
@@ -88,6 +102,7 @@ const send = () => {
 
   sendMessage(props.userRequestId, token, newMessageDTO);
   newMessage.value = '';
+  scrollToBottom();
 };
 
 
@@ -104,6 +119,7 @@ onMounted(() => {
   connectToChat(props.userRequestId, token, handleIncomingMessage);
   fetchChatMessages(props.userRequestId, token).then((data) => {
     messages.value = data;
+    scrollToBottom();
   });
 });
 
