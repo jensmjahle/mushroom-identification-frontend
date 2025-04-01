@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-white border border-chat-border text-left rounded-lg shadow p-4 w-full max-w-screen-md mx-auto">
+  <div class=" border border-chat-border text-left rounded-lg shadow p-4 w-full max-w-screen-md mx-auto">
     <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-4">
       <!-- Info Block -->
       <div class="flex-1 space-y-1">
