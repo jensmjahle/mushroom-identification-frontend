@@ -1,0 +1,41 @@
+:root {
+  --color-primary: #1e1e1e;
+  --color-text: #f8f4ec;
+  --color-text-alt: #d9ccb9;
+  --color-bg: #121212;
+  --color-bg-alt: #1f2937;
+  --color-bg-alt2: #2d3748;
+
+  --color-button: #4ade80; 
+  --color-button-hover: #22c55e;
+  --color-button-border: #15803d;
+
+  --color-button2: #8b5cf6; 
+  --color-button2-hover: #7c3aed;
+  --color-button2-border: #5b21b6;
+
+  --color-button3: #374151; 
+  --color-button3-hover: #1f2937;
+  --color-button3-border: #111827;
+
+  --color-danger: #f87171;
+  --color-danger-hover: #ef4444;
+
+  --color-success: #34d399;
+  --color-success-hover: #10b981;
+
+  --color-chat-me: #f59e0b;
+  --color-chat-other: #3b82f6;
+  --color-chat-meta: #d1d5db;
+  --color-chat-border: #4b5563;
+
+  --color-status-pending: #facc15;
+  --color-status-completed: #22c55e;
+  --color-status-rejected: #f87171;
+  --color-status-new: #3b82f6;
+  --color-status-in-review: #fb923c;
+
+  --color-role-superuser: #fbbf24;
+  --color-role-moderator: #60a5fa;
+  --color-role-user: #4ade80;
+}

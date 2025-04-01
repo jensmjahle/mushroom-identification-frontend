@@ -30,6 +30,8 @@
     "button": "Send forespørsel"
   },
   "sideMenu" : {
-    "completedTitle" : "Fullførte"
+    "completedTitle" : "Fullførte",
+    "nextFromQue" : "Hent neste fra køen"
+    
   }
 }
