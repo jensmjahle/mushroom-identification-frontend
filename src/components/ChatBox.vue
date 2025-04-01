@@ -80,13 +80,13 @@ const handleIncomingMessage = (msg) => {
 const send = () => {
   if (!newMessage.value.trim()) return;
 
-  const messageDTO = {
+  const newMessageDTO = {
     senderType: userRole === 'USER' ? 'USER' : 'ADMIN',
     createdAt: new Date(),
-    text: newMessage.value
+    content: newMessage.value
   };
 
-  sendMessage(props.userRequestId, token, messageDTO);
+  sendMessage(props.userRequestId, token, newMessageDTO);
   newMessage.value = '';
 };
 
