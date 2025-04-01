@@ -1,11 +1,14 @@
 <template>
-  <div class="flex-row flex">
+  
+ 
+  <div class=" main-view flex-row flex">
   <div class="mr-2 min-w-[50%]">
     <RequestStatusBox v-if="userRequest" :request="userRequest" />
     <ChatBox v-if="userRequestId" :userRequestId="userRequestId" />
   </div>
     <MushroomBasket v-if="userRequestId" :user-request-id="userRequestId" />
   </div>
+ 
     
 </template>
 

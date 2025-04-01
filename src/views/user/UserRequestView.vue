@@ -1,5 +1,8 @@
 <template>
-  <ChatBox :userRequestId="userRequestId" />
+ 
+  <div>
+    <ChatBox :userRequestId="userRequestId" />
+  </div>
 </template>
 
 <script setup>

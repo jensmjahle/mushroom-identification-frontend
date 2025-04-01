@@ -6,6 +6,7 @@ html, body, #app {
   height: 100%;
   max-width: 100%;
   overflow-x: hidden;
+  
 }
 
 
@@ -15,3 +16,22 @@ html, body, #app {
 @tailwind components;
 
 @tailwind utilities;
+
+
+@layer base {
+  body {
+    @apply bg-bg text-text font-sans w-full;
+  }
+}
+
+@layer components {
+  .main-view {
+    @apply w-full min-h-screen bg-bgAlt text-textAlt rounded-lg;
+  }
+  .basket {
+     @apply p-2 bg-bg rounded-l-lg text-text my-10 max-w-md ml-auto w-auto;
+  }
+  .main-component {
+    @apply p-2 bg-bg rounded-lg text-text max-w-md ml-auto w-auto;
+  }
+}
