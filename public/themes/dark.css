@@ -20,14 +20,18 @@
 
   --color-danger: #f87171;
   --color-danger-hover: #ef4444;
-
+  --color-danger-border: #ef4444;
+  
   --color-success: #34d399;
   --color-success-hover: #10b981;
+  --color-success-border: #10b981;
 
-  --color-chat-me: #f59e0b;
-  --color-chat-other: #3b82f6;
-  --color-chat-meta: #d1d5db;
-  --color-chat-border: #4b5563;
+  --color-chat-me-bg: #2F3C2C;
+  --color-chat-me-meta: #FFFFFF;
+  --color-chat-me-border: #000000;
+  --color-chat-other-bg: #FFFFFF;
+  --color-chat-other-meta: #212121;
+  --color-chat-other-border: #000000;
 
   --color-status-pending: #facc15;
   --color-status-completed: #22c55e;

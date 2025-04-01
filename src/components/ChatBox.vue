@@ -1,31 +1,49 @@
 <template>
-  <div class="flex flex-col h-[70vh] max-h-[80vh] w-full max-w-screen-md mx-auto border border-chat-border rounded-lg overflow-hidden bg-bg">
+  <div class="flex flex-col h-[70vh] max-h-[80vh] w-full max-w-screen-md mx-auto border border-chat-me_border rounded-lg overflow-hidden bg-bg">
     <!-- Messages -->
     <div class="flex-1 p-4 overflow-y-auto flex flex-col space-y-3">
       <div
           v-for="msg in messages"
           :key="msg.messageId"
           :class="[
-          'px-4 py-2 rounded-lg break-words text-sm shadow-sm w-fit max-w-[85%] sm:max-w-[70%]',
-          getSide(msg) === 'me'
-            ? 'self-end bg-chat-me text-white'
-            : 'self-start bg-chat-other text-white'
-        ]"
+    'flex flex-col items-start',
+    getSide(msg) === 'me' ? 'items-end' : 'items-start'
+  ]"
       >
-        <p class="text-xs text-chat-meta mb-1">
+        <!-- Created at timestamp above the bubble -->
+        <div
+            class="text-xs px-2 py-1 rounded-t-md mb-1"
+            :class="[
+      getSide(msg) === 'me' 
+        ? 'text-chat-me_bg' 
+        : 'text-chat-other_border'
+    ]"
+        >
           {{ formatDate(msg.createdAt) }}
-        </p>
-        <p>{{ msg.content }}</p>
+        </div>
+
+        <!-- Chat bubble -->
+        <div
+            :class="[
+      'px-4 py-2 rounded-3xl break-words text-sm shadow-sm w-fit max-w-[85%] sm:max-w-[70%]',
+      getSide(msg) === 'me'
+        ? 'self-end bg-chat-me_bg text-chat-me_meta border border-chat-me_border'
+        : 'self-start bg-chat-other_bg text-chat-other_meta border border-chat-other_border'
+    ]"
+        >
+          <p>{{ msg.content }}</p>
+        </div>
       </div>
+
     </div>
 
     <!-- Input area -->
-    <div class="flex flex-col sm:flex-row items-center border-t border-chat-border p-3 bg-bgAlt gap-2 sm:gap-0">
+    <div class="flex flex-col sm:flex-row items-center border-t border-chat-me_border p-3 bg-bgAlt gap-2 sm:gap-0">
       <input
           v-model="newMessage"
           @keyup.enter="send"
           placeholder="Type a message..."
-          class="flex-grow w-full px-3 py-2 border border-chat-border rounded-md focus:outline-none focus:ring-2 focus:ring-button2 hover:border-button2-border text-chat-me bg-white"
+          class="flex-grow w-full px-3 py-2 border border-chat-me_border rounded-md focus:outline-none focus:ring-2 focus:ring-button2 hover:border-button2-border text-chat-me bg-white"
       />
       <button
           @click="send"
@@ -36,6 +54,7 @@
     </div>
   </div>
 </template>
+
 
 <script setup>
 import { ref, onMounted, onBeforeUnmount } from 'vue';

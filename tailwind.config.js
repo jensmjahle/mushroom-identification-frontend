@@ -41,10 +41,12 @@ export default {
           hover: 'var(--color-success-hover)',
         },
         chat: {
-          me: 'var(--color-chat-me)',
-          other: 'var(--color-chat-other)',
-          meta: 'var(--color-chat-meta)',
-          border: 'var(--color-chat-border)',
+          me_bg: 'var(--color-chat-me-bg)',
+          me_meta: 'var(--color-chat-me-meta)',
+          me_border: 'var(--color-chat-me-border)',
+          other_bg: 'var(--color-chat-other-bg)',
+          other_meta: 'var(--color-chat-other-meta)',
+          other_border: 'var(--color-chat-other-border)',
         },
         status: {
           pending: 'var(--color-status-pending)',
