@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-bg border border-chat-border rounded-lg shadow p-4 w-full max-w-md mx-auto">
+  <div class="basket">
     <!-- Header -->
     <div class="mb-4 text-center">
       <div class="flex justify-center items-center space-x-2 text-chat-other">

@@ -55,6 +55,8 @@
               <li>
                 <button @click="logout" class="block w-full text-left px-4 py-2 hover:bg-gray-100">Log out</button>
                 <button @click="settings" class="block w-full text-left px-4 py-2 hover:bg-gray-100">Settings</button>
+                <ThemeSwitcher class="block w-full text-left px-4 py-2 hover:bg-gray-100"></ThemeSwitcher>
+                <CursorSwitcher></CursorSwitcher>
               </li>
             </ul>
           </div>
@@ -96,6 +98,8 @@ import {ref, computed, onMounted, onBeforeUnmount} from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { parseJwt } from '../utils/jwt';
 import { ShieldCheck, Menu } from 'lucide-vue-next';
+import ThemeSwitcher from "@/components/ThemeSwitcher.vue";
+import CursorSwitcher from "@/components/CursorSwitcher.vue";
 
 
 const router = useRouter();
