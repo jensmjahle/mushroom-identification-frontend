@@ -20,33 +20,34 @@ html, body, #app {
 
 @layer base {
   body {
-    @apply bg-bg text-text font-sans w-full;
+    @apply bg-bg1 text-text1 font-sans w-full;
   }
 }
 
 @layer components {
   .main-view {
-    @apply w-full min-h-screen bg-bgAlt text-textAlt rounded-lg;
+    @apply w-full min-h-screen bg-bg2 text-text2 rounded-lg;
   }
   .main-user-view {
     @apply flex items-center justify-center
-    min-h-screen
-    bg-bgAlt text-textAlt
+    h-screen sm:h-auto
+    bg-bg2 text-text2
     rounded-lg
     mx-4 sm:mx-8 md:mx-20 lg:mx-40;
   }
   .basket {
-     @apply p-2 bg-bg rounded-l-lg text-text my-10 max-w-md ml-auto w-auto;
+    @apply p-2 bg-bg1 rounded-l-lg text-text1 my-10 max-w-md ml-auto w-auto;
   }
   .main-component {
-    @apply p-2 bg-bg rounded-lg text-text max-w-md ml-auto w-auto;
+    @apply p-2 bg-bg1 rounded-lg text-text1 max-w-md ml-auto w-auto;
   }
   .nav-bar {
-    @apply bg-transparent fixed top-0 left-0 w-full z-50 text-text;
+    @apply bg-transparent fixed top-0 left-0 w-full z-50 text-text1;
   }
   .vertical-box {
     @apply items-center justify-center
     rounded-lg
+      p-2
     mx-4 sm:mx-8 md:mx-20 lg:mx-40;
   }
 }
