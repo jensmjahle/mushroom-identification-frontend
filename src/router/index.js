@@ -94,8 +94,8 @@ router.beforeEach((to, from, next) => {
 
   // User request protection
   if (to.meta.requiresUser) {
-    const referenceCode = to.params.referenceCode;
-    if (!token || role !== 'USER' || username !== referenceCode) {
+    const userRequestId = to.params.userRequestId;
+    if (!token || role !== 'USER' || username !== userRequestId) {
       return next({ name: 'home' });
     }
   }
