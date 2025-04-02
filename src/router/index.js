@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import { parseJwt } from '../utils/jwt';
 
+import UnderConstructionView from '../views/user/UnderConstructionView.vue';
 import HomeView from '../views/user/HomeView.vue';
 import AdminLoginView from '../views/admin/AdminLoginView.vue';
 import UserRequestView from '../views/user/UserRequestView.vue';
@@ -14,14 +15,20 @@ import NewRequestView from "../views/user/NewRequestView.vue";
 const routes = [
   { 
     path: '/', 
-    name: 'home', 
-    component: HomeView
+    name: 'Construction', 
+    component: UnderConstructionView,
+    redirect: '/user/home'
   },
   {
     path: '/user',
     name: 'user',
     component: AppUserLayout,
     children: [
+      {
+        path: "home",
+        name: "home",
+        component: HomeView,
+      },
       {
         path: 'request/:userRequestId',
         name: 'user-request',
