@@ -5,7 +5,7 @@
       <RequestStatusBox v-if="userRequest" :request="userRequest" />
       <ChatBox :userRequestId="userRequestId" />
     </div>
-    <MushroomBasket></MushroomBasket>
+    <MushroomBasket :userRequestId="userRequestId"></MushroomBasket>
   </div>
 </template>
 

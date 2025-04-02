@@ -1,3 +1,24 @@
+<script setup>
+import { onMounted, ref } from "vue";
+import { getUserRequestMushrooms } from "../services/apiService.js";
+import { ShoppingBasket } from "lucide-vue-next";
+import Mushroom from "./Mushroom.vue";
+
+const token = sessionStorage.getItem('jwt');
+
+const props = defineProps({
+  userRequestId: String
+});
+
+const mushrooms = ref([]);
+
+onMounted(() => {
+  getUserRequestMushrooms(props.userRequestId, token).then((data) => {
+    mushrooms.value = data;
+  });
+});
+</script>
+
 <template>
   <div class="basket">
     <!-- Header -->
@@ -11,48 +32,15 @@
       </p>
     </div>
 
-    <!-- Scrollable image area with wide images -->
+    <!-- Scrollable image area with wide mushrooms -->
     <div class="overflow-y-auto max-h-[70vh] space-y-4">
       <div
-          v-for="(image, index) in mushrooms"
+          v-for="(mushroom, index) in mushrooms"
           :key="index"
-          class="w-full aspect-[4/3] mx-auto bg-gray-100 rounded-lg overflow-hidden border border-gray-300"
+          class="flex justify-center"
       >
-        <img
-            :src="image"
-            alt="Mushroom"
-            class="w-full h-full object-cover"
-        />
+        <Mushroom :mushroom="mushroom" />
       </div>
     </div>
   </div>
 </template>
-
-
-
-<script setup>
-import { onMounted, ref } from "vue";
-import {getUserRequestImages} from "../services/apiService.js";
-import { ShoppingBasket } from "lucide-vue-next";
-
-const token = sessionStorage.getItem('jwt');
-
-const props = defineProps({
-  userRequestId: String
-});
-
-const mushrooms = ref([]);
-
-onMounted(() => {
-  getUserRequestImages(props.userRequestId, token).then((data) => {
-    console.log("raw data" + data);
-    const BASE_URL = 'http://localhost:8080';
-    const imageUrls = (data || [])
-    .filter(msg => msg.messageType === "IMAGE")
-    .map(msg => `${BASE_URL}/api/images?token=${msg.content}`);
-    console.log("imageUrls " + imageUrls);
-    mushrooms.value = imageUrls;
-  });
-});
-
-</script>

@@ -36,10 +36,10 @@ html, body, #app {
     mx-4 sm:mx-8 md:mx-20 lg:mx-40;
   }
   .basket {
-    @apply p-2 bg-bg1 rounded-l-lg text-text1 my-10 max-w-md ml-auto w-auto;
+    @apply p-2 bg-bg1 rounded-l-lg text-text1 max-w-md ml-auto w-auto max-h-full my-10 flex flex-col;
   }
   .main-component {
-    @apply p-2 bg-bg1 rounded-lg text-text1 max-w-md ml-auto w-auto;
+    @apply p-2 bg-bg1 rounded-lg text-text1 max-w-md ml-auto w-auto h-full;
   }
   .nav-bar {
     @apply bg-transparent fixed top-0 left-0 w-full z-50 text-text1;
