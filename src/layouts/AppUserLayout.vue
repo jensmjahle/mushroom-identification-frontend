@@ -1,14 +1,13 @@
 <template>
-  <div class="flex flex-col min-h-screen">
-    <NavBar />
-    <div class="flex flex-1 pt-[72px]">
-      <main class="flex-grow px-4">
-        <router-view />
-      </main>
+  <div class="user-layout">
+    <div class="user-layout-inner">
+      <UserSidebar />
+      <UserDisplayCard/>
     </div>
   </div>
 </template>
 
 <script setup>
-import NavBar from '../components/NavBar.vue';
+  import UserSidebar from '../components/User/UserSidebar.vue';
+  import UserDisplayCard from '../components/User/UserDisplayCard.vue';
 </script>

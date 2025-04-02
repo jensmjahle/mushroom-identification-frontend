@@ -6,32 +6,54 @@ html, body, #app {
   height: 100%;
   max-width: 100%;
   overflow-x: hidden;
-  
 }
 
-
-
 @tailwind base;
-
 @tailwind components;
-
 @tailwind utilities;
-
 
 @layer base {
   body {
-    @apply bg-bg text-text font-sans w-full;
+    @apply bg-bg text-text font-area w-full;
   }
 }
 
 @layer components {
-  .main-view {
-    @apply w-full min-h-screen bg-bgAlt text-textAlt rounded-lg;
-  }
   .basket {
-     @apply p-2 bg-bg rounded-l-lg text-text my-10 max-w-md ml-auto w-auto;
+    @apply p-2 bg-bg rounded-l-lg text-text my-10 max-w-md ml-auto w-auto;
   }
-  .main-component {
-    @apply p-2 bg-bg rounded-lg text-text max-w-md ml-auto w-auto;
+
+  .user-layout {
+    @apply flex items-center justify-center min-h-screen w-full bg-bg;
+  }
+  .user-layout-inner{
+    @apply flex gap-2 w-4/5 h-4/5
+  }
+
+  .user-display-card {
+    @apply flex-1 bg-[#E8E8E8] text-textAlt rounded-xl p-6 relative;
+  }
+
+  .user-sidebar {
+    @apply flex flex-col justify-center gap-8 p-4 w-[20%];
+  }
+  .user-sidebar.collapsed {
+    @apply w-20 items-center;
+  }
+
+  .user-sidebar-active {
+    @apply bg-green-900 text-white font-semibold;
+  }
+
+  .user-sidebar-button {
+    @apply flex items-center gap-3 p-6 rounded-lg bg-gray-100 hover:bg-gray-200 text-black transition;
+  }
+
+  .user-sidebar.collapsed .user-sidebar-text {
+    @apply hidden;
+  }
+
+  .user-sidebar-icon {
+    @apply w-5 h-5;
   }
 }
