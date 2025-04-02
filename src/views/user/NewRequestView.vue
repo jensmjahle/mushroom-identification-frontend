@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-bgAlt2 border border-chat-border rounded-lg shadow p-4 w-full max-w-2xl mx-auto">
+  <div class="main-user-view">
     <!-- Header -->
     <div class="text-center mb-6">
       <h1 class="text-2xl font-bold text-textAlt">{{ $t('submit.title') }}</h1>

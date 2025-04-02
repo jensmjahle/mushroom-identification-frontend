@@ -1,16 +1,28 @@
 :root {
-  --color-text: #000;
-  --color-text-faded: #000;
-  --color-text-alt: #000;
-  --color-text-alt-faded: #726e6e;
-  --color-bg: #ffffff;
-  --color-bg-alt: #E8E8E8;
-  --color-bg-alt2: #2d3748;
+  /**text1 should be displayed on bg1, text2 should be displayed on bg2 and so on**/
+  --color-text1: #000;
+  --color-text1-faded: #000;
+  --color-text2: #000;
+  --color-text2-faded: #726e6e;
+  --color-text3: #000;
+  --color-text3-faded: #726e6e;
+  --color-text4: #000;
+  --color-text4-faded: #726e6e;
+  
+  --color-bg1: #ffffff;
+  --color-bg2: #E8E8E8;
+  --color-bg3: #2d3748;
+  --color-bg4: #2d3748;
 
-  --color-button: #4ade80; 
-  --color-button-meta: #000;
-  --color-button-hover: #22c55e;
-  --color-button-border: #15803d;
+  --color-border1: #ffffff;
+  --color-border2: #E8E8E8;
+  --color-border3: #2d3748;
+  --color-border4: #2d3748;
+
+  --color-button1: #4ade80; 
+  --color-button1-meta: #000;
+  --color-button1-hover: #22c55e;
+  --color-button1-border: #15803d;
 
   --color-button2: #8b5cf6;
   --color-button2-meta: #000;
@@ -21,6 +33,11 @@
   --color-button3-meta: #f8f4ec;
   --color-button3-hover: #1f2937;
   --color-button3-border: #111827;
+
+  --color-button4: #374151;
+  --color-button4-meta: #f8f4ec;
+  --color-button4-hover: #1f2937;
+  --color-button4-border: #111827;
 
   --color-danger: #f87171;
   --color-danger-hover: #ef4444;
@@ -40,15 +57,19 @@
   --color-status-pending: #F4E87F;
   --color-status-pending-text: #18181B;
   --color-status-pending-border: #F4E87F;
+  
   --color-status-completed: #93DA8B;
   --color-status-completed-text: #18181B;
   --color-status-completed-border: #93DA8B;
+  
   --color-status-rejected: #f87171;
   --color-status-rejected-text: #ffffff;
   --color-status-rejected-border: #ffffff;
+  
   --color-status-new: #ffffff;
   --color-status-new-text: #C08CD8;
   --color-status-new-border: #C08CD8;
+  
   --color-status-in-review: #fb923c;
   --color-status-in-review-text: #ffffff;
   --color-status-in-review-border: #ffffff;

@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col h-[70vh] max-h-[80vh] w-full max-w-screen-md mx-auto border border-chat-me_border rounded-lg overflow-hidden bg-bg">
+  <div class="flex flex-col h-[70vh] max-h-[80vh] w-full max-w-screen-md mx-auto border border-chat-me_border rounded-lg overflow-hidden bg-bg1">
     <!-- Messages -->
     <div class="flex-1 p-4 overflow-y-auto flex flex-col space-y-3"  ref="messageContainer">
       <div
@@ -38,16 +38,16 @@
     </div>
 
     <!-- Input area -->
-    <div class="flex flex-col sm:flex-row items-center border-t border-chat-me_border p-3 bg-bgAlt gap-2 sm:gap-0">
+    <div class="flex flex-col sm:flex-row items-center border-t border-chat-me_border p-3 bg-bg2 gap-2 sm:gap-0">
       <input
           v-model="newMessage"
           @keyup.enter="send"
           placeholder="Type a message..."
-          class="flex-grow w-full px-3 py-2 border border-chat-me_border rounded-md focus:outline-none focus:ring-2 focus:ring-button2 hover:border-button2-border text-text bg-bg"
+          class="flex-grow w-full px-3 py-2 border border-chat-me_border rounded-md focus:outline-none focus:ring-2 focus:ring-button2 hover:border-button2-border text-text1 bg-bg1"
       />
       <button
           @click="send"
-          class="sm:ml-2 w-full sm:w-auto bg-button hover:bg-button-hover text-white px-4 py-2 rounded-md transition border border-button-border"
+          class="sm:ml-2 w-full sm:w-auto bg-button1 hover:bg-button1-hover text-text2 px-4 py-2 rounded-md transition border border-button1-border"
       >
         Send
       </button>
