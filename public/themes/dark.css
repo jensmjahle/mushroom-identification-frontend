@@ -77,4 +77,35 @@
   --color-role-superuser: #fbbf24;
   --color-role-moderator: #60a5fa;
   --color-role-user: #4ade80;
+
+  
+  --color-mushroom-psilocybin: #8b5cf6;
+  --color-mushroom-psilocybin-text: #ffffff;
+  --color-mushroom-psilocybin-border: #7c3aed;
+  --color-mushroom-psilocybin-hover: #7c3aed;
+
+  --color-mushroom-non-psilocybin: #22c55e;
+  --color-mushroom-non-psilocybin-text: #ffffff;
+  --color-mushroom-non-psilocybin-border: #15803d;
+  --color-mushroom-non-psilocybin-hover: #16a34a;
+
+  --color-mushroom-toxic: #ef4444;
+  --color-mushroom-toxic-text: #ffffff;
+  --color-mushroom-toxic-border: #b91c1c;
+  --color-mushroom-toxic-hover: #dc2626;
+
+  --color-mushroom-unknown: #facc15;
+  --color-mushroom-unknown-text: #000000;
+  --color-mushroom-unknown-border: #ca8a04;
+  --color-mushroom-unknown-hover: #eab308;
+
+  --color-mushroom-unidentifiable: #9ca3af;
+  --color-mushroom-unidentifiable-text: #000000;
+  --color-mushroom-unidentifiable-border: #6b7280;
+  --color-mushroom-unidentifiable-hover: #6b7280;
+
+  --color-mushroom-not-processed: #60a5fa;
+  --color-mushroom-not-processed-text: #ffffff;
+  --color-mushroom-not-processed-border: #2563eb;
+  --color-mushroom-not-processed-hover: #3b82f6;
 }

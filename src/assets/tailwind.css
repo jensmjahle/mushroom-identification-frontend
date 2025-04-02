@@ -38,6 +38,13 @@ html, body, #app {
   .basket {
     @apply p-2 bg-bg1 rounded-l-lg text-text1 max-w-md ml-auto w-auto max-h-full my-10 flex flex-col;
   }
+  .mushroom {
+    @apply relative w-full aspect-square rounded-full border-4 shadow-lg overflow-hidden
+    max-w-full
+    sm:max-w-sm
+    md:max-w-md
+    lg:max-w-lg;
+  }
   .main-component {
     @apply p-2 bg-bg1 rounded-lg text-text1 max-w-md ml-auto w-auto h-full;
   }

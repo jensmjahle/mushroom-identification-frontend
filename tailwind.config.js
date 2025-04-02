@@ -101,6 +101,39 @@ export default {
           moderator: 'var(--color-role-moderator)',
           user: 'var(--color-role-user)',
         },
+        
+        mushroom: {
+          psilocybin: 'var(--color-mushroom-psilocybin)',
+          'psilocybin-text': 'var(--color-mushroom-psilocybin-text)',
+          'psilocybin-border': 'var(--color-mushroom-psilocybin-border)',
+          'psilocybin-hover': 'var(--color-mushroom-psilocybin-hover)',
+
+          'non-psilocybin': 'var(--color-mushroom-non-psilocybin)',
+          'non-psilocybin-text': 'var(--color-mushroom-non-psilocybin-text)',
+          'non-psilocybin-border': 'var(--color-mushroom-non-psilocybin-border)',
+          'non-psilocybin-hover': 'var(--color-mushroom-non-psilocybin-hover)',
+
+          toxic: 'var(--color-mushroom-toxic)',
+          'toxic-text': 'var(--color-mushroom-toxic-text)',
+          'toxic-border': 'var(--color-mushroom-toxic-border)',
+          'toxic-hover': 'var(--color-mushroom-toxic-hover)',
+
+          unknown: 'var(--color-mushroom-unknown)',
+          'unknown-text': 'var(--color-mushroom-unknown-text)',
+          'unknown-border': 'var(--color-mushroom-unknown-border)',
+          'unknown-hover': 'var(--color-mushroom-unknown-hover)',
+
+          unidentifiable: 'var(--color-mushroom-unidentifiable)',
+          'unidentifiable-text': 'var(--color-mushroom-unidentifiable-text)',
+          'unidentifiable-border': 'var(--color-mushroom-unidentifiable-border)',
+          'unidentifiable-hover': 'var(--color-mushroom-unidentifiable-hover)',
+
+          'not-processed': 'var(--color-mushroom-not-processed)',
+          'not-processed-text': 'var(--color-mushroom-not-processed-text)',
+          'not-processed-border': 'var(--color-mushroom-not-processed-border)',
+          'not-processed-hover': 'var(--color-mushroom-not-processed-hover)',
+        },
+        
       },
     },
   },
