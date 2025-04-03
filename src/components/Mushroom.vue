@@ -17,7 +17,8 @@
       <img
           :src="imageUrls[currentIndex]"
           alt="Mushroom"
-          class="w-full h-full object-cover"
+          class="w-full h-full object-cover cursor-pointer"
+          @click="popupVisible = true"
       />
 
       <!-- Navigation arrows -->
@@ -53,6 +54,13 @@
         {{ props.mushroom.mushroomStatus.toLowerCase().replace(/_/g, ' ') }}
       </span>
     </div>
+    
+    <!-- Popup Modal -->
+    <MushroomPopup
+        v-if="popupVisible"
+        :mushroom="props.mushroom"
+        @close="popupVisible = false"
+    />
   </div>
 </template>
 
@@ -68,6 +76,7 @@ import {
   ArrowRight
 } from 'lucide-vue-next'
 import { useI18n } from 'vue-i18n'
+import MushroomPopup from "@/components/MushroomPopup.vue";
 
 const { t } = useI18n()
 const BASE_URL = 'http://localhost:8080'
@@ -78,6 +87,7 @@ const props = defineProps({
 
 const imageUrls = ref([])
 const currentIndex = ref(0)
+const popupVisible = ref(false)
 
 onMounted(() => {
   imageUrls.value = props.mushroom.imageUrls.map(

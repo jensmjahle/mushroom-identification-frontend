@@ -39,7 +39,7 @@ onMounted(() => {
     >
       <div class="basket h-full flex flex-col">
         <!-- Header -->
-        <div class="mb-4 text-center">
+        <div class="mb-2 text-center">
           <div class="flex justify-center items-center space-x-2 text-text1">
             <ShoppingBasket class="w-5 h-5 text-button3" />
             <h2 class="text-lg font-semibold">Mushroom Basket</h2>
