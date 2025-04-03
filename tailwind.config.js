@@ -53,7 +53,12 @@ export default {
           hover: 'var(--color-button4-hover)',
           border: 'var(--color-button4-border)',
         },
-
+        'button-transparent': 'var(--color-button-transparent)',
+        'button-transparent-meta': 'var(--color-button-transparent-meta)',
+        'button-transparent-hover': 'var(--color-button-transparent-hover)',
+        'button-transparent-border': 'var(--color-button-transparent-border)',
+        'button-transparent-hover-border': 'var(--color-button-transparent-hover-border)',
+        
         danger: {
           DEFAULT: 'var(--color-danger)',
           hover: 'var(--color-danger-hover)',

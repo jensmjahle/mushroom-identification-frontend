@@ -39,6 +39,13 @@
   --color-button4-hover: #1f2937;
   --color-button4-border: #111827;
 
+  --color-button-transparent: transparent;
+  --color-button-transparent-meta: #000;
+  --color-button-transparent-hover: transparent;
+  --color-button-transparent-border: transparent;
+  --color-button-transparent-hover-border: #2d3748;
+  
+
   --color-danger: #f87171;
   --color-danger-hover: #ef4444;
   --color-danger-border: #ef4444;

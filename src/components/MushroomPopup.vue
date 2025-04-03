@@ -1,20 +1,18 @@
 <template>
-  <!-- Backdrop that listens for outside clicks -->
   <div
       class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4"
       @click="handleOutsideClick"
   >
-    <!-- Modal content -->
     <div
         class="bg-bg1 rounded-lg shadow-lg p-4 max-w-4xl w-full relative"
         @click.stop
     >
-      <!-- Close Button -->
+      <!-- Close -->
       <button @click="$emit('close')" class="absolute top-2 right-2 text-text1 hover:text-danger">
         ✕
       </button>
 
-      <!-- Status -->
+      <!-- Status badge -->
       <div
           class="absolute top-2 left-2 text-xs px-2 py-1 rounded-full flex items-center gap-1 shadow border z-10"
           :class="[badgeBg, badgeText, badgeBorder]"
@@ -25,20 +23,29 @@
 
       <!-- Image viewer -->
       <div class="flex flex-col items-center">
-        <div class="relative overflow-hidden w-full h-[400px] sm:h-[500px] mb-4 bg-black/5 rounded-md">
+        <div
+            class="relative overflow-hidden w-full h-[400px] sm:h-[500px] mb-4 bg-black/5 rounded-md cursor-grab"
+            @mousedown="startDrag"
+            @mousemove="onDrag"
+            @mouseup="stopDrag"
+            @mouseleave="stopDrag"
+            @touchstart.prevent="startTouch"
+            @touchmove.prevent="onTouchMove"
+            @touchend="stopDrag"
+        >
           <img
               :src="imageUrls[currentIndex]"
               :style="imageStyle"
-              class="mx-auto max-h-full transition-transform duration-200"
+              class="absolute top-1/2 left-1/2 max-w-none transition-transform duration-100"
               alt="Selected Mushroom"
           />
         </div>
 
-        <!-- Zoom & Rotate -->
+        <!-- Controls -->
         <div class="flex gap-4 mb-4">
-          <button @click="zoomIn" class="btn-1"><ZoomIn></ZoomIn></button>
-          <button @click="zoomOut" class="btn-1"><ZoomOut></ZoomOut></button>
-          <button @click="rotate" class="btn-2"><RotateCw></RotateCw></button>
+          <button @click="zoomIn" class="btn-1"><ZoomIn /></button>
+          <button @click="zoomOut" class="btn-1"><ZoomOut /></button>
+          <button @click="rotate" class="btn-2"><RotateCw /></button>
         </div>
 
         <!-- Thumbnails -->
@@ -46,7 +53,6 @@
           <img
               v-for="(img, idx) in imageUrls"
               :key="idx"
-              :alt="'thumbnail-' + idx"
               :src="img"
               @click="currentIndex = idx"
               class="w-16 h-16 object-cover rounded-md cursor-pointer border-2"
@@ -59,8 +65,11 @@
 </template>
 
 <script setup>
-import { computed, ref, onMounted } from 'vue'
-import { X, Check, HelpCircle, AlertCircle, Circle, ZoomOut, ZoomIn, RotateCw } from 'lucide-vue-next'
+import { ref, computed, onMounted, watch } from 'vue'
+import {
+  X, Check, HelpCircle, AlertCircle, Circle,
+  ZoomOut, ZoomIn, RotateCw
+} from 'lucide-vue-next'
 
 const BASE_URL = 'http://localhost:8080'
 const props = defineProps({ mushroom: Object })
@@ -68,29 +77,75 @@ const emit = defineEmits(['close'])
 
 const imageUrls = ref([])
 const currentIndex = ref(0)
-const zoom = ref(1)
+const zoom = ref(1) // Start fully zoomed out (1)
 const rotation = ref(0)
+const offset = ref({ x: 0, y: 0 })
+const dragging = ref(false)
+const start = ref({ x: 0, y: 0 })
 
 onMounted(() => {
   imageUrls.value = props.mushroom.imageUrls.map(
-      (token) => `${BASE_URL}/api/images?token=${token}`
+      token => `${BASE_URL}/api/images?token=${token}`
   )
 })
 
-const zoomIn = () => (zoom.value = Math.min(zoom.value + 0.1, 3))
-const zoomOut = () => (zoom.value = Math.max(zoom.value - 0.1, 1))
-const rotate = () => (rotation.value = (rotation.value + 90) % 360)
+watch(zoom, (value) => {
+  if (value === 1) {
+    offset.value = { x: 0, y: 0 }
+  }
+})
+
+// Mouse drag
+const startDrag = (e) => {
+  if (zoom.value === 1) return
+  dragging.value = true
+  start.value = { x: e.clientX, y: e.clientY }
+}
+const onDrag = (e) => {
+  if (!dragging.value || zoom.value === 1) return
+  const dx = e.clientX - start.value.x
+  const dy = e.clientY - start.value.y
+  offset.value.x += dx
+  offset.value.y += dy
+  start.value = { x: e.clientX, y: e.clientY }
+}
+const stopDrag = () => {
+  dragging.value = false
+}
+
+// Touch drag
+const startTouch = (e) => {
+  if (zoom.value === 1) return
+  dragging.value = true
+  start.value = {
+    x: e.touches[0].clientX,
+    y: e.touches[0].clientY
+  }
+}
+const onTouchMove = (e) => {
+  if (!dragging.value || zoom.value === 1) return
+  const dx = e.touches[0].clientX - start.value.x
+  const dy = e.touches[0].clientY - start.value.y
+  offset.value.x += dx
+  offset.value.y += dy
+  start.value = {
+    x: e.touches[0].clientX,
+    y: e.touches[0].clientY
+  }
+}
+
+// Zoom and Rotate
+const zoomIn = () => zoom.value = Math.min(zoom.value + 0.1, 3)
+const zoomOut = () => zoom.value = Math.max(zoom.value - 0.1, 1)
+const rotate = () => rotation.value = (rotation.value + 90) % 360
 
 const imageStyle = computed(() => ({
-  transform: `scale(${zoom.value}) rotate(${rotation.value}deg)`
+  transform: `translate(${offset.value.x}px, ${offset.value.y}px) scale(${zoom.value}) rotate(${rotation.value}deg)`,
+  transformOrigin: 'center center'
 }))
 
-const status = computed(() =>
-    props.mushroom.mushroomStatus?.toLowerCase().replace(/_/g, '-')
-)
-const statusLabel = computed(() =>
-    props.mushroom.mushroomStatus.toLowerCase().replace(/_/g, ' ')
-)
+const status = computed(() => props.mushroom.mushroomStatus?.toLowerCase().replace(/_/g, '-'))
+const statusLabel = computed(() => props.mushroom.mushroomStatus.toLowerCase().replace(/_/g, ' '))
 
 const badgeBg = computed(() => ({
   'psilocybin': 'bg-mushroom-psilocybin',
@@ -131,7 +186,6 @@ const statusIcon = computed(() => {
   }
 })
 
-// Handle click outside
 const handleOutsideClick = () => {
   emit('close')
 }

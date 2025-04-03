@@ -71,7 +71,7 @@ html, body, #app {
     opacity: 1;
   }
   .btn {
-    @apply font-semibold text-sm px-2 py-1 rounded transition duration-200;
+    @apply font-semibold text-sm px-2 py-1 rounded transition duration-200 disabled:opacity-50;
   }
 
   .btn-1 {
@@ -89,5 +89,24 @@ html, body, #app {
   .btn-4 {
     @apply btn bg-button4 text-button4-meta border border-button4-border hover:bg-button4-hover;
   }
+  .btn-icon {
+    @apply font-semibold p-1 rounded-full transition duration-200 disabled:opacity-50;
+  }
+  .btn-icon-1 {
+    @apply btn-icon btn-1
+  }
+  .btn-icon-2 {
+    @apply btn-icon btn-2
+  }
+  .btn-icon-3 {
+    @apply btn-icon btn-3
+  }
+  .btn-icon-4 {
+    @apply btn-icon btn-4
+  }
+  .btn-icon-transparent-1 {
+    @apply btn-icon border border-button-transparent-border bg-button-transparent text-button-transparent-meta hover:bg-button-transparent-hover hover:border-button-transparent-hover-border;
+  }
+
 
 }

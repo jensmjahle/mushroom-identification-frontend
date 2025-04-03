@@ -7,7 +7,6 @@
       <ChatBox :userRequestId="userRequestId" />
     </div>
     </div>
-    
     <MushroomBasket :userRequestId="userRequestId"></MushroomBasket>
   </div>
 </template>
@@ -19,6 +18,7 @@ import MushroomBasket from "@/components/MushroomBasket.vue";
 import RequestStatusBox from "@/components/RequestStatusBox.vue";
 import {onMounted, ref} from "vue";
 import {getUserRequest} from "@/services/apiService.js";
+import CursorSwitcher from "@/components/CursorSwitcher.vue";
 
 const route = useRoute();
 const userRequestId = route.params.userRequestId;

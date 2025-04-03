@@ -25,14 +25,14 @@
       <button
           v-if="imageUrls.length > 1"
           @click="prev"
-          class="absolute left-0 top-1/2 transform -translate-y-1/2 text-text1 px-1 bg-bg1/60 rounded-full"
+          class="absolute left-0 top-1/2 transform -translate-y-1/2 btn-icon-transparent-1"
       >
         <ArrowLeft></ArrowLeft>
       </button>
       <button
           v-if="imageUrls.length > 1"
           @click="next"
-          class="absolute right-0 top-1/2 transform -translate-y-1/2 text-text1 px-1 bg-bg1/60 rounded-full"
+          class="absolute right-0 top-1/2 transform -translate-y-1/2 btn-icon-transparent-1"
       >
         <ArrowRight></ArrowRight>
       </button>
