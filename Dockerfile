@@ -1,29 +1,29 @@
-# Use Debian-based Node.js image instead of Alpine
+# Use Debian-based Node.js image
 FROM node:18
 
 # Set the working directory
 WORKDIR /app
 
-# Copy package files
+# Copy only package files first to leverage Docker cache
 COPY package.json package-lock.json ./
 
-# Clean install
+# Install dependencies cleanly
 RUN npm ci
 
-# Copy source files
+# Copy the rest of the source code
 COPY . .
 
-# Build the Vite app
+# Build the app using Vite
 RUN npm run build
 
-# Install a simple static file server
+# Install a static file server for production
 RUN npm install -g serve
 
-# Set working directory for production
+# Use the correct working directory for production output
 WORKDIR /app/dist
 
-# Expose the port Cloud Run expects
+# Expose the port Cloud Run will send traffic to
 EXPOSE 8080
 
-# Run the static server on the required port
-CMD ["serve", "-l", "8080", "."]
+# Run the static server with single-page app (SPA) fallback enabled
+CMD ["serve", "-s", ".", "-l", "8080"]
