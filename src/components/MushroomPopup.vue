@@ -1,25 +1,11 @@
 <template>
-  <div
-      class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4"
-      @click="handleOutsideClick"
-  >
-    <div
-        class="bg-bg1 rounded-lg shadow-lg p-4 max-w-4xl w-full relative"
-        @click.stop
-    >
+  <div class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4" @click="handleOutsideClick">
+    <div class="bg-bg1 rounded-lg shadow-lg p-4 max-w-4xl w-full relative" @click.stop>
       <!-- Close -->
-      <button @click="$emit('close')" class="absolute top-2 right-2 text-text1 hover:text-danger">
-        ✕
-      </button>
+      <button @click="$emit('close')" class="absolute -top-10 right-0 btn-icon-transparent-1 hover:text-danger"><x></x></button>
 
       <!-- Status badge -->
-      <div
-          class="absolute top-2 left-2 text-xs px-2 py-1 rounded-full flex items-center gap-1 shadow border z-10"
-          :class="[badgeBg, badgeText, badgeBorder]"
-      >
-        <component :is="statusIcon" class="w-4 h-4" />
-        <span class="capitalize">{{ statusLabel }}</span>
-      </div>
+      <StatusBadge class="absolute top-2 left-2" :status="props.mushroom.mushroomStatus"></StatusBadge>
 
       <!-- Image viewer -->
       <div class="flex flex-col items-center">
@@ -32,18 +18,12 @@
             @mouseleave="stopDrag"
             @touchstart.prevent="startTouch"
             @touchmove.prevent="onTouchMove"
-            @touchend="stopDrag"
-        >
-
+            @touchend="stopDrag">
           <img
               :src="imageUrls[currentIndex]"
               class="w-full h-full object-contain pointer-events-none select-none absolute top-0 left-0"
               :style="imageStyle"
-              alt="Selected Mushroom"
-          />
-
-
-
+              alt="Selected Mushroom"/>
         </div>
 
         <!-- Controls -->
@@ -59,11 +39,10 @@
               v-for="(img, idx) in imageUrls"
               :key="idx"
               :src="img"
-              :alt="ImageThumbnail"
+              alt="Mushroom Thumbnail"
               @click="currentIndex = idx"
               class="w-16 h-16 object-cover rounded-md cursor-pointer border-2"
-              :class="idx === currentIndex ? 'border-button1' : 'border-transparent'"
-          />
+              :class="idx === currentIndex ? 'border-button1' : 'border-transparent'"/>
         </div>
       </div>
     </div>
@@ -76,6 +55,7 @@ import {
   X, Check, HelpCircle, AlertCircle, Circle,
   ZoomOut, ZoomIn, RotateCw
 } from 'lucide-vue-next'
+import StatusBadge from "@/components/StatusBadge.vue";
 
 const BASE_URL = 'http://localhost:8080'
 const props = defineProps({ mushroom: Object })
@@ -153,48 +133,6 @@ const imageStyle = computed(() => {
   }
 })
 
-
-const status = computed(() => props.mushroom.mushroomStatus?.toLowerCase().replace(/_/g, '-'))
-const statusLabel = computed(() => props.mushroom.mushroomStatus.toLowerCase().replace(/_/g, ' '))
-
-const badgeBg = computed(() => ({
-  'psilocybin': 'bg-mushroom-psilocybin',
-  'non-psilocybin': 'bg-mushroom-non-psilocybin',
-  'toxic': 'bg-mushroom-toxic',
-  'unknown': 'bg-mushroom-unknown',
-  'unidentifiable': 'bg-mushroom-unidentifiable',
-  'not-processed': 'bg-mushroom-not-processed'
-}[status.value] || 'bg-gray-300'))
-
-const badgeText = computed(() => ({
-  'psilocybin': 'text-mushroom-psilocybin-text',
-  'non-psilocybin': 'text-mushroom-non-psilocybin-text',
-  'toxic': 'text-mushroom-toxic-text',
-  'unknown': 'text-mushroom-unknown-text',
-  'unidentifiable': 'text-mushroom-unidentifiable-text',
-  'not-processed': 'text-mushroom-not-processed-text'
-}[status.value] || 'text-black'))
-
-const badgeBorder = computed(() => ({
-  'psilocybin': 'border-mushroom-psilocybin-border',
-  'non-psilocybin': 'border-mushroom-non-psilocybin-border',
-  'toxic': 'border-mushroom-toxic-border',
-  'unknown': 'border-mushroom-unknown-border',
-  'unidentifiable': 'border-mushroom-unidentifiable-border',
-  'not-processed': 'border-mushroom-not-processed-border'
-}[status.value] || 'border-gray-300'))
-
-const statusIcon = computed(() => {
-  switch (props.mushroom.mushroomStatus) {
-    case 'TOXIC': return X
-    case 'PSILOCYBIN': return HelpCircle
-    case 'NON_PSILOCYBIN': return Check
-    case 'UNKNOWN': return HelpCircle
-    case 'UNIDENTIFIABLE': return AlertCircle
-    case 'NOT_PROCESSED': return Circle
-    default: return Circle
-  }
-})
 
 const handleOutsideClick = () => {
   emit('close')

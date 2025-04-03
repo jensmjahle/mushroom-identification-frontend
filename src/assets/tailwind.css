@@ -70,22 +70,19 @@ html, body, #app {
     transform: translateX(0%);
     opacity: 1;
   }
+  
   .btn {
     @apply font-semibold text-sm px-2 py-1 rounded transition duration-200 disabled:opacity-50;
   }
-
   .btn-1 {
     @apply btn bg-button1 text-button1-meta border border-button1-border hover:bg-button1-hover;
   }
-
   .btn-2 {
     @apply btn bg-button2 text-button2-meta border border-button2-border hover:bg-button2-hover;
   }
-
   .btn-3 {
     @apply btn bg-button3 text-button3-meta border border-button3-border hover:bg-button3-hover;
   }
-
   .btn-4 {
     @apply btn bg-button4 text-button4-meta border border-button4-border hover:bg-button4-hover;
   }

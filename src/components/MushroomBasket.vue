@@ -25,8 +25,7 @@ onMounted(() => {
     <!-- Toggle tab -->
     <button
         @click="isOpen = !isOpen"
-        class="absolute top-10 -left-8  btn-icon-transparent-1 bg-bg1 rounded-l-md rounded-r-none z-20"
-    >
+        class="absolute top-10 -left-8  btn-icon-transparent-1 bg-bg1 rounded-l-md rounded-r-none z-20">
       <component :is="isOpen ? ChevronRight : ChevronLeft" class="w-6 h-6" /> <ShoppingBasket></ShoppingBasket>
     </button>
 
@@ -34,10 +33,9 @@ onMounted(() => {
     <div
         :class="[
         'transition-all duration-300 h-full flex',
-        isOpen ? 'w-auto opacity-100' : 'w-0 opacity-0 overflow-hidden'
-      ]"
-    >
+        isOpen ? 'w-auto opacity-100' : 'w-0 opacity-0 overflow-hidden' ]">
       <div class="basket h-full flex flex-col">
+        
         <!-- Header -->
         <div class="mb-2 text-center">
           <div class="flex justify-center items-center space-x-2 text-text1">
@@ -54,8 +52,7 @@ onMounted(() => {
           <div
               v-for="(mushroom, index) in mushrooms"
               :key="index"
-              class="flex justify-center"
-          >
+              class="flex justify-center">
             <Mushroom :mushroom="mushroom" :index="index + 1" />
           </div>
         </div>
