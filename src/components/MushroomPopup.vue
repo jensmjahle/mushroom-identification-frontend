@@ -36,9 +36,9 @@
 
         <!-- Zoom & Rotate -->
         <div class="flex gap-4 mb-4">
-          <button @click="zoomIn" class="px-2 py-1 rounded bg-button1 text-button1-meta">Zoom +</button>
-          <button @click="zoomOut" class="px-2 py-1 rounded bg-button1 text-button1-meta">Zoom -</button>
-          <button @click="rotate" class="px-2 py-1 rounded bg-button2 text-button2-meta">⟳</button>
+          <button @click="zoomIn" class="btn-1"><ZoomIn></ZoomIn></button>
+          <button @click="zoomOut" class="btn-1"><ZoomOut></ZoomOut></button>
+          <button @click="rotate" class="btn-2"><RotateCw></RotateCw></button>
         </div>
 
         <!-- Thumbnails -->
@@ -60,7 +60,7 @@
 
 <script setup>
 import { computed, ref, onMounted } from 'vue'
-import { X, Check, HelpCircle, AlertCircle, Circle } from 'lucide-vue-next'
+import { X, Check, HelpCircle, AlertCircle, Circle, ZoomOut, ZoomIn, RotateCw } from 'lucide-vue-next'
 
 const BASE_URL = 'http://localhost:8080'
 const props = defineProps({ mushroom: Object })
