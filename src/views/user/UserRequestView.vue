@@ -1,10 +1,13 @@
 <template>
  
   <div class="main-user-view">
-    <div class="vertical-box">
+    <div class="flex-1">
+      <div class="vertical-box">
       <RequestStatusBox v-if="userRequest" :request="userRequest" />
       <ChatBox :userRequestId="userRequestId" />
     </div>
+    </div>
+    
     <MushroomBasket :userRequestId="userRequestId"></MushroomBasket>
   </div>
 </template>

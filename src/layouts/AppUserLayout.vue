@@ -2,7 +2,7 @@
   <div class="flex flex-col min-h-screen">
     <NavBar />
     <div class="flex flex-1 pt-[72px]">
-      <main class="flex-grow px-4">
+      <main class="flex-grow">
         <router-view />
       </main>
     </div>
