@@ -1,39 +1,8 @@
-<template>
-  <div class="basket">
-    <!-- Header -->
-    <div class="mb-4 text-center">
-      <div class="flex justify-center items-center space-x-2 text-chat-other">
-        <ShoppingBasket class="w-5 h-5 text-button" />
-        <h2 class="text-lg font-semibold">Mushroom Basket</h2>
-      </div>
-      <p class="text-xs text-button mt-1 font-medium">
-        {{ mushrooms.length }} mushroom{{ mushrooms.length === 1 ? '' : 's' }} in the basket
-      </p>
-    </div>
-
-    <!-- Scrollable image area with wide images -->
-    <div class="overflow-y-auto max-h-[70vh] space-y-4">
-      <div
-          v-for="(image, index) in mushrooms"
-          :key="index"
-          class="w-full aspect-[4/3] mx-auto bg-gray-100 rounded-lg overflow-hidden border border-gray-300"
-      >
-        <img
-            :src="image"
-            alt="Mushroom"
-            class="w-full h-full object-cover"
-        />
-      </div>
-    </div>
-  </div>
-</template>
-
-
-
 <script setup>
 import { onMounted, ref } from "vue";
-import {getUserRequestImages} from "../services/apiService.js";
-import { ShoppingBasket } from "lucide-vue-next";
+import { getUserRequestMushrooms } from "../services/apiService.js";
+import { ShoppingBasket, ChevronLeft, ChevronRight } from "lucide-vue-next";
+import Mushroom from "./Mushroom.vue";
 
 const token = sessionStorage.getItem('jwt');
 
@@ -42,17 +11,52 @@ const props = defineProps({
 });
 
 const mushrooms = ref([]);
+const isOpen = ref(true);
 
 onMounted(() => {
-  getUserRequestImages(props.userRequestId, token).then((data) => {
-    console.log("raw data" + data);
-    const BASE_URL = 'http://localhost:8080';
-    const imageUrls = (data || [])
-    .filter(msg => msg.messageType === "IMAGE")
-    .map(msg => `${BASE_URL}/api/images?token=${msg.content}`);
-    console.log("imageUrls " + imageUrls);
-    mushrooms.value = imageUrls;
+  getUserRequestMushrooms(props.userRequestId, token).then((data) => {
+    mushrooms.value = data;
   });
 });
-
 </script>
+
+<template>
+  <div class="relative flex h-full items-start">
+    <!-- Toggle tab -->
+    <button
+        @click="isOpen = !isOpen"
+        class="absolute top-10 -left-8  btn-icon-transparent-1 bg-bg1 rounded-l-md rounded-r-none z-20">
+      <component :is="isOpen ? ChevronRight : ChevronLeft" class="w-6 h-6" /> <ShoppingBasket></ShoppingBasket>
+    </button>
+
+    <!-- Basket content wrapper -->
+    <div
+        :class="[
+        'transition-all duration-300 h-full flex',
+        isOpen ? 'w-auto opacity-100' : 'w-0 opacity-0 overflow-hidden' ]">
+      <div class="basket h-full flex flex-col">
+        
+        <!-- Header -->
+        <div class="mb-2 text-center">
+          <div class="flex justify-center items-center space-x-2 text-text1">
+            <ShoppingBasket class="w-5 h-5 text-button3" />
+            <h2 class="text-lg font-semibold">Mushroom Basket</h2>
+          </div>
+          <p class="text-xs text-text1-faded mt-1 font-medium">
+            {{ mushrooms.length }} mushroom{{ mushrooms.length === 1 ? '' : 's' }} in the basket
+          </p>
+        </div>
+
+        <!-- Mushrooms -->
+        <div class="overflow-y-auto max-h-[70vh] space-y-6">
+          <div
+              v-for="(mushroom, index) in mushrooms"
+              :key="index"
+              class="flex justify-center">
+            <Mushroom :mushroom="mushroom" :index="index + 1" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>

@@ -1,11 +1,13 @@
 <template>
  
-  <div class="main-user-view relative">
-    <div class="vertical-box">
+  <div class="main-user-view">
+    <div class="flex-1">
+      <div class="vertical-box">
       <RequestStatusBox v-if="userRequest" :request="userRequest" />
       <ChatBox :userRequestId="userRequestId" />
     </div>
-    <MushroomBasket></MushroomBasket>
+    </div>
+    <MushroomBasket :userRequestId="userRequestId"></MushroomBasket>
   </div>
 </template>
 
@@ -16,6 +18,7 @@ import MushroomBasket from "@/components/MushroomBasket.vue";
 import RequestStatusBox from "@/components/RequestStatusBox.vue";
 import {onMounted, ref} from "vue";
 import {getUserRequest} from "@/services/apiService.js";
+import CursorSwitcher from "@/components/CursorSwitcher.vue";
 
 const route = useRoute();
 const userRequestId = route.params.userRequestId;

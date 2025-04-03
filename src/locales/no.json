@@ -33,5 +33,8 @@
     "completedTitle" : "Fullførte",
     "nextFromQue" : "Hent neste fra køen"
     
+  },
+  "mushroom": {
+    "title": "Sopp"
   }
 }

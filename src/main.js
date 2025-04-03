@@ -1,6 +1,5 @@
 import { createApp } from 'vue';
 import { createPinia } from 'pinia';  // Import Pinia for state management
-import './assets/style.css';
 import App from './App.vue';
 import './assets/tailwind.css';
 import i18n, { updateI18nLocale } from './locales/i18n'; // Import i18n and update function
