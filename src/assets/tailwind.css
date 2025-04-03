@@ -36,7 +36,7 @@ html, body, #app {
     mx-4 sm:mx-8 md:mx-20 lg:mx-40;
   }
   .basket {
-    @apply p-2 bg-bg1 rounded-l-lg text-text1 max-w-md ml-auto w-auto max-h-full my-10 flex flex-col;
+    @apply p-2 bg-bg1 rounded-bl-lg text-text1 max-w-md ml-auto w-auto max-h-full my-10 flex flex-col;
   }
   .mushroom {
     @apply relative w-full aspect-square rounded-full border-4 shadow-lg overflow-hidden
@@ -52,9 +52,22 @@ html, body, #app {
     @apply bg-bg1 fixed top-0 left-0 w-full z-50 text-text1;
   }
   .vertical-box {
-    @apply items-center justify-center
+    @apply items-center flex-1 justify-center
     rounded-lg
       p-2
     mx-4 sm:mx-8 md:mx-20 lg:mx-40;
   }
+  .slide-right-enter-active, .slide-right-leave-active {
+    transition: all 0.3s ease;
+  }
+  .slide-right-enter-from, .slide-right-leave-to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  .slide-right-enter-to, .slide-right-leave-from {
+    transform: translateX(0%);
+    opacity: 1;
+  }
+
+
 }

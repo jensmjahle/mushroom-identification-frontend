@@ -18,7 +18,7 @@
     <!-- Status Badge full width -->
     <div
         :class="[
-        'text-sm font-semibold px-3 py-2 rounded-full capitalize w-full text-center',
+        'text-sm font-semibold px-3 py-2 rounded-full  capitalize w-full text-center',
         getStatusClass(request.status)
       ]"
     >

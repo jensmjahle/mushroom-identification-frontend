@@ -1,6 +1,6 @@
 <template>
  
-  <div class="main-user-view relative">
+  <div class="main-user-view">
     <div class="vertical-box">
       <RequestStatusBox v-if="userRequest" :request="userRequest" />
       <ChatBox :userRequestId="userRequestId" />
