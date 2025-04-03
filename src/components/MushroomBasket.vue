@@ -23,23 +23,23 @@ onMounted(() => {
   <div class="basket">
     <!-- Header -->
     <div class="mb-4 text-center">
-      <div class="flex justify-center items-center space-x-2 text-chat-other">
-        <ShoppingBasket class="w-5 h-5 text-button" />
+      <div class="flex justify-center items-center space-x-2 text-text1">
+        <ShoppingBasket class="w-5 h-5 text-text1" />
         <h2 class="text-lg font-semibold">Mushroom Basket</h2>
       </div>
-      <p class="text-xs text-button mt-1 font-medium">
+      <p class="text-xs text-text1-faded mt-1 font-medium">
         {{ mushrooms.length }} mushroom{{ mushrooms.length === 1 ? '' : 's' }} in the basket
       </p>
     </div>
 
     <!-- Scrollable image area with wide mushrooms -->
-    <div class="overflow-y-auto max-h-[70vh] space-y-4">
+    <div class="overflow-y-auto max-h-[70vh] space-y-6">
       <div
           v-for="(mushroom, index) in mushrooms"
           :key="index"
           class="flex justify-center"
       >
-        <Mushroom :mushroom="mushroom" />
+        <Mushroom :mushroom="mushroom" :index="index + 1"/>
       </div>
     </div>
   </div>

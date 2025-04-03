@@ -49,7 +49,7 @@ html, body, #app {
     @apply p-2 bg-bg1 rounded-lg text-text1 max-w-md ml-auto w-auto h-full;
   }
   .nav-bar {
-    @apply bg-transparent fixed top-0 left-0 w-full z-50 text-text1;
+    @apply bg-bg1 fixed top-0 left-0 w-full z-50 text-text1;
   }
   .vertical-box {
     @apply items-center justify-center

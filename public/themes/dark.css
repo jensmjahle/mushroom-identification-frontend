@@ -1,7 +1,7 @@
 :root {
   /**text1 should be displayed on bg1, text2 should be displayed on bg2 and so on**/
   --color-text1: #000;
-  --color-text1-faded: #000;
+  --color-text1-faded: #333333;
   --color-text2: #000;
   --color-text2-faded: #726e6e;
   --color-text3: #000;

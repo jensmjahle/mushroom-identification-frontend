@@ -1,11 +1,19 @@
 <template>
   <div class="relative w-full aspect-square max-w-xs sm:max-w-sm md:max-w-md mx-auto">
+    <!-- Headline -->
+    <div
+        class="absolute -top-2 left-1/2 -translate-x-1/2 z-10 text-sm font-semibold text-text1 bg-bg1 px-2 py-0.5 rounded-full shadow border border-border1"
+    >
+      {{ $t('mushroom.title') }} {{ props.index }}
+    </div>
+
     <!-- Circular mushroom container -->
     <div
-        class="mushroom transition duration-200 border-8 w-full h-full rounded-full overflow-hidden"
+        class="mushroom transition duration-200 border-2 sm:border-4 md:border-6 lg:border-8 w-full h-full rounded-full overflow-hidden"
         :class="borderClass"
     >
-      <!-- Image -->
+
+    <!-- Image -->
       <img
           :src="imageUrls[currentIndex]"
           alt="Mushroom"
@@ -18,23 +26,29 @@
           @click="prev"
           class="absolute left-0 top-1/2 transform -translate-y-1/2 text-text1 px-1 bg-bg1/60 rounded-full"
       >
-        ‹
+        <ArrowLeft></ArrowLeft>
       </button>
       <button
           v-if="imageUrls.length > 1"
           @click="next"
           class="absolute right-0 top-1/2 transform -translate-y-1/2 text-text1 px-1 bg-bg1/60 rounded-full"
       >
-        ›
+        <ArrowRight></ArrowRight>
       </button>
     </div>
 
     <!-- Status badge positioned above the image -->
     <div
-        class="absolute -bottom-3 right-2 text-xs px-2 py-1 rounded-full flex items-center gap-1 shadow border z-10"
+        class="absolute 
+      bottom-[-8px] right-1/2 
+      sm:bottom-[-6px] sm:right-[20%] 
+      md:bottom-[8px] md:right-[12%] 
+      lg:bottom-[14px] lg:right-[6%] 
+      text-xs px-2 py-1 rounded-full flex items-center gap-1 shadow border z-10"
         :class="[badgeBg, badgeText, badgeBorder]"
     >
-      <component :is="statusIcon" class="w-4 h-4" />
+
+    <component :is="statusIcon" class="w-4 h-4" />
       <span class="capitalize">
         {{ props.mushroom.mushroomStatus.toLowerCase().replace(/_/g, ' ') }}
       </span>
@@ -49,13 +63,17 @@ import {
   Check,
   HelpCircle,
   AlertCircle,
-  Circle
+  Circle,
+  ArrowLeft,
+  ArrowRight
 } from 'lucide-vue-next'
+import { useI18n } from 'vue-i18n'
 
+const { t } = useI18n()
 const BASE_URL = 'http://localhost:8080'
-
 const props = defineProps({
-  mushroom: Object
+  mushroom: Object,
+  index: Number
 })
 
 const imageUrls = ref([])
