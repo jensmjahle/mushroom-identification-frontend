@@ -25,9 +25,9 @@ onMounted(() => {
     <!-- Toggle tab -->
     <button
         @click="isOpen = !isOpen"
-        class="absolute top-10 -left-8 bg-bg1 text-text1 rounded-l-md rounded-r-none px-1 py-1 z-20"
+        class="absolute top-10 -left-8  btn-icon-transparent-1 bg-bg1 rounded-l-md rounded-r-none z-20"
     >
-      <component :is="isOpen ? ChevronRight : ChevronLeft" class="w-6 h-6" />
+      <component :is="isOpen ? ChevronRight : ChevronLeft" class="w-6 h-6" /> <ShoppingBasket></ShoppingBasket>
     </button>
 
     <!-- Basket content wrapper -->

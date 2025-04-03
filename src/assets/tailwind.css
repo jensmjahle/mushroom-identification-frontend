@@ -90,7 +90,7 @@ html, body, #app {
     @apply btn bg-button4 text-button4-meta border border-button4-border hover:bg-button4-hover;
   }
   .btn-icon {
-    @apply font-semibold p-1 rounded-full transition duration-200 disabled:opacity-50;
+    @apply font-semibold p-1 rounded-full transition duration-200 hover:scale-105 disabled:opacity-50;
   }
   .btn-icon-1 {
     @apply btn-icon btn-1
