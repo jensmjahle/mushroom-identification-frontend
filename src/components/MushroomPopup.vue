@@ -24,7 +24,8 @@
       <!-- Image viewer -->
       <div class="flex flex-col items-center">
         <div
-            class="relative overflow-hidden w-full h-[400px] sm:h-[500px] mb-4 bg-black/5 rounded-md cursor-grab"
+            class="relative overflow-hidden w-full h-[400px] sm:h-[500px] mb-4 bg-black/5 rounded-md"
+            :class="{ 'cursor-grabbing': dragging, 'cursor-grab': !dragging }"
             @mousedown="startDrag"
             @mousemove="onDrag"
             @mouseup="stopDrag"
@@ -33,12 +34,16 @@
             @touchmove.prevent="onTouchMove"
             @touchend="stopDrag"
         >
+
           <img
               :src="imageUrls[currentIndex]"
+              class="w-full h-full object-contain pointer-events-none select-none absolute top-0 left-0"
               :style="imageStyle"
-              class="absolute top-1/2 left-1/2 max-w-none transition-transform duration-100"
               alt="Selected Mushroom"
           />
+
+
+
         </div>
 
         <!-- Controls -->
@@ -54,6 +59,7 @@
               v-for="(img, idx) in imageUrls"
               :key="idx"
               :src="img"
+              :alt="ImageThumbnail"
               @click="currentIndex = idx"
               class="w-16 h-16 object-cover rounded-md cursor-pointer border-2"
               :class="idx === currentIndex ? 'border-button1' : 'border-transparent'"
@@ -139,10 +145,14 @@ const zoomIn = () => zoom.value = Math.min(zoom.value + 0.1, 3)
 const zoomOut = () => zoom.value = Math.max(zoom.value - 0.1, 1)
 const rotate = () => rotation.value = (rotation.value + 90) % 360
 
-const imageStyle = computed(() => ({
-  transform: `translate(${offset.value.x}px, ${offset.value.y}px) scale(${zoom.value}) rotate(${rotation.value}deg)`,
-  transformOrigin: 'center center'
-}))
+const imageStyle = computed(() => {
+  const translate = `translate(${offset.value.x}px, ${offset.value.y}px)`
+  return {
+    transform: `${translate} scale(${zoom.value}) rotate(${rotation.value}deg)`,
+    transformOrigin: 'center center'
+  }
+})
+
 
 const status = computed(() => props.mushroom.mushroomStatus?.toLowerCase().replace(/_/g, '-'))
 const statusLabel = computed(() => props.mushroom.mushroomStatus.toLowerCase().replace(/_/g, ' '))
