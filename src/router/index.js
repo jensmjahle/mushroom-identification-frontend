@@ -25,9 +25,14 @@ const routes = [
     component: AppUserLayout,
     children: [
       {
-        path: "home",
+        path: "/",
         name: "home",
         component: HomeView,
+      },
+      {
+        path: 'new',
+        name: 'new-request',
+        component:NewRequestView,
       },
       {
         path: 'request/:userRequestId',
@@ -36,8 +41,13 @@ const routes = [
         meta: { requiresUser: true }
       },
       {
-        path: 'new',
-        name: 'new-request',
+        path: 'become-member',
+        name: 'become-member',
+        component:NewRequestView,
+      },
+      {
+        path: 'support',
+        name: 'support',
         component:NewRequestView,
       }
     ]
