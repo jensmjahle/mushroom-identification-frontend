@@ -42,10 +42,12 @@ html, body, #app {
   }
 
   .user-sidebar-button {
-    @apply flex items-center gap-3 p-6 h-[100px] rounded-lg bg-gray-100;
+    @apply flex items-center gap-3 p-6 h-[100px] rounded-lg bg-gray-100
+    transition-[width] duration-200 ease-in-out w-full;
   }
   .user-sidebar-button-active {
-    @apply w-[250%] bg-[#E8E8E8];
+    @apply bg-[#E8E8E8];
+    width: 150%;
   }
 
   .user-sidebar-text {
