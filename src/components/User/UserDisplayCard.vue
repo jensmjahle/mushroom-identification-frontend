@@ -1,5 +1,5 @@
 <template>
-    <div class="user-display-card relative">
+    <div :class="['user-display-card', collapsed ? 'collapsed' : '']">
       <button
         @click="$emit('toggle-sidebar')"
         class="absolute top-4 left-0 p-2 bg-[--color-bg] rounded-none rounded-tr-lg rounded-br-lg transition focus:outline-none focus:ring-0 hover:border-[--color-bg]"
@@ -11,7 +11,7 @@
           :class="{ 'rotate-180': collapsed }"
         />
       </button>
-  
+
       <router-view />
     </div>
   </template>

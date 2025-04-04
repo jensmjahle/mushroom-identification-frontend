@@ -27,45 +27,54 @@ html, body, #app {
     @apply flex items-center justify-center min-h-screen w-full bg-bg;
   }
   .user-layout-inner{
-    @apply flex gap-2 w-4/5 h-4/5;
+    @apply flex w-4/5 h-4/5;
   }
 
   .user-display-card {
-    @apply flex-1 bg-[#E8E8E8] text-textAlt rounded-xl p-6 relative
-    transition-all duration-200 ease-in-out;
+    @apply bg-[#E8E8E8] text-textAlt rounded-xl p-6 relative
+           transition-[width] duration-300 ease-in-out;
+    width: 80%;
   }
+  .user-display-card.collapsed {
+    width: 90%;
+  }
+  
 
   .user-sidebar {
-    @apply flex flex-col justify-center gap-8 p-4;
+    @apply flex flex-col justify-center gap-8 p-4 transition-[width] duration-300 ease-in-out;
     width: 20%;
   }
   .user-sidebar.collapsed {
-    width: 10%;
+    width: 9.5%;
   }
 
   .user-sidebar-button {
-    @apply relative flex items-center justify-start pl-[15%] h-[100px]
-           rounded-lg bg-gray-100 w-full transition-all duration-300 ease-in-out;
-  }
-
-  .user-sidebar-button.collapsed {
-    @apply  pl-[35%];
+    @apply relative flex items-center justify-start pl-[2vw] pr-[20px] gap-4 h-[100px]
+           rounded-lg bg-gray-100 w-full transition-[width] duration-200 ease-in-out overflow-hidden;
+          min-width: 50px;
+          transition-delay: 0s;
   }
   
   .user-sidebar-button-active {
-    @apply bg-[#E8E8E8];
-    width: 150%;
+    @apply bg-[#E8E8E8] z-0;
+    min-width: 60px;
+    width: 20vw;
+
   }
 
   .user-sidebar-text {
-    @apply block whitespace-normal break-words;
-    width: 100px
+    @apply block whitespace-normal break-words transition-opacity duration-100 ease-in-out absolute pl-[40px];
+    opacity: 1;
+    width: 100px;
+    transition-delay: 0.2s;
   }
   .user-sidebar.collapsed .user-sidebar-text {
-    @apply hidden;
+
+    opacity: 0;
+    transition-delay: 0s;
   }
 
   .user-sidebar-icon {
-    @apply w-5 h-5;
+    @apply w-5 h-5 flex-shrink-0 flex-grow-0;
   }
 }
