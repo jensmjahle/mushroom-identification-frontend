@@ -41,12 +41,16 @@ html, body, #app {
     @apply w-20 items-center;
   }
 
-  .user-sidebar-active {
-    @apply bg-green-900 text-white font-semibold;
+  .user-sidebar-button {
+    @apply flex items-center gap-3 p-6 h-[100px] rounded-lg bg-gray-100;
+  }
+  .user-sidebar-button-active {
+    @apply w-[250%] bg-[#E8E8E8];
   }
 
-  .user-sidebar-button {
-    @apply flex items-center gap-3 p-6 rounded-lg bg-gray-100 hover:bg-gray-200 text-black transition;
+  .user-sidebar-text {
+    @apply block whitespace-normal break-words;
+    width: 100px
   }
 
   .user-sidebar.collapsed .user-sidebar-text {
