@@ -27,7 +27,7 @@ html, body, #app {
     @apply flex items-center justify-center min-h-screen w-full bg-bg;
   }
   .user-layout-inner{
-    @apply flex gap-2 w-4/5 h-4/5
+    @apply flex gap-2 w-4/5 h-4/5;
   }
 
   .user-display-card {
