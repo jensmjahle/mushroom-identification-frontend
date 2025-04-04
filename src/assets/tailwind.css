@@ -31,20 +31,27 @@ html, body, #app {
   }
 
   .user-display-card {
-    @apply flex-1 bg-[#E8E8E8] text-textAlt rounded-xl p-6 relative;
+    @apply flex-1 bg-[#E8E8E8] text-textAlt rounded-xl p-6 relative
+    transition-all duration-200 ease-in-out;
   }
 
   .user-sidebar {
-    @apply flex flex-col justify-center gap-8 p-4 w-[20%];
+    @apply flex flex-col justify-center gap-8 p-4;
+    width: 20%;
   }
   .user-sidebar.collapsed {
-    @apply w-20 items-center;
+    width: 10%;
   }
 
   .user-sidebar-button {
-    @apply flex items-center gap-3 p-6 h-[100px] rounded-lg bg-gray-100
-    transition-[width] duration-200 ease-in-out w-full;
+    @apply relative flex items-center justify-start pl-[15%] h-[100px]
+           rounded-lg bg-gray-100 w-full transition-all duration-300 ease-in-out;
   }
+
+  .user-sidebar-button.collapsed {
+    @apply  pl-[35%];
+  }
+  
   .user-sidebar-button-active {
     @apply bg-[#E8E8E8];
     width: 150%;
@@ -54,7 +61,6 @@ html, body, #app {
     @apply block whitespace-normal break-words;
     width: 100px
   }
-
   .user-sidebar.collapsed .user-sidebar-text {
     @apply hidden;
   }
