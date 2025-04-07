@@ -34,6 +34,18 @@ export const loginAdmin = async (username, password) => {
     throw error;
   }
 };
+export const loginUser = async (referenceCode) => {
+  try {
+    const response = await axios.post(`${API_URL}/auth/user/login`, {
+      referenceCode,
+    });
+    console.log("Login request successful:", response.data);
+    return response.data;
+  } catch (error) {
+    console.error("Login request failed:", error);
+    throw error;
+  }
+}
 
 export const fetchChatMessages = async (userRequestId) => {
   try {

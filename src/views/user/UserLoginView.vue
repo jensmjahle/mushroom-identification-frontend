@@ -1,7 +1,65 @@
 <template>
   <div class="main-user-view">
-  <p>
-    hei
-  </p>
+    <div class="vertical-box space-y-4">
+      <h1>{{ $t('loginUser.heading') }}</h1>
+
+      <BaseInput
+          v-model="code"
+          :label="$t('loginUser.refLabel')"
+          :placeholder="$t('loginUser.placeholder')"
+          id="ref-code"
+      />
+
+      <!-- Error message -->
+      <p v-if="error" class="text-danger">{{ error }}</p>
+
+      <BaseButton
+          variant="3"
+          @click="login"
+          :disabled="!code.trim()"
+      >
+        {{ $t('loginUser.button') }}
+      </BaseButton>
+    </div>
   </div>
 </template>
+
+<script setup>
+import { ref } from 'vue'
+import { useRouter } from 'vue-router'
+import BaseButton from '@/components/BaseButton.vue'
+import BaseInput from '@/components/BaseInput.vue'
+import { useI18n } from 'vue-i18n'
+import { loginUser } from "@/services/apiService.js"
+import { parseJwt } from "@/utils/jwt.js"
+
+const code = ref('')
+const error = ref(null)
+const router = useRouter()
+const { t } = useI18n()
+
+const login = async () => {
+  if (!code.value.trim()) {
+    error.value = t('loginUser.errorEmpty')
+    return
+  }
+
+  try {
+    error.value = null // clear any previous error
+    const response = await loginUser(code.value)
+    const token = response.token
+    sessionStorage.setItem('jwt', token)
+
+    const userRequestId = parseJwt(token)?.sub
+    console.log('User request ID:', userRequestId)
+
+    await router.push({
+      name: 'user-request',
+      params: { userRequestId }
+    })
+  } catch (err) {
+    error.value = t('loginUser.errorInvalid')
+    console.error(err)
+  }
+}
+</script>

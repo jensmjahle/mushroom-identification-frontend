@@ -1,64 +1,32 @@
 <template>
-  <div class="input-wrapper">
-    <label v-if="label" :for="name" class="input-label">{{ label }}</label>
-
-    <div class="input-container" :class="{ 'input-error': error }">
-      <slot name="icon" />
-      <input
-          :id="name"
-          :name="name"
-          :type="type"
-          v-model="modelValue"
-          :placeholder="placeholder"
-          class="input-field"
-          :autocomplete="autocomplete"
-      />
-    </div>
-
-    <p v-if="error" class="input-error-text">{{ error }}</p>
+  <div class="w-full">
+    <label v-if="label" :for="id" class="block mb-1 text-sm font-medium text-text1">
+      {{ label }}
+    </label>
+    <input
+        :id="id"
+        :type="type"
+        :value="modelValue"
+        @input="$emit('update:modelValue', $event.target.value)"
+        :placeholder="placeholder"
+        :disabled="disabled"
+        class="w-full px-3 py-2 border border-border1 rounded bg-bg1 text-text1 placeholder:text-text1-faded focus:outline-none focus:ring-2 focus:ring-button1-border transition"
+    />
   </div>
 </template>
 
 <script setup>
 defineProps({
-  modelValue: [String, Number],
+  id: String,
   label: String,
-  name: String,
-  type: {
-    type: String,
-    default: 'text'
-  },
   placeholder: String,
-  error: String,
-  autocomplete: {
-    type: String,
-    default: 'off'
-  }
+  type: { type: String, default: 'text' },
+  disabled: Boolean,
+  modelValue: String
 })
 
 defineEmits(['update:modelValue'])
 </script>
 
-<style scoped>
-.input-wrapper {
-  @apply flex flex-col gap-1 w-full;
-}
-.input-label {
-  @apply text-sm font-medium text-text1;
-}
-.input-container {
-  @apply flex items-center gap-2 bg-bg1 text-text1 border border-border2 rounded px-3 py-2 transition;
-}
-.input-container:focus-within {
-  @apply border-button1-border shadow-md;
-}
-.input-field {
-  @apply flex-1 bg-transparent outline-none placeholder-text1-faded;
-}
-.input-error {
-  @apply border-danger;
-}
-.input-error-text {
-  @apply text-xs text-danger mt-0.5;
-}
-</style>
+
+
