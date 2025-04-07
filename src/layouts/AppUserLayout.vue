@@ -8,9 +8,22 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, onMounted, onUnmounted } from 'vue';
 import UserSidebar from '../components/User/UserSidebar.vue';
 import UserDisplayCard from '../components/User/UserDisplayCard.vue';
 
 const collapsed = ref(false);
+
+const handleResize = () => {
+  collapsed.value = window.innerWidth < 1000;
+};
+
+onMounted(() => {
+  handleResize(); // Set initial state
+  window.addEventListener('resize', handleResize);
+});
+
+onUnmounted(() => {
+  window.removeEventListener('resize', handleResize);
+});
 </script>
