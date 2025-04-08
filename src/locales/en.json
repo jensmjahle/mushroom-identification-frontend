@@ -32,5 +32,9 @@
   "sideMenu" : {
     "completedTitle" : "Completed",
     "nextFromQue" : "Next from Que"
+  },
+  "mushroom": {
+    "title": "Mushroom"
   }
+
 }
