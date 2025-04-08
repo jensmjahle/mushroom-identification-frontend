@@ -27,13 +27,12 @@ html, body, #app {
   }
 
   .user-layout-inner{
-    @apply flex w-4/5 h-4/5 max-h-[800px];
+    @apply flex w-4/5 h-4/5 max-h-[80vh] items-center;
   }
 
   .user-display-card {
-    @apply bg-[#E8E8E8] text-textAlt rounded-xl p-6 relative
+    @apply bg-[#E8E8E8] text-textAlt rounded-xl p-6 relative h-[80vh] min-h-[600px]
            transition-all duration-300 ease-in-out flex-grow overflow-hidden;
-    min-height: 0;
   }
 
   .user-display-card.collapsed {
