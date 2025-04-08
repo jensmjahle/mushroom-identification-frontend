@@ -40,6 +40,11 @@ html, body, #app {
     width: 100%;
   }
 
+  .user-button {
+    @apply inline-block bg-[#2F3C2C] text-white text-lg font-semibold px-6 py-3 rounded-lg shadow-md hover:bg-green-800 transition duration-300 ease-in-out;
+  }
+
+  
   .user-sidebar {
     @apply flex flex-col justify-center gap-8 p-4 transition-[width] duration-300 ease-in-out max-h-[800px];
     width: 20%;
