@@ -45,6 +45,16 @@ export async function fetchMushroomCategoryStats() {
   ])
 }
 
+export async function fetchOverviewStats() {
+  return Promise.resolve({
+    totalRequests: 784,
+    totalCompleted: 603,
+    weeklyRate: 48,
+    ftrClicks: 122
+  })
+}
+
+
 // Helper to generate an array of dates between from/to in YYYY-MM-DD
 function getDateRange(fromStr, toStr) {
   const from = new Date(fromStr)

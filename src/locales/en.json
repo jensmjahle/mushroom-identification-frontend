@@ -12,8 +12,17 @@
       "completedTitle": "Completed Requests",
       "last7Days": "Last 7 Days",
       "last30Days": "Last 30 Days",
-      "last90Days": "Last 90 Days"
+      "last90Days": "Last 90 Days",
+      "weeklyRate": "Weekly New Requests",
+      "ftrClicks": "FTR Signups",
+      "exportTitle": "Export statistics and history to PDF",
+      "exportButton": "Export"
     }
+  },
+"month": {
+"jan": "January", "feb": "February", "mar": "March", "apr": "April",
+"may": "May", "jun": "June", "jul": "July", "aug": "August",
+"sep": "September", "oct": "October", "nov": "November", "dec": "December"
   },
 "submit": {
     "title": "Submit Your Mushroom Request",
