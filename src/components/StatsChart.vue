@@ -1,23 +1,30 @@
 <!-- StatsChart.vue -->
 <template>
-  <Card>
-    <CardHeader>
-      <h2 class="text-xl font-semibold">Completed Requests</h2>
-      <select v-model="selectedInterval" @change="fetchStats">
-        <option value="7">Last 7 days</option>
-        <option value="30">Last 30 days</option>
-        <option value="90">Last 90 days</option>
+  <div class="bg-white shadow rounded-lg p-4">
+    <div class="mb-4 flex flex-col sm:flex-row justify-between items-center">
+      <h2>
+        {{ $t('admin.stats.completedTitle') }}
+      </h2>
+      <select
+          v-model="selectedInterval"
+          @change="fetchStats"
+          class="mt-2 sm:mt-0 border border-gray-300 rounded px-2 py-1 text-sm"
+      >
+        <option value="7">{{ $t('admin.stats.last7Days') }}</option>
+        <option value="30">{{ $t('admin.stats.last30Days') }}</option>
+        <option value="90">{{ $t('admin.stats.last90Days') }}</option>
       </select>
-    </CardHeader>
+    </div>
 
-    <CardContent>
+    <div>
       <LineChart :data="chartData" />
-    </CardContent>
-  </Card>
+    </div>
+  </div>
 </template>
 
+
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, watch } from 'vue'
 import { fetchCompletedStats } from '@/services/statsService.js'
 import LineChart from '@/components/charts/LineChart.vue'
 
@@ -27,7 +34,7 @@ const chartData = ref([])
 const fetchStats = async () => {
   const now = new Date()
   const from = new Date()
-  from.setDate(now.getDate() - selectedInterval.value)
+  from.setDate(now.getDate() - Number(selectedInterval.value))
 
   const response = await fetchCompletedStats({
     interval: 'DAY',
@@ -39,4 +46,5 @@ const fetchStats = async () => {
 }
 
 onMounted(fetchStats)
+watch(selectedInterval, fetchStats)
 </script>
