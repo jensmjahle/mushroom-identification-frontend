@@ -10,6 +10,7 @@ import AppAdminLayout from "../layouts/AppAdminLayout.vue";
 import RequestsList from "../components/RequestsList.vue";
 import AppUserLayout from "../layouts/AppUserLayout.vue";
 import NewRequestView from "../views/user/NewRequestView.vue";
+import StatisticsView from "@/views/admin/StatisticsView.vue";
 
 const routes = [
   { 
@@ -54,6 +55,11 @@ const routes = [
         path: 'requests',
         name: 'admin-all-requests',
         component: RequestsList
+      },
+      {
+        path: 'statistics',
+        name: 'admin-statistics',
+        component: StatisticsView
       }
     ]
   },
