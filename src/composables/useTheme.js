@@ -14,5 +14,6 @@ export const setTheme = (themeName) => {
 
 export const initTheme = () => {
   const saved = localStorage.getItem('theme') || 'light'
+  
   setTheme(saved)
 }

@@ -35,6 +35,16 @@ export async function fetchMushroomTypeStats() {
   ])
 }
 
+export async function fetchMushroomCategoryStats() {
+  return Promise.resolve([
+    { status: 'PSILOCYBIN', count: 120 },
+    { status: 'NON_PSILOCYBIN', count: 95 },
+    { status: 'TOXIC', count: 34 },
+    { status: 'UNKNOWN', count: 12 },
+    { status: 'UNIDENTIFIABLE', count: 7 }
+  ])
+}
+
 // Helper to generate an array of dates between from/to in YYYY-MM-DD
 function getDateRange(fromStr, toStr) {
   const from = new Date(fromStr)

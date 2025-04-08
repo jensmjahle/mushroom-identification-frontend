@@ -7,6 +7,22 @@
     "error": "Ugyldig brukernavn eller passord",
     "fill_in_both_username_and_password": "Vennligst fyll inn både brukernavn og passord"
   },
+  "admin": {
+    "stats": {
+      "completedTitle": "Fullførte Forespørseler",
+      "mushroomCategories": "Soppkategorier",
+      "last7Days": "Siste 7 Dager",
+      "last30Days": "Siste 30 Dager",
+      "last90Days": "Siste 90 Dager"
+    }
+  },
+  "mushroomStatus": {
+    "PSILOCYBIN": "Fleinsopp",
+    "NON_PSILOCYBIN": "Ikke Fleinsopp",
+    "TOXIC": "Giftig",
+    "UNKNOWN": "Ukjent",
+    "UNIDENTIFIABLE": "Uidentifiserbar"
+  },
   "submit": {
     "title": "Send inn din sopphenvendelse",
     "steps": [

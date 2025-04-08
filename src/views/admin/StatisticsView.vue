@@ -1,10 +1,17 @@
 <template>
   <div class="main-view">
-    <h1>Statistics</h1>
-    <StatsChart></StatsChart>
+    <div class="vertical-box">
+      <StatsChart></StatsChart>
+      <div class="horizontal-box bg-bg2">
+        <MushroomCategoryStats></MushroomCategoryStats>
+        <MushroomPieChart></MushroomPieChart>
+      </div>
+    </div>
   </div>
 </template>
 
 <script setup>
-import StatsChart from "@/components/StatsChart.vue";
+import StatsChart from "@/components/statistics/StatsChart.vue";
+import MushroomCategoryStats from "@/components/statistics/MushroomCategoryStats.vue";
+import MushroomPieChart from "@/components/charts/MushroomPieChart.vue";
 </script>

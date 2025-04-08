@@ -1,10 +1,10 @@
 <template>
-  <div class="w-1/6 bg-bgAlt2 text-text ml-2 rounded-lg">
+  <div class="w-1/6 bg-bg3 text-text3 ml-2 rounded-lg">
     <div class="text-right m-4">
-      <h2 class="text-xl font-semibold text-text">
+      <h2 class="text-xl font-semibold text-text3">
         {{$t('sideMenu.completedTitle')}}
       </h2>
-      <div class="text-5xl font-bold text-text">
+      <div class="text-5xl font-bold text-text3">
         {{ newCount }}
       </div>
     </div>
