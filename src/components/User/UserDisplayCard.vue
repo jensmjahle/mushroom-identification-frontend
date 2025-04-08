@@ -7,12 +7,12 @@
         <img
           src="/assets/arrow.svg"
           alt="Toggle sidebar"
-          class="w-5 h-5 transition-transform duration-300 dark:invert"
+          class="w-5 h-5 transition-transform duration-300 light:invert"
           :class="{ 'rotate-180': collapsed }"
 
         />
       </button>
-
+      
       <router-view />
     </div>
   </template>
