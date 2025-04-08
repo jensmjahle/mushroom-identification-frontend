@@ -16,7 +16,7 @@
     </div>
 
     <div>
-      <LineChart :data="chartData" />
+      <LineChart class="w-full" :data="chartData" />
     </div>
   </div>
 </template>

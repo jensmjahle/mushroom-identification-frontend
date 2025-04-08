@@ -1,6 +1,5 @@
 <template>
   <div class="main-admin-component">
-    <h2>{{ t('admin.stats.mushroomCategories') }}</h2>
     <Pie :data="chartData" :options="chartOptions" />
   </div>
 </template>

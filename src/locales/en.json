@@ -16,7 +16,10 @@
       "weeklyRate": "Weekly New Requests",
       "ftrClicks": "FTR Signups",
       "exportTitle": "Export statistics and history to PDF",
-      "exportButton": "Export"
+      "exportButton": "Export",
+      "overviewTitle": "Statistics Overview",
+      "totalRequests": "Total Requests",
+      "totalCompleted": "Completed Requests"
     }
   },
 "month": {
