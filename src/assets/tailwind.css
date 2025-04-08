@@ -58,7 +58,7 @@ html, body, #app {
   }
 
   .user-display-card {
-    @apply bg-bg2 text-text1 rounded-xl p-6 relative transition-all duration-300 ease-in-out flex-grow overflow-hidden;
+    @apply bg-bg2 text-text2 rounded-xl p-6 relative transition-all duration-300 ease-in-out flex-grow overflow-hidden;
     min-height: 0;
   }
   
@@ -67,7 +67,7 @@ html, body, #app {
   }
 
   .user-button {
-    @apply inline-block bg-button1 text-text1 text-lg font-semibold px-6 py-3 rounded-lg shadow-md hover:bg-button1-hover transition duration-300 ease-in-out;
+    @apply inline-block bg-button1 text-button1-meta text-lg font-semibold px-6 py-3 rounded-lg shadow-md hover:bg-button1-hover transition duration-300 ease-in-out;
   }
 
   .user-sidebar {
@@ -80,7 +80,7 @@ html, body, #app {
   }
 
   .user-sidebar-button{
-    @apply flex items-center bg-bg2 rounded-lg w-full transition-[width] duration-300 ease-in-out overflow-hidden min-w-[50px] min-h-[80px] max-w-[200px] h-[10%] hover:text-text1;
+    @apply flex items-center bg-bg2 rounded-lg w-full transition-[width] duration-300 ease-in-out overflow-hidden min-w-[50px] min-h-[80px] max-w-[200px] h-[10%];
   }
 
   .user-sidebar-button.active {
@@ -89,11 +89,11 @@ html, body, #app {
   }
 
   .user-sidebar-link {
-    @apply flex w-full h-full pl-4 items-center transition-all duration-300 ease-in-out overflow-hidden min-w-[50px] hover:text-text1;
+    @apply flex w-full h-full pl-4 items-center transition-all duration-300 ease-in-out overflow-hidden min-w-[50px];
   }
 
   .user-sidebar-text {
-    @apply block whitespace-normal break-words transition-opacity duration-100 ease-in-out pl-[20px] pr-[20px];
+    @apply block text-text2 whitespace-normal break-words transition-opacity duration-100 ease-in-out pl-[20px] pr-[20px];
     opacity: 1;
     width: 100px;
     transition-delay: 0.2s;
@@ -110,7 +110,7 @@ html, body, #app {
 
   .user-sidebar-button:hover .user-sidebar-icon,
   .user-sidebar-button:hover .user-sidebar-text {
-    @apply text-text4-faded;
+    @apply text-text2-faded;
   }
 
   .main-view {
