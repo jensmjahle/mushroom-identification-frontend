@@ -99,7 +99,6 @@ import { useRoute, useRouter } from 'vue-router';
 import { parseJwt } from '../utils/jwt';
 import { ShieldCheck, Menu } from 'lucide-vue-next';
 import ThemeSwitcher from "@/components/ThemeSwitcher.vue";
-import CursorSwitcher from "@/components/CursorSwitcher.vue";
 
 
 const router = useRouter();

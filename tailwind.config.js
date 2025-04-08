@@ -6,8 +6,11 @@ export default {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        area: ['AreaVariable', 'sans-serif'],
+      },
       backgroundImage: {
-        hero: "url('/assets/background.svg')"
+        hero: "url('/assets/background.svg')",
       },
       colors: {
         text1: 'var(--color-text1)',
