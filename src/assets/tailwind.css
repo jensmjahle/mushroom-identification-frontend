@@ -41,7 +41,7 @@ html, body, #app {
   }
 
   .user-button {
-    @apply inline-block bg-[#2F3C2C] text-white text-lg font-semibold px-6 py-3 rounded-lg shadow-md hover:bg-green-800 transition duration-300 ease-in-out;
+    @apply inline-block bg-[#2F3C2C] text-white text-lg font-semibold px-6 py-3 rounded-lg shadow-md hover:bg-[#3E503B] transition duration-300 ease-in-out;
   }
 
   
