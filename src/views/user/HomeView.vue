@@ -16,7 +16,7 @@ import { RouterLink } from 'vue-router';
 
 
     <p class="text-black text-sm mt-6">
-      Eller <RouterLink to="/support" class="underline text-[#F28F3B] hover:text-[#2F3C2C]">sjekk ut vår FAQ</RouterLink>
+      Eller <RouterLink to="user/support" class="underline text-[#F28F3B] hover:text-[#2F3C2C]">få hjelp fra vår support</RouterLink>
     </p>
   </div>
 </template>
