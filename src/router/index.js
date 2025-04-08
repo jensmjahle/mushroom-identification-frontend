@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import { parseJwt } from '../utils/jwt';
 
+import UnderConstructionView from '../views/user/UnderConstructionView.vue';
 import HomeView from '../views/user/HomeView.vue';
 import AdminLoginView from '../views/admin/AdminLoginView.vue';
 import UserRequestView from '../views/user/UserRequestView.vue';
@@ -10,13 +11,13 @@ import AppAdminLayout from "../layouts/AppAdminLayout.vue";
 import RequestsList from "../components/RequestsList.vue";
 import AppUserLayout from "../layouts/AppUserLayout.vue";
 import NewRequestView from "../views/user/NewRequestView.vue";
-import StatisticsView from "@/views/admin/StatisticsView.vue";
 
 const routes = [
   { 
     path: '/', 
-    name: 'home', 
-    component: HomeView
+    name: 'Construction', 
+    component: UnderConstructionView,
+    redirect: '/user/home'
   },
   {
     path: '/user',
@@ -24,15 +25,35 @@ const routes = [
     component: AppUserLayout,
     children: [
       {
+        path: "",
+        name: "home",
+        component: HomeView,
+      },
+      {
+        path: 'new',
+        name: 'new-request',
+        component:NewRequestView,
+      },
+      {
         path: 'request/:userRequestId',
         name: 'user-request',
         component: UserRequestView,
         meta: { requiresUser: true }
       },
       {
-        path: 'new',
-        name: 'new-request',
+        path: 'become-member',
+        name: 'become-member',
         component:NewRequestView,
+      },
+      {
+        path: 'support',
+        name: 'support',
+        component:NewRequestView,
+      },
+      {
+        path: 'login',
+        name: 'user-login',
+        component: UserLoginView
       }
     ]
   },

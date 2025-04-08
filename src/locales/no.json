@@ -52,5 +52,13 @@
   },
   "mushroom": {
     "title": "Sopp"
+  },
+  "loginUser": {
+    "heading": "Skriv inn referansekoden din",
+    "refLabel": "Referansekode",
+    "placeholder": "f.eks. ABC123",
+    "button": "Fortsett",
+    "errorEmpty": "Referansekoden kan ikke være tom",
+    "errorInvalid": "Ugyldig referansekode"
   }
 }
