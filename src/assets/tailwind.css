@@ -13,7 +13,7 @@ html, body, #app {
 
 @layer base {
   body {
-    @apply bg-bg text-text font-area w-full;
+    @apply bg-bg4 text-text1 font-area w-full;
   }
   h1 {
     @apply text-3xl font-bold text-text1;
@@ -46,11 +46,11 @@ html, body, #app {
 
 @layer components {
   .basket {
-    @apply p-2 bg-bg rounded-l-lg text-text my-10 max-w-md ml-auto w-auto;
+    @apply p-2 bg-bg1 rounded-l-lg text-text1 my-10 max-w-md ml-auto w-auto;
   }
 
   .user-layout {
-    @apply flex items-center justify-center min-h-screen w-full bg-bg;
+    @apply flex items-center justify-center min-h-screen w-full bg-bg1;
   }
 
   .user-layout-inner{
@@ -58,16 +58,16 @@ html, body, #app {
   }
 
   .user-display-card {
-    @apply bg-[#E8E8E8] text-textAlt rounded-xl p-6 relative transition-all duration-300 ease-in-out flex-grow overflow-hidden;
+    @apply bg-bg2 text-text2 rounded-xl p-6 relative transition-all duration-300 ease-in-out flex-grow overflow-hidden;
     min-height: 0;
   }
-
+  
   .user-display-card.collapsed {
     width: 100%;
   }
 
   .user-button {
-    @apply inline-block bg-[#2F3C2C] text-white text-lg font-semibold px-6 py-3 rounded-lg shadow-md hover:bg-[#3E503B] transition duration-300 ease-in-out;
+    @apply inline-block bg-button1 text-button1-meta text-lg font-semibold px-6 py-3 rounded-lg shadow-md hover:bg-button1-hover transition duration-300 ease-in-out;
   }
 
   .user-sidebar {
@@ -80,20 +80,20 @@ html, body, #app {
   }
 
   .user-sidebar-button{
-    @apply flex items-center bg-white rounded-lg w-full transition-all duration-300 ease-in-out overflow-hidden min-w-[50px] min-h-[80px] max-w-[200px] h-[10%] hover:text-green-700;
+    @apply flex items-center bg-bg2 rounded-lg w-full transition-[width] duration-300 ease-in-out overflow-hidden min-w-[50px] min-h-[80px] max-w-[200px] h-[10%];
   }
 
   .user-sidebar-button.active {
-    @apply max-w-[1000px] w-[200%] bg-[#E8E8E8];
+    @apply max-w-[1000px] w-[200%] bg-bg2;
     width: 20vw;
   }
 
   .user-sidebar-link {
-    @apply flex w-full h-full pl-4 items-center transition-all duration-300 ease-in-out overflow-hidden min-w-[50px] hover:text-black;
+    @apply flex w-full h-full pl-4 items-center transition-all duration-300 ease-in-out overflow-hidden min-w-[50px];
   }
 
   .user-sidebar-text {
-    @apply block whitespace-normal break-words transition-opacity duration-100 ease-in-out pl-[20px] pr-[20px];
+    @apply block text-text2 whitespace-normal break-words transition-opacity duration-100 ease-in-out pl-[20px] pr-[20px];
     opacity: 1;
     width: 100px;
     transition-delay: 0.2s;
@@ -110,7 +110,7 @@ html, body, #app {
 
   .user-sidebar-button:hover .user-sidebar-icon,
   .user-sidebar-button:hover .user-sidebar-text {
-    @apply text-green-700;
+    @apply text-text2-faded;
   }
 
   .main-view {
@@ -118,7 +118,7 @@ html, body, #app {
   }
 
   .main-user-view {
-    @apply flex flex-col-reverse md:flex-row items-center justify-center h-screen sm:h-auto bg-bg2 text-text2 rounded-lg mx-4 sm:mx-8 md:mx-20 lg:mx-40 gap-6;
+    @apply flex flex-col-reverse md:flex-col items-center justify-center h-screen sm:h-auto bg-bg2 text-text2 rounded-lg mx-4 sm:mx-8 md:mx-20 lg:mx-40 gap-6;
   }
 
   .mushroom {
