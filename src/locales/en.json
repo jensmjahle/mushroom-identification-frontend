@@ -35,6 +35,17 @@
   },
   "mushroom": {
     "title": "Mushroom"
+  },
+  "loginUser": {
+    "heading": "Enter Your Reference Code",
+    "refLabel": "Reference Code",
+    "placeholder": "e.g. ABC123",
+    "button": "Proceed",
+    "errorEmpty": "Please enter a reference code.",
+    "errorInvalid": "Invalid reference code. Please try again."
   }
-
 }
+
+
+
+

@@ -10,6 +10,7 @@ import AppAdminLayout from "../layouts/AppAdminLayout.vue";
 import RequestsList from "../components/RequestsList.vue";
 import AppUserLayout from "../layouts/AppUserLayout.vue";
 import NewRequestView from "../views/user/NewRequestView.vue";
+import UserLoginView from "@/views/user/UserLoginView.vue";
 
 const routes = [
   { 
@@ -32,6 +33,11 @@ const routes = [
         path: 'new',
         name: 'new-request',
         component:NewRequestView,
+      },
+      {
+        path: 'login',
+        name: 'user-login',
+        component: UserLoginView
       }
     ]
   },
