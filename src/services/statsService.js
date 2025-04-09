@@ -1,4 +1,22 @@
-// src/services/statsService.js
+import axios from 'axios';
+
+const API_URL = 'http://localhost:8080';
+
+// Fetch mushroom category statistics
+export const fetchMushroomCategoryStats = async (token = null) => {
+  try {
+    const response = await axios.get(`${API_URL}/api/admin/stats/categories`, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    });
+    return response.data;
+  } catch (error) {
+    console.error('Failed to fetch mushroom category stats:', error);
+    throw error;
+  }
+};
+
 
 // Dummy function to simulate a completed requests graph endpoint
 export async function fetchCompletedStats({ interval = 'DAY', from, to }) {
@@ -35,15 +53,7 @@ export async function fetchMushroomTypeStats() {
   ])
 }
 
-export async function fetchMushroomCategoryStats() {
-  return Promise.resolve([
-    { status: 'PSILOCYBIN', count: 120 },
-    { status: 'NON_PSILOCYBIN', count: 95 },
-    { status: 'TOXIC', count: 34 },
-    { status: 'UNKNOWN', count: 12 },
-    { status: 'UNIDENTIFIABLE', count: 7 }
-  ])
-}
+
 
 export async function fetchOverviewStats() {
   return Promise.resolve({

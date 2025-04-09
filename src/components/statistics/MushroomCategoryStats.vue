@@ -21,8 +21,10 @@ import { fetchMushroomCategoryStats } from '@/services/statsService.js'
 
 const stats = ref([])
 const { t } = useI18n()
+const token = sessionStorage.getItem('jwt')
 
 onMounted(async () => {
-  stats.value = await fetchMushroomCategoryStats()
+  stats.value = await fetchMushroomCategoryStats(token)
+  stats.value = stats.value.filter(s => s.status !== 'NOT_PROCESSED')
 })
 </script>

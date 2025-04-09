@@ -23,6 +23,8 @@ import { themeReady } from '@/composables/themeReady'
 
 ChartJS.register(ArcElement, Tooltip, Legend)
 
+
+const token = sessionStorage.getItem('jwt')
 const { t } = useI18n()
 const chartData = ref({
   labels: [],
@@ -51,15 +53,16 @@ function getCssVariableValue(variableName) {
 
 
 const loadChartData = async () => {
-  const stats = await fetchMushroomCategoryStats()
+  const stats = await fetchMushroomCategoryStats(token)
+  const filteredStats = stats.filter(s => s.status !== 'NOT_PROCESSED');
 
   chartData.value = {
-    labels: stats.map(s => t(`mushroomStatus.${s.status}`)),
+    labels: filteredStats.map(s => t(`mushroomStatus.${s.status}`)),
     datasets: [
       {
         label: t('admin.stats.mushroomCategories'),
-        data: stats.map(s => s.count),
-        backgroundColor: stats.map(s => getCssVariableValue(cssVarMap[s.status]))
+        data: filteredStats.map(s => s.count),
+        backgroundColor: filteredStats.map(s => getCssVariableValue(cssVarMap[s.status]))
       }
     ]
   }

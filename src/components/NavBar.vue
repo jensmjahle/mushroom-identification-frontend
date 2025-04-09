@@ -35,7 +35,7 @@
 
       <!-- Desktop admin info -->
       <div class="hidden sm:flex items-center space-x-4" v-if="isAdmin">
-        <div :class="['flex items-center space-x-1 text-xs font-medium px-3 py-1 rounded-full text-white', getRoleClass(role)]">
+        <div :class="['flex items-center space-x-1 text-xs font-medium px-3 py-1 rounded-full text-text1', getRoleClass(role)]">
           <ShieldCheck class="w-4 h-4" />
           <span class="capitalize">{{ role.toLowerCase() }}</span>
         </div>
