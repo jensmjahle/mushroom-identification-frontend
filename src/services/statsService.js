@@ -18,20 +18,23 @@ export const fetchMushroomCategoryStats = async (token = null) => {
 };
 
 
-// Dummy function to simulate a completed requests graph endpoint
-export async function fetchCompletedStats({ interval = 'DAY', from, to }) {
-  const days = getDateRange(from, to)
-  const points = days.map(date => ({
-    date,
-    count: Math.floor(Math.random() * 10) + 1 // Random number between 1-10
-  }))
-
-  return Promise.resolve({
-    timeInterval: interval,
-    from,
-    to,
-    points
-  })
+export async function fetchCompletedStats({ interval = 'DAY', from, to }, token = null) {
+  try {
+    const response = await axios.get(`${API_URL}/api/admin/stats/rate`, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      },
+      params: {
+        interval,
+        from,
+        to
+      }
+    });
+    return response.data;
+  } catch (error) {
+    console.error('Failed to fetch completed stats:', error);
+    throw error;
+  }
 }
 
 // Dummy function for summary stats

@@ -31,20 +31,24 @@ import { useI18n } from 'vue-i18n'
 const { t } = useI18n()
 const selectedInterval = ref(30)
 const chartData = ref([])
+const token = sessionStorage.getItem('jwt')
 
 const fetchStats = async () => {
-  const now = new Date()
-  const from = new Date()
-  from.setDate(now.getDate() - Number(selectedInterval.value))
+  const now = new Date();
+  const from = new Date();
+  from.setDate(now.getDate() - Number(selectedInterval.value));
 
-  const response = await fetchCompletedStats({
-    interval: 'DAY',
-    from: from.toISOString().split('T')[0],
-    to: now.toISOString().split('T')[0]
-  })
-
-  chartData.value = response.points
-}
+  const response = await fetchCompletedStats(
+      {
+        interval: 'DAY',
+        from: from.toISOString().split('T')[0],
+        to: now.toISOString().split('T')[0]
+      },
+      token
+  );
+console.log('Fetched stats:', response)
+  chartData.value = response.points;
+};
 
 onMounted(fetchStats)
 watch(selectedInterval, fetchStats)
