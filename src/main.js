@@ -1,26 +1,27 @@
 import { createApp } from 'vue';
-import { createPinia } from 'pinia';  // Import Pinia for state management
+import { createPinia } from 'pinia';
 import App from './App.vue';
 import './assets/tailwind.css';
-import i18n, { updateI18nLocale } from './locales/i18n'; // Import i18n and update function
+import i18n, { updateI18nLocale } from './locales/i18n';
 import router from './router';
-import { initTheme } from './composables/useTheme'
+import { setTheme } from './composables/useTheme'
+import { themeReady } from './composables/themeReady'
 
-// Create the Pinia store instance
-const pinia = createPinia();
 
-// Create the Vue app instance
-const app = createApp(App);
+const saved = localStorage.getItem('theme') || 'light'
+setTheme(saved, () => {
+  themeReady.value = true
+})
 
-// Use the necessary plugins: Pinia, i18n, and router
-app.use(pinia);
-app.use(i18n);
-app.use(router);
+const pinia = createPinia()
+const app = createApp(App)
 
-initTheme()
+app.use(pinia)
+app.use(i18n)
+app.use(router)
 
-// Ensure the language updates dynamically when the app starts
-updateI18nLocale(); 
+// 4. Update i18n language
+updateI18nLocale()
 
-// Mount the app to the DOM once
-app.mount('#app');
+// 5. Mount app
+app.mount('#app')
