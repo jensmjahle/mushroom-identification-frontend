@@ -1,9 +1,9 @@
 <template>
   <div class="main-view">
     <StatsOverview></StatsOverview>
-    <div class="horizontal-box gap-2">
-      <StatsChart class="w-1/2 shadow"></StatsChart>
-      <div class="horizontal-box bg-bg2 w-1/2 shadow">
+    <div class="horizontal-box gap-2 flex-col  md:flex-row">
+      <StatsChart class="w-full md:w-1/2 shadow"></StatsChart>
+      <div class="horizontal-box bg-bg2 w-full md:w-1/2 shadow">
         <MushroomCategoryStats></MushroomCategoryStats>
         <MushroomPieChart></MushroomPieChart>
       </div>
@@ -11,6 +11,7 @@
     <RequestsList></RequestsList>
   </div>
 </template>
+
 
 <script setup>
 import StatsChart from "@/components/statistics/StatsChart.vue";

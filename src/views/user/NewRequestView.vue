@@ -75,7 +75,7 @@
 
 <script setup>
 import { ref, computed } from 'vue';
-import {sendNewUserRequest} from "../../services/apiService.js";
+import {sendNewUserRequest} from "@/services/apiService.js";
 
 const steps = [
   { image: '/assets/step1.jpg' },
