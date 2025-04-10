@@ -21,6 +21,7 @@ import StatCard from '@/components/statistics/StatCard.vue'
 import ExportStatsCard from '@/components/statistics/ExportStatsCard.vue'
 
 const { t } = useI18n()
+const token = sessionStorage.getItem('jwt')
 const stats = ref({
   totalRequests: 0,
   totalCompleted: 0,
@@ -29,7 +30,7 @@ const stats = ref({
 })
 
 const loadStats = async () => {
-  stats.value = await fetchOverviewStats()
+  stats.value = await fetchOverviewStats(token)
 }
 
 const handleExport = ({ month, year }) => {

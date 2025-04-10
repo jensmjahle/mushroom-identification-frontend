@@ -58,15 +58,19 @@ export async function fetchMushroomTypeStats() {
 
 
 
-export async function fetchOverviewStats() {
-  return Promise.resolve({
-    totalRequests: 784,
-    totalCompleted: 603,
-    weeklyRate: 48,
-    ftrClicks: 122
-  })
+export async function fetchOverviewStats(token = null) {
+  try {
+    const response = await axios.get(`${API_URL}/api/admin/stats/overview`, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    });
+    return response.data;
+  } catch (error) {
+    console.error('Failed to fetch overview stats:', error);
+    throw error;
+  }
 }
-
 
 // Helper to generate an array of dates between from/to in YYYY-MM-DD
 function getDateRange(fromStr, toStr) {
