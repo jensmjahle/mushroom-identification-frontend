@@ -34,7 +34,7 @@
 </template>
 <script setup>
 import {useRoute, useRouter} from 'vue-router';
-import {getCountOfRequestFromStatus} from "../services/apiService.js";
+import {getCountOfRequestFromStatus} from "../../services/apiService.js";
 import {onMounted, ref} from "vue";
 import LogoButton from "@/components/LogoButton.vue";
 import BaseButton from "@/components/base/BaseButton.vue";
