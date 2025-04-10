@@ -1,41 +1,118 @@
 :root {
-  --color-primary: #ffffff;
-  --color-text: #000;
-  --color-text-alt: #f8f4ec;
-  --color-bg: #d9ccb9;
-  --color-bg-alt: #38434f;
-  --color-bg-alt2: #C6C6C6;
+  /**text1 should be displayed on bg1, text2 should be displayed on bg2 and so on**/
+  --color-text1: #000;
+  --color-text1-faded: #333333;
+  --color-text2: #000;
+  --color-text2-faded: #726e6e;
+  --color-text3: #000;
+  --color-text3-faded: #726e6e;
+  --color-text4: #ffffff;
+  --color-text4-faded: #726e6e;
 
-  --color-button: #93DA8B;
-  --color-button-hover: #e07b21;
-  --color-button-border: #c56d20;
+  --color-bg1: #ffffff;
+  --color-bg2: #E8E8E8;
+  --color-bg3: #2d3748;
+  --color-bg4: #000;
+
+  --color-border1: #ffffff;
+  --color-border2: #E8E8E8;
+  --color-border3: #2d3748;
+  --color-border4: #2d3748;
+
+  --color-button1: #4ade80;
+  --color-button1-meta: #000;
+  --color-button1-hover: #22c55e;
+  --color-button1-border: #15803d;
 
   --color-button2: #C08CD8;
-  --color-button2-hover: #3d5a50;
-  --color-button2-border: #415c56;
+  --color-button2-meta: #000;
+  --color-button2-hover: #7c3aed;
+  --color-button2-border: #5b21b6;
 
-  --color-button3: #38434f;
-  --color-button3-hover: #2d3741;
-  --color-button3-border: #2a313a;
+  --color-button3: #374151;
+  --color-button3-meta: #f8f4ec;
+  --color-button3-hover: #1f2937;
+  --color-button3-border: #111827;
 
-  --color-danger: #ef4444;
-  --color-danger-hover: #dc2626;
+  --color-button4: #FFFFFF;
+  --color-button4-meta: #000;
+  --color-button4-hover: #1f2937;
+  --color-button4-border: #111827;
 
-  --color-success: #10b981;
-  --color-success-hover: #059669;
+  --color-button-transparent: transparent;
+  --color-button-transparent-meta: #000;
+  --color-button-transparent-hover: transparent;
+  --color-button-transparent-border: transparent;
+  --color-button-transparent-hover-border: #2d3748;
 
-  --color-chat-me: #f28f3b;
-  --color-chat-other: #52796f;
-  --color-chat-meta: #f8f4ec;
-  --color-chat-border: #38434f;
 
-  --color-status-pending: #fbbf24;
-  --color-status-completed: #10b981;
-  --color-status-rejected: #ef4444;
-  --color-status-new: #60a5fa;
-  --color-status-in-review: #f97316;
+  --color-danger: #f87171;
+  --color-danger-hover: #ef4444;
+  --color-danger-border: #ef4444;
 
-  --color-role-superuser: #f59e0b;
-  --color-role-moderator: #3b82f6;
-  --color-role-user: #10b981;
+  --color-success: #34d399;
+  --color-success-hover: #10b981;
+  --color-success-border: #10b981;
+
+  --color-chat-me-bg: #2F3C2C;
+  --color-chat-me-meta: #FFFFFF;
+  --color-chat-me-border: #000000;
+  --color-chat-other-bg: #FFFFFF;
+  --color-chat-other-meta: #212121;
+  --color-chat-other-border: #000000;
+
+  --color-status-pending: #F4E87F;
+  --color-status-pending-text: #18181B;
+  --color-status-pending-border: #F4E87F;
+
+  --color-status-completed: #93DA8B;
+  --color-status-completed-text: #18181B;
+  --color-status-completed-border: #93DA8B;
+
+  --color-status-rejected: #f87171;
+  --color-status-rejected-text: #ffffff;
+  --color-status-rejected-border: #ffffff;
+
+  --color-status-new: #ffffff;
+  --color-status-new-text: #C08CD8;
+  --color-status-new-border: #C08CD8;
+  --color-status-in-review: #fb923c;
+
+  --color-status-in-review-text: #ffffff;
+  --color-status-in-review-border: #ffffff;
+
+  --color-role-superuser: #fbbf24;
+  --color-role-moderator: #60a5fa;
+  --color-role-user: #4ade80;
+
+
+  --color-mushroom-psilocybin: #8b5cf6;
+  --color-mushroom-psilocybin-text: #ffffff;
+  --color-mushroom-psilocybin-border: #7c3aed;
+  --color-mushroom-psilocybin-hover: #7c3aed;
+
+  --color-mushroom-non-psilocybin: #22c55e;
+  --color-mushroom-non-psilocybin-text: #ffffff;
+  --color-mushroom-non-psilocybin-border: #15803d;
+  --color-mushroom-non-psilocybin-hover: #16a34a;
+
+  --color-mushroom-toxic: #ef4444;
+  --color-mushroom-toxic-text: #ffffff;
+  --color-mushroom-toxic-border: #b91c1c;
+  --color-mushroom-toxic-hover: #dc2626;
+
+  --color-mushroom-unknown: #facc15;
+  --color-mushroom-unknown-text: #000000;
+  --color-mushroom-unknown-border: #ca8a04;
+  --color-mushroom-unknown-hover: #eab308;
+
+  --color-mushroom-unidentifiable: #9ca3af;
+  --color-mushroom-unidentifiable-text: #000000;
+  --color-mushroom-unidentifiable-border: #6b7280;
+  --color-mushroom-unidentifiable-hover: #6b7280;
+
+  --color-mushroom-not-processed: #60a5fa;
+  --color-mushroom-not-processed-text: #ffffff;
+  --color-mushroom-not-processed-border: #2563eb;
+  --color-mushroom-not-processed-hover: #3b82f6;
 }

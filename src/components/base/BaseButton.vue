@@ -7,7 +7,6 @@
       block ? 'w-full' : '',
     ]"
   >
-    <!-- Optional loader -->
     <span v-if="loading" class="animate-spin mr-2">
       <Loader class="w-4 h-4" />
     </span>

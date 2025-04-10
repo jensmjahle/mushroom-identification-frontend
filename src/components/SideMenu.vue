@@ -1,19 +1,22 @@
 <template>
-  <div class="hidden sm:block w-1/6 bg-bg3 text-text3 ml-2 rounded-lg">
+  <div class="hidden sm:block w-1/6 bg-bg4 text-text4 roundedr-lg">
+    <LogoButton></LogoButton>
     <div class="text-right m-4">
-      <h2 class="text-xl font-semibold text-text3">
+      <h2 class="text-xl font-semibold text-text4">
         {{$t('sideMenu.completedTitle')}}
       </h2>
-      <div class="text-5xl font-bold text-text3">
-        {{ newCount }}
+      <div class="text-5xl font-bold text-text4">
+        {{ completedCount }}
       </div>
     </div>
     <ul class="p-4 space-y-2 w-fill">
-      <button v-if="route.name !== 'admin-request'" class="block w-full text-left px-4 py-2 hover:bg-button-hover bg-button">{{$t('sideMenu.nextFromQue')}}</button>
-      <button v-if="route.name === 'admin-request'" class="block w-full text-left px-4 py-2 hover:bg-button2-hover bg-button2">Put Back into Que</button>
-      <button v-if="route.name === 'admin-request'" class="block w-full text-left px-4 py-2 hover:bg-button2-hover bg-button2">Close Request</button>
-      <button v-if="route.name !== 'admin-request'" @click="allRequests" class="block w-full text-left px-4 py-2 hover:bg-button2-hover bg-button2">All Requests</button>
-      <button v-if="route.name !== 'admin-request'" class="block w-full text-left px-4 py-2 hover:bg-button2-hover bg-button2">Statistics</button>
+      <BaseButton v-if="route.name !== 'admin-request'" @click="nextFromQueue" block :variant="2">{{$t('sideMenu.nextFromQueue')}}</BaseButton>
+      <BaseButton v-if="route.name !== 'admin-request'" @click="allRequests" block :variant="4">{{$t('sideMenu.allRequests')}}</BaseButton>
+      <BaseButton v-if="route.name !== 'admin-request'" @click="statistics" block :variant="4">{{$t('sideMenu.statistics')}}</BaseButton>
+      
+      <BaseButton v-if="route.name === 'admin-request'" @click="completeRequest" block :variant="2">{{$t('sideMenu.completeRequest')}}</BaseButton>
+      <BaseButton v-if="route.name === 'admin-request'" @click="putBackIntoQueue" block :variant="4">{{$t('sideMenu.putBackIntoQueue')}}</BaseButton>
+      <BaseButton v-if="route.name === 'admin-request'" @click="placeOnHold" block :variant="4">{{$t('sideMenu.placeOnHold')}}</BaseButton>
     </ul>
     
     <ul class="p-4 space-y-2 w-full">
@@ -21,19 +24,19 @@
         <div class="w-14 h-14 rounded-full bg-status-new text-white flex items-center justify-center text-2xl font-semibold shadow">
           {{ newCount }}
         </div>
-        <h3>New</h3>
+        <h3 class="text-text4">New</h3>
       </div>
       <div class="flex items-center space-x-4">
         <div class="w-14 h-14 rounded-full bg-status-pending text-white flex items-center justify-center text-2xl font-semibold shadow">
           {{ pendingCount }}
         </div>
-        <h3>Pending</h3>
+        <h3 class="text-text4">Pending</h3>
       </div>
       <div class="flex items-center space-x-4">
         <div class="w-14 h-14 rounded-full bg-status-completed text-white flex items-center justify-center text-2xl font-semibold shadow">
           {{ completedCount }}
         </div>
-        <h3>Completed</h3>
+        <h3 class="text-text4">Completed</h3>
       </div>
     </ul>
 
@@ -49,6 +52,8 @@
 import {useRoute, useRouter} from 'vue-router';
 import {getCountOfRequestFromStatus} from "../services/apiService.js";
 import {onMounted, ref} from "vue";
+import LogoButton from "@/components/LogoButton.vue";
+import BaseButton from "@/components/base/BaseButton.vue";
 const router = useRouter();
 const route = useRoute();
 
