@@ -3,7 +3,7 @@
     <NavBar />
     <div class="flex flex-1 pt-[72px]">
       <SideMenu />
-      <main class="flex-grow px-4">
+      <main class="flex w-full">
         <router-view />
       </main>
     </div>

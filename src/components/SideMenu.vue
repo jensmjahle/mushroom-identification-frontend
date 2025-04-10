@@ -1,10 +1,10 @@
 <template>
-  <div class="w-1/6 bg-bgAlt2 text-text ml-2 rounded-lg">
+  <div class="hidden sm:block w-1/6 bg-bg3 text-text3 ml-2 rounded-lg">
     <div class="text-right m-4">
-      <h2 class="text-xl font-semibold text-text">
+      <h2 class="text-xl font-semibold text-text3">
         {{$t('sideMenu.completedTitle')}}
       </h2>
-      <div class="text-5xl font-bold text-text">
+      <div class="text-5xl font-bold text-text3">
         {{ newCount }}
       </div>
     </div>
@@ -15,30 +15,25 @@
       <button v-if="route.name !== 'admin-request'" @click="allRequests" class="block w-full text-left px-4 py-2 hover:bg-button2-hover bg-button2">All Requests</button>
       <button v-if="route.name !== 'admin-request'" class="block w-full text-left px-4 py-2 hover:bg-button2-hover bg-button2">Statistics</button>
     </ul>
+    
     <ul class="p-4 space-y-2 w-full">
       <div class="flex items-center space-x-4">
         <div class="w-14 h-14 rounded-full bg-status-new text-white flex items-center justify-center text-2xl font-semibold shadow">
           {{ newCount }}
         </div>
-        <h2 class="text-lg font-medium text-text">
-          New
-        </h2>
+        <h3>New</h3>
       </div>
       <div class="flex items-center space-x-4">
         <div class="w-14 h-14 rounded-full bg-status-pending text-white flex items-center justify-center text-2xl font-semibold shadow">
           {{ pendingCount }}
         </div>
-        <h2 class="text-lg font-medium text-text">
-          Pending
-        </h2>
+        <h3>Pending</h3>
       </div>
       <div class="flex items-center space-x-4">
         <div class="w-14 h-14 rounded-full bg-status-completed text-white flex items-center justify-center text-2xl font-semibold shadow">
           {{ completedCount }}
         </div>
-        <h2 class="text-lg font-medium text-text">
-          Completed
-        </h2>
+        <h3>Completed</h3>
       </div>
     </ul>
 

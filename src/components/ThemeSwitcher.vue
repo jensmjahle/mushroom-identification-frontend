@@ -3,7 +3,7 @@
     <select
         v-model="currentTheme"
         @change="applyTheme"
-        class="w-full bg-bgAlt2 text-text px-4 py-2 rounded shadow"
+        class="w-full bg-bg2 text-text2 px-4 py-2 rounded shadow"
     >
       <option v-for="theme in themes" :key="theme" :value="theme">
         {{ formatThemeName(theme) }}
