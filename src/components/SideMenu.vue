@@ -26,9 +26,9 @@
     </ul>
 
     <div class="p-4 space-y-2 w-fill" v-if="route.name !== 'admin-request'">
-      <h3 class="text-left text-text4">Mushroom Admins</h3>
+      <h3 class="text-left text-text4">{{$t('sideMenu.admins')}}</h3>
       <BaseButton @click="allAdmins" block :variant="2">{{$t('sideMenu.allAdmins')}}</BaseButton>
-      <BaseButton @click="createNewModerator" block :variant="4">{{$t('sideMenu.createNewModerator')}}</BaseButton>
+      <BaseButton @click="createNewAdmin" block :variant="4">{{$t('sideMenu.createNewAdmin')}}</BaseButton>
     </div>
   </div>
 </template>

@@ -64,7 +64,10 @@
     "statistics" : "Statistikk",
     "completeRequest" : "Fulfør forespørsel",
     "putBackIntoQueue" : "Legg tilbake i køen",
-    "placeOnHold" : "Sett på vent"
+    "placeOnHold" : "Sett på vent",
+    "admins" : "Administratorer",
+    "allAdmins" : "Alle administratorer",
+    "createNewAdmin" : "Opprett ny administrator"
     
   },
   "mushroom": {
