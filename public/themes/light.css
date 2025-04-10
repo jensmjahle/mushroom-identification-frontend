@@ -34,10 +34,10 @@
   --color-button3-hover: #1f2937;
   --color-button3-border: #111827;
 
-  --color-button4: #FFFFFF;
-  --color-button4-meta: #000;
-  --color-button4-hover: #1f2937;
-  --color-button4-border: #111827;
+  --color-button4: #ffffff;
+  --color-button4-meta: #000000;
+  --color-button4-border: #d1d5db;   
+  --color-button4-hover: #d1d5db;
 
   --color-button-transparent: transparent;
   --color-button-transparent-meta: #000;
