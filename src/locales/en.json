@@ -7,7 +7,27 @@
     "error": "Invalid username or password",
     "fill_in_both_username_and_password": "Please fill in both username and password"
   },
-  "submit": {
+  "admin": {
+    "stats": {
+      "completedTitle": "Completed Requests",
+      "last7Days": "Last 7 Days",
+      "last30Days": "Last 30 Days",
+      "last90Days": "Last 90 Days",
+      "weeklyRate": "Weekly New Requests",
+      "ftrClicks": "FTR Signups",
+      "exportTitle": "Export statistics and history to PDF",
+      "exportButton": "Export",
+      "overviewTitle": "Statistics Overview",
+      "totalRequests": "Total Requests",
+      "totalCompleted": "Completed Requests"
+    }
+  },
+"month": {
+"jan": "January", "feb": "February", "mar": "March", "apr": "April",
+"may": "May", "jun": "June", "jul": "July", "aug": "August",
+"sep": "September", "oct": "October", "nov": "November", "dec": "December"
+  },
+"submit": {
     "title": "Submit Your Mushroom Request",
     "steps": [
       {

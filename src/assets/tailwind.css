@@ -13,7 +13,7 @@ html, body, #app {
 
 @layer base {
   body {
-    @apply bg-bg4 text-text1 font-area w-full;
+    @apply bg-bg1 text-text1 font-area w-full;
   }
   h1 {
     @apply text-3xl font-bold text-text1;
@@ -114,7 +114,7 @@ html, body, #app {
   }
 
   .main-view {
-    @apply w-full min-h-screen bg-bg2 text-text2 rounded-lg;
+    @apply w-full min-h-screen flex flex-col flex-grow m-2 text-text1 rounded-lg;
   }
 
   .main-user-view {
@@ -128,13 +128,19 @@ html, body, #app {
   .main-component {
     @apply p-2 bg-bg1 rounded-lg text-text1 max-w-md ml-auto w-auto h-full;
   }
+  .main-admin-component {
+    @apply p-2 bg-bg2 rounded-lg text-text2 w-auto h-auto;
+  }
 
   .nav-bar {
     @apply bg-bg1 fixed top-0 left-0 w-full z-50 text-text1 sm:gap-2 md:gap-20 lg:gap-40;
   }
 
   .vertical-box {
-    @apply items-center flex-1 justify-center rounded-lg p-2 max-w-screen-md mx-auto;
+    @apply items-center flex flex-col flex-1 justify-center rounded-lg p-2;
+  }
+  .horizontal-box {
+    @apply items-center flex-1 flex flex-row justify-center rounded-lg p-2;
   }
 
   .slide-right-enter-active, .slide-right-leave-active {

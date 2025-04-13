@@ -4,6 +4,13 @@ export default {
     './public/**/*.html',
     './src/**/*.{vue,js,ts,jsx,tsx}'
   ],
+  safelist: [
+    'mushroom-psilocybin',
+    'mushroom-non-psilocybin',
+    'mushroom-toxic',
+    'mushroom-unknown',
+    'mushroom-unidentifiable'
+  ],
   theme: {
     extend: {
       fontFamily: {
