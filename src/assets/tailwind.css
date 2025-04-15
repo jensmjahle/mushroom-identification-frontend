@@ -54,12 +54,13 @@ html, body, #app {
   }
 
   .user-layout-inner{
-    @apply flex w-4/5 h-4/5 max-h-[800px];
+    @apply flex w-4/5 h-[80vh] justify-center;
   }
 
   .user-display-card {
     @apply bg-bg2 text-text2 rounded-xl p-6 relative transition-all duration-300 ease-in-out flex-grow overflow-hidden;
-    min-height: 0;
+    max-height: 1000px;
+    min-height: 600px;
   }
   
   .user-display-card.collapsed {
@@ -71,8 +72,9 @@ html, body, #app {
   }
 
   .user-sidebar {
-    @apply flex flex-col justify-center gap-8 p-4 transition-[width] duration-300 ease-in-out max-h-[800px];
+    @apply flex flex-col justify-center gap-8 pr-8 transition-[width] duration-300 ease-in-out;
     width: 20%;
+    min-height: 600px;
   }
 
   .user-sidebar.collapsed {
@@ -80,7 +82,7 @@ html, body, #app {
   }
 
   .user-sidebar-button{
-    @apply flex items-center bg-bg2 rounded-lg w-full transition-[width] duration-300 ease-in-out overflow-hidden min-w-[50px] min-h-[80px] max-w-[200px] h-[10%];
+    @apply flex items-center bg-bg2 rounded-lg w-full transition-all duration-300 ease-in-out overflow-hidden min-w-[50px] min-h-[80px] max-w-[200px] h-[10%];
   }
 
   .user-sidebar-button.active {
