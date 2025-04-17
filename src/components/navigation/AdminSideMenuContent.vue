@@ -15,15 +15,31 @@
         {{ $t('sideMenu.statistics') }}
       </BaseButton>
 
-      <BaseButton v-if="isRequestPage" @click="navigate('admin-complete-request')" block :variant="2">
+      <BaseButton
+          v-if="isRequestPage"
+          @click="handleStatusChange('COMPLETED')"
+          block
+          :variant="2"
+      >
         {{ $t('sideMenu.completeRequest') }}
       </BaseButton>
-      <BaseButton v-if="isRequestPage" @click="navigate('admin-put-back')" block :variant="4">
+      <BaseButton
+          v-if="isRequestPage"
+          @click="handleStatusChange('NEW')"
+          block
+          :variant="4"
+      >
         {{ $t('sideMenu.putBackIntoQueue') }}
       </BaseButton>
-      <BaseButton v-if="isRequestPage" @click="navigate('admin-hold')" block :variant="4">
+      <BaseButton
+          v-if="isRequestPage"
+          @click="handleStatusChange('PENDING')"
+          block
+          :variant="4"
+      >
         {{ $t('sideMenu.placeOnHold') }}
       </BaseButton>
+
     </div>
 
     <hr class="my-4 border-border2" />
@@ -52,10 +68,28 @@
 import { computed } from 'vue'
 import BaseButton from '@/components/base/BaseButton.vue'
 import StatusIndicator from '@/components/base/StatusIndicator.vue'
-import { useAdminSideMenu } from '@/composables/useAdminSideMenu'
+import { useAdminSideMenu} from '@/composables/useAdminSideMenu'
 import LogoButton from "@/components/LogoButton.vue";
+import {changeUserRequestStatus} from "@/services/apiService.js";
 
-const { newCount, pendingCount, completedCount, navigate, route } = useAdminSideMenu()
+
+const { newCount, pendingCount, completedCount, navigate, route, fetchCounts } = useAdminSideMenu()
 
 const isRequestPage = computed(() => route.name === 'admin-request')
+const userRequestId = computed(() => route.params.userRequestId)
+
+
+
+const handleStatusChange = async (newStatus) => {
+  if (!userRequestId.value) return
+
+  try {
+    await changeUserRequestStatus(userRequestId.value, newStatus)
+    await fetchCounts()
+    navigate('admin-all-requests')
+  } catch (error) {
+    console.error(`Failed to change status:`, error)
+  }
+}
+
 </script>

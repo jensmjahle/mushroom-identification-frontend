@@ -56,7 +56,6 @@ const routes = [
         path: 'support',
         name: 'support',
         component:SupportView,
-        component:SupportView,
       },
       {
         path: 'login',

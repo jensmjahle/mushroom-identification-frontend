@@ -1,11 +1,9 @@
 <template>
     <div class="flex flex-col items-center justify-center h-full w-full relative">
-      <!-- Step Indicator med litt padding fra toppen -->
       <div class="absolute top-6 w-full flex justify-center">
         <StepIndicator :step="currentStep" />
       </div>
-  
-      <!-- Steginnhold sentrert i midten, uten at StepIndicator påvirker høyden -->
+     
       <div class="flex items-center justify-center w-full h-full">
         <StepOne v-if="currentStep === 1" @next="currentStep++" />
         <StepTwo

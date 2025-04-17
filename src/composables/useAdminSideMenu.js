@@ -31,6 +31,9 @@ export function useAdminSideMenu() {
     newCount,
     pendingCount,
     completedCount,
-    navigate
+    navigate,
+    fetchCounts
   }
+  
+  
 }
