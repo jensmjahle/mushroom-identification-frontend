@@ -1,5 +1,5 @@
 <template>
-  <div class="fixed top-4 right-4 z-50" ref="settingsRef">
+  <div class="fixed top-4 right-4 z-50 p-6" ref="settingsRef">
     <div class="relative w-max">
       <!-- Expandable Settings Menu -->
       <Transition
