@@ -13,6 +13,8 @@ import AppUserLayout from "../layouts/AppUserLayout.vue";
 import NewRequestView from "../views/user/NewRequestView.vue";
 import UserLoginView from "@/views/user/UserLoginView.vue";
 import StatisticsView from "@/views/admin/StatisticsView.vue";
+import AllAdminsOverview from "@/views/admin/AllAdminsOverview.vue";
+import CreateNewAdminView from "@/views/admin/CreateNewAdminView.vue";
 
 const routes = [
   { 
@@ -83,6 +85,16 @@ const routes = [
         path: 'statistics',
         name: 'admin-statistics',
         component: StatisticsView
+      },
+      {
+        path:'management',
+        name:'admin-management',
+        component: AllAdminsOverview
+      },
+      {
+        path: 'new',
+        name: 'admin-new-administrator',
+        component: CreateNewAdminView
       }
     ]
   },

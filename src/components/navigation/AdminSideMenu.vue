@@ -67,6 +67,12 @@ const allRequests = () => {
 const statistics = () => {
   router.push({ name: 'admin-statistics' });
 };
+const allAdmins = () => {
+  router.push({ name: 'admin-management' });
+};
+const createNewAdmin = () => {
+  router.push({ name: 'admin-new-administrator' });
+};
 
 
 
