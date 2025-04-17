@@ -1,8 +1,8 @@
 <template>
   <div>
-    <LogoButton />
-    <h2 class="text-xl font-semibold">{{ $t('sideMenu.completedTitle') }}</h2>
-    <div class="text-5xl font-bold mb-4">{{ completedCount }}</div>
+    <LogoButton v-if="!isRequestPage" />
+    <h2 class="text-xl font-semibold text-text4 text-right">{{ $t('sideMenu.completedTitle') }}</h2>
+    <div class="text-5xl font-bold mb-4 text-right">{{ completedCount }}</div>
 
     <div class="space-y-2">
       <BaseButton v-if="!isRequestPage" @click="navigate('admin-next-request')" block :variant="2">
@@ -38,10 +38,10 @@
 
     <div class="space-y-2">
       <h3 class="text-left">{{ $t('sideMenu.admins') }}</h3>
-      <BaseButton @click="navigate('admin-management')" block :variant="2">
+      <BaseButton v-if="!isRequestPage"  @click="navigate('admin-management')" block :variant="2">
         {{ $t('sideMenu.allAdmins') }}
       </BaseButton>
-      <BaseButton @click="navigate('admin-new-administrator')" block :variant="4">
+      <BaseButton v-if="!isRequestPage"  @click="navigate('admin-new-administrator')" block :variant="4">
         {{ $t('sideMenu.createNewAdmin') }}
       </BaseButton>
     </div>
