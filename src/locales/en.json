@@ -56,7 +56,9 @@
     "statistics" : "Statistics",
     "completeRequest" : "Complete Request",
     "putBackIntoQueue" : "Put Back into Queue",
-    "placeOnHold" : "Place on Hold"
+    "placeOnHold" : "Place on Hold",
+    "settings" : "Settings",
+    "logout" : "Logout"
   },
   "mushroom": {
     "title": "Mushroom"

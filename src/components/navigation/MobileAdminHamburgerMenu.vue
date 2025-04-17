@@ -19,10 +19,14 @@
           <StatusIndicator label="Completed" :count="completedCount" status="COMPLETED" />
         </ul>
 
-        <div class="p-4 space-y-2 w-fill">
+        <div class="space-y-2 w-fill">
           <h3 class="text-left text-text4">{{ $t('sideMenu.admins') }}</h3>
           <BaseButton @click="closeAndGo('admin-all-admins')" block :variant="2">{{ $t('sideMenu.allAdmins') }}</BaseButton>
           <BaseButton @click="closeAndGo('admin-create-admin')" block :variant="4">{{ $t('sideMenu.createNewAdmin') }}</BaseButton>
+        </div>
+        <div class="space-y-2 w-fill">
+          <BaseButton @click="closeAndGo('admin-all-admins')" block :variant="2">{{ $t('sideMenu.settings') }}</BaseButton>
+          <BaseButton @click="closeAndGo('admin-create-admin')" block :variant="4">{{ $t('sideMenu.logout') }}</BaseButton>
         </div>
       </div>
     </Transition>

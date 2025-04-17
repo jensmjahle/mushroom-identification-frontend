@@ -67,7 +67,9 @@
     "placeOnHold" : "Sett på vent",
     "admins" : "Administratorer",
     "allAdmins" : "Alle administratorer",
-    "createNewAdmin" : "Opprett ny administrator"
+    "createNewAdmin" : "Opprett ny administrator",
+    "settings" : "Innstillinger",
+    "logout" : "Logg ut"
     
   },
   "mushroom": {
