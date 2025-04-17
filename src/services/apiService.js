@@ -111,4 +111,27 @@ export const getCountOfRequestFromStatus = async (requestStatus, token = null) =
   return response.data;
 };
 
+export const changeUserRequestStatus = async (userRequestId, newStatus) => {
+  try {
+    const token = sessionStorage.getItem("jwt");
+    if (!token) throw new Error("No authentication token found");
 
+    const response = await axios.post(
+        `${API_URL}/admin/requests/change-status`,
+        {
+          userRequestId,
+          newStatus
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+    );
+
+    return response.data;
+  } catch (error) {
+    console.error("Error while changing user request status", error);
+    throw error;
+  }
+};

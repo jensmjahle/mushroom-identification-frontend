@@ -14,8 +14,8 @@
       </router-link>
     </div>
 
-    <div class="user-sidebar-button" :class="{ active: $route.path.startsWith('/user/request') }">
-      <router-link to="/user/request/:userRequestId" class="user-sidebar-link">
+    <div class="user-sidebar-button" :class="{ active: $route.path === '/user/login' }">
+      <router-link to="/user/login" class="user-sidebar-link">
         <CheckCircle class="user-sidebar-icon" />
         <span class="user-sidebar-text">Check Answer</span>
       </router-link>

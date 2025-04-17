@@ -6,6 +6,10 @@ import i18n, { updateI18nLocale } from './locales/i18n';
 import router from './router';
 import { setTheme } from './composables/useTheme'
 import { themeReady } from './composables/themeReady'
+import Toast from 'vue-toastification'
+import 'vue-toastification/dist/index.css'
+
+
 
 
 const saved = localStorage.getItem('theme') || 'light'
@@ -19,6 +23,7 @@ const app = createApp(App)
 app.use(pinia)
 app.use(i18n)
 app.use(router)
+app.use(Toast)
 
 // 4. Update i18n language
 updateI18nLocale()
