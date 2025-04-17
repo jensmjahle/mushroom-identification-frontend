@@ -14,7 +14,7 @@ import NewRequestView from "../views/user/NewRequestView.vue";
 import UserLoginView from "@/views/user/UserLoginView.vue";
 import StatisticsView from "@/views/admin/StatisticsView.vue";
 import BecomeMemberView from "@/views/user/BecomeMemberView.vue";
-import SupportView from '../views/user/SupportView.vue';
+import SupportView from '@/views/user/SupportView.vue';
 
 const routes = [
   { 
@@ -52,6 +52,7 @@ const routes = [
       {
         path: 'support',
         name: 'support',
+        component:SupportView,
         component:SupportView,
       },
       {
