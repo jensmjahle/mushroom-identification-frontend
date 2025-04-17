@@ -1,9 +1,9 @@
 <template>
   <div class="flex flex-col min-h-screen">
-    <NavBar />
-    <div class="flex flex-1 pt-[72px]">
+    <MobileAdminHamburgerMenu />
+    <div class="flex flex-1">
       <SideMenu />
-      <main class="flex w-full">
+      <main class="flex w-full pt-[72px]">
         <router-view />
       </main>
     </div>
@@ -11,6 +11,7 @@
 </template>
 
 <script setup>
-import NavBar from '../components/NavBar.vue';
-import SideMenu from "../components/SideMenu.vue";
+import NavBar from '../components/navigation/NavBar.vue';
+import SideMenu from "../components/navigation/AdminSideMenu.vue";
+import MobileAdminHamburgerMenu from "@/components/navigation/MobileAdminHamburgerMenu.vue";
 </script>

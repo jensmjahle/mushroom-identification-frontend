@@ -59,7 +59,17 @@
   },
   "sideMenu" : {
     "completedTitle" : "Fullførte",
-    "nextFromQue" : "Hent neste fra køen"
+    "nextFromQueue" : "Hent neste fra køen",
+    "allRequests" : "Alle forespørsler",
+    "statistics" : "Statistikk",
+    "completeRequest" : "Fulfør forespørsel",
+    "putBackIntoQueue" : "Legg tilbake i køen",
+    "placeOnHold" : "Sett på vent",
+    "admins" : "Administratorer",
+    "allAdmins" : "Alle administratorer",
+    "createNewAdmin" : "Opprett ny administrator",
+    "settings" : "Innstillinger",
+    "logout" : "Logg ut"
     
   },
   "mushroom": {

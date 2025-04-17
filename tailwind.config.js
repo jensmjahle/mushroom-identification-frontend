@@ -9,7 +9,9 @@ export default {
     'mushroom-non-psilocybin',
     'mushroom-toxic',
     'mushroom-unknown',
-    'mushroom-unidentifiable'
+    'mushroom-unidentifiable',
+    'translate-x-0',
+    'translate-x-full'
   ],
   theme: {
     extend: {

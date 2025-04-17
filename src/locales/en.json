@@ -51,7 +51,14 @@
   },
   "sideMenu" : {
     "completedTitle" : "Completed",
-    "nextFromQue" : "Next from Que"
+    "nextFromQueue" : "Next from Que",
+    "allRequests" : "All Requests",
+    "statistics" : "Statistics",
+    "completeRequest" : "Complete Request",
+    "putBackIntoQueue" : "Put Back into Queue",
+    "placeOnHold" : "Place on Hold",
+    "settings" : "Settings",
+    "logout" : "Logout"
   },
   "mushroom": {
     "title": "Mushroom"

@@ -6,7 +6,11 @@ export default defineConfig({
   base: '/',
   resolve: {
     alias: {
-      '@': '/src', // This tells Vite that "@" should resolve to the "src" folder
+      '@': '/src', 
     },
+  },
+  server: {
+    host: true, 
+    port: 5173, 
   },
 });

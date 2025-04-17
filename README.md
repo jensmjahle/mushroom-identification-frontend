@@ -20,3 +20,8 @@ Once running, open:
 http://localhost:5173
 ```
 
+# uses .env
+npm run dev
+
+# uses .env.production
+npm run build --mode production
