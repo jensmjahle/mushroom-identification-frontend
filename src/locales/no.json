@@ -1,4 +1,16 @@
 {
+  "settings": {
+    "language": "Språk",
+    "theme": "Tema",
+    "languages": {
+      "no": "Norsk",
+      "en": "Engelsk"
+    },
+    "themes": {
+      "light": "Lyst",
+      "dark": "Mørkt"
+    }
+  },
   "login": {
     "title": "Administratorinnlogging",
     "username": "Brukernavn",
@@ -24,9 +36,18 @@
     }
   },
   "month": {
-    "jan": "January", "feb": "February", "mar": "March", "apr": "April",
-    "may": "May", "jun": "June", "jul": "July", "aug": "August",
-    "sep": "September", "oct": "October", "nov": "November", "dec": "December"
+    "jan": "Januar",
+    "feb": "Februar",
+    "mar": "Mars",
+    "apr": "April",
+    "may": "Mai",
+    "jun": "Juni",
+    "jul": "Juli",
+    "aug": "August",
+    "sep": "September",
+    "oct": "Oktober",
+    "nov": "November",
+    "dec": "Desember"
   },
   "mushroomStatus": {
     "PSILOCYBIN": "Fleinsopp",
@@ -57,10 +78,9 @@
     "placeholder": "Skriv her...",
     "button": "Send forespørsel"
   },
-  "sideMenu" : {
-    "completedTitle" : "Fullførte",
-    "nextFromQue" : "Hent neste fra køen"
-    
+  "sideMenu": {
+    "completedTitle": "Fullførte",
+    "nextFromQue": "Hent neste fra køen"
   },
   "mushroom": {
     "title": "Sopp"

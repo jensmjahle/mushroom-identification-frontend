@@ -1,20 +1,33 @@
 {
+  "settings": {
+    "language": "Language",
+    "theme": "Theme",
+    "languages": {
+      "no": "Norwegian",
+      "en": "English"
+    },
+    "themes": {
+      "light": "Light",
+      "dark": "Dark"
+    }
+  },
   "login": {
-    "title": "Admin Login",
+    "title": "Administrator Login",
     "username": "Username",
     "password": "Password",
-    "submit": "Login",
+    "submit": "Log in",
     "error": "Invalid username or password",
     "fill_in_both_username_and_password": "Please fill in both username and password"
   },
   "admin": {
     "stats": {
       "completedTitle": "Completed Requests",
+      "mushroomCategories": "Mushroom Categories",
       "last7Days": "Last 7 Days",
       "last30Days": "Last 30 Days",
       "last90Days": "Last 90 Days",
       "weeklyRate": "Weekly New Requests",
-      "ftrClicks": "FTR Signups",
+      "ftrClicks": "FTR Registrations",
       "exportTitle": "Export statistics and history to PDF",
       "exportButton": "Export",
       "overviewTitle": "Statistics Overview",
@@ -22,21 +35,37 @@
       "totalCompleted": "Completed Requests"
     }
   },
-"month": {
-"jan": "January", "feb": "February", "mar": "March", "apr": "April",
-"may": "May", "jun": "June", "jul": "July", "aug": "August",
-"sep": "September", "oct": "October", "nov": "November", "dec": "December"
+  "month": {
+    "jan": "January",
+    "feb": "February",
+    "mar": "March",
+    "apr": "April",
+    "may": "May",
+    "jun": "June",
+    "jul": "July",
+    "aug": "August",
+    "sep": "September",
+    "oct": "October",
+    "nov": "November",
+    "dec": "December"
   },
-"submit": {
-    "title": "Submit Your Mushroom Request",
+  "mushroomStatus": {
+    "PSILOCYBIN": "Psilocybin Mushroom",
+    "NON_PSILOCYBIN": "Non-Psilocybin",
+    "TOXIC": "Toxic",
+    "UNKNOWN": "Unknown",
+    "UNIDENTIFIABLE": "Unidentifiable"
+  },
+  "submit": {
+    "title": "Submit Your Mushroom Inquiry",
     "steps": [
       {
         "title": "Take a photo of the mushroom",
-        "description": "Make sure the photo is clear and shows the whole mushroom."
+        "description": "Make sure the image is clear and shows the entire mushroom."
       },
       {
-        "title": "Include surroundings",
-        "description": "Take another photo of the environment where the mushroom was found."
+        "title": "Include the surroundings",
+        "description": "Take another photo of the area where the mushroom was found."
       },
       {
         "title": "Multiple angles",
@@ -44,28 +73,24 @@
       }
     ],
     "imageUpload": "Upload Images",
-    "removeImage": "Remove image",
-    "message": "Write us a message",
+    "removeImage": "Remove Image",
+    "message": "Write a message to us",
     "placeholder": "Write here...",
-    "button": "Submit Request"
+    "button": "Send Inquiry"
   },
-  "sideMenu" : {
-    "completedTitle" : "Completed",
-    "nextFromQue" : "Next from Que"
+  "sideMenu": {
+    "completedTitle": "Completed",
+    "nextFromQue": "Fetch Next from Queue"
   },
   "mushroom": {
     "title": "Mushroom"
   },
   "loginUser": {
-    "heading": "Enter Your Reference Code",
+    "heading": "Enter your reference code",
     "refLabel": "Reference Code",
     "placeholder": "e.g. ABC123",
-    "button": "Proceed",
-    "errorEmpty": "Please enter a reference code.",
-    "errorInvalid": "Invalid reference code. Please try again."
+    "button": "Continue",
+    "errorEmpty": "Reference code cannot be empty",
+    "errorInvalid": "Invalid reference code"
   }
 }
-
-
-
-
