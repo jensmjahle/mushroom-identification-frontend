@@ -71,12 +71,16 @@ import StatusIndicator from '@/components/base/StatusIndicator.vue'
 import { useAdminSideMenu} from '@/composables/useAdminSideMenu'
 import LogoButton from "@/components/LogoButton.vue";
 import {changeUserRequestStatus} from "@/services/apiService.js";
+import { useToast } from 'vue-toastification'
+
+
 
 
 const { newCount, pendingCount, completedCount, navigate, route, fetchCounts } = useAdminSideMenu()
 
 const isRequestPage = computed(() => route.name === 'admin-request')
 const userRequestId = computed(() => route.params.userRequestId)
+const toast = useToast()
 
 
 
@@ -87,6 +91,7 @@ const handleStatusChange = async (newStatus) => {
     await changeUserRequestStatus(userRequestId.value, newStatus)
     await fetchCounts()
     navigate('admin-all-requests')
+    toast.success('Status updated!')
   } catch (error) {
     console.error(`Failed to change status:`, error)
   }
