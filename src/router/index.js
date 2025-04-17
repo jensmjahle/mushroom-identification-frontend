@@ -15,6 +15,9 @@ import UserLoginView from "@/views/user/UserLoginView.vue";
 import StatisticsView from "@/views/admin/StatisticsView.vue";
 import AllAdminsOverview from "@/views/admin/AllAdminsOverview.vue";
 import CreateNewAdminView from "@/views/admin/CreateNewAdminView.vue";
+import BecomeMemberView from "@/views/user/BecomeMemberView.vue";
+import SupportView from '@/views/user/SupportView.vue';
+
 
 const routes = [
   { 
@@ -47,12 +50,13 @@ const routes = [
       {
         path: 'become-member',
         name: 'become-member',
-        component:NewRequestView,
+        component:BecomeMemberView,
       },
       {
         path: 'support',
         name: 'support',
-        component:NewRequestView,
+        component:SupportView,
+        component:SupportView,
       },
       {
         path: 'login',
