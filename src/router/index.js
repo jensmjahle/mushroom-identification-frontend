@@ -13,6 +13,7 @@ import AppUserLayout from "../layouts/AppUserLayout.vue";
 import NewRequestView from "../views/user/NewRequestView.vue";
 import UserLoginView from "@/views/user/UserLoginView.vue";
 import StatisticsView from "@/views/admin/StatisticsView.vue";
+import BecomeMemberView from "@/views/user/BecomeMemberView.vue";
 
 const routes = [
   { 
@@ -45,7 +46,7 @@ const routes = [
       {
         path: 'become-member',
         name: 'become-member',
-        component:NewRequestView,
+        component:BecomeMemberView,
       },
       {
         path: 'support',
