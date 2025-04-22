@@ -103,5 +103,11 @@
     "button": "Fortsett",
     "errorEmpty": "Referansekoden kan ikke være tom",
     "errorInvalid": "Ugyldig referansekode"
+  },
+  "home": {
+    "description": "Usikker på om du har plukket fleinsopp? Send inn en gratis anonym forespørsel her:",
+    "sendRequest": "Send forespørsel",
+    "getSupport": "få hjelp fra vår support",
+    "or": "Eller"
   }
 }

@@ -99,5 +99,11 @@
     "button": "Continue",
     "errorEmpty": "Reference code cannot be empty",
     "errorInvalid": "Invalid reference code"
+  },
+  "home": {
+    "description": "Not sure if you've picked liberty caps? Submit a free and anonymous request here:",
+    "sendRequest": "Submit Request",
+    "getSupport": "get help from our support",
+    "or": "Or"
   }
 }
