@@ -58,29 +58,31 @@
   },
   "submit": {
     "title": "Submit your mushroom inquiry",
-    "upload": "Upload images here or",
+    "upload": "Upload photos here or",
     "browse": "browse",
-    "commentPlaceholder": "Write a comment here ..",
-    "send": "Send in photos",
-    "reference": "Reference code",
-    "referenceHint": "Use this code to retrieve your inquiry later:",
+    "commentPlaceholder": "Enter a comment here...",
+    "send": "Submit photos",
+    "close": "Close",
+    "hintTitle": "Tip",
+    "reference": "Reference Code",
+    "referenceHint": "Use this code to find your request later:",
     "back": "Back",
     "next": "Next",
     "thankYou": "Thank you!",
-    "thankYouHint": "You will receive a response once an expert has reviewed your image.",
+    "thankYouHint": "You will receive a response as soon as an expert has reviewed your photo.",
     "toFront": "Go to homepage",
     "steps": [
       {
-        "title": "Place all mushrooms on a numbered sheet and take photos in good lighting.",
-        "hint": "Tip: Use daylight and a light background."
+        "title": "Place all mushrooms numbered on a sheet and take photos with good lighting.",
+        "hint": "Tip: Use daylight and place the mushrooms on a light background."
       },
       {
         "title": "Submit and remember the reference code provided.",
-        "hint": "This code is used to retrieve your result later."
+        "hint": "The code is used to retrieve the result later."
       },
       {
-        "title": "Check back in a day or two for your result.",
-        "hint": "You can log in using the reference code."
+        "title": "Come back in a day or two and check the answer.",
+        "hint": "You can use the reference code to log in."
       }
     ]
   },
