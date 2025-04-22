@@ -57,26 +57,32 @@
     "UNIDENTIFIABLE": "Unidentifiable"
   },
   "submit": {
-    "title": "Submit Your Mushroom Inquiry",
+    "title": "Submit your mushroom inquiry",
+    "upload": "Upload images here or",
+    "browse": "browse",
+    "commentPlaceholder": "Write a comment here ..",
+    "send": "Send in photos",
+    "reference": "Reference code",
+    "referenceHint": "Use this code to retrieve your inquiry later:",
+    "back": "Back",
+    "next": "Next",
+    "thankYou": "Thank you!",
+    "thankYouHint": "You will receive a response once an expert has reviewed your image.",
+    "toFront": "Go to homepage",
     "steps": [
       {
-        "title": "Take a photo of the mushroom",
-        "description": "Make sure the image is clear and shows the entire mushroom."
+        "title": "Place all mushrooms on a numbered sheet and take photos in good lighting.",
+        "hint": "Tip: Use daylight and a light background."
       },
       {
-        "title": "Include the surroundings",
-        "description": "Take another photo of the area where the mushroom was found."
+        "title": "Submit and remember the reference code provided.",
+        "hint": "This code is used to retrieve your result later."
       },
       {
-        "title": "Multiple angles",
-        "description": "Photograph the mushroom from above and from the side if possible."
+        "title": "Check back in a day or two for your result.",
+        "hint": "You can log in using the reference code."
       }
-    ],
-    "imageUpload": "Upload Images",
-    "removeImage": "Remove Image",
-    "message": "Write a message to us",
-    "placeholder": "Write here...",
-    "button": "Send Inquiry"
+    ]
   },
   "sideMenu" : {
     "completedTitle" : "Completed",

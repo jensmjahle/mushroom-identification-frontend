@@ -58,25 +58,31 @@
   },
   "submit": {
     "title": "Send inn din sopphenvendelse",
+    "upload": "Last opp bilder her eller",
+    "browse": "bla gjennom",
+    "commentPlaceholder": "Skriv inn kommentar her ..",
+    "send": "Send inn bilder",
+    "reference": "Referansekode",
+    "referenceHint": "Bruk denne koden for å finne igjen forespørselen din senere:",
+    "back": "Tilbake",
+    "next": "Neste",
+    "thankYou": "Takk!",
+    "thankYouHint": "Du vil få svar så snart en ekspert har vurdert bildet ditt.",
+    "toFront": "Til forsiden",
     "steps": [
       {
-        "title": "Ta et bilde av soppen",
-        "description": "Sørg for at bildet er klart og viser hele soppen."
+        "title": "Legg alle soppene nummerert på et ark og ta bilder med god belysning.",
+        "hint": "Tips: Bruk dagslys og legg soppen på et lyst underlag."
       },
       {
-        "title": "Ta med omgivelsene",
-        "description": "Ta et nytt bilde av området hvor soppen ble funnet."
+        "title": "Send inn og husk referansekoden du får oppgitt.",
+        "hint": "Koden brukes for å hente resultatet senere."
       },
       {
-        "title": "Flere vinkler",
-        "description": "Fotografer soppen ovenfra og fra siden om mulig."
+        "title": "Kom tilbake om en dag eller to og sjekk svaret.",
+        "hint": "Du kan bruke referansekoden for å logge inn."
       }
-    ],
-    "imageUpload": "Last opp bilder",
-    "removeImage": "Fjern bilde",
-    "message": "Skriv en melding til oss",
-    "placeholder": "Skriv her...",
-    "button": "Send forespørsel"
+    ]
   },
   "sideMenu" : {
     "completedTitle" : "Fullførte",
