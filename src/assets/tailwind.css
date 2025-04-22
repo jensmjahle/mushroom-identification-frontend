@@ -58,7 +58,7 @@ html, body, #app {
   }
 
   .user-display-card {
-    @apply bg-bg2 text-text2 rounded-xl p-6 relative transition-all duration-300 ease-in-out flex-grow overflow-hidden;
+    @apply bg-bg2 text-text2 rounded-xl relative transition-all duration-300 ease-in-out flex-grow overflow-hidden;
     max-height: 1000px;
     min-height: 600px;
   }
@@ -140,6 +140,10 @@ html, body, #app {
 
   .become-member {
     @apply flex flex-col items-center justify-center h-full w-full p-6 text-center;
+  }
+
+  .support-page {
+    @apply flex flex-col items-center justify-center h-full text-center overflow-x-hidden overflow-scroll;
   }
 
   .vertical-box {

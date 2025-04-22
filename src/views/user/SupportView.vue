@@ -1,14 +1,14 @@
 <template>
-    <div class="support-page flex items-center justify-center px-4 py-10 overflow-y-auto">
-        <div class="max-w-2xl w-full">
-            <h1 class="text-3xl font-bold text-center text-text1 mb-6">Trenger du hjelp?</h1>
+    <div class="support-page container">
+        <div class="pt-10">
+            <h1 class="text-2xl font-bold text-center text-text1 mb-4">Trenger du hjelp?</h1>
 
-            <p class="text-text1-faded mb-6 text-center">
+            <p class="text-text1-faded mb-4 text-center">
                 Her finner du svar på vanlige spørsmål og hvordan du kan ta kontakt med oss.
             </p>
 
             <!-- FAQ Section -->
-            <div class="mb-10 ml-6">
+            <div class="mb-4 ml-6">
                 <h2 class="text-xl font-semibold text-text1 text-center mb-4">Vanlige spørsmål</h2>
                 <ul class="space-y-4">
                     <li>
