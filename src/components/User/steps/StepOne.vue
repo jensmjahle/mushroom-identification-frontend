@@ -74,6 +74,7 @@
 import { ref } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { XIcon } from 'lucide-vue-next';
+import { processImageFiles } from '@/utils/imageUtils';
 
 const { t } = useI18n();
 const hintStep = ref(null);
@@ -83,12 +84,21 @@ const comment = ref('');
 function toggleHint(step) {
   hintStep.value = hintStep.value === step ? null : step;
 }
+
 function removeFile(index) {
   uploadedFiles.value.splice(index, 1);
 }
-function handleFileUpload(event) {
+
+async function handleFileUpload(event) {
   const files = Array.from(event.target.files);
-  uploadedFiles.value.push(...files.map(file => ({ name: file.name })));
+  if (files.length === 0) return;
+
+  const { processedFiles, error } = await processImageFiles(files, uploadedFiles.value);
+  if (error) {
+    console.error('Image processing error:', error);
+  }
+
+  uploadedFiles.value.push(...processedFiles);
   event.target.value = null;
 }
 </script>
