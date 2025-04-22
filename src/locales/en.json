@@ -124,5 +124,27 @@
     "type2": "🔬 <strong>Expert Member:</strong> For those with experience and knowledge, willing to identify mushrooms for our users.",
     "closing": "Together, we make mushroom identification safer for everyone! Become a member today and support our mission.",
     "cta": "Join Now"
+  },
+  "support": {
+    "title": "Need help?",
+    "intro": "Here you’ll find answers to common questions and how to contact us.",
+    "faqTitle": "Frequently Asked Questions",
+    "faq1": {
+      "question": "How does the mushroom identification service work?",
+      "answer": "You upload photos and receive a response within 1–2 days."
+    },
+    "faq2": {
+      "question": "How do I use my reference code?",
+      "link": "Check response",
+      "rest": " and enter the code you received."
+    },
+    "faq3": {
+      "question": "Can I request a new evaluation?",
+      "answer": "Yes, upload new photos and submit a new request."
+    },
+    "contactTitle": "Contact us",
+    "emailLabel": "Email",
+    "messageLabel": "Message",
+    "submitButton": "Send message"
   }
 }

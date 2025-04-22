@@ -128,5 +128,27 @@
     "type2": "🔬 <strong>Soppsakkyndig medlem:</strong> For deg med erfaring og kunnskap, som ønsker å identifisere sopper.",
     "closing": "Sammen gjør vi soppidentifikasjon tryggere for alle! Bli medlem i dag og støtt vårt arbeid.",
     "cta": "Meld deg inn her"
+  },
+  "support": {
+    "title": "Trenger du hjelp?",
+    "intro": "Her finner du svar på vanlige spørsmål og hvordan du kan ta kontakt med oss.",
+    "faqTitle": "Vanlige spørsmål",
+    "faq1": {
+      "question": "Hvordan fungerer soppidentifikasjonstjenesten?",
+      "answer": "Du sender inn bilder og får svar innen 1–2 dager."
+    },
+    "faq2": {
+      "question": "Hvordan bruker jeg referansekoden min?",
+      "link": "Sjekk svar",
+      "rest": " og skriv inn koden du fikk."
+    },
+    "faq3": {
+      "question": "Kan jeg få en ny vurdering?",
+      "answer": "Ja, last opp nye bilder og send inn en ny forespørsel."
+    },
+    "contactTitle": "Kontakt oss",
+    "emailLabel": "E-post",
+    "messageLabel": "Melding",
+    "submitButton": "Send melding"
   }
 }
