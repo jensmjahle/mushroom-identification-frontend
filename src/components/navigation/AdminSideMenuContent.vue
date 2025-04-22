@@ -70,8 +70,8 @@ import BaseButton from '@/components/base/BaseButton.vue'
 import StatusIndicator from '@/components/base/StatusIndicator.vue'
 import { useAdminSideMenu} from '@/composables/useAdminSideMenu'
 import LogoButton from "@/components/LogoButton.vue";
-import {changeUserRequestStatus} from "@/services/apiService.js";
 import { useToast } from 'vue-toastification'
+import {changeUserRequestStatus} from "@/services/adminRequestService.js";
 
 
 

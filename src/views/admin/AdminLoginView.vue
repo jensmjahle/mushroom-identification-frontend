@@ -7,14 +7,14 @@
 <script setup>
 import { useRouter } from "vue-router";
 import AdminLoginForm from "../../components/AdminLoginForm.vue";
-import { loginAdmin as loginAdminAPI } from "../../services/apiService.js";
+import {loginAdmin} from "@/services/authService.js";
 
 const router = useRouter();
 
 
 const loginUser = async (username, password) => {  
   try {
-    const response = await loginAdminAPI(username, password); 
+    const response = await loginAdmin(username, password); 
 console.log(response);
     if (response.token) {
       alert("Login successful!");

@@ -1,8 +1,8 @@
 <script setup>
 import { onMounted, ref } from "vue";
-import { getUserRequestMushrooms } from "../services/apiService.js";
 import { ShoppingBasket, ChevronLeft, ChevronRight } from "lucide-vue-next";
 import Mushroom from "./Mushroom.vue";
+import {getUserRequestMushrooms} from "@/services/mushroomService.js";
 
 const token = sessionStorage.getItem('jwt');
 

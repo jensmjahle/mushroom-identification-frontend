@@ -18,17 +18,16 @@ import ChatBox from '../../components/ChatBox.vue';
 import { useRoute } from 'vue-router';
 import RequestStatusBox from "../../components/RequestStatusBox.vue";
 import {onMounted, ref} from "vue";
-import {getUserRequestAdmin} from "../../services/apiService.js";
 import MushroomBasket from "../../components/MushroomBasket.vue";
+import {getUserRequestAdmin} from "@/services/adminRequestService.js";
 
 const route = useRoute();
 const userRequestId = route.params.userRequestId;
 const userRequest = ref(null);
-const token = sessionStorage.getItem('jwt');
 
 onMounted(() => {
   console.log('User Request ID:', userRequestId);
-  getUserRequestAdmin(userRequestId, token).then((data) => {
+  getUserRequestAdmin(userRequestId).then((data) => {
     userRequest.value = data;
   });
 })
