@@ -1,5 +1,6 @@
 import axios from '@/config/axiosConfig'
 import { getAuthHeaders } from '@/utils/authHeaders'
+import {useToast} from "vue-toastification";
 
 export const fetchChatMessages = async (userRequestId) => {
   try {
@@ -9,6 +10,7 @@ export const fetchChatMessages = async (userRequestId) => {
     return response?.data || []
   } catch (error) {
     console.error(`Error fetching chat messages for request ${userRequestId}:`, error)
+    useToast().error('Error fetching chat history')
     return []
   }
 }

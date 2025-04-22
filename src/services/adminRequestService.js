@@ -1,5 +1,6 @@
 import axios from '@/config/axiosConfig'
 import { getAuthHeaders } from '@/utils/authHeaders'
+import {useToast} from "vue-toastification";
 
 export const getPaginatedRequests = async (page = 0, size = 10) => {
   try {
@@ -10,6 +11,7 @@ export const getPaginatedRequests = async (page = 0, size = 10) => {
     return response?.data || { content: [], totalElements: 0 }
   } catch (error) {
     console.error('Error fetching paginated requests:', error)
+    useToast().error('Error fetching requests')
     return { content: [], totalElements: 0 }
   }
 }
@@ -22,6 +24,7 @@ export const getUserRequestAdmin = async (id) => {
     return response?.data || null
   } catch (error) {
     console.error(`Error fetching request ${id}:`, error)
+    useToast().error('Error fetching request details')
     return null
   }
 }
@@ -37,6 +40,7 @@ export const changeUserRequestStatus = async (userRequestId, newStatus) => {
     return response?.data || null
   } catch (error) {
     console.error(`Error changing status for ${userRequestId}:`, error)
+    useToast().error('Error changing request status')
     return null
   }
 }
@@ -50,6 +54,7 @@ export const getCountOfRequestFromStatus = async (status) => {
     return response?.data ?? 0
   } catch (error) {
     console.error(`Error fetching count for status ${status}:`, error)
+    useToast().error('Error fetching request count')
     return 0
   }
 }
