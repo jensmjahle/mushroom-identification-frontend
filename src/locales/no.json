@@ -115,5 +115,18 @@
     "sendRequest": "Send forespørsel",
     "getSupport": "få hjelp fra vår support",
     "or": "Eller"
+  },
+  "membership": {
+    "title": "Bli medlem – Støtt Soppidentifikasjon.no!",
+    "intro": "Vil du bidra til å holde Soppidentifikasjon.no i drift og hjelpe flere med trygg soppplukking? Som medlem støtter du vårt arbeid med å dekke driftskostnader og honorarer til våre soppsakkyndige.",
+    "whyTitle": "Hvorfor bli medlem?",
+    "why1": "🌱 <strong>Støtt driften:</strong> Bidra til vedlikehold av siden og vår gratis identifikasjonstjeneste.",
+    "why2": "🍄 <strong>Lær mer om sopp:</strong> Få tilgang til eksklusivt innhold om soppidentifikasjon, matsopp og forvekslingsarter.",
+    "why3": "🧐 <strong>Bli soppsakkyndig:</strong> Medlemmer kan søke om å bli en del av vårt team av soppsakkyndige og hjelpe andre.",
+    "typesTitle": "Medlemskapstyper",
+    "type1": "💛 <strong>Støttemedlem:</strong> Bidra økonomisk og få tilgang til medlemseksklusivt innhold.",
+    "type2": "🔬 <strong>Soppsakkyndig medlem:</strong> For deg med erfaring og kunnskap, som ønsker å identifisere sopper.",
+    "closing": "Sammen gjør vi soppidentifikasjon tryggere for alle! Bli medlem i dag og støtt vårt arbeid.",
+    "cta": "Meld deg inn her"
   }
 }

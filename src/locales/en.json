@@ -111,5 +111,18 @@
     "sendRequest": "Submit Request",
     "getSupport": "get help from our support",
     "or": "Or"
+  },
+  "membership": {
+    "title": "Become a Member – Support Soppidentifikasjon.no!",
+    "intro": "Would you like to help keep Soppidentifikasjon.no running and assist others with safe mushroom picking? As a member, you support our work in covering operational costs and compensating our mushroom experts.",
+    "whyTitle": "Why Become a Member?",
+    "why1": "🌱 <strong>Support the platform:</strong> Help maintain the website and keep our identification service free.",
+    "why2": "🍄 <strong>Learn about mushrooms:</strong> Gain access to exclusive content on mushroom identification, edible species, and lookalikes.",
+    "why3": "🧐 <strong>Become an expert:</strong> Members can apply to join our team of mushroom experts and assist others in safe identification.",
+    "typesTitle": "Membership Types",
+    "type1": "💛 <strong>Supporter:</strong> Contribute financially and get access to exclusive member content.",
+    "type2": "🔬 <strong>Expert Member:</strong> For those with experience and knowledge, willing to identify mushrooms for our users.",
+    "closing": "Together, we make mushroom identification safer for everyone! Become a member today and support our mission.",
+    "cta": "Join Now"
   }
 }
