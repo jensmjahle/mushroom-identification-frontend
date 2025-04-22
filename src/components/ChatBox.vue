@@ -60,8 +60,8 @@
 import {ref, onMounted, onBeforeUnmount, nextTick, watch} from 'vue';
 import { connectToChat, sendMessage, disconnectFromChat } from '../services/chatSocket';
 import { parseJwt } from '../utils/jwt';
-import {fetchChatMessages} from "../services/apiService.js";
 import { formatDate } from '../utils/formatters';
+import {fetchChatMessages} from "@/services/chatService.js";
 
 
 const props = defineProps({
