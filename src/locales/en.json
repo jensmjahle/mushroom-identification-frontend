@@ -33,7 +33,12 @@
       "overviewTitle": "Statistics Overview",
       "totalRequests": "Total Requests",
       "totalCompleted": "Completed Requests"
-    }
+    },
+    "username": "Username",
+    "firstname": "First Name",
+    "lastname": "Last Name",
+    "email": "Email",
+    "role": "Role"
   },
   "month": {
     "jan": "January",
@@ -148,5 +153,23 @@
     "emailLabel": "Email",
     "messageLabel": "Message",
     "submitButton": "Send message"
+  },
+  "roles": {
+    "superuser": "Superuser",
+    "moderator": "Moderator",
+    "user": "User"
+  },
+  "errors": {
+    "loadAdmins": "There was an error loading the admins. Please try again later."
+  },
+  "common": {
+    "noData": "No data available",
+    "previous": "Previous",
+    "next": "Next",
+    "page": "Page",
+    "of": "of"
   }
 }
+
+
+

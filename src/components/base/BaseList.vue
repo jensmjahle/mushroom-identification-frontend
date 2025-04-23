@@ -20,14 +20,13 @@
       <div v-if="items?.length" class="space-y-2 px-2">
         <div v-for="item in items" :key="item.id || item.userRequestId">
           <slot name="default" :item="item">
-            <!-- Fallback rendering if no custom slot provided -->
             <div class="p-4 text-text1 bg-bg1 rounded-md shadow-sm">
               {{ JSON.stringify(item) }}
             </div>
           </slot>
         </div>
       </div>
-      <p v-else class="text-sm text-text1 italic">No data available</p>
+      <p v-else class="text-sm text-text1 italic">{{ t('common.noData') }}</p>
 
       <!-- Pagination Controls -->
       <div
@@ -39,11 +38,11 @@
             @click="$emit('prev-page')"
             variant="3"
         >
-          Previous
+          {{ t('common.previous') }}
         </BaseButton>
 
         <p class="text-sm text-text2 text-center">
-          Page {{ pagination.page + 1 }} of {{ pagination.totalPages }}
+          {{ t('common.page') }} {{ pagination.page + 1 }} {{ t('common.of') }} {{ pagination.totalPages }}
         </p>
 
         <BaseButton
@@ -51,7 +50,7 @@
             @click="$emit('next-page')"
             variant="3"
         >
-          Next
+          {{ t('common.next') }}
         </BaseButton>
       </div>
 
@@ -60,8 +59,8 @@
 </template>
 
 <script setup>
-import { computed } from 'vue'
-import BaseButton from '@/components/base/BaseButton.vue' 
+import { useI18n } from 'vue-i18n'
+import BaseButton from '@/components/base/BaseButton.vue'
 
 defineProps({
   items: Array,
@@ -70,4 +69,6 @@ defineProps({
 })
 
 defineEmits(['next-page', 'prev-page'])
+
+const { t } = useI18n()
 </script>

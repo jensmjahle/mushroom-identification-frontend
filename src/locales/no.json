@@ -33,7 +33,12 @@
       "overviewTitle": "Statistikkoversikt",
       "totalRequests": "Totale forespørseler",
       "totalCompleted": "Fullførte forespørseler"
-    }
+    },
+    "username": "Brukernavn",
+    "firstname": "Fornavn",
+    "lastname": "Etternavn",
+    "email": "E-post",
+    "role": "Rolle"
   },
   "month": {
     "jan": "Januar",
@@ -152,5 +157,22 @@
     "emailLabel": "E-post",
     "messageLabel": "Melding",
     "submitButton": "Send melding"
+  },
+  "roles": {
+    "superuser": "Superbruker",
+    "moderator": "Moderator",
+    "user": "Bruker"
+  },
+  "common": {
+    "noData": "Ingen data tilgjengelig",
+    "previous": "Forrige",
+    "next": "Neste",
+    "page": "Side",
+    "of": "av"
+  },
+  "errors": {
+    "loadAdmins": "Det oppstod en feil ved lasting av administratorer. Vennligst prøv igjen senere."
   }
 }
+
+

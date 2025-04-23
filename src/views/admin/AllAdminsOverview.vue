@@ -13,7 +13,9 @@
           <p class="col-span-2">{{ item.firstname }}</p>
           <p class="col-span-2">{{ item.lastname }}</p>
           <p class="col-span-3">{{ item.email }}</p>
-          <RoleBadge :role="item.role" />
+          <div class="col-span-2">
+            <RoleBadge :role="item.role" />
+          </div>
         </div>
       </template>
     </BaseList>
@@ -21,25 +23,27 @@
 </template>
 
 <script setup>
-import { ref, onMounted, watch } from 'vue'
-import { getPaginatedAdmins } from '@/services/adminService.js'
+import { ref, onMounted, watch, computed } from 'vue'
+import { useI18n } from 'vue-i18n'
+import { useToast } from 'vue-toastification'
 import BaseList from '@/components/base/BaseList.vue'
-import {useToast} from "vue-toastification";
-import RoleBadge from "@/components/badges/RoleBadge.vue";
+import RoleBadge from '@/components/badges/RoleBadge.vue'
+import { getPaginatedAdmins } from '@/services/adminService.js'
+
+const { t } = useI18n()
 
 const page = ref(0)
 const size = 20
 const totalPages = ref(1)
 const admins = ref([])
 
-const columns = [
-  { label: 'Username', key: 'username', class: 'col-span-2' },
-  { label: 'First Name', key: 'firstname', class: 'col-span-2' },
-  { label: 'Last Name', key: 'lastname', class: 'col-span-2' },
-  { label: 'Email', key: 'email', class: 'col-span-3' },
-  { label: 'Role', key: 'role', class: 'col-span-2' }
-  
-]
+const columns = computed(() => [
+  { label: t('admin.username'), key: 'username', class: 'col-span-2' },
+  { label: t('admin.firstname'), key: 'firstname', class: 'col-span-2' },
+  { label: t('admin.lastname'), key: 'lastname', class: 'col-span-2' },
+  { label: t('admin.email'), key: 'email', class: 'col-span-3' },
+  { label: t('admin.role'), key: 'role', class: 'col-span-2' }
+])
 
 const fetchAdmins = async () => {
   try {
@@ -48,7 +52,7 @@ const fetchAdmins = async () => {
     totalPages.value = result.totalPages
   } catch (error) {
     console.error('Failed to load admins:', error)
-    useToast().error('There was an error loading the admins. Please try again later.')
+    useToast().error(t('errors.loadAdmins'))
   }
 }
 
