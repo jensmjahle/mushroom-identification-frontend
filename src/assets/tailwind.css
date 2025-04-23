@@ -77,6 +77,11 @@ html, body, #app {
     min-height: 600px;
   }
 
+  .collapse-button {
+    @apply absolute top-4 left-0 p-2 bg-bg1 rounded-none rounded-tr-lg rounded-br-lg transition focus:outline-none focus:ring-0 hover:border-bg1
+    xl2:hidden;
+  }
+
   .user-sidebar.collapsed {
     width: 60px; 
   }

@@ -21,6 +21,9 @@ export default {
       backgroundImage: {
         hero: "url('/assets/background.svg')",
       },
+      screens: {
+        'xl2': {'max': '999px'},
+      },
       colors: {
         text1: 'var(--color-text1)',
         'text1-faded': 'var(--color-text1-faded)',

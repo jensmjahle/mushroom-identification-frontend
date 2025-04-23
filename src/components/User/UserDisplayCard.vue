@@ -2,7 +2,7 @@
     <div :class="['user-display-card', collapsed ? 'collapsed' : '']">
       <button
         @click="$emit('toggle-sidebar')"
-        class="absolute top-4 left-0 p-2 bg-bg1 rounded-none rounded-tr-lg rounded-br-lg transition focus:outline-none focus:ring-0 hover:border-bg1"
+        class="collapse-button"
       >
         <img
           src="/assets/arrow.svg"
