@@ -1,7 +1,7 @@
 <template>
     <div>
       <label class="block text-sm font-medium text-text1 mb-1">
-        🌍 {{ $t('settings.language') }}
+        {{ $t('settings.language') }}
       </label>
       <select
         v-model="locale"

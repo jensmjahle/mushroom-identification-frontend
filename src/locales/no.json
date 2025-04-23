@@ -98,8 +98,13 @@
     "allAdmins" : "Alle administratorer",
     "createNewAdmin" : "Opprett ny administrator",
     "settings" : "Innstillinger",
-    "logout" : "Logg ut"
-    
+    "logout" : "Logg ut",
+    "menuTitle": "Meny",
+    "home": "Hjem",
+    "newRequest": "Ny forespørsel",
+    "login": "Se Svar",
+    "membership": "Bli medlem",
+    "support": "Support"
   },
   "mushroom": {
     "title": "Sopp"

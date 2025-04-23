@@ -95,7 +95,13 @@
     "putBackIntoQueue" : "Put Back into Queue",
     "placeOnHold" : "Place on Hold",
     "settings" : "Settings",
-    "logout" : "Logout"
+    "logout" : "Logout",
+    "menuTitle": "Menu",
+    "home": "Home",
+    "newRequest": "New Request",
+    "login": "Check Answer",
+    "membership": "Become a Member",
+    "support": "Support"
   },
   "mushroom": {
     "title": "Mushroom"
