@@ -58,25 +58,33 @@
   },
   "submit": {
     "title": "Send inn din sopphenvendelse",
+    "upload": "Last opp bilder her eller",
+    "browse": "bla gjennom",
+    "commentPlaceholder": "Skriv inn kommentar her ..",
+    "send": "Send inn bilder",
+    "close": "Lukk",
+    "hintTitle": "Tips",
+    "reference": "Referansekode",
+    "referenceHint": "Bruk denne koden for å finne igjen forespørselen din senere:",
+    "back": "Tilbake",
+    "next": "Neste",
+    "thankYou": "Takk!",
+    "thankYouHint": "Du vil få svar så snart en ekspert har vurdert bildet ditt.",
+    "toFront": "Til forsiden",
     "steps": [
       {
-        "title": "Ta et bilde av soppen",
-        "description": "Sørg for at bildet er klart og viser hele soppen."
+        "title": "Legg alle soppene nummerert på et ark og ta bilder med god belysning.",
+        "hint": "Tips: Bruk dagslys og legg soppen på et lyst underlag."
       },
       {
-        "title": "Ta med omgivelsene",
-        "description": "Ta et nytt bilde av området hvor soppen ble funnet."
+        "title": "Send inn og husk referansekoden du får oppgitt.",
+        "hint": "Koden brukes for å hente resultatet senere."
       },
       {
-        "title": "Flere vinkler",
-        "description": "Fotografer soppen ovenfra og fra siden om mulig."
+        "title": "Kom tilbake om en dag eller to og sjekk svaret.",
+        "hint": "Du kan bruke referansekoden for å logge inn."
       }
-    ],
-    "imageUpload": "Last opp bilder",
-    "removeImage": "Fjern bilde",
-    "message": "Skriv en melding til oss",
-    "placeholder": "Skriv her...",
-    "button": "Send forespørsel"
+    ]
   },
   "sideMenu" : {
     "completedTitle" : "Fullførte",
@@ -103,5 +111,46 @@
     "button": "Fortsett",
     "errorEmpty": "Referansekoden kan ikke være tom",
     "errorInvalid": "Ugyldig referansekode"
+  },
+  "home": {
+    "description": "Usikker på om du har plukket fleinsopp? Send inn en gratis anonym forespørsel her:",
+    "sendRequest": "Send forespørsel",
+    "getSupport": "få hjelp fra vår support",
+    "or": "Eller"
+  },
+  "membership": {
+    "title": "Bli medlem – Støtt Soppidentifikasjon.no!",
+    "intro": "Vil du bidra til å holde Soppidentifikasjon.no i drift og hjelpe flere med trygg soppplukking? Som medlem støtter du vårt arbeid med å dekke driftskostnader og honorarer til våre soppsakkyndige.",
+    "whyTitle": "Hvorfor bli medlem?",
+    "why1": "🌱 <strong>Støtt driften:</strong> Bidra til vedlikehold av siden og vår gratis identifikasjonstjeneste.",
+    "why2": "🍄 <strong>Lær mer om sopp:</strong> Få tilgang til eksklusivt innhold om soppidentifikasjon, matsopp og forvekslingsarter.",
+    "why3": "🧐 <strong>Bli soppsakkyndig:</strong> Medlemmer kan søke om å bli en del av vårt team av soppsakkyndige og hjelpe andre.",
+    "typesTitle": "Medlemskapstyper",
+    "type1": "💛 <strong>Støttemedlem:</strong> Bidra økonomisk og få tilgang til medlemseksklusivt innhold.",
+    "type2": "🔬 <strong>Soppsakkyndig medlem:</strong> For deg med erfaring og kunnskap, som ønsker å identifisere sopper.",
+    "closing": "Sammen gjør vi soppidentifikasjon tryggere for alle! Bli medlem i dag og støtt vårt arbeid.",
+    "cta": "Meld deg inn her"
+  },
+  "support": {
+    "title": "Trenger du hjelp?",
+    "intro": "Her finner du svar på vanlige spørsmål og hvordan du kan ta kontakt med oss.",
+    "faqTitle": "Vanlige spørsmål",
+    "faq1": {
+      "question": "Hvordan fungerer soppidentifikasjonstjenesten?",
+      "answer": "Du sender inn bilder og får svar innen 1–2 dager."
+    },
+    "faq2": {
+      "question": "Hvordan bruker jeg referansekoden min?",
+      "link": "Sjekk svar",
+      "rest": " og skriv inn koden du fikk."
+    },
+    "faq3": {
+      "question": "Kan jeg få en ny vurdering?",
+      "answer": "Ja, last opp nye bilder og send inn en ny forespørsel."
+    },
+    "contactTitle": "Kontakt oss",
+    "emailLabel": "E-post",
+    "messageLabel": "Melding",
+    "submitButton": "Send melding"
   }
 }

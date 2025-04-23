@@ -57,26 +57,34 @@
     "UNIDENTIFIABLE": "Unidentifiable"
   },
   "submit": {
-    "title": "Submit Your Mushroom Inquiry",
+    "title": "Submit your mushroom inquiry",
+    "upload": "Upload photos here or",
+    "browse": "browse",
+    "commentPlaceholder": "Enter a comment here...",
+    "send": "Submit photos",
+    "close": "Close",
+    "hintTitle": "Tip",
+    "reference": "Reference Code",
+    "referenceHint": "Use this code to find your request later:",
+    "back": "Back",
+    "next": "Next",
+    "thankYou": "Thank you!",
+    "thankYouHint": "You will receive a response as soon as an expert has reviewed your photo.",
+    "toFront": "Go to homepage",
     "steps": [
       {
-        "title": "Take a photo of the mushroom",
-        "description": "Make sure the image is clear and shows the entire mushroom."
+        "title": "Place all mushrooms numbered on a sheet and take photos with good lighting.",
+        "hint": "Tip: Use daylight and place the mushrooms on a light background."
       },
       {
-        "title": "Include the surroundings",
-        "description": "Take another photo of the area where the mushroom was found."
+        "title": "Submit and remember the reference code provided.",
+        "hint": "The code is used to retrieve the result later."
       },
       {
-        "title": "Multiple angles",
-        "description": "Photograph the mushroom from above and from the side if possible."
+        "title": "Come back in a day or two and check the answer.",
+        "hint": "You can use the reference code to log in."
       }
-    ],
-    "imageUpload": "Upload Images",
-    "removeImage": "Remove Image",
-    "message": "Write a message to us",
-    "placeholder": "Write here...",
-    "button": "Send Inquiry"
+    ]
   },
   "sideMenu" : {
     "completedTitle" : "Completed",
@@ -99,5 +107,46 @@
     "button": "Continue",
     "errorEmpty": "Reference code cannot be empty",
     "errorInvalid": "Invalid reference code"
+  },
+  "home": {
+    "description": "Not sure if you've picked liberty caps? Submit a free and anonymous request here:",
+    "sendRequest": "Submit Request",
+    "getSupport": "get help from our support",
+    "or": "Or"
+  },
+  "membership": {
+    "title": "Become a Member – Support Soppidentifikasjon.no!",
+    "intro": "Would you like to help keep Soppidentifikasjon.no running and assist others with safe mushroom picking? As a member, you support our work in covering operational costs and compensating our mushroom experts.",
+    "whyTitle": "Why Become a Member?",
+    "why1": "🌱 <strong>Support the platform:</strong> Help maintain the website and keep our identification service free.",
+    "why2": "🍄 <strong>Learn about mushrooms:</strong> Gain access to exclusive content on mushroom identification, edible species, and lookalikes.",
+    "why3": "🧐 <strong>Become an expert:</strong> Members can apply to join our team of mushroom experts and assist others in safe identification.",
+    "typesTitle": "Membership Types",
+    "type1": "💛 <strong>Supporter:</strong> Contribute financially and get access to exclusive member content.",
+    "type2": "🔬 <strong>Expert Member:</strong> For those with experience and knowledge, willing to identify mushrooms for our users.",
+    "closing": "Together, we make mushroom identification safer for everyone! Become a member today and support our mission.",
+    "cta": "Join Now"
+  },
+  "support": {
+    "title": "Need help?",
+    "intro": "Here you’ll find answers to common questions and how to contact us.",
+    "faqTitle": "Frequently Asked Questions",
+    "faq1": {
+      "question": "How does the mushroom identification service work?",
+      "answer": "You upload photos and receive a response within 1–2 days."
+    },
+    "faq2": {
+      "question": "How do I use my reference code?",
+      "link": "Check response",
+      "rest": " and enter the code you received."
+    },
+    "faq3": {
+      "question": "Can I request a new evaluation?",
+      "answer": "Yes, upload new photos and submit a new request."
+    },
+    "contactTitle": "Contact us",
+    "emailLabel": "Email",
+    "messageLabel": "Message",
+    "submitButton": "Send message"
   }
 }

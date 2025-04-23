@@ -1,31 +1,78 @@
-export const removeMetadataAndConvertToBase64 = (file) => {
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
+// utils/imageUtils.js
+import ExifReader from 'exifreader';
 
-    reader.onload = (event) => {
-      if (!event.target?.result) {
-        reject(new Error("File reading failed"));
-        return;
-      }
+/**
+ * Checks EXIF data in an image file
+ */
+async function checkExif(file) {
+  const arrayBuffer = await file.arrayBuffer();
+  const tags = ExifReader.load(arrayBuffer);
+  return tags;
+}
 
-      const img = new Image();
-      img.src = event.target.result;
+/**
+ * Removes metadata from image files and renames them to mushroomX.jpg
+ * based on existing file names in uploadedFiles
+ */
+export async function processImageFiles(files, existingFiles = []) {
+  const processedFiles = [];
+  let error = null;
 
-      img.onload = () => {
-        const canvas = document.createElement('canvas');
-        const ctx = canvas.getContext('2d');
+  // Count how many mushroomX.jpg names are in the existing files
+  const existingNames = existingFiles.map(f => f.name);
+  let index = 1;
 
-        canvas.width = img.width;
-        canvas.height = img.height;
-        ctx.drawImage(img, 0, 0, img.width, img.height);
+  function getUniqueMushroomName() {
+    while (existingNames.includes(`mushroom${index}.jpg`)) {
+      index++;
+    }
+    const name = `mushroom${index}.jpg`;
+    existingNames.push(name);
+    return name;
+  }
 
-        resolve(canvas.toDataURL('image/jpeg', 0.9).split(',')[1]); // Remove metadata & convert to Base64
-      };
+  for (const file of files) {
+    if (!file.type.startsWith('image/')) {
+      error = 'Only image files are allowed.';
+      console.warn('Rejected file: Not an image file', file.name);
+      continue;
+    }
 
-      img.onerror = () => reject(new Error("Image loading failed"));
-    };
+    const imageBitmap = await createImageBitmap(file);
+    const canvas = document.createElement('canvas');
+    canvas.width = imageBitmap.width;
+    canvas.height = imageBitmap.height;
+    const ctx = canvas.getContext('2d');
+    ctx.drawImage(imageBitmap, 0, 0);
 
-    reader.onerror = (error) => reject(error);
-  });
-};
+    const blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/jpeg', 0.92));
+    if (!blob) {
+      error = 'Could not process image.';
+      console.error('Error: Unable to create blob for', file.name);
+      continue;
+    }
+
+    const newFileName = getUniqueMushroomName();
+    const newFile = new File([blob], newFileName, { type: 'image/jpeg' });
+
+    const strippedExif = await checkExif(newFile);
+
+    // Check for sensitive tags
+    const sensitiveTags = [
+      'GPSLatitude', 'GPSLongitude', 'DateTimeOriginal',
+      'Make', 'Model', 'Software', 'Artist'
+    ];
+
+    const stillPresent = sensitiveTags.filter(tag => tag in strippedExif);
+
+    if (stillPresent.length === 0) {
+      console.log(`${newFile.name} has successfully been stripped of metadata.`);
+    } else {
+      console.warn(`${newFile.name} still contains sensitive metadata:`, stillPresent);
+    }
+
+    processedFiles.push(newFile);
+  }
+
+  return { processedFiles, error };
+}
