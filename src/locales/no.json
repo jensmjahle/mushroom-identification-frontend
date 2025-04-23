@@ -198,7 +198,15 @@
   },
   "errors": {
     "loadAdmins": "Det oppstod en feil ved lasting av administratorer. Vennligst prøv igjen senere."
+  },
+  "statuses": {
+    "new": "Ny",
+    "pending": "Avventer",
+    "in_progress": "Under behandling",
+    "completed": "Fullført"
   }
 }
+
+
 
 
