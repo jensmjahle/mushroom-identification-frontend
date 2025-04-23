@@ -15,6 +15,35 @@ export const getPaginatedRequests = async (page = 0, size = 10) => {
     return { content: [], totalElements: 0 }
   }
 }
+// Get NEW requests only
+export const getPaginatedNewRequests = async (page = 0, size = 10) => {
+  try {
+    const response = await axios.get('/api/admin/requests', {
+      params: { page, size, status: 'NEW' },
+      headers: getAuthHeaders()
+    })
+    return response?.data || { content: [], totalPages: 1 }
+  } catch (error) {
+    console.error('Error fetching new requests:', error)
+    useToast().error('Error fetching new requests')
+    return { content: [], totalPages: 1 }
+  }
+}
+
+// Get all requests EXCLUDING NEW
+export const getPaginatedOtherRequests = async (page = 0, size = 10) => {
+  try {
+    const response = await axios.get('/api/admin/requests', {
+      params: { page, size, status: 'NEW', exclude: true },
+      headers: getAuthHeaders()
+    })
+    return response?.data || { content: [], totalPages: 1 }
+  } catch (error) {
+    console.error('Error fetching other requests:', error)
+    useToast().error('Error fetching other requests')
+    return { content: [], totalPages: 1 }
+  }
+}
 
 export const getUserRequestAdmin = async (id) => {
   try {
