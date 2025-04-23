@@ -3,7 +3,7 @@
   <div class="w-full max-w-screen-xl mx-auto px-4 space-y-10">
 
     <!-- New Requests Section -->
-    <div class="p-6 bg-bg rounded-lg shadow-md">
+    <div class="p-6 bg-bg rounded-lg">
       <h2 class="text-xl font-bold text-chat-other mb-4">New Requests</h2>
       <BaseList
           :items="newRequests"
