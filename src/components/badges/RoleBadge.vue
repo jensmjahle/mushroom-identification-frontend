@@ -1,7 +1,7 @@
 <template>
   <div class="role-badge" :class="roleClass">
     <component :is="icon" class="w-4 h-4" />
-    <span class="capitalize hidden sm:inline">{{ t(`roles.${role.toLowerCase()}`) }}</span>
+    <span class="capitalize">{{ t(`roles.${role.toLowerCase()}`) }}</span>
   </div>
 </template>
 
@@ -44,6 +44,6 @@ const icon = computed(() => {
 
 <style scoped>
 .role-badge {
-  @apply text-xs p-0 sm:px-1 sm:py-1 md:px-1 md:py-0.5 lg:px-2 lg:py-1 rounded-full w-fit flex items-center gap-1 shadow z-10;
+  @apply text-xs px-2 py-1 rounded-full w-fit flex items-center gap-1 shadow z-10;
 }
 </style>

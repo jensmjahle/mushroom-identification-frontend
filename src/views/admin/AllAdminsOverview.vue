@@ -8,7 +8,8 @@
         @prev-page="prevPage"
     >
       <template #default="{ item }">
-        <div class="grid grid-cols-12 gap-4 text-sm text-text1">
+        <!-- Desktop grid -->
+        <div class="hidden sm:grid grid-cols-12 gap-4 text-sm text-text1">
           <p class="col-span-2">{{ item.username }}</p>
           <p class="col-span-2">{{ item.firstname }}</p>
           <p class="col-span-2">{{ item.lastname }}</p>
@@ -16,6 +17,15 @@
           <div class="col-span-2">
             <RoleBadge :role="item.role" />
           </div>
+        </div>
+
+        <!-- Mobile stacked card -->
+        <div class="sm:hidden bg-bg1 p-4 rounded-md shadow-sm text-sm text-text1 space-y-1">
+          <p><span class="font-semibold">{{ t('admin.username') }}:</span> {{ item.username }}</p>
+          <p><span class="font-semibold">{{ t('admin.firstname') }}:</span> {{ item.firstname }}</p>
+          <p><span class="font-semibold">{{ t('admin.lastname') }}:</span> {{ item.lastname }}</p>
+          <p><span class="font-semibold">{{ t('admin.email') }}:</span> {{ item.email }}</p>
+          <p><span class="font-semibold">{{ t('admin.role') }}:</span> <RoleBadge :role="item.role" /></p>
         </div>
       </template>
     </BaseList>

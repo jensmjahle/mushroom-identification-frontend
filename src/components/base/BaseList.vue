@@ -2,8 +2,8 @@
   <div class="w-full max-w-screen-xl mx-auto">
     <div class="p-2 bg-bg1 rounded-lg">
 
-      <!-- Optional Column Headers -->
-      <div v-if="columns?.length" class="grid grid-cols-12 font-semibold text-sm text-text1-faded px-2">
+      <!-- Optional Column Headers (desktop only) -->
+      <div v-if="columns?.length" class="hidden sm:grid grid-cols-12 font-semibold text-sm text-text1-faded px-2">
         <div
             v-for="col in columns"
             :key="col.key"
@@ -19,13 +19,11 @@
       <!-- List Rows -->
       <div v-if="items?.length" class="space-y-2 px-2">
         <div v-for="item in items" :key="item.id || item.userRequestId">
-          <slot name="default" :item="item">
-            <div class="p-4 text-text1 bg-bg1 rounded-md shadow-sm">
-              {{ JSON.stringify(item) }}
-            </div>
-          </slot>
+          <slot name="default" :item="item" />
         </div>
       </div>
+
+      <!-- No data message -->
       <p v-else class="text-sm text-text1 italic">{{ t('common.noData') }}</p>
 
       <!-- Pagination Controls -->
