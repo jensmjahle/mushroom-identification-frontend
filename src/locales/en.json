@@ -168,8 +168,16 @@
     "next": "Next",
     "page": "Page",
     "of": "of"
+  },
+  "statuses": {
+    "new": "New",
+    "pending": "Pending",
+    "in_progress": "In Progress",
+    "completed": "Completed"
   }
 }
+
+
 
 
 
