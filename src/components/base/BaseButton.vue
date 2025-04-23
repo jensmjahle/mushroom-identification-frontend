@@ -19,7 +19,7 @@ import { Loader } from 'lucide-vue-next'
 import {computed} from "vue";
 
 const props = defineProps({
-  type: { type: String, default: 'button' },
+  type: { type: String, Number, default: 'button' },
   variant: {
     type: String, Number,
     default: '1', // Default variant
