@@ -1,7 +1,7 @@
 <template>
     <div>
       <p class="text-sm font-medium text-text1 mb-1">
-        🌓 {{ $t('settings.theme') }}
+        {{ $t('settings.theme') }}
       </p>
       <div class="flex gap-2">
         <button

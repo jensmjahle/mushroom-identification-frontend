@@ -54,9 +54,8 @@ html, body, #app {
   }
 
   .user-layout-inner{
-    @apply flex w-4/5 h-[80vh] justify-center;
+    @apply flex justify-center w-[100vw] h-[100vh] sm:h-[80vh] sm:w-[80vw];
   }
-
   .user-display-card {
     @apply bg-bg2 text-text2 rounded-xl relative transition-all duration-300 ease-in-out flex-grow overflow-hidden;
     max-height: 1000px;
@@ -72,9 +71,15 @@ html, body, #app {
   }
 
   .user-sidebar {
-    @apply flex flex-col justify-center gap-8 pr-8 transition-[width] duration-300 ease-in-out;
+    @apply hidden flex-col justify-center gap-8 pr-8 transition-[width] duration-300 ease-in-out
+    sm:flex;
     width: 20%;
     min-height: 600px;
+  }
+
+  .collapse-button {
+    @apply absolute top-4 left-0 p-2 bg-bg1 rounded-none rounded-tr-lg rounded-br-lg transition focus:outline-none focus:ring-0 hover:border-bg1
+    xl2:hidden;
   }
 
   .user-sidebar.collapsed {
