@@ -1,43 +1,58 @@
 <template>
-    <div class="w-full h-full flex items-center justify-center">
-      <div class="w-full max-w-3xl px-6 py-10 text-center flex flex-col items-center overflow-y-auto max-h-[90vh]">
-        <h1 class="text-3xl font-bold text-text1 mb-4">{{ t('membership.title') }}</h1>
-  
-        <p class="text-base text-text1-faded mb-6 max-w-xl">
+  <div class="w-full h-full flex items-center justify-center px-4 py-6">
+    <div
+      class="w-full max-w-3xl flex flex-col items-center text-center px-4 py-6 sm:py-10 sm:px-8 rounded-lg overflow-hidden"
+    >
+      <div class="flex flex-col items-center gap-5 w-full max-w-xl">
+        <!-- Title -->
+        <h1 class="text-xl sm:text-2xl font-bold text-text1">
+          {{ t('membership.title') }}
+        </h1>
+
+        <!-- Intro -->
+        <p class="text-xs sm:text-sm text-text1-faded leading-snug">
           {{ t('membership.intro') }}
         </p>
-  
-        <h2 class="text-xl font-semibold text-text1 mb-2">{{ t('membership.whyTitle') }}</h2>
-        <div class="text-text1-faded mb-6 space-y-2 text-left max-w-xl w-full">
-          <p v-html="t('membership.why1')" class="leading-relaxed" />
-          <p v-html="t('membership.why2')" class="leading-relaxed" />
-          <p v-html="t('membership.why3')" class="leading-relaxed" />
+
+        <!-- Why Join -->
+        <div class="text-left w-full space-y-2">
+          <h2 class="text-lg font-semibold text-text1">
+            {{ t('membership.whyTitle') }}
+          </h2>
+          <p v-html="t('membership.why1')" class="text-text1-faded text-xs sm:text-sm leading-snug" />
+          <p v-html="t('membership.why2')" class="text-text1-faded text-xs sm:text-sm leading-snug" />
+          <p v-html="t('membership.why3')" class="text-text1-faded text-xs sm:text-sm leading-snug" />
         </div>
-  
-        <h2 class="text-xl font-semibold text-text1 mb-2">{{ t('membership.typesTitle') }}</h2>
-        <div class="text-text1-faded mb-6 space-y-2 text-left max-w-xl w-full">
-          <p v-html="t('membership.type1')" class="leading-relaxed" />
-          <p v-html="t('membership.type2')" class="leading-relaxed" />
+
+        <!-- Membership Types -->
+        <div class="text-left w-full space-y-2">
+          <h2 class="text-lg font-semibold text-text1">
+            {{ t('membership.typesTitle') }}
+          </h2>
+          <p v-html="t('membership.type1')" class="text-text1-faded text-xs sm:text-sm leading-snug" />
+          <p v-html="t('membership.type2')" class="text-text1-faded text-xs sm:text-sm leading-snug" />
         </div>
-  
-        <p class="text-text1 font-medium mb-10 max-w-xl">
+
+        <!-- Closing Text -->
+        <p class="text-text1 text-xs sm:text-sm font-medium text-center">
           {{ t('membership.closing') }}
         </p>
-  
+
+        <!-- CTA Button -->
         <RouterLink
           to="/membership"
-          class="btn-1 px-6 py-3 text-lg font-medium rounded-lg shadow hover:bg-button1-hover transition duration-300"
+          class="btn-1 px-4 py-2 text-sm font-medium rounded shadow hover:bg-button1-hover transition duration-300"
         >
           {{ t('membership.cta') }}
         </RouterLink>
       </div>
     </div>
-  </template>
-  
-  <script setup>
-  import { useI18n } from 'vue-i18n';
-  import { RouterLink } from 'vue-router';
-  
-  const { t } = useI18n();
-  </script>
-  
+  </div>
+</template>
+
+<script setup>
+import { useI18n } from 'vue-i18n'
+import { RouterLink } from 'vue-router'
+
+const { t } = useI18n()
+</script>
