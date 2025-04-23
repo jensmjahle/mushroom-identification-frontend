@@ -55,7 +55,7 @@ import {
   X, Check, HelpCircle, AlertCircle, Circle,
   ZoomOut, ZoomIn, RotateCw
 } from 'lucide-vue-next'
-import StatusBadge from "@/components/StatusBadge.vue";
+import StatusBadge from "@/components/badges/StatusBadge.vue";
 
 const BASE_URL = 'http://localhost:8080'
 const props = defineProps({ mushroom: Object })

@@ -69,8 +69,8 @@
 
 <script setup>
 import {ref, onMounted, watch, computed} from 'vue';
-import { getPaginatedRequests } from '../services/apiService.js';
 import { formatDate } from '../utils/formatters';
+import {getPaginatedRequests} from "@/services/adminRequestService.js";
 
 
 const token = sessionStorage.getItem('jwt');

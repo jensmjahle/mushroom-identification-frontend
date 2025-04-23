@@ -30,8 +30,8 @@ import { useRouter } from 'vue-router'
 import BaseButton from '@/components/base/BaseButton.vue'
 import BaseInput from '@/components/base/BaseInput.vue'
 import { useI18n } from 'vue-i18n'
-import { loginUser } from "@/services/apiService.js"
 import { parseJwt } from "@/utils/jwt.js"
+import {loginUser} from "@/services/authService.js";
 
 const code = ref('')
 const error = ref(null)

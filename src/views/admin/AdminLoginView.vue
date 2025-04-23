@@ -7,25 +7,30 @@
 <script setup>
 import { useRouter } from "vue-router";
 import AdminLoginForm from "../../components/AdminLoginForm.vue";
-import { loginAdmin as loginAdminAPI } from "../../services/apiService.js";
+import {loginAdmin} from "@/services/authService";
 
 const router = useRouter();
 
 
-const loginUser = async (username, password) => {  
+const loginUser = async (username, password) => {
   try {
-    const response = await loginAdminAPI(username, password); 
-console.log(response);
-    if (response.token) {
+    const response = await loginAdmin(username, password);
+    console.log(response);
+
+    const token = response.data.token;
+
+    if (token) {
       alert("Login successful!");
-      sessionStorage.setItem("jwt", response.token); // Store the token in the session storage
+      sessionStorage.setItem("jwt", token);
       await router.push("/admin/dashboard");
     } else {
       throw new Error("Invalid credentials");
     }
   } catch (error) {
-    throw error;
+    console.error("Login failed:", error);
+    alert("Login failed. Please check your credentials.");
   }
 };
+
 </script>
 

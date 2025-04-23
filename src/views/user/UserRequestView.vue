@@ -1,6 +1,6 @@
 <template>
  
-  <div class="main-user-view">
+  <div class="support-page flex items-center justify-center px-4 py-10 overflow-y-scroll">
     <div class="flex-1">
       <div class="vertical-box">
       <RequestStatusBox v-if="userRequest" :request="userRequest" />
@@ -17,7 +17,7 @@ import { useRoute } from 'vue-router';
 import MushroomBasket from "@/components/MushroomBasket.vue";
 import RequestStatusBox from "@/components/RequestStatusBox.vue";
 import {onMounted, ref} from "vue";
-import {getUserRequest} from "@/services/apiService.js";
+import {getUserRequest} from "@/services/userRequestService.js";
 
 const route = useRoute();
 const userRequestId = route.params.userRequestId;

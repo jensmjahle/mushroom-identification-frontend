@@ -59,7 +59,7 @@
 import { ref, computed, onMounted } from 'vue'
 import {ArrowLeft, ArrowRight} from 'lucide-vue-next'
 import MushroomPopup from "../components/MushroomPopup.vue";
-import StatusBadge from "../components/StatusBadge.vue";
+import StatusBadge from "./badges/StatusBadge.vue";
 
 
 const BASE_URL = 'http://localhost:8080'
