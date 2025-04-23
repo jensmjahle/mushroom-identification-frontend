@@ -6,7 +6,10 @@
         :pagination="{ page, totalPages }"
         @next-page="nextPage"
         @prev-page="prevPage"
+        :clickable="true"
+        @item-click="handleClick"
     >
+
       <template #default="{ item }">
         <!-- Desktop grid -->
         <div class="hidden sm:grid grid-cols-12 gap-4 text-sm text-text1">
@@ -74,5 +77,11 @@ const nextPage = () => {
 }
 const prevPage = () => {
   if (page.value > 0) page.value--
+}
+
+const handleClick = (admin) => {
+  // Handle admin click event
+  console.log('Admin clicked:', admin)
+  useToast().info(`Clicked on ${admin.username}`)
 }
 </script>

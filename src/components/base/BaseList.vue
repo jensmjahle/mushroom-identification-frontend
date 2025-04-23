@@ -2,7 +2,7 @@
   <div class="w-full max-w-screen-xl mx-auto">
     <div class="p-2 bg-bg1 rounded-lg">
 
-      <!-- Optional Column Headers (desktop only) -->
+      <!-- Column Headers (desktop only) -->
       <div v-if="columns?.length" class="hidden sm:grid grid-cols-12 font-semibold text-sm text-text1-faded px-2">
         <div
             v-for="col in columns"
@@ -18,12 +18,18 @@
 
       <!-- List Rows -->
       <div v-if="items?.length" class="space-y-2 px-2">
-        <div v-for="item in items" :key="item.id || item.userRequestId">
+        <div
+            v-for="item in items"
+            :key="item.id || item.userRequestId"
+            :class="clickable ? 'hover:bg-bg2 cursor-pointer transition' : ''"
+            @click="clickable ? $emit('item-click', item) : null"
+            class="rounded-md"
+        >
           <slot name="default" :item="item" />
         </div>
       </div>
 
-      <!-- No data message -->
+      <!-- No Data -->
       <p v-else class="text-sm text-text1 italic">{{ t('common.noData') }}</p>
 
       <!-- Pagination Controls -->
@@ -60,13 +66,17 @@
 import { useI18n } from 'vue-i18n'
 import BaseButton from '@/components/base/BaseButton.vue'
 
+const { t } = useI18n()
+
 defineProps({
   items: Array,
   columns: Array,
-  pagination: Object
+  pagination: Object,
+  clickable: {
+    type: Boolean,
+    default: false
+  }
 })
 
-defineEmits(['next-page', 'prev-page'])
-
-const { t } = useI18n()
+defineEmits(['next-page', 'prev-page', 'item-click'])
 </script>
