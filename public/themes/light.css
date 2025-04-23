@@ -82,9 +82,16 @@
   --color-status-in-review-border: #ffffff;
 
   --color-role-superuser: #fbbf24;
-  --color-role-moderator: #60a5fa;
-  --color-role-user: #4ade80;
+  --color-role-superuser-meta: #ffffff;
+  --color-role-superuser-border: #f59e0b;
 
+  --color-role-moderator: #60a5fa;
+  --color-role-moderator-meta: #ffffff;
+  --color-role-moderator-border: #3b82f6;
+
+  --color-role-user: #4ade80;
+  --color-role-user-meta: #ffffff;
+  --color-role-user-border: #22c55e;
 
   --color-mushroom-psilocybin: #8b5cf6;
   --color-mushroom-psilocybin-text: #ffffff;

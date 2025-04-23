@@ -115,8 +115,16 @@ export default {
 
         role: {
           superuser: 'var(--color-role-superuser)',
+          'superuser-meta': 'var(--color-role-superuser-meta)',
+          'superuser-border': 'var(--color-role-superuser-border)',
+
           moderator: 'var(--color-role-moderator)',
+          'moderator-meta': 'var(--color-role-moderator-meta)',
+          'moderator-border': 'var(--color-role-moderator-border)',
+
           user: 'var(--color-role-user)',
+          'user-meta': 'var(--color-role-user-meta)',
+          'user-border': 'var(--color-role-user-border)',
         },
         
         mushroom: {
