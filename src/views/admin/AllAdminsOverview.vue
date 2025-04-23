@@ -7,17 +7,16 @@
         @next-page="nextPage"
         @prev-page="prevPage"
     >
-      <template #row="{ item }">
-        <div class="grid grid-cols-5 gap-4 text-sm text-text1">
-          <span>{{ item.username }}</span>
-          <span>{{ item.email }}</span>
-          <span>{{ item.role }}</span>
-          <span>{{ item.firstname }}</span>
-          <span>{{ item.lastname }}</span>
+      <template #default="{ item }">
+        <div class="grid grid-cols-12 gap-4 text-sm text-text2">
+          <p class="col-span-2">{{ item.username }}</p>
+          <p class="col-span-3">{{ item.email }}</p>
+          <p class="col-span-2">{{ item.role }}</p>
+          <p class="col-span-2">{{ item.firstname }}</p>
+          <p class="col-span-2">{{ item.lastname }}</p>
         </div>
       </template>
     </BaseList>
-
   </div>
 </template>
 
@@ -32,11 +31,11 @@ const totalPages = ref(1)
 const admins = ref([])
 
 const columns = [
-  { label: 'Username', key: 'username' },
-  { label: 'Email', key: 'email' },
-  { label: 'Role', key: 'role' },
-  { label: 'First Name', key: 'firstname' },
-  { label: 'Last Name', key: 'lastname' }
+  { label: 'Username', key: 'username', class: 'col-span-2' },
+  { label: 'Email', key: 'email', class: 'col-span-3' },
+  { label: 'Role', key: 'role', class: 'col-span-2' },
+  { label: 'First Name', key: 'firstname', class: 'col-span-2' },
+  { label: 'Last Name', key: 'lastname', class: 'col-span-2' }
 ]
 
 const fetchAdmins = async () => {
