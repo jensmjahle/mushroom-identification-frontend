@@ -1,6 +1,6 @@
 
 <template>
-  <div class="">
+  <div class="main-view">
 
     <!-- New Requests Section -->
     <div class="p-6 bg-bg rounded-lg">
@@ -56,10 +56,11 @@ const totalPages2 = ref(1)
 const otherRequests = ref([])
 
 const columns = [
-  { label: 'Request ID', key: 'userRequestId', class: 'col-span-4' },
-  { label: 'Last Updated', key: 'updatedAt', class: 'col-span-4' },
-  { label: 'Status', key: 'status', class: 'col-span-4' }
+  { label: 'Request ID', key: 'userRequestId', class: 'col-span-6' },
+  { label: 'Last Updated', key: 'updatedAt', class: 'col-span-3' },
+  { label: 'Status', key: 'status', class: 'col-span-3' }
 ]
+
 
 
 const toast = useToast()
