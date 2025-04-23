@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { useToast } from 'vue-toastification'
-import router from '@/router'
+import router from '@/router/index.js'
 
 const api = axios.create({
   baseURL: import.meta.env.VITE_API_URL || 'http://localhost:8080',
