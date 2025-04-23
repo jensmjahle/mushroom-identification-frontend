@@ -17,6 +17,7 @@ import AllAdminsOverview from "@/views/admin/AllAdminsOverview.vue";
 import CreateNewAdminView from "@/views/admin/CreateNewAdminView.vue";
 import BecomeMemberView from "@/views/user/BecomeMemberView.vue";
 import SupportView from '@/views/user/SupportView.vue';
+import AllRequestsView from "@/views/admin/AllRequestsView.vue";
 
 
 const routes = [
@@ -82,7 +83,7 @@ const routes = [
       {
         path: 'requests',
         name: 'admin-all-requests',
-        component: RequestsList
+        component: AllRequestsView
       },
       {
         path: 'statistics',
