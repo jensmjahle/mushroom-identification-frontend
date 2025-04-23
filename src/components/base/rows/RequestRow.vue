@@ -8,7 +8,7 @@
     </div>
   </div>
 
-  <!-- Mobile layout (unchanged) -->
+  <!-- Mobile layout -->
   <div class="sm:hidden bg-bg1 p-4 rounded-md shadow-sm text-sm text-text1 space-y-1">
     <p><span class="font-semibold">Request ID:</span> {{ item.userRequestId }}</p>
     <p><span class="font-semibold">Last updated:</span> {{ formatDate(item.updatedAt) }}</p>
