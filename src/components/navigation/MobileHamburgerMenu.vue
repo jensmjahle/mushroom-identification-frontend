@@ -11,7 +11,7 @@
           ref="menuRef"
           class="fixed top-0 right-0 w-64 h-full bg-bg4 text-text4 shadow-lg z-40 p-4 overflow-y-auto"
       >
-        <AdminSideMenuContent />
+        <slot />
       </div>
     </Transition>
   </div>
@@ -20,7 +20,6 @@
 <script setup>
 import { ref, watch, onBeforeUnmount } from 'vue'
 import { Menu, X } from 'lucide-vue-next'
-import AdminSideMenuContent from './AdminSideMenuContent.vue'
 
 const menuOpen = ref(false)
 const menuRef = ref(null)
@@ -42,6 +41,7 @@ watch(menuOpen, (open) => {
 
 onBeforeUnmount(() => document.removeEventListener('click', handleClickOutside))
 </script>
+
 <style scoped>
 :deep(.slide-enter-active),
 :deep(.slide-leave-active) {
