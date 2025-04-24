@@ -87,3 +87,16 @@ export const getCountOfRequestFromStatus = async (status) => {
     return 0
   }
 }
+
+export const getNextRequestFromQueue = async () => {
+  try {
+    const response = await axios.get('/api/admin/requests/next', {
+      headers: getAuthHeaders()
+    })
+    return response?.data || null
+  } catch (error) {
+    console.error('Error fetching next request from queue:', error)
+    useToast().error('Error fetching next request')
+    return null
+  }
+}
