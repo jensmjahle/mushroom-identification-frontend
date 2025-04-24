@@ -29,6 +29,7 @@
       "oldPassword": "Current Password",
       "oldPasswordPlaceholder": "Enter your current password"
     },
+    
     "danger": {
       "title": "Danger Zone",
       "description": "This action is irreversible. Deleting your account will remove all your data.",
@@ -192,9 +193,16 @@
   },
   "errors": {
     "loadAdmins": "There was an error loading the admins. Please try again later.",
-    "passwordMismatch": "Passwords do not match.",
     "invalidEmail": "Please enter a valid email address.",
-    "missingOldPassword": "Please enter your current password to change your password."
+    "missingOldPassword": "Please enter your current password to change your password.",
+    "passwordMismatch": "Passwords do not match.",
+    "invalidPasswordFormat": "Password must be 8–20 characters long, include one uppercase letter, one number, and contain no spaces.",
+    "profileUpdateFailed": "Failed to update profile. Please try again.",
+    "passwordChangeFailed": "Failed to change password. Please try again."
+  },
+  "messages": {
+    "profileUpdated": "Your profile was updated successfully.",
+    "passwordChanged": "Your password has been changed."
   },
   "common": {
     "noData": "No data available",

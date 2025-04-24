@@ -61,6 +61,7 @@
             :label="$t('settings.personal.newPassword')"
             :placeholder="$t('settings.personal.newPasswordPlaceholder')"
             v-model="newPassword"
+            :error="invalidPasswordFormat"
             class="w-full"
         />
         <BaseInput
@@ -75,8 +76,10 @@
       </div>
     </div>
 
-    <p v-if="passwordMismatch" class="text-red-500 text-sm">{{ $t('errors.passwordMismatch') }}</p>
-    <p v-if="missingOldPassword" class="text-red-500 text-sm">{{ $t('errors.missingOldPassword') }}</p>
+    <p v-if="passwordMismatch" class="text-danger text-sm">{{ $t('errors.passwordMismatch') }}</p>
+    <p v-if="invalidPasswordFormat" class="text-danger text-sm">{{ $t('errors.invalidPasswordFormat') }}</p>
+    <p v-if="missingOldPassword" class="text-danger text-sm">{{ $t('errors.missingOldPassword') }}</p>
+
 
     <BaseButton :block="true" variant="2" @click="submitPasswordChange">
       {{ $t('buttons.changePassword') }}
@@ -88,7 +91,12 @@
 import { computed, ref } from "vue"
 import BaseButton from "@/components/base/BaseButton.vue"
 import BaseInput from "@/components/base/BaseInput.vue"
+import { updateAdminProfile, changeAdminPassword } from "@/services/adminService"
+import { useI18n } from "vue-i18n"
 
+const { t } = useI18n()
+
+// Reactive state
 const firstName = ref("")
 const lastName = ref("")
 const email = ref("")
@@ -97,6 +105,10 @@ const newPassword = ref("")
 const confirmPassword = ref("")
 const passwordAttempted = ref(false)
 
+// Regex: 8–20 chars, at least one uppercase, one digit, no spaces
+const passwordValidPattern = /^(?=.*[A-Z])(?=.*\d)[^\s]{8,20}$/
+
+// Validation
 const emailError = computed(() =>
     !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value) && email.value.length > 0
 )
@@ -107,20 +119,56 @@ const passwordMismatch = computed(() =>
     confirmPassword.value.length > 0
 )
 
+const invalidPasswordFormat = computed(() =>
+    passwordAttempted.value &&
+    !passwordValidPattern.test(newPassword.value) &&
+    newPassword.value.length > 0
+)
+
 const missingOldPassword = computed(() =>
     passwordAttempted.value &&
     newPassword.value.length > 0 &&
     !oldPassword.value
 )
 
-const submitPersonalInfo = () => {
+// Submit handlers
+const submitPersonalInfo = async () => {
   if (emailError.value) return
-  // API call to update name and email
+
+  try {
+    await updateAdminProfile({
+      firstName: firstName.value,
+      lastName: lastName.value,
+      email: email.value
+    })
+    alert(t('messages.profileUpdated'))
+  } catch (error) {
+    alert(t('errors.profileUpdateFailed'))
+  }
 }
 
-const submitPasswordChange = () => {
+const submitPasswordChange = async () => {
   passwordAttempted.value = true
-  if (passwordMismatch.value || missingOldPassword.value) return
-  // API call to update password
+
+  if (
+      passwordMismatch.value ||
+      missingOldPassword.value ||
+      invalidPasswordFormat.value
+  ) return
+
+  try {
+    await changeAdminPassword({
+      oldPassword: oldPassword.value,
+      newPassword: newPassword.value,
+      confirmPassword: confirmPassword.value
+    })
+    alert(t('messages.passwordChanged'))
+    oldPassword.value = ""
+    newPassword.value = ""
+    confirmPassword.value = ""
+    passwordAttempted.value = false
+  } catch (error) {
+    alert(t('errors.passwordChangeFailed'))
+  }
 }
 </script>
