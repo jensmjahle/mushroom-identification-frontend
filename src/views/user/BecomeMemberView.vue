@@ -39,12 +39,14 @@
         </p>
 
         <!-- CTA Button -->
-        <RouterLink
-          to="/membership"
+        <a
+          href="https://portal.smartorg.no/action/reg/7fd64a16"
+          target="_blank"
+          rel="noopener noreferrer"
           class="btn-1 px-4 py-2 text-sm font-medium rounded shadow hover:bg-button1-hover transition duration-300"
         >
           {{ t('membership.cta') }}
-        </RouterLink>
+        </a>
       </div>
     </div>
   </div>
