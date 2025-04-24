@@ -38,12 +38,12 @@
           {{ t('membership.closing') }}
         </p>
 
-        <!-- CTA Button -->
+        <!-- CTA Button (with font-bold) -->
         <a
           href="https://portal.smartorg.no/action/reg/7fd64a16"
           target="_blank"
           rel="noopener noreferrer"
-          class="btn-1 px-4 py-2 text-sm font-medium rounded shadow hover:bg-button1-hover transition duration-300"
+          class="btn-1 px-4 py-2 text-sm font-bold rounded shadow hover:bg-button1-hover transition duration-300"
         >
           {{ t('membership.cta') }}
         </a>
@@ -54,7 +54,5 @@
 
 <script setup>
 import { useI18n } from 'vue-i18n'
-import { RouterLink } from 'vue-router'
-
 const { t } = useI18n()
 </script>

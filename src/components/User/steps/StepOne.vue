@@ -28,7 +28,9 @@
         <p class="text-sm text-text1-faded">
           {{ t(`submit.steps.${hintStep - 1}.hint`) }}
         </p>
-        <button class="mt-4 btn-1 w-full" @click="hintStep = null">{{ t('submit.close') }}</button>
+        <BaseButton class="w-full mt-4" @click="hintStep = null">
+          {{ t('submit.close') }}
+        </BaseButton>
       </div>
     </div>
 
@@ -64,9 +66,9 @@
     />
 
     <!-- Submit -->
-    <button class="btn-1 w-full max-w-xs" @click="$emit('next')">
+    <BaseButton class="w-full max-w-xs" @click="$emit('next')">
       {{ t('submit.send') }}
-    </button>
+    </BaseButton>
   </div>
 </template>
 
@@ -75,6 +77,7 @@ import { ref } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { XIcon } from 'lucide-vue-next';
 import { processImageFiles } from '@/utils/imageUtils';
+import BaseButton from '@/components/base/BaseButton.vue';
 
 const { t } = useI18n();
 const hintStep = ref(null);

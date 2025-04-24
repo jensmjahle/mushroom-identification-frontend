@@ -74,19 +74,19 @@
 
             <div>
               <label class="block text-xs sm:text-sm font-medium text-text1 mb-1">
-              {{ t('support.messageLabel') }}
+                {{ t('support.messageLabel') }}
               </label>
               <textarea
-              v-model="message"
-              rows="4"
-              required
-              class="w-full border border-border2 rounded p-2 text-xs sm:text-sm resize-none"
+                v-model="message"
+                rows="4"
+                required
+                class="w-full border border-border2 rounded p-2 text-xs sm:text-sm resize-none"
               ></textarea>
             </div>
 
-            <button class="btn-1 w-full text-sm sm:text-base">
+            <BaseButton type="submit" block :variant="1" class="text-sm sm:text-base">
               {{ t('support.submitButton') }}
-            </button>
+            </BaseButton>
           </form>
         </div>
       </div>
@@ -97,6 +97,7 @@
 <script setup>
 import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
+import BaseButton from '@/components/base/BaseButton.vue'
 
 const { t } = useI18n()
 const email = ref('')
