@@ -25,7 +25,7 @@ const routes = [
     path: '/', 
     name: 'Construction', 
     component: UnderConstructionView,
-    redirect: '/user/home'
+    redirect: '/user'
   },
   {
     path: '/user',
