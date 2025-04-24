@@ -25,7 +25,6 @@ import DangerZone from "@/components/settings/DangerZone.vue";
         </div>
       </div>
 
-
       <hr class="my-4 border-text2-faded" />
 
       <PersonalSettingsForm />

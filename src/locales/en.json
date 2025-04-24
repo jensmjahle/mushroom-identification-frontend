@@ -24,6 +24,12 @@
       "emailPlaceholder": "you@example.com",
       "newPasswordPlaceholder": "Enter a new password",
       "confirmPasswordPlaceholder": "Repeat your new password"
+    },
+    "danger": {
+      "title": "Danger Zone",
+      "description": "This action is irreversible. Deleting your account will remove all your data.",
+      "button": "Delete Account",
+      "confirm": "Are you sure you want to delete your account?"
     }
   },
   "login": {
