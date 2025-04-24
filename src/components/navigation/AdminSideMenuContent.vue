@@ -5,13 +5,13 @@
     <div class="text-5xl font-bold mb-4 text-right">{{ completedCount }}</div>
 
     <div class="space-y-2">
-      <BaseButton v-if="!isRequestPage" @click="navigate('admin-next-request')" block :variant="2">
+      <BaseButton v-if="!isRequestPage" @click=getNextFromQueue block variant="2">
         {{ $t('sideMenu.nextFromQueue') }}
       </BaseButton>
-      <BaseButton v-if="!isRequestPage" @click="navigate('admin-all-requests')" block :variant="4">
+      <BaseButton v-if="!isRequestPage" @click="navigate('admin-all-requests')" block variant="4">
         {{ $t('sideMenu.allRequests') }}
       </BaseButton>
-      <BaseButton v-if="!isRequestPage" @click="navigate('admin-statistics')" block :variant="4">
+      <BaseButton v-if="!isRequestPage" @click="navigate('admin-statistics')" block variant="4">
         {{ $t('sideMenu.statistics') }}
       </BaseButton>
 
@@ -19,7 +19,7 @@
           v-if="isRequestPage"
           @click="handleStatusChange('COMPLETED')"
           block
-          :variant="2"
+          variant="2"
       >
         {{ $t('sideMenu.completeRequest') }}
       </BaseButton>
@@ -27,7 +27,7 @@
           v-if="isRequestPage"
           @click="handleStatusChange('NEW')"
           block
-          :variant="4"
+          variant="4"
       >
         {{ $t('sideMenu.putBackIntoQueue') }}
       </BaseButton>
@@ -35,7 +35,7 @@
           v-if="isRequestPage"
           @click="handleStatusChange('PENDING')"
           block
-          :variant="4"
+          variant="4"
       >
         {{ $t('sideMenu.placeOnHold') }}
       </BaseButton>
@@ -54,10 +54,10 @@
 
     <div class="space-y-2">
       <h3 class="text-left">{{ $t('sideMenu.admins') }}</h3>
-      <BaseButton v-if="!isRequestPage"  @click="navigate('admin-management')" block :variant="2">
+      <BaseButton v-if="!isRequestPage"  @click="navigate('admin-management')" block variant="2">
         {{ $t('sideMenu.allAdmins') }}
       </BaseButton>
-      <BaseButton v-if="!isRequestPage"  @click="navigate('admin-new-administrator')" block :variant="4">
+      <BaseButton v-if="!isRequestPage"  @click="navigate('admin-new-administrator')" block variant="4">
         {{ $t('sideMenu.createNewAdmin') }}
       </BaseButton>
     </div>
@@ -71,7 +71,8 @@ import StatusIndicator from '@/components/base/StatusIndicator.vue'
 import { useAdminSideMenu} from '@/composables/useAdminSideMenu'
 import LogoButton from "@/components/LogoButton.vue";
 import { useToast } from 'vue-toastification'
-import {changeUserRequestStatus} from "@/services/adminRequestService.js";
+import {changeUserRequestStatus, getNextRequestFromQueue} from "@/services/adminRequestService.js";
+import { useRouter } from 'vue-router'
 
 
 
@@ -81,7 +82,7 @@ const { newCount, pendingCount, completedCount, navigate, route, fetchCounts } =
 const isRequestPage = computed(() => route.name === 'admin-request')
 const userRequestId = computed(() => route.params.userRequestId)
 const toast = useToast()
-
+const router = useRouter()
 
 
 const handleStatusChange = async (newStatus) => {
@@ -97,4 +98,17 @@ const handleStatusChange = async (newStatus) => {
   }
 }
 
+const getNextFromQueue = async () => {
+  try {
+    const request = await getNextRequestFromQueue()
+    if (request) {
+      await router.push({name: 'admin-request', params: {userRequestId: request.userRequestId}})
+    } else {
+      toast.info('No requests in the queue')
+    }
+  } catch (error) {
+    console.error(error)
+    toast.error('Failed to fetch next request from queue')
+  }
+}
 </script>
