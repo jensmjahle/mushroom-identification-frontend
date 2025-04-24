@@ -6,9 +6,14 @@
       {{ t('home.description') }}
     </p>
 
-    <RouterLink class="user-button" :to="{ name: 'new-request' }">
-      {{ t('home.sendRequest') }}
-    </RouterLink>
+    <div class="flex flex-row gap-4">
+      <RouterLink class="user-button" :to="{ name: 'new-request' }">
+        {{ t('home.sendRequest') }}
+      </RouterLink>
+      <RouterLink class="user-button bg-button2" :to="{ name: 'become-member' }">
+        {{ t('home.becomeMember') }}
+      </RouterLink>
+    </div>
 
     <p class="text-text1 text-sm mt-6">
       {{ t('home.or') }} <RouterLink to="user/support" class="underline text-text1 hover:text-text1">

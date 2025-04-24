@@ -122,6 +122,7 @@
   "home": {
     "description": "Not sure if you've picked liberty caps? Submit a free and anonymous request here:",
     "sendRequest": "Submit Request",
+    "becomeMember": "Become a Member",
     "getSupport": "get help from our support",
     "or": "Or"
   },
