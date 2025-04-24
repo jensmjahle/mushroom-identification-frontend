@@ -11,13 +11,20 @@ import DangerZone from "@/components/settings/DangerZone.vue";
   <div class="main-view flex justify-center items-center">
     <AdminInfoHeader />
     
-    <div class="main-admin-component bg-bg2 max-w-xl w-full p-4">
+    <div class="main-admin-component bg-bg2 max-w-3xl w-full p-4">
       <h2 class="text-text2">{{ $t('settings.title') }}</h2>
       
       <hr class="my-4 border-text2-faded" />
 
-      <LanguageSelect class=""/>
-      <ThemeSelect />
+      <div class="flex flex-col md:flex-row gap-4 w-full">
+        <div class="w-full">
+          <LanguageSelect />
+        </div>
+        <div class="w-full">
+          <ThemeSelect />
+        </div>
+      </div>
+
 
       <hr class="my-4 border-text2-faded" />
 

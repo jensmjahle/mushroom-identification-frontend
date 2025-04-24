@@ -2,18 +2,23 @@
   <div class="space-y-4">
     <h3 class="text-lg font-semibold">{{ $t('settings.personal.title') }}</h3>
 
-    <BaseInput
-        id="firstName"
-        :label="$t('settings.personal.firstName')"
-        :placeholder="$t('settings.personal.firstNamePlaceholder')"
-        v-model="firstName"
-    />
-    <BaseInput
-        id="lastName"
-        :label="$t('settings.personal.lastName')"
-        :placeholder="$t('settings.personal.lastNamePlaceholder')"
-        v-model="lastName"
-    />
+    <div class="flex flex-col md:flex-row gap-4">
+      <BaseInput
+          id="firstName"
+          :label="$t('settings.personal.firstName')"
+          :placeholder="$t('settings.personal.firstNamePlaceholder')"
+          v-model="firstName"
+          class="w-full"
+      />
+      <BaseInput
+          id="lastName"
+          :label="$t('settings.personal.lastName')"
+          :placeholder="$t('settings.personal.lastNamePlaceholder')"
+          v-model="lastName"
+          class="w-full"
+      />
+    </div>
+
     <BaseInput
         id="email"
         type="email"
@@ -25,21 +30,26 @@
     <p v-if="emailError" class="text-red-500 text-sm">{{ $t('errors.invalidEmail') }}</p>
 
     <h4 class="text-md font-medium mt-4">{{ $t('settings.personal.changePassword') }}</h4>
-    <BaseInput
-        id="newPassword"
-        type="password"
-        :label="$t('settings.personal.newPassword')"
-        :placeholder="$t('settings.personal.newPasswordPlaceholder')"
-        v-model="newPassword"
-    />
-    <BaseInput
-        id="confirmPassword"
-        type="password"
-        :label="$t('settings.personal.confirmPassword')"
-        :placeholder="$t('settings.personal.confirmPasswordPlaceholder')"
-        v-model="confirmPassword"
-        :error="passwordMismatch"
-    />
+
+    <div class="flex flex-col md:flex-row gap-4">
+      <BaseInput
+          id="newPassword"
+          type="password"
+          :label="$t('settings.personal.newPassword')"
+          :placeholder="$t('settings.personal.newPasswordPlaceholder')"
+          v-model="newPassword"
+          class="w-full"
+      />
+      <BaseInput
+          id="confirmPassword"
+          type="password"
+          :label="$t('settings.personal.confirmPassword')"
+          :placeholder="$t('settings.personal.confirmPasswordPlaceholder')"
+          v-model="confirmPassword"
+          :error="passwordMismatch"
+          class="w-full"
+      />
+    </div>
     <p v-if="passwordMismatch" class="text-red-500 text-sm">{{ $t('errors.passwordMismatch') }}</p>
 
     <BaseButton :block="true" variant="1" @click="submitChanges">
