@@ -29,8 +29,8 @@ api.interceptors.response.use(
       switch (status) {
         case 401:
           toast.error('Session expired. Please log in again.')
-          sessionStorage.removeItem('jwt')
           router.push({ name: isAdmin ? 'admin-login' : 'home' })
+          sessionStorage.removeItem('jwt')
           break
 
         case 403:

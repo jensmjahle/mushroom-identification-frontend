@@ -19,3 +19,35 @@ export const getPaginatedAdmins = async (page = 0, size = 10) => {
     throw error
   }
 }
+
+/**
+ * Updates the current admin's profile information.
+ * @param {Object} profileData - An object with { firstName, lastName, email }
+ * @returns {Promise<void>}
+ */
+export const updateAdminProfile = async (profileData) => {
+  try {
+    await axios.put('/api/admin/profile', profileData, {
+      headers: getAuthHeaders()
+    })
+  } catch (error) {
+    console.error('Failed to update admin profile:', error)
+    throw error
+  }
+}
+
+/**
+ * Changes the current admin's password.
+ * @param {Object} passwordData - An object with { oldPassword, newPassword, confirmPassword }
+ * @returns {Promise<void>}
+ */
+export const changeAdminPassword = async (passwordData) => {
+  try {
+    await axios.put('/api/admin/password', passwordData, {
+      headers: getAuthHeaders()
+    })
+  } catch (error) {
+    console.error('Failed to change admin password:', error)
+    throw error
+  }
+}
