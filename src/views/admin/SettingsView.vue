@@ -9,13 +9,14 @@ import DangerZone from "@/components/settings/DangerZone.vue";
 
 <template>
   <div class="main-view flex justify-center items-center">
+    <AdminInfoHeader />
+    
     <div class="main-admin-component bg-bg2 max-w-xl w-full p-4">
-      <AdminInfoHeader />
 
       <h2 class="text-text3 mt-4">{{ $t('settings.title') }}</h2>
       <hr class="my-4 border-border2" />
 
-      <LanguageSelect />
+      <LanguageSelect class=""/>
       <ThemeSelect />
 
       <hr class="my-4 border-border3" />
