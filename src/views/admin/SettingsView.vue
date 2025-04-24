@@ -11,7 +11,7 @@ import DangerZone from "@/components/settings/DangerZone.vue";
   <div class="main-view flex justify-center items-center">
     <AdminInfoHeader />
     
-    <div class="main-admin-component bg-bg2 max-w-3xl w-full p-4">
+    <div class="main-admin-component bg-bg2 max-w-3xl w-full p-4 shadow-lg rounded-lg">
       <h2 class="text-text2">{{ $t('settings.title') }}</h2>
       
       <hr class="my-4 border-text2-faded" />

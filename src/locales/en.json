@@ -12,18 +12,22 @@
       "dark": "Dark"
     },
     "personal": {
-      "title": "Personal Settings",
+      "title": "Account Settings",
+      "subtitle": "Manage your personal information",
       "firstName": "First Name",
       "lastName": "Last Name",
       "email": "Email",
       "changePassword": "Change Password",
+      "changePasswordSubtitle": "Update your password",
       "newPassword": "New Password",
       "confirmPassword": "Confirm Password",
       "firstNamePlaceholder": "Enter your first name",
       "lastNamePlaceholder": "Enter your last name",
       "emailPlaceholder": "you@example.com",
       "newPasswordPlaceholder": "Enter a new password",
-      "confirmPasswordPlaceholder": "Repeat your new password"
+      "confirmPasswordPlaceholder": "Repeat your new password",
+      "oldPassword": "Current Password",
+      "oldPasswordPlaceholder": "Enter your current password"
     },
     "danger": {
       "title": "Danger Zone",
@@ -189,7 +193,8 @@
   "errors": {
     "loadAdmins": "There was an error loading the admins. Please try again later.",
     "passwordMismatch": "Passwords do not match.",
-    "invalidEmail": "Please enter a valid email address."
+    "invalidEmail": "Please enter a valid email address.",
+    "missingOldPassword": "Please enter your current password to change your password."
   },
   "common": {
     "noData": "No data available",
@@ -205,7 +210,8 @@
     "completed": "Completed"
   },
   "buttons": {
-    "saveChanges": "Save Changes"
+    "savePersonalInfo": "Save Personal Info",
+    "changePassword": "Change Password"
   }
 }
 
