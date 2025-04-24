@@ -8,17 +8,17 @@
     <!-- Personal Info Section -->
     <div class="flex flex-col md:flex-row gap-4">
       <BaseInput
-          id="firstName"
+          id="firstname"
           :label="$t('settings.personal.firstName')"
           :placeholder="$t('settings.personal.firstNamePlaceholder')"
-          v-model="firstName"
+          v-model="firstname"
           class="w-full"
       />
       <BaseInput
-          id="lastName"
+          id="lastname"
           :label="$t('settings.personal.lastName')"
           :placeholder="$t('settings.personal.lastNamePlaceholder')"
-          v-model="lastName"
+          v-model="lastname"
           class="w-full"
       />
     </div>
@@ -97,8 +97,8 @@ import { useI18n } from "vue-i18n"
 const { t } = useI18n()
 
 // Reactive state
-const firstName = ref("")
-const lastName = ref("")
+const firstname = ref("")
+const lastname = ref("")
 const email = ref("")
 const oldPassword = ref("")
 const newPassword = ref("")
@@ -137,8 +137,8 @@ const submitPersonalInfo = async () => {
 
   try {
     await updateAdminProfile({
-      firstName: firstName.value,
-      lastName: lastName.value,
+      firstname: firstname.value,
+      lastname: lastname.value,
       email: email.value
     })
     alert(t('messages.profileUpdated'))
