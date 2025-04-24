@@ -10,6 +10,20 @@
     "themes": {
       "light": "Light",
       "dark": "Dark"
+    },
+    "personal": {
+      "title": "Personal Settings",
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "email": "Email",
+      "changePassword": "Change Password",
+      "newPassword": "New Password",
+      "confirmPassword": "Confirm Password",
+      "firstNamePlaceholder": "Enter your first name",
+      "lastNamePlaceholder": "Enter your last name",
+      "emailPlaceholder": "you@example.com",
+      "newPasswordPlaceholder": "Enter a new password",
+      "confirmPasswordPlaceholder": "Repeat your new password"
     }
   },
   "login": {
@@ -167,7 +181,9 @@
     "user": "User"
   },
   "errors": {
-    "loadAdmins": "There was an error loading the admins. Please try again later."
+    "loadAdmins": "There was an error loading the admins. Please try again later.",
+    "passwordMismatch": "Passwords do not match.",
+    "invalidEmail": "Please enter a valid email address."
   },
   "common": {
     "noData": "No data available",
@@ -181,6 +197,9 @@
     "pending": "Pending",
     "in_progress": "In Progress",
     "completed": "Completed"
+  },
+  "buttons": {
+    "saveChanges": "Save Changes"
   }
 }
 
