@@ -1,12 +1,12 @@
 <template>
   <div
-    class="absolute -top-0 -right-16 z-30 flex items-start h-full transition-transform duration-300 ease-in-out"
+    class="fixed sm:absolute top-4 sm:-top-0 -right-1 sm:-right-16 z-30 flex items-start mt-12 h-[80%]  sm:mt-0 sm:h-full transition-transform duration-300 ease-in-out"
     :class="isOpen ? 'translate-x-0' : 'translate-x-[calc(100%-42px)]'"
   >
     <!-- Toggle Button -->
     <button
       @click="toggleBasket"
-      class="z-40 flex flex-col items-center  bg-bg1 rounded-r-none rounded-l-md h-[80px] gap-1"
+      class="z-40 -translate-x-3 rounded-r-md sm:translate-x-0 flex flex-col items-center bg-bg1 border-border3 sm:rounded-r-none rounded-l-md h-[80px] gap-1"
     >
       <component :is="isOpen ? ChevronRight : ChevronLeft" class="w-9 h-9" />
       <ShoppingBasket class="w-7 h-7" />

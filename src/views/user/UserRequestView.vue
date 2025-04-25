@@ -1,5 +1,5 @@
 <template>
-  <div class="relative w-full h-full flex justify-center items-center p-4 pr-16 overflow-hidden">
+  <div class="relative w-full h-full flex justify-center items-center p-4 pr-14 overflow-hidden">
     <div class="flex w-full h-full relative">
       
       <!-- Main content -->

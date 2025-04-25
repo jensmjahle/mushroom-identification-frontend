@@ -1,6 +1,6 @@
 <template>
   <div class="sm:hidden fixed top-4 right-4 z-50">
-    <button ref="toggleRef" @click="menuOpen = !menuOpen" class="btn-icon-4">
+    <button ref="toggleRef" @click="menuOpen = !menuOpen" class="btn-icon-4 rounded-md">
       <Menu v-if="!menuOpen" />
       <X v-else />
     </button>
