@@ -51,3 +51,19 @@ export const changeAdminPassword = async (passwordData) => {
     throw error
   }
 }
+
+/**
+ * Deletes the current admin account.
+ * @returns {Promise<void>}
+ */
+export const deleteAdminAccount = async () => {
+  try {
+    await axios.delete('/api/admin/delete', {
+      headers: getAuthHeaders()
+    })
+  } catch (error) {
+    console.error('Failed to delete admin account:', error)
+    throw error
+  }
+}
+

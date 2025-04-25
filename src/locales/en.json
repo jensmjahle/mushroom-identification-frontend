@@ -35,7 +35,9 @@
       "description": "This action is irreversible. Deleting your account will remove all your data.",
       "button": "Delete Account",
       "confirm": "Are you sure you want to delete your account?",
-      "confirmTitle": "Confirm Account Deletion"
+      "confirmTitle": "Confirm Account Deletion",
+      "success": "Your account has been successfully deleted.",
+      "error": "There was an error deleting your account. Please try again later."
     }
   },
   "login": {

@@ -21,9 +21,14 @@
 import BaseButton from "@/components/base/BaseButton.vue"
 import { useI18n } from "vue-i18n"
 import { useConfirmDialog } from "@/composables/useConfirmDialog"
+import {deleteAdminAccount} from "@/services/adminService.js";
+import {useToast} from "vue-toastification";
+import {useRouter} from "vue-router";
 
 const { t } = useI18n()
 const { showConfirm } = useConfirmDialog()
+const toast = useToast()
+const router = useRouter()
 
 const confirmDelete = async () => {
   const confirmed = await showConfirm({
@@ -34,8 +39,15 @@ const confirmDelete = async () => {
   })
 
   if (confirmed) {
-    // Call your account deletion logic here
-    console.log('Account deletion confirmed')
+    try {
+      await deleteAdminAccount()
+      sessionStorage.removeItem('jwt')
+      await router.push({name: 'admin-login'})
+      toast.success(t('settings.danger.success'))
+    } catch (error) {
+      toast.error(t('settings.danger.error'))
+      console.error(error)
+    }
   }
 }
 </script>

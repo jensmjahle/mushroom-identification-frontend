@@ -1,6 +1,6 @@
 <template>
   <div v-if="visible" class="fixed inset-0 z-50 bg-black/50 flex items-center justify-center">
-    <div class="bg-bg2 text-text1 p-6 rounded-xl shadow-xl w-[90%] max-w-md">
+    <div class="bg-bg1 text-text1 p-6 rounded-xl shadow-xl w-[90%] max-w-md">
       <h3 class="text-lg font-semibold mb-4">{{ title }}</h3>
       <p class="mb-6">{{ message }}</p>
       <div class="flex justify-end gap-4">
@@ -16,7 +16,6 @@
 </template>
 
 <script setup>
-import { ref } from "vue"
 import BaseButton from "@/components/base/BaseButton.vue"
 
 const props = defineProps({
