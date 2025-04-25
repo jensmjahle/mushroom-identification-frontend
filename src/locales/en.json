@@ -29,7 +29,6 @@
       "oldPassword": "Current Password",
       "oldPasswordPlaceholder": "Enter your current password"
     },
-    
     "danger": {
       "title": "Danger Zone",
       "description": "This action is irreversible. Deleting your account will remove all your data.",
@@ -41,12 +40,19 @@
     }
   },
   "login": {
-    "title": "Administrator Login",
+    "title": "Admin Login",
+    "subtitle": "Enter your credentials to access the admin dashboard",
     "username": "Username",
     "password": "Password",
+    "usernamePlaceholder": "Enter your username",
+    "passwordPlaceholder": "Enter your password",
     "submit": "Log in",
-    "error": "Invalid username or password",
-    "fill_in_both_username_and_password": "Please fill in both username and password"
+    "fill_in_both_username_and_password": "Please fill in both fields.",
+    "error": "Login failed. Please check your credentials.",
+    "goToUserSite": {
+      "question": "Looking for the main site?",
+      "link": "Go to user site"
+    }
   },
   "admin": {
     "stats": {
