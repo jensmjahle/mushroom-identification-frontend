@@ -1,32 +1,47 @@
 <template>
   <nav class="hidden sm:flex fixed top-4 right-4 z-30">
-    <div class="relative flex items-center gap-4">
+    <div class="relative flex items-center gap-2">
 
       <RoleBadge :role="role" />
-
-      <!-- User Circle Button -->
-      <button
+      <BaseButton
           @click="toggleDropdown"
-          class="w-10 h-10 rounded-full bg-button1 hover:bg-button1-hover flex items-center justify-center text-white font-bold uppercase"
+          variant="3"
+          class="w-10 h-10 rounded-full flex items-center justify-center font-bold uppercase"
       >
         {{ username?.charAt(0) }}
-      </button>
+      </BaseButton>
 
       <!-- Dropdown Menu -->
       <div
           v-if="dropdownOpen"
-          class="absolute right-0 top-full mt-2 w-40 bg-white rounded-lg shadow-lg text-gray-700"
+          class="absolute right-0 top-full mt-2 w-44 bg-bg3 rounded-lg shadow-lg text-text3"
       >
-        <ul class="py-2">
+        <div class="px-4 py-2 border-b border-border3 text-text3 text-sm font-medium truncate">
+          {{ username }}
+        </div>
+
+        <ul class="p-2 flex flex-col gap-2">
           <li>
-            <button @click="goToSettings" class="block w-full text-left px-4 py-2 hover:bg-gray-100">
-              Settings
-            </button>
+            <BaseButton
+                @click="goToSettings"
+                variant="4"
+                block
+                class="flex items-center gap-2 w-full"
+            >
+              <Settings class="w-4 h-4" />
+              <span>{{ $t('navigation.settings') }}</span>
+            </BaseButton>
           </li>
           <li>
-            <button @click="logout" class="block w-full text-left px-4 py-2 hover:bg-gray-100">
-              Log out
-            </button>
+            <BaseButton
+                @click="logout"
+                variant="4"
+                block
+                class="flex items-center gap-2 w-full"
+            >
+              <LogOut class="w-4 h-4" />
+              <span>{{ $t('navigation.logout') }}</span>
+            </BaseButton>
           </li>
         </ul>
       </div>
@@ -36,13 +51,18 @@
 </template>
 
 
+
 <script setup>
-import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
+import { ref, onMounted, onBeforeUnmount } from 'vue'
 import { useRouter } from 'vue-router'
 import { parseJwt } from '@/utils/jwt'
-import { ShieldCheck } from 'lucide-vue-next'
-import RoleBadge from "@/components/badges/RoleBadge.vue";
+import RoleBadge from "@/components/badges/RoleBadge.vue"
+import BaseButton from "@/components/base/BaseButton.vue"
+import { Settings, LogOut} from 'lucide-vue-next'
+import { useI18n } from 'vue-i18n'
 
+
+const { t } = useI18n()
 const router = useRouter()
 const dropdownOpen = ref(false)
 const token = sessionStorage.getItem('jwt')
@@ -74,21 +94,11 @@ const handleClickOutside = (e) => {
 
 const logout = () => {
   sessionStorage.removeItem('jwt')
-  router.push('/admin/login')
+  router.push({ name: 'admin-login' }) 
 }
 
 const goToSettings = () => {
-  router.push('/admin/settings')
+  router.push({ name: 'admin-settings' })
 }
 
-const getRoleClass = (role) => {
-  switch (role) {
-    case 'SUPERUSER':
-      return 'bg-role-superuser text-role-superuser-meta'
-    case 'MODERATOR':
-      return 'bg-role-moderator text-role-moderator-meta'
-    default:
-      return 'bg-gray-400 text-white'
-  }
-}
 </script>
