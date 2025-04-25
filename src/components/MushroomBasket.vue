@@ -1,62 +1,66 @@
-<script setup>
-import { onMounted, ref } from "vue";
-import { ShoppingBasket, ChevronLeft, ChevronRight } from "lucide-vue-next";
-import Mushroom from "./Mushroom.vue";
-import {getUserRequestMushrooms} from "@/services/mushroomService.js";
-
-const token = sessionStorage.getItem('jwt');
-
-const props = defineProps({
-  userRequestId: String
-});
-
-const mushrooms = ref([]);
-const isOpen = ref(true);
-
-onMounted(() => {
-  getUserRequestMushrooms(props.userRequestId, token).then((data) => {
-    mushrooms.value = data;
-  });
-});
-</script>
-
 <template>
-  <div class="relative flex h-full items-start">
-    <!-- Toggle tab -->
+  <div
+    class="absolute -top-0 -right-16 z-30 flex items-start h-full transition-transform duration-300 ease-in-out"
+    :class="isOpen ? 'translate-x-0' : 'translate-x-[calc(100%-42px)]'"
+  >
+    <!-- Toggle Button -->
     <button
-        @click="isOpen = !isOpen"
-        class="absolute top-10 -left-8  btn-icon-transparent-1 bg-bg1 rounded-l-md rounded-r-none z-20">
-      <component :is="isOpen ? ChevronRight : ChevronLeft" class="w-6 h-6" /> <ShoppingBasket></ShoppingBasket>
+      @click="toggleBasket"
+      class="z-40 flex flex-col items-center  bg-bg1 rounded-r-none rounded-l-md h-[80px] gap-1"
+    >
+      <component :is="isOpen ? ChevronRight : ChevronLeft" class="w-9 h-9" />
+      <ShoppingBasket class="w-7 h-7" />
     </button>
 
-    <!-- Basket content wrapper -->
+    <!-- Basket Panel -->
     <div
-        :class="[
-        'transition-all duration-300 h-full flex',
-        isOpen ? 'w-auto opacity-100' : 'w-0 opacity-0 overflow-hidden' ]">
-      <div class="basket h-full flex flex-col">
-        
-        <!-- Header -->
-        <div class="mb-2 text-center">
-          <div class="flex justify-center items-center space-x-2 text-text1">
-            <ShoppingBasket class="w-5 h-5 text-button3" />
-            <h2 class="text-lg font-semibold">Mushroom Basket</h2>
-          </div>
-          <p class="text-xs text-text1-faded mt-1 font-medium">
-            {{ mushrooms.length }} mushroom{{ mushrooms.length === 1 ? '' : 's' }} in the basket
-          </p>
+      class="basket w-[280px] h-full flex flex-col bg-bg1 shadow-lg border border-border1 rounded-bl-lg"
+    >
+      <!-- Header -->
+      <div class="mb-2 text-center px-4 pt-4">
+        <div class="flex justify-center items-center space-x-2 text-text1">
+          <ShoppingBasket class="w-5 h-5 text-button3" />
+          <h2 class="text-lg font-semibold">Mushroom Basket</h2>
         </div>
+        <p class="text-xs text-text1-faded mt-1 font-medium">
+          {{ mushrooms.length }} mushroom{{ mushrooms.length === 1 ? '' : 's' }} in the basket
+        </p>
+      </div>
 
-        <!-- Mushrooms -->
-        <div class="overflow-y-auto max-h-[70vh] space-y-6">
-          <div
-              v-for="(mushroom, index) in mushrooms"
-              :key="index"
-              class="flex justify-center">
-            <Mushroom :mushroom="mushroom" :index="index + 1" />
-          </div>
+      <!-- Mushrooms -->
+      <div class="overflow-y-auto px-4 pb-4 space-y-6 mt-2">
+        <div
+          v-for="(mushroom, index) in mushrooms"
+          :key="index"
+          class="flex justify-center"
+        >
+          <Mushroom :mushroom="mushroom" :index="index + 1" />
         </div>
       </div>
     </div>
   </div>
 </template>
+
+<script setup>
+import { onMounted, ref } from "vue";
+import { ShoppingBasket, ChevronLeft, ChevronRight } from "lucide-vue-next";
+import Mushroom from "./Mushroom.vue";
+import { getUserRequestMushrooms } from "@/services/mushroomService.js";
+
+const props = defineProps({ userRequestId: String });
+const emit = defineEmits(["basket-toggle"]);
+
+const mushrooms = ref([]);
+const isOpen = ref(false);
+
+function toggleBasket() {
+  isOpen.value = !isOpen.value;
+  emit("basket-toggle", isOpen.value);
+}
+
+onMounted(() => {
+  getUserRequestMushrooms(props.userRequestId).then((data) => {
+    mushrooms.value = data;
+  });
+});
+</script>

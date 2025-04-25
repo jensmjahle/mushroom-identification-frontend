@@ -1,33 +1,42 @@
 <template>
- 
-  <div class="support-page flex items-center justify-center px-4 py-10 overflow-y-scroll">
-    <div class="flex-1">
-      <div class="vertical-box">
-      <RequestStatusBox v-if="userRequest" :request="userRequest" />
-      <ChatBox :userRequestId="userRequestId" />
+  <div class="relative w-full h-full flex justify-center items-center p-4 pr-16 overflow-hidden">
+    <div class="flex w-full h-full relative">
+      
+      <!-- Main content -->
+      <div
+        :class="[
+          'flex flex-col justify-start items-center transition-all duration-300 ease-in-out',
+          isBasketOpen ? 'w-[calc(100%-300px)] mr-6' : 'w-full'
+        ]"
+      >
+      <div class="w-full max-w-3xl flex flex-col overflow-y-auto max-h-[85vh] p-2">
+          <RequestStatusBox v-if="userRequest" :request="userRequest" />
+          <ChatBox :userRequestId="userRequestId" />
+        </div>
+      </div>
+
+      <!-- Mushroom Basket -->
+      <MushroomBasket :userRequestId="userRequestId" @basket-toggle="isBasketOpen = $event" />
     </div>
-    </div>
-    <MushroomBasket :userRequestId="userRequestId"></MushroomBasket>
   </div>
 </template>
 
 <script setup>
-import ChatBox from '../../components/ChatBox.vue';
+import { ref, onMounted } from 'vue';
 import { useRoute } from 'vue-router';
-import MushroomBasket from "@/components/MushroomBasket.vue";
-import RequestStatusBox from "@/components/RequestStatusBox.vue";
-import {onMounted, ref} from "vue";
-import {getUserRequest} from "@/services/userRequestService.js";
+import RequestStatusBox from '@/components/RequestStatusBox.vue';
+import ChatBox from '@/components/ChatBox.vue';
+import MushroomBasket from '@/components/MushroomBasket.vue';
+import { getUserRequest } from '@/services/userRequestService.js';
 
 const route = useRoute();
 const userRequestId = route.params.userRequestId;
 const userRequest = ref(null);
-const token = sessionStorage.getItem('jwt');
+const isBasketOpen = ref(false);
 
 onMounted(() => {
-  console.log('User Request ID:', userRequestId);
-  getUserRequest(userRequestId, token).then((data) => {
+  getUserRequest(userRequestId).then((data) => {
     userRequest.value = data;
   });
-})
+});
 </script>

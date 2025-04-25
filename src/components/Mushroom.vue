@@ -62,7 +62,7 @@ import MushroomPopup from "../components/MushroomPopup.vue";
 import StatusBadge from "./badges/StatusBadge.vue";
 
 
-const BASE_URL = 'http://localhost:8080'
+const BASE_URL = 'http://100.98.99.38:8080'
 const props = defineProps({
   mushroom: Object,
   index: Number
