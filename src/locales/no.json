@@ -83,6 +83,7 @@
     "mushroomListTitle": "Dine sopper:",
     "step": "Steg",
     "of": "av",
+    "sending": "Sender inn...",
     "steps": [
       {
         "title": "Trykk på den lilla knappen under for å legge til første sopp",
@@ -101,7 +102,7 @@
     {
       "top": "Bilde fra toppen av soppen",
       "side": "Bilde fra siden av soppen",
-      "bottom": "Bilde fra undersiden av soppen"
+      "under": "Bilde fra undersiden av soppen"
     },
     "validation": {
       "errorMushroomMissing": "Du må legge til minst én sopp før du kan sende inn.",
