@@ -25,7 +25,7 @@ defineEmits(['update:modelValue'])
         :disabled="disabled"
         :class="[
         'w-full px-3 py-2 border rounded bg-bg1 text-text1 placeholder:text-text1-faded focus:outline-none focus:ring-2 transition',
-        error ? 'border-red-500 focus:ring-red-300' : 'border-border1 focus:ring-button1-border'
+        error ? 'border-danger focus:danger-hover' : 'border-border1 focus:ring-button1-border'
       ]"
     />
   </div>
