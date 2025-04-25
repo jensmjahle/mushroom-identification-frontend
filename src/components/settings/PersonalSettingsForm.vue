@@ -95,10 +95,10 @@ import { updateAdminProfile, changeAdminPassword } from "@/services/adminService
 import { useI18n } from "vue-i18n"
 import { useToast } from "vue-toastification"
 
+
 const { t } = useI18n()
 const toast = useToast()
 
-// Reactive state
 const firstname = ref("")
 const lastname = ref("")
 const email = ref("")
@@ -109,11 +109,7 @@ const passwordAttempted = ref(false)
 
 // Regex: 8–50 chars, at least one uppercase, one digit, no spaces
 const passwordValidPattern = /^(?=.*[A-Z])(?=.*\d)[^\s]{8,50}$/
-
-// Validation
-const emailError = computed(() =>
-    !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value) && email.value.length > 0
-)
+const emailError = computed(() => !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value) && email.value.length > 0)
 
 const passwordMismatch = computed(() =>
     passwordAttempted.value &&

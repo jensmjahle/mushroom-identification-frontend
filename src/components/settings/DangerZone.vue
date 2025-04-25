@@ -16,15 +16,26 @@
   </div>
 </template>
 
+
 <script setup>
 import BaseButton from "@/components/base/BaseButton.vue"
 import { useI18n } from "vue-i18n"
+import { useConfirmDialog } from "@/composables/useConfirmDialog"
 
 const { t } = useI18n()
+const { showConfirm } = useConfirmDialog()
 
-const confirmDelete = () => {
-  if (confirm(t('settings.danger.confirm'))) {
+const confirmDelete = async () => {
+  const confirmed = await showConfirm({
+    title: t('settings.danger.confirmTitle'),
+    message: t('settings.danger.confirm'),
+    confirmText: t('buttons.confirm'),
+    cancelText: t('buttons.cancel')
+  })
+
+  if (confirmed) {
     // Call your account deletion logic here
+    console.log('Account deletion confirmed')
   }
 }
 </script>

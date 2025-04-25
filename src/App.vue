@@ -3,19 +3,25 @@ import Footer from './components/Footer.vue';
 import ConfirmDialog from "@/components/base/ConfirmDialog.vue";
 import {useConfirmDialog} from "@/composables/useConfirmDialog.js";
 
-const dialog = useConfirmDialog()
+
+const {
+  isVisible,
+  options,
+  confirm,
+  cancel
+} = useConfirmDialog()
 </script>
 
 <template>
   <ConfirmDialog
-      v-if="dialog.isVisible"
-      :title="dialog.options.title"
-      :message="dialog.options.message"
-      :confirmText="dialog.options.confirmText"
-      :cancelText="dialog.options.cancelText"
-      :visible="dialog.isVisible"
-      @confirm="dialog.confirm"
-      @cancel="dialog.cancel"
+      v-if="isVisible"
+      :title="options.title"
+      :message="options.message"
+      :confirmText="options.confirmText"
+      :cancelText="options.cancelText"
+      :visible="isVisible"
+      @confirm="confirm"
+      @cancel="cancel"
   />
   <div class="min-h-screen flex flex-col">
     <main class="flex-grow">

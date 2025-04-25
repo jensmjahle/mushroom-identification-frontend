@@ -1,37 +1,34 @@
-import { ref } from "vue"
+import { ref } from 'vue'
 
 const isVisible = ref(false)
-const options = ref({
-  title: "",
-  message: "",
-  confirmText: "",
-  cancelText: "",
-  resolve: null
-})
+const options = ref({})
+let resolver = null
 
 export const useConfirmDialog = () => {
   const showConfirm = ({ title, message, confirmText = "Confirm", cancelText = "Cancel" }) => {
+    isVisible.value = true
+    options.value = { title, message, confirmText, cancelText }
+
     return new Promise(resolve => {
-      options.value = { title, message, confirmText, cancelText, resolve }
-      isVisible.value = true
+      resolver = resolve
     })
   }
 
   const confirm = () => {
     isVisible.value = false
-    options.value.resolve(true)
+    resolver?.(true)
   }
 
   const cancel = () => {
     isVisible.value = false
-    options.value.resolve(false)
+    resolver?.(false)
   }
 
   return {
     isVisible,
     options,
+    showConfirm,
     confirm,
-    cancel,
-    showConfirm
+    cancel
   }
 }
