@@ -54,7 +54,7 @@ const login = async () => {
   try {
     error.value = null
     const response = await loginUser(code.value)
-    const token = response.token
+    const token = response.data.token
     sessionStorage.setItem('jwt', token)
     const userRequestId = parseJwt(token)?.sub
 
