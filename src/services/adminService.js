@@ -67,3 +67,18 @@ export const deleteAdminAccount = async () => {
   }
 }
 
+/**
+ * Fetches the current admin's profile from the /me endpoint.
+ * @returns {Promise<AdminDTO>}
+ */
+export const getAdminMe = async () => {
+  try {
+    const response = await axios.get('/api/admin/me', {
+      headers: getAuthHeaders()
+    })
+    return response.data
+  } catch (error) {
+    console.error('Failed to load admin profile:', error)
+    throw error
+  }
+}

@@ -135,7 +135,10 @@
     "newRequest": "New Request",
     "login": "Check Answer",
     "membership": "Become a Member",
-    "support": "Support"
+    "support": "Support",
+    "admins" : "Administrators",
+    "allAdmins" : "All Administrators",
+    "createNewAdmin" : "Create New Administrator"
   },
   "mushroom": {
     "title": "Mushroom"
@@ -201,7 +204,8 @@
     "passwordMismatch": "Passwords do not match.",
     "invalidPasswordFormat": "Password must be 8–50 characters long, include one uppercase letter, one number, and contain no spaces.",
     "profileUpdateFailed": "Failed to update profile. Please try again.",
-    "passwordChangeFailed": "Failed to change password. Please try again."
+    "passwordChangeFailed": "Failed to change password. Please try again.",
+    "failedToLoadProfile": "Failed to load your profile information."
   },
   "messages": {
     "profileUpdated": "Your profile was updated successfully.",
@@ -221,7 +225,7 @@
     "completed": "Completed"
   },
   "buttons": {
-    "savePersonalInfo": "Save Personal Info",
+    "savePersonalInfo": "Update Personal Info",
     "changePassword": "Change Password",
     "confirm": "Confirm",
     "cancel": "Cancel"
