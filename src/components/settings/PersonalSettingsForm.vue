@@ -93,8 +93,10 @@ import BaseButton from "@/components/base/BaseButton.vue"
 import BaseInput from "@/components/base/BaseInput.vue"
 import { updateAdminProfile, changeAdminPassword } from "@/services/adminService"
 import { useI18n } from "vue-i18n"
+import { useToast } from "vue-toastification"
 
 const { t } = useI18n()
+const toast = useToast()
 
 // Reactive state
 const firstname = ref("")
@@ -141,9 +143,9 @@ const submitPersonalInfo = async () => {
       lastname: lastname.value,
       email: email.value
     })
-    alert(t('messages.profileUpdated'))
+    toast.success(t('messages.profileUpdated'))
   } catch (error) {
-    alert(t('errors.profileUpdateFailed'))
+    // Errors are handled globally via axios interceptor
   }
 }
 
@@ -162,13 +164,14 @@ const submitPasswordChange = async () => {
       newPassword: newPassword.value,
       confirmPassword: confirmPassword.value
     })
-    alert(t('messages.passwordChanged'))
+    toast.success(t('messages.passwordChanged'))
     oldPassword.value = ""
     newPassword.value = ""
     confirmPassword.value = ""
     passwordAttempted.value = false
   } catch (error) {
-    alert(t('errors.passwordChangeFailed'))
+    // Errors are handled globally via axios interceptor
   }
 }
 </script>
+
