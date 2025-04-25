@@ -107,8 +107,8 @@ const newPassword = ref("")
 const confirmPassword = ref("")
 const passwordAttempted = ref(false)
 
-// Regex: 8–20 chars, at least one uppercase, one digit, no spaces
-const passwordValidPattern = /^(?=.*[A-Z])(?=.*\d)[^\s]{8,20}$/
+// Regex: 8–50 chars, at least one uppercase, one digit, no spaces
+const passwordValidPattern = /^(?=.*[A-Z])(?=.*\d)[^\s]{8,50}$/
 
 // Validation
 const emailError = computed(() =>

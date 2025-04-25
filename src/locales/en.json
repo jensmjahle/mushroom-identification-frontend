@@ -196,7 +196,7 @@
     "invalidEmail": "Please enter a valid email address.",
     "missingOldPassword": "Please enter your current password to change your password.",
     "passwordMismatch": "Passwords do not match.",
-    "invalidPasswordFormat": "Password must be 8–20 characters long, include one uppercase letter, one number, and contain no spaces.",
+    "invalidPasswordFormat": "Password must be 8–50 characters long, include one uppercase letter, one number, and contain no spaces.",
     "profileUpdateFailed": "Failed to update profile. Please try again.",
     "passwordChangeFailed": "Failed to change password. Please try again."
   },
