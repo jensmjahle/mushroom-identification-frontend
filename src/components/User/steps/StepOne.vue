@@ -31,7 +31,7 @@
 
     <!-- Tidligere sopper -->
     <div class="flex w-full flex-row gap-6 items-start">
-      <div class="flex-1 border border-border1 rounded px-2 h-[150px] overflow-y-auto bg-bg2 w-full relative">
+      <div class="flex-1 border border-border1 rounded px-2 h-[120px] overflow-y-auto bg-bg2 w-full relative">
         <div class="sticky top-0 left-0 z-10 bg-bg2 pb-2 font-semibold text-text1 text-left">{{ t('submit.mushroomListTitle') }}</div>
         <template v-if="mushrooms.length">
           <div
@@ -42,41 +42,40 @@
             <XIcon class="w-4 h-4 text-text1-faded hover:text-button1-meta absolute top-2 right-2 cursor-pointer" @click="removeMushroom(mushroom.id)" />
             <div class="font-semibold text-text1 text-left mb-1">{{ t('submit.mushroom') }} {{ mushroom.id }}</div>
             <div class="flex flex-wrap gap-2">
-              <div
-                v-for="(img, i) in mushroom.images"
-                :key="i"
-                class="bg-bg1 border border-border1 rounded px-2 py-1 text-xs text-text1"
-              >
+              <div v-for="(img, i) in mushroom.images" :key="i" class="bg-bg1 border border-border1 rounded px-2 py-1 text-xs text-text1">
                 {{ img.name }}
               </div>
             </div>
           </div>
         </template>
         <template v-else>
-          <p :class="['text-sm text-center', errorMushrooms ? 'text-red-500' : 'text-text1-faded']">
-            {{ errorMushrooms ? t('submit.validation.errorMushroomMissing') : t('submit.noMushrooms') }}
-          </p>
+          <p class="text-text1-faded text-sm text-center">{{ t('submit.noMushrooms') }}</p>
         </template>
+        <p v-if="showErrorMushroom" class="text-sm text-red-500 mt-1">{{ t('submit.validation.errorMushroomMissing') }}</p>
       </div>
 
       <BaseButton variant="2" class="h-full w-[10%]" @click="showMushroomPopup = true">+</BaseButton>
     </div>
 
     <!-- Kommentar -->
-    <textarea
-      class="w-full p-2 border border-border1 rounded text-sm resize-none min-h-[70px]"
-      :class="errorComment ? 'text-red-500 placeholder-red-500' : 'text-text1 bg-bg1'"
-      rows="3"
-      :placeholder="errorComment ? t('submit.validation.errorCommentMissing') : t('submit.commentPlaceholder')"
-      v-model="comment"
-    />
+    <div class="w-full relative">
+      <textarea
+        class="w-full p-2 border border-border1 rounded text-sm resize-none min-h-[70px] text-text1 bg-bg1"
+        rows="3"
+        :placeholder="showErrorComment ? t('submit.validation.errorCommentMissing') : t('submit.commentPlaceholder')"
+        v-model="comment"
+        :class="showErrorComment ? 'border-red-500 text-red-500 placeholder-red-500' : ''"
+      />
+    </div>
 
     <!-- Send -->
-    <BaseButton
-      class="w-full max-w-xs"
-      @click="validateAndSubmit"
-    >
-      {{ t('submit.send') }}
+    <BaseButton class="w-full max-w-xs flex items-center justify-center gap-2" @click="handleSubmit" :disabled="loading">
+      <svg v-if="loading" class="animate-spin h-5 w-5 text-text1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/>
+        <path class="opacity-75" fill="currentColor"
+              d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"/>
+      </svg>
+      <span>{{ t('submit.send') }}</span>
     </BaseButton>
 
     <!-- Popup -->
@@ -88,12 +87,7 @@
         </div>
 
         <div class="flex justify-between mb-4">
-          <div
-            v-for="n in 3"
-            :key="n"
-            class="flex-1 h-2 mx-1 rounded-md"
-            :class="{ 'bg-button1': mushroomStep >= n, 'bg-border2': mushroomStep < n }"
-          ></div>
+          <div v-for="n in 3" :key="n" class="flex-1 h-2 mx-1 rounded-md" :class="{ 'bg-button1': mushroomStep >= n, 'bg-border2': mushroomStep < n }"></div>
         </div>
 
         <p class="text-text1-faded text-sm mb-2">{{ stepDescriptions[mushroomStep - 1] }}</p>
@@ -123,15 +117,22 @@
 <script setup>
 import { ref, computed } from 'vue'
 import { useI18n } from 'vue-i18n'
+import { useToast } from 'vue-toastification'
+import { sendNewUserRequest } from '@/services/userRequestService'
 import { processImageFiles } from '@/utils/imageUtils'
 import { XIcon } from 'lucide-vue-next'
 import BaseButton from '@/components/base/BaseButton.vue'
 
 const { t, tm } = useI18n()
+const toast = useToast()
 const emit = defineEmits(['next'])
 
 const hintStep = ref(null)
 const comment = ref('')
+const showErrorComment = ref(false)
+const showErrorMushroom = ref(false)
+const loading = ref(false)
+
 const showMushroomPopup = ref(false)
 const mushroomStep = ref(1)
 const popupInputRef = ref(null)
@@ -140,10 +141,8 @@ const mushroomInProgress = ref({ 1: null, 2: null, 3: null })
 const imagePreviews = ref({ 1: null, 2: null, 3: null })
 const mushrooms = ref([])
 
-const errorMushrooms = ref(false)
-const errorComment = ref(false)
-
 const steps = computed(() => tm('submit.steps'))
+
 const stepDescriptions = [
   t('submit.stepDescription.top'),
   t('submit.stepDescription.side'),
@@ -218,14 +217,23 @@ function resetMushroomPopup() {
   showMushroomPopup.value = false
 }
 
-function validateAndSubmit() {
-  errorMushrooms.value = mushrooms.value.length === 0
-  errorComment.value = comment.value.trim() === ''
-  if (!errorMushrooms.value && !errorComment.value) {
-    emit('next', {
-      mushrooms: mushrooms.value,
-      comment: comment.value
-    })
+async function handleSubmit() {
+  showErrorComment.value = comment.value.trim() === ''
+  showErrorMushroom.value = mushrooms.value.length === 0
+  if (showErrorComment.value || showErrorMushroom.value) return
+
+  loading.value = true
+  try {
+    const result = await sendNewUserRequest(comment.value, mushrooms.value)
+    if (result) {
+      emit('next', result)
+    } else {
+      toast.error('Noe gikk galt. Prøv igjen.')
+    }
+  } catch (err) {
+    toast.error('Innsending feilet.')
+  } finally {
+    loading.value = false
   }
 }
 </script>
