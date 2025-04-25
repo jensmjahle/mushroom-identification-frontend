@@ -11,10 +11,10 @@ import DangerZone from "@/components/settings/DangerZone.vue";
   <div class="main-view flex justify-center items-center">
     <AdminInfoHeader />
     
-    <div class="main-admin-component bg-bg2 max-w-3xl w-full p-4 shadow-lg rounded-lg">
+    <div class="main-admin-component bg-bg1 max-w-3xl w-full p-4 shadow-lg rounded-lg">
       <h2 class="text-text2">{{ $t('settings.title') }}</h2>
       
-      <hr class="my-4 border-text2-faded" />
+      <hr class="my-4 border-text1-faded" />
 
       <div class="flex flex-col md:flex-row gap-4 w-full">
         <div class="w-full">
@@ -25,11 +25,11 @@ import DangerZone from "@/components/settings/DangerZone.vue";
         </div>
       </div>
 
-      <hr class="my-4 border-text2-faded" />
+      <hr class="my-4 border-text1-faded" />
 
       <PersonalSettingsForm />
 
-      <hr class="my-4 border-text2-faded" />
+      <hr class="my-4 border-text1-faded" />
 
       <DangerZone />
     </div>
