@@ -26,24 +26,35 @@ api.interceptors.response.use(
       const currentRoute = router.currentRoute.value
       const isAdmin = currentRoute.path.startsWith('/admin')
 
+      const data = error.response?.data || {}
+      const message = data.message || 'An error occurred.'
+      const type = data.type || null
+
       switch (status) {
         case 401:
-          toast.error('Session expired. Please log in again.')
-          sessionStorage.removeItem('jwt')
-          router.push({ name: isAdmin ? 'admin-login' : 'home' })
+          if (type === 'INVALID_TOKEN') {
+            toast.error(message || 'Session expired. Please log in again.')
+            sessionStorage.removeItem('jwt')
+            router.push({ name: isAdmin ? 'admin-login' : 'home' })
+          } else {
+            toast.error(message || 'Unauthorized. Please check your credentials.')
+          }
           break
 
         case 403:
-          toast.warning('You do not have permission to access this.')
+          toast.warning(message || 'You do not have permission to access this.')
           break
 
         case 404:
-          toast.error('The requested resource was not found.')
+          toast.error(message || 'The requested resource was not found.')
           break
 
         default:
           if (status >= 500) {
-            toast.error('Server error occurred. Please try again later.')
+            toast.error(message || 'Server error occurred. Please try again later.')
+            console.error('Server error:', error)
+          } else if (message) {
+            toast.error(message)
           }
       }
 

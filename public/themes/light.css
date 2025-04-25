@@ -4,7 +4,7 @@
   --color-text1-faded: #726e6e;
   --color-text2: #000;
   --color-text2-faded: #726e6e;
-  --color-text3: #000;
+  --color-text3: #ffffff;
   --color-text3-faded: #726e6e;
   --color-text4: #ffffff;
   --color-text4-faded: #726e6e;
@@ -14,9 +14,9 @@
   --color-bg3: #2d3748;
   --color-bg4: #000;
 
-  --color-border1: #ffffff;
+  --color-border1: #726e6e;
   --color-border2: #E8E8E8;
-  --color-border3: #2d3748;
+  --color-border3: #ffffff;
   --color-border4: #2d3748;
 
   --color-button1: #4ade80;

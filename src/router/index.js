@@ -18,6 +18,7 @@ import CreateNewAdminView from "@/views/admin/CreateNewAdminView.vue";
 import BecomeMemberView from "@/views/user/BecomeMemberView.vue";
 import SupportView from '@/views/user/SupportView.vue';
 import AllRequestsView from "@/views/admin/AllRequestsView.vue";
+import SettingsView from "@/views/admin/SettingsView.vue";
 
 
 const routes = [
@@ -99,6 +100,11 @@ const routes = [
         path: 'new',
         name: 'admin-new-administrator',
         component: CreateNewAdminView
+      },
+      {
+        path: 'settings',
+        name: 'admin-settings',
+        component: SettingsView
       }
     ]
   },
