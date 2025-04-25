@@ -63,7 +63,8 @@
   },
   "submit": {
     "title": "Send inn din sopphenvendelse",
-    "upload": "Last opp bilder her eller",
+    "upload": "Last opp bilde",
+    "changeUpload": "Endre bilde",
     "browse": "bla gjennom",
     "commentPlaceholder": "Skriv inn kommentar her ..",
     "send": "Send inn bilder",
@@ -73,23 +74,39 @@
     "referenceHint": "Bruk denne koden for å finne igjen forespørselen din senere:",
     "back": "Tilbake",
     "next": "Neste",
+    "finish": "Fullfør",
     "thankYou": "Takk!",
     "thankYouHint": "Du vil få svar så snart en ekspert har vurdert bildet ditt.",
     "toFront": "Til forsiden",
+    "mushroom": "Sopp",
+    "noMushrooms": "Ingen sopper lagt til ennå.",
+    "mushroomListTitle": "Dine sopper:",
+    "step": "Steg",
+    "of": "av",
     "steps": [
       {
-        "title": "Legg alle soppene nummerert på et ark og ta bilder med god belysning.",
-        "hint": "Tips: Bruk dagslys og legg soppen på et lyst underlag."
+        "title": "Trykk på den lilla knappen under for å legge til første sopp",
+        "hint": "Ta ett bilde fra toppen, ett fra siden og ett fra undersiden. God belysning og nøytral bakgrunn hjelper identifiseringen."
       },
       {
-        "title": "Send inn og husk referansekoden du får oppgitt.",
-        "hint": "Koden brukes for å hente resultatet senere."
+        "title": "Husk referansekoden etter innsending",
+        "hint": "Når du sender inn, får du en referansekode. Denne brukes for å hente svar senere."
       },
       {
-        "title": "Kom tilbake om en dag eller to og sjekk svaret.",
-        "hint": "Du kan bruke referansekoden for å logge inn."
+        "title": "Ekspertene våre vurderer bildene dine",
+        "hint": "Du vil få svar innen 1–2 dager. Sjekk med referansekoden du fikk."
       }
-    ]
+    ],
+    "stepDescription": 
+    {
+      "top": "Bilde fra toppen av soppen",
+      "side": "Bilde fra siden av soppen",
+      "bottom": "Bilde fra undersiden av soppen"
+    },
+    "validation": {
+      "errorMushroomMissing": "Du må legge til minst én sopp før du kan sende inn.",
+      "errorCommentMissing": "Vennligst legg til en kort kommentar."
+    }
   },
   "sideMenu" : {
     "completedTitle" : "Fullførte",
