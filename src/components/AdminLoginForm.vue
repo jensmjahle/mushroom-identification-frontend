@@ -1,7 +1,5 @@
 <template>
   <div class="flex flex-col items-center justify-center min-h-screen px-4">
-      <img src="/assets/logo-horizontal.svg" alt="Fleinsoppkontroll logo" class=" h-auto mb-4 w-52" />
-
     <div class="text-center mb-6">
       <h1 class="text-2xl font-bold text-text1">{{ t("login.title") }}</h1>
       <p class="text-sm text-text2-faded">{{ t("login.subtitle") }}</p>

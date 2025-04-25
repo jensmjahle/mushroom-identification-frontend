@@ -1,4 +1,6 @@
 <template>
+  <img src="/assets/logo-horizontal.svg" alt="Fleinsoppkontroll logo" class=" h-auto absolute m-4 w-52" />
+  
   <AdminLoginForm :onLogin="loginUser" />
 </template>
 
