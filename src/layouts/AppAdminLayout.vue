@@ -3,6 +3,7 @@
     <MobileHamburgerMenu>
       <AdminSideMenuContent />
     </MobileHamburgerMenu>
+    <NavBar />
     <div class="flex flex-1">
       <SideMenu />
       <main class="flex w-full pt-[72px]">
