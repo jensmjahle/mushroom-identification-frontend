@@ -21,7 +21,7 @@
     </div>
 
     <!-- Hint Modal -->
-    <div v-if="hintStep !== null" class="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4" @click.self="hintStep = null">
+    <div v-if="hintStep !== null" class="fixed inset-0 bg-overlay backdrop-blur-sm flex items-center justify-center z-50 p-4" @click.self="hintStep = null">
       <div class="bg-bg1 p-6 rounded-lg shadow-lg max-w-md w-full">
         <h3 class="text-lg font-semibold mb-2 text-text1">{{ t('submit.hintTitle') }}</h3>
         <p class="text-sm text-text1-faded">{{ t(`submit.steps.${hintStep - 1}.hint`) }}</p>
@@ -51,7 +51,7 @@
         <template v-else>
           <p class="text-text1-faded text-sm text-center">{{ t('submit.noMushrooms') }}</p>
         </template>
-        <p v-if="showErrorMushroom" class="text-sm text-red-500 mt-1">{{ t('submit.validation.errorMushroomMissing') }}</p>
+        <p v-if="showErrorMushroom" class="text-sm text-danger mt-1">{{ t('submit.validation.errorMushroomMissing') }}</p>
       </div>
 
       <BaseButton variant="2" class="h-full w-[10%]" @click="showMushroomPopup = true">+</BaseButton>
@@ -64,7 +64,7 @@
         rows="3"
         :placeholder="showErrorComment ? t('submit.validation.errorCommentMissing') : t('submit.commentPlaceholder')"
         v-model="comment"
-        :class="showErrorComment ? 'border-red-500 text-red-500 placeholder-red-500' : ''"
+        :class="showErrorComment ? 'border-danger text-danger placeholder-danger' : ''"
       />
     </div>
 
@@ -79,7 +79,7 @@
     </BaseButton>
 
     <!-- Popup -->
-    <div v-if="showMushroomPopup" class="fixed inset-0 z-50 bg-black/50 flex items-center justify-center p-4">
+    <div v-if="showMushroomPopup" class="fixed inset-0 z-50 bg-overlay backdrop-blur-sm flex items-center justify-center p-4">
       <div class="bg-bg1 p-6 rounded-lg shadow-lg w-full max-w-md space-y-4">
         <div class="flex justify-between items-center mb-4">
           <h3 class="text-lg font-semibold text-text1">{{ t('submit.step') }} {{ mushroomStep }} {{ t('submit.of') }} 3</h3>
@@ -94,11 +94,11 @@
 
         <div class="text-center text-sm text-text1 mb-2">
           <div v-if="!mushroomInProgress[mushroomStep]">
-            <label for="popupFileInput" class="underline cursor-pointer text-button2">{{ t('submit.upload') }}</label>
+            <label for="popupFileInput" class="underline cursor-pointer text-button2-meta">{{ t('submit.upload') }}</label>
           </div>
           <div v-else class="space-y-2">
             <img :src="imagePreviews[mushroomStep]" alt="preview" class="max-h-40 mx-auto rounded border border-border1" />
-            <label for="popupFileInput" class="text-xs underline cursor-pointer text-button2">{{ t('submit.changeUpload') }}</label>
+            <label for="popupFileInput" class="text-xs underline cursor-pointer text-button2-meta">{{ t('submit.changeUpload') }}</label>
           </div>
           <input id="popupFileInput" type="file" class="hidden" @change="handlePopupUpload" ref="popupInputRef" />
         </div>
