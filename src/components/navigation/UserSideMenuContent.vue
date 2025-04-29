@@ -1,7 +1,7 @@
 <template>
     <div>
       <LogoButton />
-  
+      <hr class="my-4 border-border2" />
       <h2 class="text-xl font-semibold text-text4 text-center mb-4 mt-4">
         {{ $t('sideMenu.menuTitle') || 'Menu' }}
       </h2>

@@ -1,6 +1,5 @@
 <template>
   <img src="/assets/logo-horizontal.svg" alt="Fleinsoppkontroll logo" class=" h-auto absolute m-4 w-52" />
-  
   <AdminLoginForm :onLogin="loginUser" />
 </template>
 
@@ -18,7 +17,7 @@ const loginUser = async (username, password) => {
 
     if (token) {
       sessionStorage.setItem("jwt", token);
-      await router.push({ name: "admin-dashboard" }); // use route name
+      await router.push({ name: "admin-dashboard" });
     } else {
       throw new Error("Invalid credentials");
     }
