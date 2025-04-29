@@ -98,33 +98,53 @@
   },
   "submit": {
     "title": "Submit your mushroom inquiry",
-    "upload": "Upload photos here or",
+    "upload": "Upload image",
+    "changeUpload": "Change image",
     "browse": "browse",
-    "commentPlaceholder": "Enter a comment here...",
-    "send": "Submit photos",
+    "commentPlaceholder": "Enter your comment here ..",
+    "send": "Submit images",
     "close": "Close",
     "hintTitle": "Tip",
     "reference": "Reference Code",
-    "referenceHint": "Use this code to find your request later:",
+    "referenceHint": "Use this code to find your submission later:",
     "back": "Back",
     "next": "Next",
+    "finish": "Finish",
     "thankYou": "Thank you!",
-    "thankYouHint": "You will receive a response as soon as an expert has reviewed your photo.",
+    "thankYouHint": "You'll receive a reply as soon as an expert has reviewed your images.",
     "toFront": "Go to homepage",
+    "mushroom": "Mushroom",
+    "noMushrooms": "No mushrooms added yet.",
+    "mushroomListTitle": "Your mushrooms:",
+    "step": "Step",
+    "of": "of",
+    "copy": "Copy code",
+    "copied": "Copied!",
+    "sending": "Sending in...",
     "steps": [
       {
-        "title": "Place all mushrooms numbered on a sheet and take photos with good lighting.",
-        "hint": "Tip: Use daylight and place the mushrooms on a light background."
+        "title": "Click the purple button below to add the first mushroom",
+        "hint": "Take one photo from the top, one from the side, and one from underneath. Good lighting and a neutral background help the identification."
       },
       {
-        "title": "Submit and remember the reference code provided.",
-        "hint": "The code is used to retrieve the result later."
+        "title": "Remember the reference code after submission",
+        "hint": "You’ll receive a reference code when you submit. Use this code to check your results later."
       },
       {
-        "title": "Come back in a day or two and check the answer.",
-        "hint": "You can use the reference code to log in."
+        "title": "Our experts will review your photos",
+        "hint": "You'll get a response within 1–2 days. Use the reference code to check back."
       }
-    ]
+    ],
+    "stepDescription": 
+      {
+        "top": "Picture from the top of the mushroom",
+        "side": "Picture from the side of the mushroom",
+        "under": "Picture from the bottom of the mushroom"
+      },
+    "validation": {
+      "errorMushroomMissing": "You must add at least one mushroom before submitting.",
+      "errorCommentMissing": "Please add a brief comment."
+    }
   },
   "sideMenu" : {
     "completedTitle" : "Completed",
@@ -160,6 +180,7 @@
   "home": {
     "description": "Not sure if you've picked liberty caps? Submit a free and anonymous request here:",
     "sendRequest": "Submit Request",
+    "becomeMember": "Become a Member",
     "getSupport": "get help from our support",
     "or": "Or"
   },

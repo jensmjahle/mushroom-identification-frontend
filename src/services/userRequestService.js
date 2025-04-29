@@ -1,16 +1,8 @@
 import axios from '@/config/axiosConfig'
-import { getAuthHeaders } from '@/utils/authHeaders'
-import {useToast} from "vue-toastification";
+import { useToast } from 'vue-toastification'
 
 /**
- * Send a new user request. 
- *
- * @example
- * const text = 'This mushroom was found near the woods.';
- * const mushrooms = [
- *   { images: [file1, file2] },
- *   { images: [file3] }
- * ];
+ * Send a new user request (no auth required).
  *
  * @param text the text of the request
  * @param mushrooms the mushrooms to send, each with images
@@ -20,9 +12,9 @@ export const sendNewUserRequest = async (text, mushrooms) => {
   const formData = new FormData()
 
   formData.append('text', text)
-  
+
   mushrooms.forEach((mushroom, mIndex) => {
-    mushroom.images.forEach((img, iIndex) => {
+    mushroom.images.forEach((img) => {
       formData.append(`mushrooms[${mIndex}].images`, img)
     })
   })
@@ -30,7 +22,6 @@ export const sendNewUserRequest = async (text, mushrooms) => {
   try {
     const response = await axios.post('/api/requests/create', formData, {
       headers: {
-        ...getAuthHeaders(),
         'Content-Type': 'multipart/form-data'
       }
     })
@@ -44,12 +35,10 @@ export const sendNewUserRequest = async (text, mushrooms) => {
 
 export const getUserRequest = async () => {
   try {
-    const response = await axios.get('/api/requests/me', {
-      headers: getAuthHeaders()
-    })
+    const response = await axios.get('/api/requests/me')
     return response?.data || null
   } catch (error) {
-    console.error('Error fetching user request:', error)
+    console.error('Error fetching user request')
     useToast().error('Error fetching user request')
     return null
   }

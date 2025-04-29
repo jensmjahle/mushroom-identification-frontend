@@ -34,6 +34,8 @@ export default {
         text4: 'var(--color-text4)',
         'text4-faded': 'var(--color-text4-faded)',
 
+        overlay: 'var(--color-overlay)',    
+
         bg1: 'var(--color-bg1)',
         bg2: 'var(--color-bg2)',
         bg3: 'var(--color-bg3)',

@@ -1,52 +1,54 @@
 <template>
-  <div class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4" @click="handleOutsideClick">
-    <div class="bg-bg1 rounded-lg shadow-lg p-4 max-w-4xl w-full relative" @click.stop>
-      <!-- Close -->
-      <button @click="$emit('close')" class="absolute -top-10 right-0 btn-icon-transparent-1 hover:text-danger"><x></x></button>
+  <Teleport to="body">
+    <div class="fixed inset-0 bg-overlay/60 backdrop-blur-sm z-50 flex items-center justify-center p-4" @click="handleOutsideClick">
+      <div class="bg-bg1 rounded-lg shadow-lg p-4 max-w-4xl w-full relative" @click.stop>
+        <!-- Close -->
+        <button @click="$emit('close')" class="absolute -top-10 right-0 btn-icon-transparent-1 hover:text-danger"><x></x></button>
 
-      <!-- Status badge -->
-      <StatusBadge class="absolute top-2 left-2" :status="props.mushroom.mushroomStatus"></StatusBadge>
+        <!-- Status badge -->
+        <StatusBadge class="absolute top-2 left-2" :status="props.mushroom.mushroomStatus"></StatusBadge>
 
-      <!-- Image viewer -->
-      <div class="flex flex-col items-center">
-        <div
-            class="relative overflow-hidden w-full h-[400px] sm:h-[500px] mb-4 bg-black/5 rounded-md"
-            :class="{ 'cursor-grabbing': dragging, 'cursor-grab': !dragging }"
-            @mousedown="startDrag"
-            @mousemove="onDrag"
-            @mouseup="stopDrag"
-            @mouseleave="stopDrag"
-            @touchstart.prevent="startTouch"
-            @touchmove.prevent="onTouchMove"
-            @touchend="stopDrag">
-          <img
-              :src="imageUrls[currentIndex]"
-              class="w-full h-full object-contain pointer-events-none select-none absolute top-0 left-0"
-              :style="imageStyle"
-              alt="Selected Mushroom"/>
-        </div>
+        <!-- Image viewer -->
+        <div class="flex flex-col items-center">
+          <div
+              class="relative overflow-hidden w-full h-[400px] sm:h-[500px] mb-4 bg-black/5 rounded-md"
+              :class="{ 'cursor-grabbing': dragging, 'cursor-grab': !dragging }"
+              @mousedown="startDrag"
+              @mousemove="onDrag"
+              @mouseup="stopDrag"
+              @mouseleave="stopDrag"
+              @touchstart.prevent="startTouch"
+              @touchmove.prevent="onTouchMove"
+              @touchend="stopDrag">
+            <img
+                :src="imageUrls[currentIndex]"
+                class="w-full h-full object-contain pointer-events-none select-none absolute top-0 left-0"
+                :style="imageStyle"
+                alt="Selected Mushroom"/>
+          </div>
 
-        <!-- Controls -->
-        <div class="flex gap-4 mb-4">
-          <button @click="zoomIn" class="btn-1"><ZoomIn /></button>
-          <button @click="zoomOut" class="btn-1"><ZoomOut /></button>
-          <button @click="rotate" class="btn-2"><RotateCw /></button>
-        </div>
+          <!-- Controls -->
+          <div class="flex gap-4 mb-4">
+            <button @click="zoomIn" class="btn-1"><ZoomIn /></button>
+            <button @click="zoomOut" class="btn-1"><ZoomOut /></button>
+            <button @click="rotate" class="btn-2"><RotateCw /></button>
+          </div>
 
-        <!-- Thumbnails -->
-        <div class="flex gap-2 overflow-x-auto">
-          <img
-              v-for="(img, idx) in imageUrls"
-              :key="idx"
-              :src="img"
-              alt="Mushroom Thumbnail"
-              @click="currentIndex = idx"
-              class="w-16 h-16 object-cover rounded-md cursor-pointer border-2"
-              :class="idx === currentIndex ? 'border-button1' : 'border-transparent'"/>
+          <!-- Thumbnails -->
+          <div class="flex gap-2 overflow-x-auto">
+            <img
+                v-for="(img, idx) in imageUrls"
+                :key="idx"
+                :src="img"
+                alt="Mushroom Thumbnail"
+                @click="currentIndex = idx"
+                class="w-16 h-16 object-cover rounded-md cursor-pointer border-2"
+                :class="idx === currentIndex ? 'border-button1' : 'border-transparent'"/>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+  </Teleport>
 </template>
 
 <script setup>
@@ -57,7 +59,7 @@ import {
 } from 'lucide-vue-next'
 import StatusBadge from "@/components/badges/MushroomStatusBadge.vue";
 
-const BASE_URL = 'http://localhost:8080'
+const BASE_URL = 'http://100.98.99.38:8080'
 const props = defineProps({ mushroom: Object })
 const emit = defineEmits(['close'])
 

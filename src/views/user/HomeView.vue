@@ -6,21 +6,33 @@
       {{ t('home.description') }}
     </p>
 
-    <RouterLink class="user-button" :to="{ name: 'new-request' }">
-      {{ t('home.sendRequest') }}
-    </RouterLink>
+    <div class="flex flex-row gap-4">
+      <RouterLink :to="{ name: 'new-request' }">
+        <BaseButton :variant="1">
+          {{ t('home.sendRequest') }}
+        </BaseButton>
+      </RouterLink>
+
+      <RouterLink :to="{ name: 'become-member' }">
+        <BaseButton :variant="2">
+          {{ t('home.becomeMember') }}
+        </BaseButton>
+      </RouterLink>
+    </div>
 
     <p class="text-text1 text-sm mt-6">
-      {{ t('home.or') }} <RouterLink to="user/support" class="underline text-text1 hover:text-text1">
+      {{ t('home.or') }}
+      <RouterLink to="user/support" class="underline text-text1 hover:text-text1">
         {{ t('home.getSupport') }}
       </RouterLink>
     </p>
   </div>
 </template>
 
-  <script setup lang="ts">
-  import { useI18n } from 'vue-i18n';
-  import { RouterLink } from 'vue-router';
-  
-  const { t } = useI18n();
-  </script>
+<script setup lang="ts">
+import { useI18n } from 'vue-i18n';
+import { RouterLink } from 'vue-router';
+import BaseButton from '@/components/base/BaseButton.vue';
+
+const { t } = useI18n();
+</script>
