@@ -1,12 +1,13 @@
 <template>
   <div
+    ref="basketRef"
     class="fixed sm:absolute z-30 flex items-start transition-transform duration-300 ease-in-out"
     :class="isOpen ? 'translate-x-0' : 'translate-x-[calc(100%-42px)]'"
   >
     <!-- Toggle Button -->
     <button
-      @click="toggleBasket"
-      class="z-40 -translate-x-3 rounded-r-md sm:translate-x-0 flex flex-col items-center bg-bg1  border border-border2  sm:rounded-r-none rounded-l-md h-[80px] gap-1"
+      @click.stop="toggleBasket"
+      class="z-40 -translate-x-3 rounded-r-md sm:translate-x-0 flex flex-col items-center bg-bg1 border border-border2 sm:rounded-r-none rounded-l-md h-[80px] gap-1"
     >
       <component :is="isOpen ? ChevronRight : ChevronLeft" class="w-9 h-9" />
       <ShoppingBasket class="w-7 h-7" />
@@ -42,7 +43,7 @@
 </template>
 
 <script setup>
-import { onMounted, ref } from "vue";
+import { onMounted, ref, onBeforeUnmount } from "vue";
 import { ShoppingBasket, ChevronLeft, ChevronRight } from "lucide-vue-next";
 import Mushroom from "./Mushroom.vue";
 import { getUserRequestMushrooms } from "@/services/mushroomService.js";
@@ -52,15 +53,33 @@ const emit = defineEmits(["basket-toggle"]);
 
 const mushrooms = ref([]);
 const isOpen = ref(false);
+const basketRef = ref(null);
 
 function toggleBasket() {
   isOpen.value = !isOpen.value;
   emit("basket-toggle", isOpen.value);
 }
 
+function closeBasket() {
+  isOpen.value = false;
+  emit("basket-toggle", false);
+}
+
+function handleClickOutside(event) {
+  if (isOpen.value && basketRef.value && !basketRef.value.contains(event.target)) {
+    closeBasket();
+  }
+}
+
 onMounted(() => {
   getUserRequestMushrooms(props.userRequestId).then((data) => {
     mushrooms.value = data;
   });
+
+  document.addEventListener('mousedown', handleClickOutside);
+});
+
+onBeforeUnmount(() => {
+  document.removeEventListener('mousedown', handleClickOutside);
 });
 </script>
