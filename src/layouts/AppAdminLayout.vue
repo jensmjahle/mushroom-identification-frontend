@@ -6,7 +6,7 @@
     <NavBar />
     <div class="flex flex-1">
       <SideMenu />
-      <main class="flex w-full pt-[72px]">
+      <main class="flex w-full pt-[72px] justify-center items-center">
         <router-view />
       </main>
     </div>

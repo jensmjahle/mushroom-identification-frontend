@@ -1,12 +1,12 @@
 <template>
   <div
-    class="fixed sm:absolute top-4 sm:-top-0 -right-1 sm:-right-16 z-30 flex items-start mt-12 h-[80%]  sm:mt-0 sm:h-full transition-transform duration-300 ease-in-out"
+    class="fixed sm:absolute z-30 flex items-start transition-transform duration-300 ease-in-out"
     :class="isOpen ? 'translate-x-0' : 'translate-x-[calc(100%-42px)]'"
   >
     <!-- Toggle Button -->
     <button
       @click="toggleBasket"
-      class="z-40 -translate-x-3 rounded-r-md sm:translate-x-0 flex flex-col items-center bg-bg1 border-border3 sm:rounded-r-none rounded-l-md h-[80px] gap-1"
+      class="z-40 -translate-x-3 rounded-r-md sm:translate-x-0 flex flex-col items-center bg-bg1  border border-border2  sm:rounded-r-none rounded-l-md h-[80px] gap-1"
     >
       <component :is="isOpen ? ChevronRight : ChevronLeft" class="w-9 h-9" />
       <ShoppingBasket class="w-7 h-7" />
@@ -14,7 +14,7 @@
 
     <!-- Basket Panel -->
     <div
-      class="basket w-[280px] h-full flex flex-col bg-bg1 shadow-lg border border-border1 rounded-bl-lg"
+      class="basket w-[280px] h-full flex flex-col bg-bg1 shadow-lg rounded-bl-lg"
     >
       <!-- Header -->
       <div class="mb-2 text-center px-4 pt-4">

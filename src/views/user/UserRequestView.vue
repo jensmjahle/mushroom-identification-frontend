@@ -16,7 +16,9 @@
       </div>
 
       <!-- Mushroom Basket -->
-      <MushroomBasket :userRequestId="userRequestId" @basket-toggle="isBasketOpen = $event" />
+      <MushroomBasket class="top-4 sm:-top-0 -right-1 sm:-right-16 mt-12 h-[80%]  sm:mt-0 sm:h-full" 
+        :userRequestId="userRequestId" 
+        @basket-toggle="isBasketOpen = $event" />
     </div>
   </div>
 </template>
