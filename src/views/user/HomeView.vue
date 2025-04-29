@@ -8,13 +8,13 @@
 
     <div class="flex flex-row gap-4">
       <RouterLink :to="{ name: 'new-request' }">
-        <BaseButton :variant="1">
+        <BaseButton variant="1">
           {{ t('home.sendRequest') }}
         </BaseButton>
       </RouterLink>
 
       <RouterLink :to="{ name: 'become-member' }">
-        <BaseButton :variant="2">
+        <BaseButton variant="2">
           {{ t('home.becomeMember') }}
         </BaseButton>
       </RouterLink>
