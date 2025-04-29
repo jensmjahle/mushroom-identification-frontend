@@ -6,10 +6,10 @@
       <div
         :class="[
           'flex flex-col justify-start items-center transition-all duration-300 ease-in-out',
-          isBasketOpen ? 'w-[calc(100%-300px)] mr-6' : 'w-full'
+          isBasketOpen ? 'sm:w-[calc(100%-300px)] sm:mr-6 w-full' : 'w-full'
         ]"
       >
-      <div class="w-full max-w-3xl flex flex-col overflow-y-auto max-h-[85vh] p-2">
+        <div class="w-full max-w-3xl flex flex-col overflow-y-auto max-h-[85vh] p-2">
           <RequestStatusBox v-if="userRequest" :request="userRequest" />
           <ChatBox :userRequestId="userRequestId" />
         </div>
