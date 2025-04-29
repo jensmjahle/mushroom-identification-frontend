@@ -1,6 +1,6 @@
 <template>
   <Teleport to="body">
-    <div class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4" @click="handleOutsideClick">
+    <div class="fixed inset-0 bg-overlay/60 backdrop-blur-sm z-50 flex items-center justify-center p-4" @click="handleOutsideClick">
       <div class="bg-bg1 rounded-lg shadow-lg p-4 max-w-4xl w-full relative" @click.stop>
         <!-- Close -->
         <button @click="$emit('close')" class="absolute -top-10 right-0 btn-icon-transparent-1 hover:text-danger"><x></x></button>
