@@ -15,7 +15,7 @@
 
     <!-- Basket Panel -->
     <div
-      class="basket w-[280px] h-full flex flex-col bg-bg1 shadow-lg rounded-bl-lg"
+      class="basket w-[280px] h-full max-h-[80vh] flex flex-col bg-bg1 shadow-lg rounded-bl-lg"
     >
       <!-- Header -->
       <div class="mb-2 text-center px-4 pt-4">
