@@ -1,32 +1,54 @@
 <template>
-  <div class="login-container">
-    <h2>{{ t("login.title") }}</h2>
+  <div class="flex flex-col items-center justify-center min-h-screen px-4">
+    <div class="text-center mb-6">
+      <h1 class="text-2xl font-bold text-text1">{{ t("login.title") }}</h1>
+      <p class="text-sm text-text2-faded">{{ t("login.subtitle") }}</p>
+    </div>
 
-    <input
-        type="text"
-        v-model="username"
-        :placeholder="t('login.username')"
-        class="input-field"
-    />
+    <div class="w-full max-w-md bg-bg2 p-6 rounded-lg shadow-md space-y-4">
+      <BaseInput
+          id="username"
+          v-model="username"
+          type="text"
+          :label="t('login.username')"
+          :placeholder="t('login.usernamePlaceholder')"
+      />
+      <BaseInput
+          id="password"
+          v-model="password"
+          type="password"
+          :label="t('login.password')"
+          :placeholder="t('login.passwordPlaceholder')"
+      />
 
-    <input
-        type="password"
-        v-model="password"
-        :placeholder="t('login.password')"
-        class="input-field"
-    />
+      <BaseButton block @click="handleLogin">
+        {{ t("login.submit") }}
+      </BaseButton>
 
-    <button @click="handleLogin" class="login-btn">{{ t("login.submit") }}</button>
+      <p v-if="errorMessage" class="text-red-500 text-sm text-center">
+        {{ errorMessage }}
+      </p>
+    </div>
 
-    <p v-if="errorMessage" class="error">{{ errorMessage }}</p>
+    <p class="mt-4 text-sm text-text1">
+      {{ t("login.goToUserSite.question") }}
+      <router-link
+          to="/"
+          class="text-button1 hover:underline font-medium"
+      >
+        {{ t("login.goToUserSite.link") }}
+      </router-link>
+    </p>
   </div>
 </template>
 
 <script setup>
 import { ref } from "vue";
 import { useI18n } from "vue-i18n";
+import BaseInput from "@/components/base/BaseInput.vue";
+import BaseButton from "@/components/base/BaseButton.vue";
 
-const { t } = useI18n(); 
+const { t } = useI18n();
 
 const props = defineProps(["onLogin"]);
 
@@ -36,49 +58,14 @@ const errorMessage = ref("");
 
 const handleLogin = async () => {
   if (!username.value || !password.value) {
-    errorMessage.value = t("login.fill_in_both_username_and_password"); 
+    errorMessage.value = t("login.fill_in_both_username_and_password");
     return;
   }
 
   try {
     await props.onLogin(username.value, password.value);
   } catch (error) {
-    errorMessage.value = t("login.error"); 
+    errorMessage.value = t("login.error");
   }
 };
 </script>
-
-<style scoped>
-.login-container {
-  max-width: 300px;
-  margin: 50px auto;
-  padding: 20px;
-  text-align: center;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
-}
-
-.input-field {
-  width: 100%;
-  padding: 10px;
-  margin: 10px 0;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-.login-btn {
-  width: 100%;
-  padding: 10px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.error {
-  color: red;
-  margin-top: 10px;
-}
-</style>

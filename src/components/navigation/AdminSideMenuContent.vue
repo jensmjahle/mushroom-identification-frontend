@@ -53,7 +53,7 @@
     <hr class="my-4 border-border2" />
 
     <div class="space-y-2">
-      <h3 class="text-left">{{ $t('sideMenu.admins') }}</h3>
+      <h3 class="text-left text-text4">{{ $t('sideMenu.admins') }}</h3>
       <BaseButton v-if="!isRequestPage"  @click="navigate('admin-management')" block variant="2">
         {{ $t('sideMenu.allAdmins') }}
       </BaseButton>

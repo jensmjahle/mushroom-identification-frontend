@@ -1,5 +1,6 @@
 {
   "settings": {
+    "title": "Settings",
     "language": "Language",
     "theme": "Theme",
     "languages": {
@@ -9,15 +10,49 @@
     "themes": {
       "light": "Light",
       "dark": "Dark"
+    },
+    "personal": {
+      "title": "Account Settings",
+      "subtitle": "Manage your personal information",
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "email": "Email",
+      "changePassword": "Change Password",
+      "changePasswordSubtitle": "Update your password",
+      "newPassword": "New Password",
+      "confirmPassword": "Confirm Password",
+      "firstNamePlaceholder": "Enter your first name",
+      "lastNamePlaceholder": "Enter your last name",
+      "emailPlaceholder": "you@example.com",
+      "newPasswordPlaceholder": "Enter a new password",
+      "confirmPasswordPlaceholder": "Repeat your new password",
+      "oldPassword": "Current Password",
+      "oldPasswordPlaceholder": "Enter your current password"
+    },
+    "danger": {
+      "title": "Danger Zone",
+      "description": "This action is irreversible. Deleting your account will remove all your data.",
+      "button": "Delete Account",
+      "confirm": "Are you sure you want to delete your account?",
+      "confirmTitle": "Confirm Account Deletion",
+      "success": "Your account has been successfully deleted.",
+      "error": "There was an error deleting your account. Please try again later."
     }
   },
   "login": {
-    "title": "Administrator Login",
+    "title": "Admin Login",
+    "subtitle": "Enter your credentials to access the admin dashboard",
     "username": "Username",
     "password": "Password",
+    "usernamePlaceholder": "Enter your username",
+    "passwordPlaceholder": "Enter your password",
     "submit": "Log in",
-    "error": "Invalid username or password",
-    "fill_in_both_username_and_password": "Please fill in both username and password"
+    "fill_in_both_username_and_password": "Please fill in both fields.",
+    "error": "Login failed. Please check your credentials.",
+    "goToUserSite": {
+      "question": "Looking for the main site?",
+      "link": "Go to user site"
+    }
   },
   "admin": {
     "stats": {
@@ -126,7 +161,10 @@
     "newRequest": "New Request",
     "login": "Check Answer",
     "membership": "Become a Member",
-    "support": "Support"
+    "support": "Support",
+    "admins" : "Administrators",
+    "allAdmins" : "All Administrators",
+    "createNewAdmin" : "Create New Administrator"
   },
   "mushroom": {
     "title": "Mushroom"
@@ -187,7 +225,18 @@
     "user": "User"
   },
   "errors": {
-    "loadAdmins": "There was an error loading the admins. Please try again later."
+    "loadAdmins": "There was an error loading the admins. Please try again later.",
+    "invalidEmail": "Please enter a valid email address.",
+    "missingOldPassword": "Please enter your current password to change your password.",
+    "passwordMismatch": "Passwords do not match.",
+    "invalidPasswordFormat": "Password must be 8–50 characters long, include one uppercase letter, one number, and contain no spaces.",
+    "profileUpdateFailed": "Failed to update profile. Please try again.",
+    "passwordChangeFailed": "Failed to change password. Please try again.",
+    "failedToLoadProfile": "Failed to load your profile information."
+  },
+  "messages": {
+    "profileUpdated": "Your profile was updated successfully.",
+    "passwordChanged": "Your password has been changed."
   },
   "common": {
     "noData": "No data available",
@@ -201,6 +250,16 @@
     "pending": "Pending",
     "in_progress": "In Progress",
     "completed": "Completed"
+  },
+  "buttons": {
+    "savePersonalInfo": "Update Personal Info",
+    "changePassword": "Change Password",
+    "confirm": "Confirm",
+    "cancel": "Cancel"
+  },
+  "navigation": {
+    "settings": "Settings",
+    "logout": "Log out"
   }
 }
 
