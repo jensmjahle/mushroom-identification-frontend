@@ -54,7 +54,7 @@ html, body, #app {
   }
 
   .user-layout-inner{
-    @apply flex justify-center w-[100vw] h-[100vh] sm:h-[80vh] sm:w-[80vw];
+    @apply flex justify-center w-[100vw] h-[100vh] sm:h-[85vh] sm:w-[80vw];
   }
   .user-display-card {
     @apply bg-bg2 text-text2 rounded-xl relative transition-all duration-300 ease-in-out flex-grow overflow-hidden z-10 pl-10;

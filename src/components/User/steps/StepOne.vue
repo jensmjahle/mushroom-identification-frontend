@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col items-center justify-center w-[90%] h-[90%] px-4 pt-16 pb-10 max-w-3xl mx-auto text-center gap-6 overflow-y-auto relative z-0">
+  <div class="flex flex-col items-center justify-center w-[90%] h-full px-4 pt-20 pb-4 max-w-3xl mx-auto text-center gap-6 overflow-y-auto relative z-0">
     <h2 class="text-2xl sm:text-3xl font-bold text-text1">{{ t('submit.title') }}</h2>
 
     <!-- Tips -->
