@@ -1,6 +1,7 @@
 <template>
   <div>
     <LogoButton v-if="!isRequestPage" />
+    <hr class="my-4 border-border2" />
     <h2 class="text-xl font-semibold text-text4 text-right">{{ $t('sideMenu.completedTitle') }}</h2>
     <div class="text-5xl font-bold mb-4 text-right">{{ completedCount }}</div>
 
