@@ -1,5 +1,13 @@
 <template>
   <div class="relative w-full h-full flex justify-center items-center p-4 pr-14 overflow-hidden">
+
+    <!-- Blur overlay (only when basket open on mobile) -->
+    <div
+      v-if="isBasketOpen && isMobile"
+      class="fixed inset-0 z-20 bg-black/20 backdrop-blur-md transition-opacity duration-300"
+      @click="isBasketOpen = false"
+    ></div>
+
     <div class="flex w-full h-full relative">
       
       <!-- Main content -->
@@ -16,15 +24,17 @@
       </div>
 
       <!-- Mushroom Basket -->
-      <MushroomBasket class="top-4 sm:-top-0 -right-1 sm:-right-16 mt-12 h-[80%]  sm:mt-0 sm:h-full" 
-        :userRequestId="userRequestId" 
-        @basket-toggle="isBasketOpen = $event" />
+      <MushroomBasket
+        class="top-4 sm:-top-0 -right-1 sm:-right-16 mt-12 h-[80%] sm:mt-0 sm:h-full"
+        :userRequestId="userRequestId"
+        @basket-toggle="isBasketOpen = $event"
+      />
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, onBeforeUnmount } from 'vue';
 import { useRoute } from 'vue-router';
 import RequestStatusBox from '@/components/RequestStatusBox.vue';
 import ChatBox from '@/components/ChatBox.vue';
@@ -35,10 +45,22 @@ const route = useRoute();
 const userRequestId = route.params.userRequestId;
 const userRequest = ref(null);
 const isBasketOpen = ref(false);
+const isMobile = ref(false);
 
 onMounted(() => {
   getUserRequest(userRequestId).then((data) => {
     userRequest.value = data;
   });
+
+  checkMobile();
+  window.addEventListener('resize', checkMobile);
 });
+
+onBeforeUnmount(() => {
+  window.removeEventListener('resize', checkMobile);
+});
+
+function checkMobile() {
+  isMobile.value = window.innerWidth < 640;
+}
 </script>
