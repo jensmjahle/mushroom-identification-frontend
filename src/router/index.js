@@ -22,12 +22,6 @@ import CreateNewAdminView from '../views/admin/CreateNewAdminView.vue';
 import SettingsView from '../views/admin/SettingsView.vue';
 
 const routes = [
-  { 
-    path: '/', 
-    name: 'Construction', 
-    component: UnderConstructionView,
-    redirect: '/user'
-  },
   {
     path: '/',
     component: AppUserLayout,
