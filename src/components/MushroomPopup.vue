@@ -80,6 +80,9 @@ import { X, ZoomOut, ZoomIn, RotateCw, Plus } from 'lucide-vue-next';
 import StatusBadge from '@/components/badges/MushroomStatusBadge.vue';
 import { processImageFiles } from '@/utils/imageUtils';
 import { addImageToMushroom, getMushroomById, getUserRequestMushrooms } from '@/services/mushroomService';
+import { useToast } from 'vue-toastification';
+
+const toast = useToast();
 
 const props = defineProps({
   mushroom: Object,
@@ -133,14 +136,15 @@ async function handleImageUpload(e) {
     imageUrls.value = updated.imageUrls.map(
       token => `${BASE_URL}/api/images?token=${token}`
     );
-    currentIndex.value = imageUrls.value.length - 1; // Vis nyeste bilde
+    currentIndex.value = imageUrls.value.length - 1;
 
     emit('updated');
+    toast.success('Picture(s) uploaded!');
   } catch (err) {
     console.error('Failed to upload image', err);
+    toast.error('Something went wrong while uploading the image.');
   }
 }
-
 
 const zoomIn = () => (zoom.value = Math.min(zoom.value + 0.1, 3));
 const zoomOut = () => (zoom.value = Math.max(zoom.value - 0.1, 1));
