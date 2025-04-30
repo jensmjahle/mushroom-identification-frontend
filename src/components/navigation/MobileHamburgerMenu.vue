@@ -9,7 +9,7 @@
       <div
           v-if="menuOpen"
           ref="menuRef"
-          class="mobile-menu fixed top-0 right-0 w-64 h-full bg-bg4 text-text4 shadow-lg z-40 p-4 overflow-y-auto overflow-visible"
+          class="mobile-menu fixed top-0 right-0 w-64 h-full bg-bg4 text-text4 shadow-lg z-40 p-4 overflow-y-auto"
       >
         <slot />
       </div>
@@ -56,8 +56,5 @@ onBeforeUnmount(() => document.removeEventListener('click', handleClickOutside))
 }
 :deep(.slide-leave-to) {
   transform: translateX(100%);
-}
-:deep(.mobile-menu) {
-  overflow: visible !important;
 }
 </style>

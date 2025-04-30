@@ -23,7 +23,7 @@
             v-if="isRequestPage"
             @click="handleStatusChange('COMPLETED')"
             block
-            variant="4"
+            variant="2"
         >
           {{ $t('sideMenu.completeRequest') }}
         </BaseButton>
@@ -94,7 +94,6 @@ import LogoButton from "@/components/LogoButton.vue";
 import { useToast } from 'vue-toastification'
 import {changeUserRequestStatus, getNextRequestFromQueue} from "@/services/adminRequestService.js";
 import { useRouter } from 'vue-router'
-import TooltipButton from "@/components/TooltipButton.vue";
 import TooltipIcon from "@/components/base/TooltipIcon.vue";
 
 
