@@ -66,7 +66,12 @@ function closeBasket() {
 }
 
 function handleClickOutside(event) {
-  if (isOpen.value && basketRef.value && !basketRef.value.contains(event.target)) {
+  if (
+    isOpen.value &&
+    basketRef.value &&
+    !basketRef.value.contains(event.target) &&
+    window.innerWidth <= 640 // Only in phone mode (sm breakpoint or smaller)
+  ) {
     closeBasket();
   }
 }
