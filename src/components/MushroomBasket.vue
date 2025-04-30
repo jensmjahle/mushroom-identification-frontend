@@ -30,26 +30,27 @@
 
       <!-- Mushrooms -->
       <div class="overflow-y-auto px-4 pb-4 space-y-6 mt-2">
-        <div
+        <Mushroom
           v-for="(mushroom, index) in mushrooms"
           :key="index"
-          class="flex justify-center"
-        >
-          <Mushroom :mushroom="mushroom" :index="index + 1" />
-        </div>
+          :mushroom="mushroom"
+          :index="index + 1"
+          :userRequestId="props.userRequestId"
+          @updated="reloadMushrooms"
+        />
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
-import { onMounted, ref, onBeforeUnmount } from "vue";
-import { ShoppingBasket, ChevronLeft, ChevronRight } from "lucide-vue-next";
-import Mushroom from "./Mushroom.vue";
-import { getUserRequestMushrooms } from "@/services/mushroomService.js";
+import { onMounted, ref, onBeforeUnmount } from 'vue';
+import { ShoppingBasket, ChevronLeft, ChevronRight } from 'lucide-vue-next';
+import Mushroom from './Mushroom.vue';
+import { getUserRequestMushrooms } from '@/services/mushroomService.js';
 
 const props = defineProps({ userRequestId: String });
-const emit = defineEmits(["basket-toggle"]);
+const emit = defineEmits(['basket-toggle']);
 
 const mushrooms = ref([]);
 const isOpen = ref(false);
@@ -57,12 +58,12 @@ const basketRef = ref(null);
 
 function toggleBasket() {
   isOpen.value = !isOpen.value;
-  emit("basket-toggle", isOpen.value);
+  emit('basket-toggle', isOpen.value);
 }
 
 function closeBasket() {
   isOpen.value = false;
-  emit("basket-toggle", false);
+  emit('basket-toggle', false);
 }
 
 function handleClickOutside(event) {
@@ -70,17 +71,20 @@ function handleClickOutside(event) {
     isOpen.value &&
     basketRef.value &&
     !basketRef.value.contains(event.target) &&
-    window.innerWidth <= 640 // Only in phone mode (sm breakpoint or smaller)
+    window.innerWidth <= 640
   ) {
     closeBasket();
   }
 }
 
-onMounted(() => {
+function reloadMushrooms() {
   getUserRequestMushrooms(props.userRequestId).then((data) => {
     mushrooms.value = data;
   });
+}
 
+onMounted(() => {
+  reloadMushrooms();
   document.addEventListener('mousedown', handleClickOutside);
 });
 
