@@ -7,23 +7,23 @@
       </h2>
   
       <div class="space-y-2">
-        <RouterLink to="/user" class="btn-2 block w-full text-center">
+        <RouterLink to="/" class="btn-2 block w-full text-center">
           {{ $t('sideMenu.home') }}
         </RouterLink>
   
-        <RouterLink to="/user/new" class="btn-4 block w-full text-center">
+        <RouterLink to="/new" class="btn-4 block w-full text-center">
           {{ $t('sideMenu.newRequest') }}
         </RouterLink>
 
-        <RouterLink to="/user/login" class="btn-4 block w-full text-center">
+        <RouterLink to="/login" class="btn-4 block w-full text-center">
           {{ $t('sideMenu.login') }}
         </RouterLink>
   
-        <RouterLink to="/user/become-member" class="btn-4 block w-full text-center">
+        <RouterLink to="/become-member" class="btn-4 block w-full text-center">
           {{ $t('sideMenu.membership') }}
         </RouterLink>
   
-        <RouterLink to="/user/support" class="btn-4 block w-full text-center">
+        <RouterLink to="/support" class="btn-4 block w-full text-center">
           {{ $t('sideMenu.support') }}
         </RouterLink>
       </div>
