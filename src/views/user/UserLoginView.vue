@@ -13,7 +13,7 @@
         />
 
         <!-- Error message -->
-        <p v-if="error" class="text-red-500 text-sm sm:text-base">
+        <p v-if="error" class="text-danger text-sm sm:text-base">
           {{ error }}
         </p>
 
