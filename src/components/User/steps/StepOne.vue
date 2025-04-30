@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col items-center justify-center w-[90%] h-full px-4 pt-20 pb-4 max-w-3xl mx-auto text-center gap-6 overflow-y-auto relative z-0">
+  <div class="flex flex-col items-center justify-center w-[90%] h-full px-4 pt-20 pb-4 max-w-3xl mx-auto text-center gap-6 overflow-y-auto relative">
     <h2 class="text-2xl sm:text-3xl font-bold text-text1">{{ t('submit.title') }}</h2>
 
     <!-- Tips -->
@@ -21,7 +21,7 @@
     </div>
 
     <!-- Hint Modal -->
-    <div v-if="hintStep !== null" class="fixed inset-0 bg-overlay backdrop-blur-sm flex items-center justify-center z-50 p-4" @click.self="hintStep = null">
+    <div v-if="hintStep !== null" class="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-[100] p-4" @click.self="hintStep = null">
       <div class="bg-bg1 p-6 rounded-lg shadow-lg max-w-md w-full">
         <h3 class="text-lg font-semibold mb-2 text-text1">{{ t('submit.hintTitle') }}</h3>
         <p class="text-sm text-text1-faded">{{ t(`submit.steps.${hintStep - 1}.hint`) }}</p>
@@ -32,7 +32,7 @@
     <!-- Tidligere sopper -->
     <div class="flex w-full flex-row gap-6 items-start">
       <div class="flex-1 border border-border1 rounded px-2 h-[120px] overflow-y-auto bg-bg2 w-full relative">
-        <div class="sticky top-0 left-0 z-10 bg-bg2 pb-2 font-semibold text-text1 text-left">{{ t('submit.mushroomListTitle') }}</div>
+        <div class="sticky top-0 left-0 bg-bg2 pb-2 font-semibold text-text1 text-left">{{ t('submit.mushroomListTitle') }}</div>
         <template v-if="mushrooms.length">
           <div
             v-for="mushroom in mushrooms"
@@ -79,7 +79,7 @@
     </BaseButton>
 
     <!-- Popup -->
-    <div v-if="showMushroomPopup" class="fixed inset-0 z-50 bg-overlay backdrop-blur-sm flex items-center justify-center p-4">
+    <div v-if="showMushroomPopup" class="fixed inset-0 z-[60] backdrop-blur-sm flex items-center justify-center p-4">
       <div class="bg-bg1 p-6 rounded-lg shadow-lg w-full max-w-md space-y-4">
         <div class="flex justify-between items-center mb-4">
           <h3 class="text-lg font-semibold text-text1">{{ t('submit.step') }} {{ mushroomStep }} {{ t('submit.of') }} 3</h3>

@@ -1,10 +1,10 @@
 <template>
-  <div class="relative w-full h-full flex justify-center items-center p-4 pr-14 overflow-hidden">
+  <div class="relative w-full h-full flex justify-center items-center p-4 px-14 overflow-hidden">
 
     <!-- Blur overlay (only when basket open on mobile) -->
     <div
       v-if="isBasketOpen && isMobile"
-      class="fixed inset-0 z-20 bg-black/20 backdrop-blur-md transition-opacity duration-300"
+      class="fixed inset-0 z-[10] bg-black/20 backdrop-blur-md transition-opacity duration-300"
       @click="isBasketOpen = false"
     ></div>
 
