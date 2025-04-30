@@ -5,7 +5,7 @@
       <p class="text-sm text-text2-faded">{{ t("login.subtitle") }}</p>
     </div>
 
-    <div class="w-full max-w-md bg-bg2 p-6 rounded-lg shadow-md space-y-4">
+    <form @submit.prevent="handleLogin" class="w-full max-w-md bg-bg2 p-6 rounded-lg shadow-md space-y-4">
       <BaseInput
           id="username"
           v-model="username"
@@ -21,14 +21,14 @@
           :placeholder="t('login.passwordPlaceholder')"
       />
 
-      <BaseButton block @click="handleLogin">
+      <BaseButton block type="submit">
         {{ t("login.submit") }}
       </BaseButton>
 
       <p v-if="errorMessage" class="text-red-500 text-sm text-center">
         {{ errorMessage }}
       </p>
-    </div>
+    </form>
 
     <p class="mt-4 text-sm text-text1">
       {{ t("login.goToUserSite.question") }}
@@ -41,6 +41,7 @@
     </p>
   </div>
 </template>
+
 
 <script setup>
 import { ref } from "vue";
