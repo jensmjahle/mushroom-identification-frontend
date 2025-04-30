@@ -1,5 +1,5 @@
 <template>
-  <nav class="hidden sm:flex fixed top-4 right-4 z-30">
+  <nav class="hidden sm:flex fixed top-4 right-4">
     <div class="relative flex items-center gap-2">
 
       <RoleBadge :role="role" />
