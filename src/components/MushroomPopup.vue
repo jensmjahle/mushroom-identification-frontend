@@ -88,7 +88,7 @@ const props = defineProps({
 
 const emit = defineEmits(['close', 'updated']);
 
-const BASE_URL = 'http://100.98.99.38:8080';
+const BASE_URL = import.meta.env.VITE_API_URL;
 const imageUrls = ref([]);
 const currentIndex = ref(0);
 const zoom = ref(1);

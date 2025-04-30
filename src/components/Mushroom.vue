@@ -66,7 +66,7 @@ import { ArrowLeft, ArrowRight } from 'lucide-vue-next';
 import StatusBadge from './badges/MushroomStatusBadge.vue';
 import MushroomPopup from './MushroomPopup.vue';
 
-const BASE_URL = 'http://100.98.99.38:8080';
+const BASE_URL = import.meta.env.VITE_API_URL;
 const props = defineProps({
   mushroom: Object,
   index: Number,
