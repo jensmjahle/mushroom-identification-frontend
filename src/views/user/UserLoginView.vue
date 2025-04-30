@@ -1,32 +1,37 @@
 <template>
-  <div class="main-user-view">
-    <div class="user-display-card flex flex-col items-center justify-center px-6 py-10 text-center overflow-y-auto w-full max-w-3xl gap-6">
-      <div class="w-full max-w-sm space-y-6">
-        <h1 class="text-xl sm:text-2xl font-bold text-text1">
-          {{ t('loginUser.heading') }}
-        </h1>
+  <div class="flex flex-col items-center justify-center min-h-screen px-4">
+    <!-- Heading & Introduction -->
+    <div class="text-center mb-4">
+      <h1 class="text-2xl font-bold text-text1">{{ t('loginUser.heading') }}</h1>
+      <p class="text-sm text-text2-faded">{{ t('loginUser.description') }}</p>
+    </div>
 
-        <BaseInput
+    <!-- Login form -->
+    <form @submit.prevent="login" class="w-full max-w-md bg-bg2 p-4 rounded-lg space-y-4">
+      <BaseInput
           v-model="code"
+          id="ref-code"
+          type="text"
           :label="t('loginUser.refLabel')"
           :placeholder="t('loginUser.placeholder')"
-          id="ref-code"
-        />
+      />
 
-        <!-- Error message -->
-        <p v-if="error" class="text-red-500 text-sm sm:text-base">
-          {{ error }}
-        </p>
+      <BaseButton block type="submit" :disabled="!code.trim()">
+        {{ t('loginUser.button') }}
+      </BaseButton>
 
-        <BaseButton
-          variant="1"
-          @click="login"
-          :disabled="!code.trim()"
-          block
-        >
-          {{ t('loginUser.button') }}
-        </BaseButton>
-      </div>
+      <p v-if="error" class="text-danger text-sm text-center">{{ error }}</p>
+    </form>
+
+    <!-- Helper text -->
+    <div class="mt-4 text-sm text-center text-text1 space-y-1">
+      <p>{{ t('loginUser.noCodeQuestion') }}</p>
+      <router-link
+          to="/"
+          class="text-button1 hover:underline font-medium"
+      >
+        {{ t('loginUser.homeLink') }}
+      </router-link>
     </div>
   </div>
 </template>
@@ -54,9 +59,8 @@ const login = async () => {
   try {
     error.value = null
     const response = await loginUser(code.value)
-    console.log(response)
     const token = response.data.token
-    sessionStorage.setItem('jwt', token) 
+    sessionStorage.setItem('jwt', token)
     const userRequestId = parseJwt(token)?.sub
 
     await router.push({

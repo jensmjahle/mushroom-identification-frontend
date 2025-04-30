@@ -175,12 +175,15 @@
     "title": "Mushroom"
   },
   "loginUser": {
-    "heading": "Enter your reference code",
+    "heading": "Enter Your Reference Code",
+    "description": "Paste the code you received after submitting your request to view its status and messages.",
     "refLabel": "Reference Code",
-    "placeholder": "e.g. ABC123",
-    "button": "Continue",
-    "errorEmpty": "Reference code cannot be empty",
-    "errorInvalid": "Invalid reference code"
+    "placeholder": "e.g. 8f3a-1290-abcd...",
+    "button": "Log In",
+    "errorEmpty": "Please enter your reference code.",
+    "errorInvalid": "Invalid or expired reference code.",
+    "noCodeQuestion": "Don’t have a code?",
+    "homeLink": "Go back to homepage"
   },
   "home": {
     "description": "Not sure if you've picked liberty caps? Submit a free and anonymous request here:",
