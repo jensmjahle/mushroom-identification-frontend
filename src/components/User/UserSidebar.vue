@@ -15,8 +15,13 @@
       </router-link>
     </div>
 
-    <div class="user-sidebar-button" :class="{ active: $route.name === 'user-login' }">
-      <router-link :to="{ name: 'user-login' }" class="user-sidebar-link">
+    <div class="user-sidebar-button" :class="{ active: ['user-login', 'user-request'].includes($route.name) }">
+      <router-link
+        :to="$route.name === 'user-request' 
+            ? { name: 'user-request', params: { userRequestId: $route.params.userRequestId } } 
+            : { name: 'user-login' }"
+        class="user-sidebar-link"
+      >
         <CheckCircle class="user-sidebar-icon" />
         <span class="user-sidebar-text">Check Answer</span>
       </router-link>
