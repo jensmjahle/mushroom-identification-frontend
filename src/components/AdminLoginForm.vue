@@ -25,7 +25,7 @@
         {{ t("login.submit") }}
       </BaseButton>
 
-      <p v-if="errorMessage" class="text-red-500 text-sm text-center">
+      <p v-if="errorMessage" class="text-danger text-sm text-center">
         {{ errorMessage }}
       </p>
     </form>
