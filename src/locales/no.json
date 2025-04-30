@@ -62,6 +62,10 @@
     "UNKNOWN": "Ukjent",
     "UNIDENTIFIABLE": "Uidentifiserbar"
   },
+  "mushroomPopup": {
+    "uploadSuccess": "Image uploaded successfully!",
+    "uploadError": "Something went wrong during image upload."
+  },
   "submit": {
     "title": "Send inn din sopphenvendelse",
     "upload": "Last opp bilde",

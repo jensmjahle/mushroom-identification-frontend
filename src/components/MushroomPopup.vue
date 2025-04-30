@@ -81,8 +81,10 @@ import StatusBadge from '@/components/badges/MushroomStatusBadge.vue';
 import { processImageFiles } from '@/utils/imageUtils';
 import { addImageToMushroom, getMushroomById, getUserRequestMushrooms } from '@/services/mushroomService';
 import { useToast } from 'vue-toastification';
+import { useI18n } from 'vue-i18n';
 
 const toast = useToast();
+const { t } = useI18n();
 
 const props = defineProps({
   mushroom: Object,
@@ -128,7 +130,7 @@ async function handleImageUpload(e) {
 
   try {
     await addImageToMushroom(props.userRequestId, props.mushroom.mushroomId, processedFiles);
-    
+
     const mushrooms = await getUserRequestMushrooms(props.userRequestId);
     const updated = mushrooms.find(m => m.mushroomId === props.mushroom.mushroomId);
     props.mushroom.imageUrls = updated.imageUrls;
@@ -139,10 +141,10 @@ async function handleImageUpload(e) {
     currentIndex.value = imageUrls.value.length - 1;
 
     emit('updated');
-    toast.success('Picture(s) uploaded!');
+    toast.success(t('mushroomPopup.uploadSuccess'));
   } catch (err) {
     console.error('Failed to upload image', err);
-    toast.error('Something went wrong while uploading the image.');
+    toast.error(t('mushroomPopup.uploadError'));
   }
 }
 
