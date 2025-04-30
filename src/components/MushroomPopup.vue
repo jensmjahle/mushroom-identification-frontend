@@ -57,7 +57,7 @@
           </div>
 
           <!-- Thumbnails -->
-          <div class="flex gap-2 overflow-x-auto">
+            <div class="w-[90%] max-w-[90%] flex gap-2 overflow-x-auto scrollbar-thin scrollbar-thumb-rounded scrollbar-thumb-gray-400">
             <img
               v-for="(img, idx) in imageUrls"
               :key="idx"
@@ -67,7 +67,7 @@
               class="w-16 h-16 object-cover rounded-md cursor-pointer border-2"
               :class="idx === currentIndex ? 'border-button1' : 'border-transparent'"
             />
-          </div>
+            </div>
         </div>
       </div>
     </div>
