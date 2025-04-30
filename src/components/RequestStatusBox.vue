@@ -1,7 +1,7 @@
 <template>
-  <div class="text-left p-4 w-full space-y-4">
+  <div class="text-left pb-2 w-full space-y-1">
     <!-- ID at the top -->
-    <p class="text-sm text-textAlt">
+    <p class="text-sm text-text1">
       <span class="font-semibold text-chat-other">ID:</span> {{ request.userRequestId }}
     </p>
 
@@ -18,7 +18,7 @@
     <!-- Status Badge -->
     <div
         :class="[
-        'text-sm font-semibold px-3 py-2 rounded-full capitalize w-full text-center',
+        'text-sm font-semibold px-2 py-1 rounded-full capitalize w-full text-center',
         getStatusClass(request.status)
       ]"
     >

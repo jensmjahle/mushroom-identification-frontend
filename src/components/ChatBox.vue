@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col h-[70vh] max-h-[80vh] w-full mx-auto border border-chat-me_border rounded-lg overflow-hidden bg-bg1">
+  <div class="flex flex-col h-[70vh] max-h-[80vh] min-h-[400px] w-full mx-auto border border-chat-me_border rounded-lg overflow-hidden bg-bg1">
     <!-- Messages -->
     <div class="flex-1 p-4 overflow-y-auto flex flex-col space-y-3"  ref="messageContainer">
       <div

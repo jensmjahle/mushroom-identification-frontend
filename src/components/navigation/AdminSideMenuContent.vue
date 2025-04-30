@@ -51,15 +51,25 @@
       <StatusIndicator label="Completed" :count="completedCount" status="COMPLETED" />
     </div>
 
-    <hr class="my-4 border-border2" />
+    <hr class="my-4 border-border2" v-if="!isRequestPage" />
 
     <div class="space-y-2">
-      <h3 class="text-left text-text4">{{ $t('sideMenu.admins') }}</h3>
+      <h3 v-if="!isRequestPage" class="text-left text-text4">{{ $t('sideMenu.admins') }}</h3>
       <BaseButton v-if="!isRequestPage"  @click="navigate('admin-management')" block variant="2">
         {{ $t('sideMenu.allAdmins') }}
       </BaseButton>
       <BaseButton v-if="!isRequestPage"  @click="navigate('admin-new-administrator')" block variant="4">
         {{ $t('sideMenu.createNewAdmin') }}
+      </BaseButton>
+    </div>
+
+    <hr class="my-4 border-border2" v-if="!isRequestPage" />
+    <div class="space-y-2">
+      <BaseButton v-if="!isRequestPage"  @click="navigate('admin-settings')" block variant="2">
+        {{ $t('sideMenu.settings') }}
+      </BaseButton>
+      <BaseButton v-if="!isRequestPage"  @click="logout" block variant="3">
+        {{ $t('sideMenu.logout') }}
       </BaseButton>
     </div>
   </div>
@@ -111,5 +121,9 @@ const getNextFromQueue = async () => {
     console.error(error)
     toast.error('Failed to fetch next request from queue')
   }
+}
+const logout = () => {
+  sessionStorage.removeItem('jwt')
+  router.push({ name: 'admin-login' })
 }
 </script>
