@@ -164,7 +164,12 @@
     "support": "Support",
     "admins" : "Administrators",
     "allAdmins" : "All Administrators",
-    "createNewAdmin" : "Create New Administrator"
+    "createNewAdmin" : "Create New Administrator",
+    "tooltips": {
+      "completeRequest": "Mark this request as finished and reviewed",
+      "putBackIntoQueue": "Return this request to the main queue for review",
+      "placeOnHold": "Temporarily hold the request without processing it"
+    }
   },
   "mushroom": {
     "title": "Mushroom"

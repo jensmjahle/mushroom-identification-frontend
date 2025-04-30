@@ -10,7 +10,7 @@
 
     <div
         v-if="showTooltip"
-        class="absolute top-1/2 -translate-y-1/2 px-3 py-2 text-sm bg-bg3 text-text3 rounded shadow border border-border3 z-50 w-max max-w-xs"
+        class="absolute top-1/2 -translate-y-1/2 px-3 py-2 text-sm bg-bg3 text-text3 rounded shadow border border-border3 z-[9999] w-max max-w-xs"
         :class="tooltipPositionClass"
     >
       {{ t(`sideMenu.tooltips.${tooltipKey}`) }}
