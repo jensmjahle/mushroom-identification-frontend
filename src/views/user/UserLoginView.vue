@@ -1,6 +1,5 @@
 <template>
-  <div class="main-user-view">
-    <div class="user-display-card flex flex-col items-center justify-center px-6 py-10 text-center overflow-y-auto w-full max-w-3xl gap-6">
+    <div class="user-display-card flex flex-col items-center justify-center px-6 py-10 text-center overflow-y-auto w-full h-full max-w-3xl gap-6">
       <div class="w-full max-w-sm space-y-6">
         <h1 class="text-xl sm:text-2xl font-bold text-text1">
           {{ t('loginUser.heading') }}
@@ -28,7 +27,6 @@
         </BaseButton>
       </div>
     </div>
-  </div>
 </template>
 
 <script setup>
