@@ -1,35 +1,48 @@
 <template>
-  <div class="text-left p-4 w-full">
+  <div class="text-left pb-2 w-full space-y-1">
     <!-- ID at the top -->
-    <p class="text-sm text-textAlt mb-2">
+    <p class="text-sm text-text1">
       <span class="font-semibold text-chat-other">ID:</span> {{ request.userRequestId }}
     </p>
 
     <!-- Created/Updated row -->
-    <div class="flex justify-between text-sm text-gray-500">
+    <div class="flex justify-between text-sm text-text1-faded">
       <p><span class="font-semibold">Sent In:</span></p>
       <p>{{ formatDate(request.createdAt) }}</p>
     </div>
     <div class="flex justify-between text-sm text-textAltFaded">
-      <p><span class="font-semibold ">Last Updated:</span></p>
+      <p><span class="font-semibold">Last Updated:</span></p>
       <p>{{ formatDate(request.updatedAt) }}</p>
     </div>
-   
-    <!-- Status Badge full width -->
+
+    <!-- Status Badge -->
     <div
         :class="[
-        'text-sm font-semibold px-3 py-2 rounded-full  capitalize w-full text-center',
+        'text-sm font-semibold px-2 py-1 rounded-full capitalize w-full text-center',
         getStatusClass(request.status)
       ]"
     >
       {{ request.status.toLowerCase() }}
     </div>
+
+    <!-- Mushroom Basket Summary -->
+    <div class="mt-4 space-y-2" v-if="request.basketSummaryBadges?.length">
+      <BasketBadge
+          v-for="(badge, index) in request.basketSummaryBadges"
+          :key="index"
+          :badge="badge"
+      />
+
+    </div>
   </div>
 </template>
 
-
 <script setup>
 import { formatDate } from '../utils/formatters';
+import { useI18n } from 'vue-i18n';
+import BasketBadge from "@/components/badges/BasketBadge.vue";
+
+const { t } = useI18n();
 
 const props = defineProps({
   request: {
@@ -54,5 +67,4 @@ const getStatusClass = (status) => {
       return 'bg-gray-400 text-white';
   }
 };
-
 </script>
