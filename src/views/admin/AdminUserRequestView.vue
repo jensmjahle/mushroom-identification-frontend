@@ -36,19 +36,22 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onBeforeUnmount } from "vue";
+import {ref, onMounted, onBeforeUnmount, watch} from "vue";
 import { useRoute } from 'vue-router';
 import ChatBox from '../../components/ChatBox.vue';
 import RequestStatusBox from "../../components/RequestStatusBox.vue";
 import MushroomBasket from "../../components/MushroomBasket.vue";
 import { getUserRequestAdmin } from "@/services/adminRequestService.js";
 import {getUserRequest} from "@/services/userRequestService.js";
+import {useMushroomStore} from "@/store/mushroomStore.js";
 
 const route = useRoute();
 const userRequestId = route.params.userRequestId;
 const userRequest = ref(null);
-const isBasketOpen = ref(false); // Track if basket is open
+const isBasketOpen = ref(false); 
 const isMobile = ref(false);
+const mushroomStore = useMushroomStore()
+
 
 onMounted(() => {
   getUserRequestAdmin(userRequestId).then((data) => {
@@ -73,4 +76,9 @@ function reloadUserRequest() {
   });
 }
 
+
+
+watch(() => mushroomStore.mushrooms, () => {
+  reloadUserRequest()
+}, { deep: true })
 </script>
