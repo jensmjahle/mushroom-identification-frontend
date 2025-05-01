@@ -71,7 +71,7 @@ const renderedContent = ref('')
 async function loadSupportText() {
   try {
     const lang = locale.value || 'no'
-    const res = await fetch(`/content/support.${lang}.txt`)
+    const res = await fetch(`/content/support/support.${lang}.txt`)
     const raw = await res.text()
     renderedContent.value = marked.parse(raw)
   } catch (e) {
