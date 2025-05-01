@@ -9,7 +9,7 @@
       <div
           v-if="menuOpen"
           ref="menuRef"
-          class="fixed top-0 right-0 w-64 h-full bg-bg4 text-text4 shadow-lg z-40 p-4 overflow-y-auto"
+          class="mobile-menu fixed top-0 right-0 w-64 h-full bg-bg4 text-text4 shadow-lg z-40 p-4 overflow-y-auto"
       >
         <slot />
       </div>
