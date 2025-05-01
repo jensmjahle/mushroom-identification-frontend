@@ -13,7 +13,7 @@
     <!-- Dropdown -->
     <div
         v-if="showDropdown && isAdmin"
-        class="absolute right-0 mt-1 min-w-max bg-bg3 text-text3 border-border3 border shadow z-45 rounded text-sm whitespace-nowrap"
+        class="absolute right-0 mt-1 min-w-max bg-bg3 text-text3 border-border3 border shadow z-50 rounded text-sm whitespace-nowrap"
     >
       <div
           v-for="option in statusOptions"
@@ -28,19 +28,25 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue';
+import {ref, computed, onMounted} from 'vue';
 import { X, Check, HelpCircle, AlertCircle, Circle } from 'lucide-vue-next';
+import {parseJwt} from "@/utils/jwt.js";
 
 const props = defineProps({
   status: String,
-  isAdmin: Boolean,
   mushroomId: [String, Number],
 });
 
 const emit = defineEmits(['status-updated']);
-
+const isAdmin = ref(false);
 const statusKey = computed(() => props.status.toLowerCase().replace(/_/g, '-'));
 const label = computed(() => props.status.replace(/_/g, ' ').toLowerCase());
+const token = sessionStorage.getItem('jwt');
+const userRole = parseJwt(token)?.role;
+
+onMounted(() => {
+      isAdmin.value = userRole === 'SUPERUSER' || userRole === 'MODERATOR';
+});
 
 const bg = computed(() => ({
   toxic: 'bg-mushroom-toxic',
@@ -92,7 +98,7 @@ const statusOptions = [
 ];
 
 function toggleDropdown() {
-  if (props.isAdmin) showDropdown.value = !showDropdown.value;
+  if (isAdmin) showDropdown.value = !showDropdown.value;
 }
 
 async function selectStatus(newStatus) {
