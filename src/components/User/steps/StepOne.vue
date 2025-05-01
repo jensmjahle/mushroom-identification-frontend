@@ -115,7 +115,7 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useToast } from 'vue-toastification'
 import { sendNewUserRequest } from '@/services/userRequestService'
@@ -129,6 +129,7 @@ const emit = defineEmits(['next'])
 
 const hintStep = ref(null)
 const comment = ref('')
+const mushrooms = ref([])
 const showErrorComment = ref(false)
 const showErrorMushroom = ref(false)
 const loading = ref(false)
@@ -139,7 +140,6 @@ const popupInputRef = ref(null)
 
 const mushroomInProgress = ref({ 1: null, 2: null, 3: null })
 const imagePreviews = ref({ 1: null, 2: null, 3: null })
-const mushrooms = ref([])
 
 const steps = computed(() => tm('submit.steps'))
 
@@ -168,11 +168,22 @@ function removeMushroom(id) {
   mushrooms.value = mushrooms.value.filter(m => m.id !== id)
 }
 
+function fileToBase64(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader()
+    reader.onload = () => resolve(reader.result)
+    reader.onerror = reject
+    reader.readAsDataURL(file)
+  })
+}
+
 async function handlePopupUpload(event) {
   const file = event.target.files?.[0]
   if (!file) return
+  const dataURL = await fileToBase64(file)
+  file.dataURL = dataURL
   mushroomInProgress.value[mushroomStep.value] = file
-  imagePreviews.value[mushroomStep.value] = URL.createObjectURL(file)
+  imagePreviews.value[mushroomStep.value] = dataURL
   event.target.value = null
 }
 
@@ -182,10 +193,7 @@ async function nextStep() {
   } else {
     const imagesRaw = Object.entries(mushroomInProgress.value)
       .filter(([_, file]) => file)
-      .map(([step, file]) => ({
-        file,
-        name: `angle_${getStepName(Number(step))}.jpg`
-      }))
+      .map(([step, file]) => ({ file, name: `angle_${getStepName(Number(step))}.jpg` }))
 
     const { processedFiles } = await processImageFiles(
       imagesRaw.map(i => i.file),
@@ -226,6 +234,8 @@ async function handleSubmit() {
   try {
     const result = await sendNewUserRequest(comment.value, mushrooms.value)
     if (result) {
+      localStorage.removeItem('submit_comment')
+      localStorage.removeItem('submit_mushrooms')
       emit('next', result)
     } else {
       toast.error('Noe gikk galt. Prøv igjen.')
@@ -236,4 +246,50 @@ async function handleSubmit() {
     loading.value = false
   }
 }
+
+// Laste inn fra localStorage
+onMounted(() => {
+  const savedComment = localStorage.getItem('submit_comment')
+  if (savedComment) comment.value = savedComment
+
+  const savedMushrooms = localStorage.getItem('submit_mushrooms')
+  if (savedMushrooms) {
+    try {
+      const parsed = JSON.parse(savedMushrooms)
+      mushrooms.value = parsed.map(m => ({
+        id: m.id,
+        images: m.images.map(img => {
+          const arr = img.dataURL.split(',')
+          const mime = arr[0].match(/:(.*?);/)[1]
+          const bstr = atob(arr[1])
+          const u8arr = new Uint8Array(bstr.length)
+          for (let i = 0; i < bstr.length; i++) u8arr[i] = bstr.charCodeAt(i)
+          const file = new File([u8arr], img.name, { type: mime })
+          file.dataURL = img.dataURL
+          return file
+        })
+      }))
+    } catch (e) {
+      console.warn('Feil ved rekonstruksjon av sopp:', e)
+    }
+  }
+})
+
+watch(comment, (val) => {
+  localStorage.setItem('submit_comment', val)
+})
+
+watch(mushrooms, async (val) => {
+  const simplified = []
+  for (const m of val) {
+    const images = await Promise.all(
+      m.images.map(async img => {
+        const dataURL = img.dataURL || await fileToBase64(img)
+        return { name: img.name, dataURL }
+      })
+    )
+    simplified.push({ id: m.id, images })
+  }
+  localStorage.setItem('submit_mushrooms', JSON.stringify(simplified))
+}, { deep: true })
 </script>
