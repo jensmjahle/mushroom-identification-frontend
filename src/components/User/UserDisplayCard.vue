@@ -4,13 +4,7 @@
         @click="$emit('toggle-sidebar')"
         class="collapse-button"
       >
-        <img
-          src="/assets/arrow.svg"
-          alt="Toggle sidebar"
-          class="w-5 h-5 transition-transform duration-300 light:invert"
-          :class="{ 'rotate-180': collapsed }"
-
-        />
+        <component :is="collapsed ? ChevronRight : ChevronLeft" class="w-[40px] h-[40px]" />
       </button>
       
       <router-view />
@@ -18,6 +12,7 @@
   </template>
   
 <script setup>
+import { ChevronLeft, ChevronRight } from 'lucide-vue-next';
     defineProps({ collapsed: Boolean });
     defineEmits(['toggle-sidebar']);
 </script>

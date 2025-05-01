@@ -17,8 +17,12 @@
           isBasketOpen ? 'sm:w-[calc(100%-300px)] sm:mr-6 w-full' : 'w-full'
         ]"
       >
-        <div class="w-full max-w-3xl flex flex-col overflow-y-auto max-h-[85vh] p-2">
-          <RequestStatusBox v-if="userRequest" :request="userRequest" />
+        <div :class="['max-w-3xl flex flex-col overflow-y-auto max-h-[85vh] p-2', isMobile ? 'w-[100vw]' : 'w-full']">
+            <RequestStatusBox 
+            v-if="userRequest" 
+            :request="userRequest" 
+            :class="['mb-2', isMobile ? 'top-0 left-0 w-[80vw]' : '']"
+            />
           <ChatBox :userRequestId="userRequestId" />
         </div>
       </div>
