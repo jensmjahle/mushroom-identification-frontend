@@ -35,6 +35,7 @@
         {{ t('loginUser.homeLink') }}
       </router-link>
     </div>
+  </div>
 </template>
 
 <script setup>
