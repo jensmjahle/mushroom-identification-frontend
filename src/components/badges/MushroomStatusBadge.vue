@@ -1,4 +1,3 @@
-
 <template>
   <div class="inline-block relative">
     <div
@@ -7,7 +6,7 @@
         @click="toggleDropdown"
     >
       <component :is="icon" class="w-4 h-4" />
-      <span class="capitalize">{{ label }}</span>
+      <span class="capitalize">{{ t(`mushroom.status.${statusKey}`) }}</span>
     </div>
 
     <!-- Dropdown -->
@@ -19,18 +18,20 @@
           v-for="option in statusOptions"
           :key="option"
           @click="selectStatus(option)"
-          class="px-3 py-1 hover:bg-gray-100 cursor-pointer capitalize"
+          class="px-3 py-1 hover:bg-text3-faded cursor-pointer capitalize"
       >
-        {{ option.replace(/_/g, ' ').toLowerCase() }}
+        {{ t(`mushroom.status.${option.toLowerCase().replace(/_/g, '-')}`) }}
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
-import {ref, computed, onMounted} from 'vue';
+import { ref, computed, onMounted } from 'vue';
+import { useI18n } from 'vue-i18n';
 import { X, Check, HelpCircle, AlertCircle, Circle } from 'lucide-vue-next';
-import {parseJwt} from "@/utils/jwt.js";
+import { parseJwt } from '@/utils/jwt.js';
+import { useToast } from 'vue-toastification';
 
 const props = defineProps({
   status: String,
@@ -38,15 +39,19 @@ const props = defineProps({
 });
 
 const emit = defineEmits(['status-updated']);
+const { t } = useI18n();
+const toast = useToast();
+
 const isAdmin = ref(false);
-const statusKey = computed(() => props.status.toLowerCase().replace(/_/g, '-'));
-const label = computed(() => props.status.replace(/_/g, ' ').toLowerCase());
+const showDropdown = ref(false);
 const token = sessionStorage.getItem('jwt');
 const userRole = parseJwt(token)?.role;
 
 onMounted(() => {
-      isAdmin.value = userRole === 'SUPERUSER' || userRole === 'MODERATOR';
+  isAdmin.value = userRole === 'SUPERUSER' || userRole === 'MODERATOR';
 });
+
+const statusKey = computed(() => props.status.toLowerCase().replace(/_/g, '-'));
 
 const bg = computed(() => ({
   toxic: 'bg-mushroom-toxic',
@@ -87,7 +92,6 @@ const icon = computed(() => {
   }
 });
 
-const showDropdown = ref(false);
 const statusOptions = [
   'PSILOCYBIN',
   'NON_PSILOCYBIN',
@@ -98,17 +102,21 @@ const statusOptions = [
 ];
 
 function toggleDropdown() {
-  if (isAdmin) showDropdown.value = !showDropdown.value;
+  if (isAdmin.value) showDropdown.value = !showDropdown.value;
 }
 
 async function selectStatus(newStatus) {
   showDropdown.value = false;
+  toast.info(t(`mushroom.status.${newStatus.toLowerCase().replace(/_/g, '-')}`), {
+    timeout: 2000,
+    closeOnClick: true,
+    pauseOnHover: true,
+  });
+
   try {
     const res = await fetch(`${import.meta.env.VITE_API_URL}/api/mushrooms/${props.mushroomId}/status`, {
       method: 'PATCH',
-      headers: {
-        'Content-Type': 'application/json',
-      },
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ status: newStatus })
     });
 
@@ -128,4 +136,3 @@ async function selectStatus(newStatus) {
   @apply text-xs px-2 py-1 rounded-full flex items-center gap-1 shadow border z-10;
 }
 </style>
-
