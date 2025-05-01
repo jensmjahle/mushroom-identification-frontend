@@ -78,12 +78,6 @@ function toggleDropdown() {
 
 async function selectStatus(newStatus) {
   showDropdown.value = false;
-  toast.info(t(`mushroom.status.${newStatus.toLowerCase().replace(/_/g, '-')}`), {
-    timeout: 2000,
-    closeOnClick: true,
-    pauseOnHover: true,
-  });
-
   try {
     const updatedMushroom = await changeMushroomStatus(props.userRequestId, props.mushroomId, newStatus);
     if (updatedMushroom) {
