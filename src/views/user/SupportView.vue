@@ -1,6 +1,6 @@
 <template>
   <div class="w-full h-full flex items-center justify-center px-4 py-6">
-    <div class="w-full max-w-3xl h-full flex flex-col text-center px-4 py-6 sm:py-10 sm:px-8 rounded-lg bg-bg1 border border-border1">
+    <div class="w-full max-w-3xl h-full flex flex-col text-center px-4 py-6 sm:py-10 sm:px-8 rounded-lg">
 
       <!-- Tittel -->
       <h1 class="text-xl sm:text-2xl font-bold text-text1 mb-4">
