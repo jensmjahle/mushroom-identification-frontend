@@ -1,0 +1,23 @@
+### How does the service work?
+
+You upload photos of your mushroom, and an expert will review the images and provide an assessment based on visible characteristics.
+
+### How long does it take to get a response?
+
+We aim to respond within 1–2 business days. During peak season (e.g., autumn), it may take a little longer.
+
+### How do I log in?
+
+[Log in here](/user/login) if you already have an account. If you don't, you can create one during login.
+
+### Do I need to register?
+
+No. You can submit anonymously, but registered users get access to their history and faster follow-ups.
+
+### What happens after I submit?
+
+You will receive a reference code. When the review is ready, you can use this code to retrieve your response.
+
+### Is the identification 100% accurate?
+
+No. The assessment is based solely on visible features in your photos and should never be the sole basis for consuming mushrooms.

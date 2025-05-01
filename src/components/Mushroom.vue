@@ -23,16 +23,16 @@
       />
 
       <button
-          v-if="imageUrls.length > 1"
-          @click.stop="prev"
-          class="absolute left-0 top-1/2 transform -translate-y-1/2 btn-icon-transparent-1"
+        v-if="imageUrls.length > 1"
+        @click.stop="prev"
+        class="bg-button1 active:none absolute left-0 top-1/2 transform -translate-y-1/2 btn-icon-1"
       >
         <ArrowLeft />
       </button>
       <button
-          v-if="imageUrls.length > 1"
-          @click.stop="next"
-          class="absolute right-0 top-1/2 transform -translate-y-1/2 btn-icon-transparent-1"
+        v-if="imageUrls.length > 1"
+        @click.stop="next"
+        class="bg-button1 active:none absolute right-0 top-1/2 transform -translate-y-1/2 btn-icon-1"
       >
         <ArrowRight />
       </button>
