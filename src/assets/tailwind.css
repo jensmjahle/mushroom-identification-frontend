@@ -78,7 +78,7 @@ html, body, #app {
   }
 
   .collapse-button {
-    @apply absolute top-4 left-0 z-[1] pointer-events-auto p-2 bg-bg1 rounded-none rounded-tr-lg rounded-br-lg transition focus:outline-none focus:ring-0 hover:border-bg1 xl2:hidden;
+    @apply absolute top-4 left-0 z-[1] pointer-events-auto border border-border2 border-l-0 bg-bg1 rounded-none rounded-tr-lg rounded-br-lg transition xl2:hidden;
   }
   
 
