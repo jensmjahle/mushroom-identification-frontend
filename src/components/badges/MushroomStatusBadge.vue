@@ -32,8 +32,10 @@ import { useI18n } from 'vue-i18n';
 import { parseJwt } from '@/utils/jwt.js';
 import { useToast } from 'vue-toastification';
 import {getStatusStyles} from "@/utils/styling/mushroomStatusStyles.js";
+import {changeMushroomStatus} from "@/services/mushroomService.js";
 
 const props = defineProps({
+  userRequestId: String,
   status: String,
   mushroomId: [String, Number],
 });
@@ -81,12 +83,7 @@ async function selectStatus(newStatus) {
   });
 
   try {
-    const res = await fetch(`${import.meta.env.VITE_API_URL}/api/mushrooms/${props.mushroomId}/status`, {
-      method: 'PATCH',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ status: newStatus })
-    });
-
+    const res = await changeMushroomStatus(props.userRequestId, props.mushroomId, newStatus);
     if (res.ok) {
       emit('status-updated', newStatus);
     } else {

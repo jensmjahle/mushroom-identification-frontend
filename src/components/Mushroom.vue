@@ -45,7 +45,7 @@
         md:bottom-[8px] md:right-[12%] 
         lg:bottom-[14px] lg:right-[6%]"
     >
-      <StatusBadge :status="props.mushroom.mushroomStatus" />
+      <StatusBadge :status="props.mushroom.mushroomStatus" :user-request-id="props.userRequestId" :mushroom-id="props.mushroom.mushroomId"/>
     </div>
 
     <!-- Popup -->

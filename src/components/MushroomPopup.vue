@@ -17,7 +17,7 @@
         </button>
 
         <!-- Status badge -->
-        <StatusBadge class="absolute top-2 left-2 z-45" :status="props.mushroom.mushroomStatus" />
+        <StatusBadge class="absolute top-2 left-2 z-45" :status="props.mushroom.mushroomStatus" :user-request-id="props.userRequestId" :mushroom-id="props.mushroom.mushroomId"/>
 
         <!-- Image viewer -->
         <div class="flex flex-col items-center">
