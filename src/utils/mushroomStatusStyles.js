@@ -1,11 +1,11 @@
-import { X, Check, HelpCircle, AlertCircle, Circle } from 'lucide-vue-next';
+import { X, Check, HelpCircle, AlertCircle, Circle } from 'lucide-vue-next'
 
 export function getStatusKey(status) {
-  return status?.toLowerCase().replace(/_/g, '-');
+  return status?.toLowerCase().replace(/_/g, '-')
 }
 
-export function getStatusStyles(status) {
-  const key = getStatusKey(status);
+export function getStatusStyles(status, t = null) {
+  const key = getStatusKey(status)
 
   const bg = {
     toxic: 'bg-mushroom-toxic',
@@ -14,7 +14,7 @@ export function getStatusStyles(status) {
     unknown: 'bg-mushroom-unknown',
     unidentifiable: 'bg-mushroom-unidentifiable',
     'not-processed': 'bg-mushroom-not-processed',
-  }[key] || 'bg-gray-300';
+  }[key] || 'bg-gray-300'
 
   const text = {
     toxic: 'text-mushroom-toxic-text',
@@ -23,7 +23,7 @@ export function getStatusStyles(status) {
     unknown: 'text-mushroom-unknown-text',
     unidentifiable: 'text-mushroom-unidentifiable-text',
     'not-processed': 'text-mushroom-not-processed-text',
-  }[key] || 'text-black';
+  }[key] || 'text-black'
 
   const border = {
     toxic: 'border-mushroom-toxic-border',
@@ -32,7 +32,16 @@ export function getStatusStyles(status) {
     unknown: 'border-mushroom-unknown-border',
     unidentifiable: 'border-mushroom-unidentifiable-border',
     'not-processed': 'border-mushroom-not-processed-border',
-  }[key] || 'border-gray-300';
+  }[key] || 'border-gray-300'
+
+  const cssVar = {
+    PSILOCYBIN: '--color-mushroom-psilocybin',
+    NON_PSILOCYBIN: '--color-mushroom-non-psilocybin',
+    TOXIC: '--color-mushroom-toxic',
+    UNKNOWN: '--color-mushroom-unknown',
+    UNIDENTIFIABLE: '--color-mushroom-unidentifiable',
+    NOT_PROCESSED: '--color-mushroom-not-processed',
+  }[status]
 
   const icon = {
     TOXIC: X,
@@ -41,7 +50,15 @@ export function getStatusStyles(status) {
     UNKNOWN: HelpCircle,
     UNIDENTIFIABLE: AlertCircle,
     NOT_PROCESSED: Circle,
-  }[status] || Circle;
+  }[status] || Circle
 
-  return { key, bg, text, border, icon };
+  return {
+    key,
+    bg,
+    text,
+    border,
+    cssVar,
+    icon,
+    label: t ? t(`mushroomStatus.${status}`) : status
+  }
 }
