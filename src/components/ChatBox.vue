@@ -58,9 +58,9 @@
 
 <script setup>
 import {ref, onMounted, onBeforeUnmount, nextTick, watch} from 'vue';
-import { connectToChat, sendMessage, disconnectFromChat } from '../services/chatSocket';
-import { parseJwt } from '../utils/jwt';
-import { formatDate } from '../utils/formatters';
+import { connectToChat, sendMessage, disconnectFromChat } from '@/services/chatSocket';
+import { parseJwt } from '@/utils/jwt';
+import { formatDate } from '@/utils/formatters';
 import {fetchChatMessages} from "@/services/chatService.js";
 
 
