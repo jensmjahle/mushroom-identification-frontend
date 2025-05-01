@@ -20,7 +20,7 @@ import { ref, onMounted, watch } from 'vue'
 import { fetchMushroomCategoryStats } from '@/services/statsService'
 import { useI18n } from 'vue-i18n'
 import { themeReady } from '@/composables/themeReady'
-import {getStatusStyles} from "@/utils/mushroomStatusStyles.js";
+import {getStatusStyles} from "@/utils/styling/mushroomStatusStyles.js";
 
 ChartJS.register(ArcElement, Tooltip, Legend)
 

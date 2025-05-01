@@ -31,7 +31,7 @@ import { ref, computed, onMounted } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { parseJwt } from '@/utils/jwt.js';
 import { useToast } from 'vue-toastification';
-import {getStatusStyles} from "@/utils/mushroomStatusStyles.js";
+import {getStatusStyles} from "@/utils/styling/mushroomStatusStyles.js";
 
 const props = defineProps({
   status: String,
