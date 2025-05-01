@@ -163,8 +163,21 @@ export default {
           'not-processed-border': 'var(--color-mushroom-not-processed-border)',
           'not-processed-hover': 'var(--color-mushroom-not-processed-hover)',
         },
-        
       },
+      typography: () => ({
+        DEFAULT: {
+          css: {
+            color: 'var(--color-text1)',
+            h1: { color: 'var(--color-text1)' },
+            h2: { color: 'var(--color-text1)' },
+            h3: { color: 'var(--color-text1)' },
+            h4: { color: 'var(--color-text1)' },
+            strong: { color: 'var(--color-text1)' },
+            b: { color: 'var(--color-text1)' },
+            a: { color: 'var(--color-text1)' },
+          },
+        },
+      }),
     },
   },
   plugins: [
