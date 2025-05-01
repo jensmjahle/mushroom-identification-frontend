@@ -1,15 +1,16 @@
 <template>
   <div class="w-full h-full flex items-center justify-center px-4 py-6">
-    <div class="w-full max-w-3xl h-full flex flex-col text-center px-4 py-6 sm:py-10 sm:px-8 rounded-lg">
-      
-      <!-- Tittel (fast topp) -->
+    <div class="w-full max-w-3xl h-full flex flex-col text-center px-4 py-6 sm:py-10 sm:px-8 rounded-lg bg-bg1 border border-border1">
+
+      <!-- Tittel -->
       <h1 class="text-xl sm:text-2xl font-bold text-text1 mb-4">
         {{ t('support.title') }}
       </h1>
 
-      <!-- Scrollbart innhold -->
-      <div class="flex-1 overflow-y-auto">
-        <!-- Dynamic Markdown Content -->
+      <!-- Scrollbart innhold med max-h og pen scroll -->
+      <div class="flex-1 overflow-y-auto max-h-[calc(100vh-12rem)] pr-2 custom-scrollbar">
+
+        <!-- Markdown Content -->
         <div
           class="text-left prose prose-sm sm:prose-base dark:prose-invert max-w-none text-text1"
           v-html="renderedContent"
@@ -54,6 +55,7 @@
     </div>
   </div>
 </template>
+
 
 
 <script setup>
