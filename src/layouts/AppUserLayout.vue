@@ -12,25 +12,38 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue';
-import UserSidebar from '../components/User/UserSidebar.vue';
-import UserDisplayCard from '../components/User/UserDisplayCard.vue';
-import SettingsWidget from '../components/User/SettingsWidget.vue';
-import MobileHamburgerMenu from '../components/navigation/MobileHamburgerMenu.vue';
-import UserSideMenuContent from '../components/navigation/UserSideMenuContent.vue';
+import { ref, onMounted, onUnmounted, watch } from 'vue'
+import UserSidebar from '../components/User/UserSidebar.vue'
+import UserDisplayCard from '../components/User/UserDisplayCard.vue'
+import SettingsWidget from '../components/User/SettingsWidget.vue'
+import MobileHamburgerMenu from '../components/navigation/MobileHamburgerMenu.vue'
+import UserSideMenuContent from '../components/navigation/UserSideMenuContent.vue'
 
-const collapsed = ref(false);
 
-const handleResize = () => {
-  collapsed.value = window.innerWidth < 1000;
-};
+const collapsed = ref(false)
 
 onMounted(() => {
-  handleResize();
-  window.addEventListener('resize', handleResize);
-});
+  const saved = localStorage.getItem('sidebarCollapsed')
+  if (saved !== null) {
+    collapsed.value = saved === 'true'
+  } else {
+    collapsed.value = window.innerWidth < 1000
+  }
+
+  window.addEventListener('resize', handleResize)
+})
 
 onUnmounted(() => {
-  window.removeEventListener('resize', handleResize);
-});
+  window.removeEventListener('resize', handleResize)
+})
+
+watch(collapsed, (val) => {
+  localStorage.setItem('sidebarCollapsed', val.toString())
+})
+
+const handleResize = () => {
+  if (window.innerWidth < 1000) {
+    collapsed.value = true
+  }
+}
 </script>
