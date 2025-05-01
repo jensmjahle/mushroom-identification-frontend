@@ -1,7 +1,7 @@
 <template>
   <Teleport to="body">
     <div
-      class="fixed inset-0 bg-overlay/60 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+      class="fixed inset-0 bg-overlay/60 backdrop-blur-sm z-30 flex items-center justify-center p-4"
       @click="handleOutsideClick"
     >
       <div
@@ -17,7 +17,7 @@
         </button>
 
         <!-- Status badge -->
-        <StatusBadge class="absolute top-2 left-2" :status="props.mushroom.mushroomStatus" />
+        <StatusBadge class="absolute top-2 left-2 z-45" :status="props.mushroom.mushroomStatus" :user-request-id="props.userRequestId" :mushroom-id="props.mushroom.mushroomId"/>
 
         <!-- Image viewer -->
         <div class="flex flex-col items-center">
@@ -85,6 +85,7 @@ import { useI18n } from 'vue-i18n';
 
 const toast = useToast();
 const { t } = useI18n();
+const isAdmin = ref(false);
 
 const props = defineProps({
   mushroom: Object,

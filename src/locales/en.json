@@ -176,7 +176,15 @@
     }
   },
   "mushroom": {
-    "title": "Mushroom"
+    "title": "Mushroom",
+    "status": {
+      "psilocybin": "Psilocybin",
+      "non-psilocybin": "Non-Psilocybin",
+      "toxic": "Toxic",
+      "unknown": "Unknown",
+      "unidentifiable": "Unidentifiable",
+      "not-processed": "Not Processed"
+    }
   },
   "loginUser": {
     "heading": "Enter Your Reference Code",

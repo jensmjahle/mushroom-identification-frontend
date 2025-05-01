@@ -143,7 +143,15 @@
 
   },
   "mushroom": {
-    "title": "Sopp"
+    "title": "Sopp",
+    "status": {
+      "psilocybin": "Fleinsopp",
+      "non-psilocybin": "Ikke Fleinsopp",
+      "toxic": "Giftig",
+      "unknown": "Ukjent",
+      "unidentifiable": "Uidentifiserbar",
+      "not-processed": "Ikke Behandlet"
+    }
   },
   "loginUser": {
     "heading": "Skriv inn referansekoden din",

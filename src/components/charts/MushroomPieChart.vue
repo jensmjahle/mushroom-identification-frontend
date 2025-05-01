@@ -20,6 +20,7 @@ import { ref, onMounted, watch } from 'vue'
 import { fetchMushroomCategoryStats } from '@/services/statsService'
 import { useI18n } from 'vue-i18n'
 import { themeReady } from '@/composables/themeReady'
+import {getStatusStyles} from "@/utils/styling/mushroomStatusStyles.js";
 
 ChartJS.register(ArcElement, Tooltip, Legend)
 
@@ -40,29 +41,21 @@ const chartOptions = {
   },
 }
 
-const cssVarMap = {
-  PSILOCYBIN: '--color-mushroom-psilocybin',
-  NON_PSILOCYBIN: '--color-mushroom-non-psilocybin',
-  TOXIC: '--color-mushroom-toxic',
-  UNKNOWN: '--color-mushroom-unknown',
-  UNIDENTIFIABLE: '--color-mushroom-unidentifiable'
-}
-function getCssVariableValue(variableName) {
-  return getComputedStyle(document.documentElement).getPropertyValue(variableName).trim()
-}
-
-
 const loadChartData = async () => {
   const stats = await fetchMushroomCategoryStats(token)
-  const filteredStats = stats.filter(s => s.status !== 'NOT_PROCESSED');
+  const filteredStats = stats.filter(s => s.status !== 'NOT_PROCESSED')
 
   chartData.value = {
-    labels: filteredStats.map(s => t(`mushroomStatus.${s.status}`)),
+    labels: filteredStats.map(s => getStatusStyles(s.status, t).label),
     datasets: [
       {
         label: t('admin.stats.mushroomCategories'),
         data: filteredStats.map(s => s.count),
-        backgroundColor: filteredStats.map(s => getCssVariableValue(cssVarMap[s.status]))
+        backgroundColor: filteredStats.map(s =>
+            getComputedStyle(document.documentElement)
+            .getPropertyValue(getStatusStyles(s.status).cssVar)
+            .trim()
+        )
       }
     ]
   }

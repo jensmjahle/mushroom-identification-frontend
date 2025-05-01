@@ -68,3 +68,22 @@ export async function addImageToMushroom(userRequestId, mushroomId, imageFiles) 
     throw error;
   }
 }
+
+export const changeMushroomStatus = async (userRequestId, mushroomId, status) => {
+  try {
+    console.log('userRequestId', userRequestId);
+    console.log('mushroomId', mushroomId);
+    console.log('status', status);
+    const response = await api.post(
+      `/api/admin/mushrooms/${userRequestId}/status`,
+      { mushroomId, status },
+      {
+        headers: getAuthHeaders()
+      }
+    );
+    return response.data;
+  } catch (error) {
+    console.error('Error changing mushroom status:', error);
+    throw error;
+  }
+}

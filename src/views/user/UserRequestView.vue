@@ -32,6 +32,7 @@
         class="top-4 sm:-top-0 -right-1 sm:-right-16 mt-12 h-[80%] sm:mt-0 sm:h-full"
         :userRequestId="userRequestId"
         @basket-toggle="isBasketOpen = $event"
+        @updated="reloadUserRequest"
       />
     </div>
   </div>
@@ -67,4 +68,10 @@ onBeforeUnmount(() => {
 function checkMobile() {
   isMobile.value = window.innerWidth < 640;
 }
+function reloadUserRequest() {
+  getUserRequest(userRequestId).then((data) => {
+    userRequest.value = data;
+  });
+}
+
 </script>
