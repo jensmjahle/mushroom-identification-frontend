@@ -8,7 +8,7 @@ export function connectToChat(userRequestId, token, onMessageCallback, onErrorCa
   const username = token ? JSON.parse(atob(token.split('.')[1])).sub : null;
   
   stompClient = new Client({
-    brokerURL: `ws://localhost:8080/ws?token=${token}`,
+    brokerURL: `${import.meta.env.VITE_API_URL.replace(/^http/, 'ws')}/ws?token=${token}`,
     connectHeaders: {
       Authorization: `Bearer ${token}`
     },

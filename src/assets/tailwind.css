@@ -57,7 +57,7 @@ html, body, #app {
     @apply flex justify-center w-[100vw] h-[100vh] sm:h-[85vh] sm:w-[80vw];
   }
   .user-display-card {
-    @apply bg-bg2 text-text2 rounded-xl relative transition-all duration-300 ease-in-out flex-grow overflow-hidden z-10 pl-10;
+    @apply bg-bg2 text-text2 rounded-xl relative transition-all duration-300 ease-in-out flex-grow z-[10];
     max-height: 1000px;
     min-height: 600px;
   }
@@ -78,9 +78,9 @@ html, body, #app {
   }
 
   .collapse-button {
-    @apply absolute top-4 left-0 p-2 bg-bg1 rounded-none rounded-tr-lg rounded-br-lg transition focus:outline-none focus:ring-0 hover:border-bg1
-    xl2:hidden;
+    @apply absolute top-4 left-0 z-[1] pointer-events-auto p-2 bg-bg1 rounded-none rounded-tr-lg rounded-br-lg transition focus:outline-none focus:ring-0 hover:border-bg1 xl2:hidden;
   }
+  
 
   .user-sidebar.collapsed {
     width: 60px; 
@@ -140,7 +140,7 @@ html, body, #app {
   }
 
   .nav-bar {
-    @apply bg-bg1 fixed top-0 left-0 w-full z-50 text-text1 sm:gap-2 md:gap-20 lg:gap-40;
+    @apply bg-bg1 fixed top-0 left-0 w-full z-[50] text-text1 sm:gap-2 md:gap-20 lg:gap-40;
   }
 
   .become-member {

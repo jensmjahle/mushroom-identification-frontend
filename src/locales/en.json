@@ -89,6 +89,10 @@
     "nov": "November",
     "dec": "December"
   },
+  "mushroomPopup": {
+    "uploadSuccess": "Image uploaded successfully!",
+    "uploadError": "Something went wrong during image upload."
+  },
   "mushroomStatus": {
     "PSILOCYBIN": "Psilocybin Mushroom",
     "NON_PSILOCYBIN": "Non-Psilocybin",
