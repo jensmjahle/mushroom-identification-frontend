@@ -168,18 +168,26 @@
     "support": "Support",
     "admins" : "Administrators",
     "allAdmins" : "All Administrators",
-    "createNewAdmin" : "Create New Administrator"
+    "createNewAdmin" : "Create New Administrator",
+    "tooltips": {
+      "completeRequest": "Mark this request as finished and reviewed. The chat will be closed.",
+      "putBackIntoQueue": "Return this request to the main queue for review. It will not progress until someone else picks it up.",
+      "placeOnHold": "Temporarily hold the request without completing it. It will be removed from the queue but can be resumed later. Typically used for requests that need more information from the user."
+    }
   },
   "mushroom": {
     "title": "Mushroom"
   },
   "loginUser": {
-    "heading": "Enter your reference code",
+    "heading": "Enter Your Reference Code",
+    "description": "Paste the code you received after submitting your request to view its status and messages.",
     "refLabel": "Reference Code",
-    "placeholder": "e.g. ABC123",
-    "button": "Continue",
-    "errorEmpty": "Reference code cannot be empty",
-    "errorInvalid": "Invalid reference code"
+    "placeholder": "e.g. 8f3a-1290-abcd...",
+    "button": "Log In",
+    "errorEmpty": "Please enter your reference code.",
+    "errorInvalid": "Invalid or expired reference code.",
+    "noCodeQuestion": "Don’t have a code?",
+    "homeLink": "Go back to homepage"
   },
   "home": {
     "description": "Not sure if you've picked liberty caps? Submit a free and anonymous request here:",
@@ -264,7 +272,23 @@
   "navigation": {
     "settings": "Settings",
     "logout": "Log out"
+  },
+  "basketBadge": {
+    "TOXIC_MUSHROOM_PRESENT": "Warning: This basket contains at least one toxic mushroom",
+    "PSYCHOACTIVE_MUSHROOM_PRESENT": "This basket contains psychoactive mushrooms",
+    "UNIDENTIFIABLE_MUSHROOM_PRESENT": "Some mushrooms in this basket could not be identified",
+    "NON_PSILOCYBIN_MUSHROOM_PRESENT": "Contains non-psilocybin mushrooms",
+    "UNKNOWN_MUSHROOM_PRESENT": "Contains mushrooms of unknown type",
+    "ALL_MUSHROOMS_PROCESSED": "All mushrooms in this basket have been processed",
+    "NO_MUSHROOMS_PROCESSED": "None of the mushrooms have been processed yet",
+    "ALL_MUSHROOMS_ARE_TOXIC": "All mushrooms in this basket are toxic",
+    "ALL_MUSHROOMS_ARE_PSILOCYBIN": "All mushrooms in this basket are identified as psilocybin",
+    "ALL_MUSHROOMS_ARE_NON_PSILOCYBIN": "All mushrooms in this basket are non-psilocybin",
+    "ALL_MUSHROOMS_ARE_UNKNOWN": "All mushrooms in this basket are of unknown type",
+    "ALL_MUSHROOMS_ARE_UNIDENTIFIABLE": "None of the mushrooms in this basket could be identified"
   }
+
+
 }
 
 

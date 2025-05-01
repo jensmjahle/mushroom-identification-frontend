@@ -3,7 +3,7 @@
   <div class="main-view">
 
     <!-- New Requests Section -->
-    <div class="p-6 bg-bg rounded-lg">
+    <div class="px-6 bg-bg rounded-lg">
       <BaseList
           :items="newRequests"
           :columns="columns"

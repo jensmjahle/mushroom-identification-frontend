@@ -5,44 +5,54 @@
     <h2 class="text-xl font-semibold text-text4 text-right">{{ $t('sideMenu.completedTitle') }}</h2>
     <div class="text-5xl font-bold mb-4 text-right">{{ completedCount }}</div>
 
-    <div class="space-y-2">
-      <BaseButton v-if="!isRequestPage" @click=getNextFromQueue block variant="2">
+    <div class="space-y-2" v-if="!isRequestPage">
+      <BaseButton @click=getNextFromQueue block variant="2">
         {{ $t('sideMenu.nextFromQueue') }}
       </BaseButton>
-      <BaseButton v-if="!isRequestPage" @click="navigate('admin-all-requests')" block variant="4">
+      <BaseButton @click="navigate('admin-all-requests')" block variant="4">
         {{ $t('sideMenu.allRequests') }}
       </BaseButton>
-      <BaseButton v-if="!isRequestPage" @click="navigate('admin-statistics')" block variant="4">
+      <BaseButton @click="navigate('admin-statistics')" block variant="4">
         {{ $t('sideMenu.statistics') }}
       </BaseButton>
-
-      <BaseButton
-          v-if="isRequestPage"
-          @click="handleStatusChange('COMPLETED')"
-          block
-          variant="2"
-      >
-        {{ $t('sideMenu.completeRequest') }}
-      </BaseButton>
-      <BaseButton
-          v-if="isRequestPage"
-          @click="handleStatusChange('NEW')"
-          block
-          variant="4"
-      >
-        {{ $t('sideMenu.putBackIntoQueue') }}
-      </BaseButton>
-      <BaseButton
-          v-if="isRequestPage"
-          @click="handleStatusChange('PENDING')"
-          block
-          variant="4"
-      >
-        {{ $t('sideMenu.placeOnHold') }}
-      </BaseButton>
-
     </div>
-
+    
+    <div class="space-y-2" v-if="isRequestPage">
+      <div class="flex items-center gap-2">
+        <BaseButton
+            v-if="isRequestPage"
+            @click="handleStatusChange('COMPLETED')"
+            block
+            variant="2"
+        >
+          {{ $t('sideMenu.completeRequest') }}
+        </BaseButton>
+        <TooltipIcon tooltipKey="completeRequest" :variant="'1'" :position="tooltipPosition" />
+      </div>
+      <div class="flex items-center gap-2">
+        <BaseButton
+            v-if="isRequestPage"
+            @click="handleStatusChange('NEW')"
+            block
+            variant="4"
+        >
+          {{ $t('sideMenu.putBackIntoQueue') }}
+        </BaseButton>
+        <TooltipIcon tooltipKey="putBackIntoQueue" :variant="'1'" :position="tooltipPosition" />
+      </div>
+      <div class="flex items-center gap-2">
+        <BaseButton
+            v-if="isRequestPage"
+            @click="handleStatusChange('PENDING')"
+            block
+            variant="4"
+        >
+          {{ $t('sideMenu.placeOnHold') }}
+        </BaseButton>
+        <TooltipIcon tooltipKey="placeOnHold" :variant="'1'" :position="tooltipPosition" />
+      </div>
+    </div>
+      
     <hr class="my-4 border-border2" />
 
     <div class="space-y-2">
@@ -51,10 +61,10 @@
       <StatusIndicator label="Completed" :count="completedCount" status="COMPLETED" />
     </div>
 
-    <hr class="my-4 border-border2" />
+    <hr class="my-4 border-border2" v-if="!isRequestPage" />
 
     <div class="space-y-2">
-      <h3 class="text-left text-text4">{{ $t('sideMenu.admins') }}</h3>
+      <h3 v-if="!isRequestPage" class="text-left text-text4">{{ $t('sideMenu.admins') }}</h3>
       <BaseButton v-if="!isRequestPage"  @click="navigate('admin-management')" block variant="2">
         {{ $t('sideMenu.allAdmins') }}
       </BaseButton>
@@ -62,11 +72,21 @@
         {{ $t('sideMenu.createNewAdmin') }}
       </BaseButton>
     </div>
+
+    <hr class="my-4 border-border2" v-if="!isRequestPage" />
+    <div class="space-y-2 block sm:hidden">
+      <BaseButton v-if="!isRequestPage"  @click="navigate('admin-settings')" block variant="2">
+        {{ $t('sideMenu.settings') }}
+      </BaseButton>
+      <BaseButton v-if="!isRequestPage"  @click="logout" block variant="3">
+        {{ $t('sideMenu.logout') }}
+      </BaseButton>
+    </div>
   </div>
 </template>
 
 <script setup>
-import { computed } from 'vue'
+import {computed, onBeforeUnmount, onMounted, ref} from 'vue'
 import BaseButton from '@/components/base/BaseButton.vue'
 import StatusIndicator from '@/components/base/StatusIndicator.vue'
 import { useAdminSideMenu} from '@/composables/useAdminSideMenu'
@@ -74,6 +94,7 @@ import LogoButton from "@/components/LogoButton.vue";
 import { useToast } from 'vue-toastification'
 import {changeUserRequestStatus, getNextRequestFromQueue} from "@/services/adminRequestService.js";
 import { useRouter } from 'vue-router'
+import TooltipIcon from "@/components/base/TooltipIcon.vue";
 
 
 
@@ -85,6 +106,11 @@ const userRequestId = computed(() => route.params.userRequestId)
 const toast = useToast()
 const router = useRouter()
 
+const tooltipPosition = ref('right')
+
+function updateTooltipPosition() {
+  tooltipPosition.value = window.innerWidth < 640 ? 'left' : 'right'
+}
 
 const handleStatusChange = async (newStatus) => {
   if (!userRequestId.value) return
@@ -112,4 +138,16 @@ const getNextFromQueue = async () => {
     toast.error('Failed to fetch next request from queue')
   }
 }
+const logout = () => {
+  sessionStorage.removeItem('jwt')
+  router.push({ name: 'admin-login' })
+}
+onMounted(() => {
+  updateTooltipPosition()
+  window.addEventListener('resize', updateTooltipPosition)
+})
+
+onBeforeUnmount(() => {
+  window.removeEventListener('resize', updateTooltipPosition)
+})
 </script>

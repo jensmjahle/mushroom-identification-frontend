@@ -134,7 +134,13 @@
     "newRequest": "Ny forespørsel",
     "login": "Se Svar",
     "membership": "Bli medlem",
-    "support": "Support"
+    "support": "Support",
+    "tooltips": {
+      "completeRequest": "Marker denne forespørselen som ferdig og vurdert. Chatten vil bli stengt.",
+      "putBackIntoQueue": "Send forespørselen tilbake til hovedkøen for vurdering. Den vil ikke gå videre før noen plukker den opp.",
+      "placeOnHold": "Sett forespørselen midlertidig på vent uten å fullføre den. Den fjernes fra køen, men kan gjenopptas senere. Brukes vanligvis når mer informasjon trengs fra brukeren."
+    }
+
   },
   "mushroom": {
     "title": "Sopp"

@@ -26,7 +26,7 @@ const handleResize = () => {
 };
 
 onMounted(() => {
-  handleResize(); // Set initial state
+  handleResize();
   window.addEventListener('resize', handleResize);
 });
 

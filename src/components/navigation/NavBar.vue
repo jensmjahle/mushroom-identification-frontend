@@ -1,5 +1,5 @@
 <template>
-  <nav class="hidden sm:flex fixed top-4 right-4">
+  <nav class="hidden sm:flex fixed top-4 right-4 z-50">
     <div class="relative flex items-center gap-2">
 
       <RoleBadge :role="role" />
@@ -14,7 +14,7 @@
       <!-- Dropdown Menu -->
       <div
           v-if="dropdownOpen"
-          class="absolute right-0 top-full mt-2 w-44 bg-bg3 rounded-lg shadow-lg text-text3"
+          class="absolute right-0 top-full mt-2 w-44 bg-bg3 rounded-lg shadow-lg text-text3 z-45"
       >
         <div class="px-4 py-2 border-b border-border3 text-text3 text-sm font-medium truncate">
           {{ username }}
