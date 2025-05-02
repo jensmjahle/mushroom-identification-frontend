@@ -32,18 +32,18 @@ import StatsChart from "@/components/statistics/StatsChart.vue";
 import MushroomCategoryStats from "@/components/statistics/MushroomCategoryStats.vue";
 import MushroomPieChart from "@/components/charts/MushroomPieChart.vue";
 import StatsOverview from "@/components/statistics/StatsOverview.vue";
-import RequestsList from "@/components/RequestsList.vue";
 import BaseList from "@/components/base/BaseList.vue";
-import {getPaginatedOtherRequests} from "@/services/adminRequestService.js";
 import RequestRow from "@/components/base/rows/RequestRow.vue";
-import {onMounted, ref, watch} from "vue";
-import {useToast} from "vue-toastification";
+import { getPaginatedRequests } from "@/services/adminRequestService.js";
+import { onMounted, ref, watch } from "vue";
+import { useToast } from "vue-toastification";
 
 const columns = [
   { label: 'Request ID', key: 'userRequestId', class: 'col-span-6' },
   { label: 'Last Updated', key: 'updatedAt', class: 'col-span-3' },
   { label: 'Status', key: 'status', class: 'col-span-3' }
 ]
+
 const page = ref(0)
 const totalPages = ref(1)
 const otherRequests = ref([])
@@ -52,7 +52,11 @@ const toast = useToast()
 
 const fetchOtherRequests = async () => {
   try {
-    const res = await getPaginatedOtherRequests(page.value)
+    const res = await getPaginatedRequests({
+      page: page.value,
+      status: 'NEW',
+      exclude: true
+    })
     otherRequests.value = res.content
     totalPages.value = res.totalPages
   } catch (error) {
