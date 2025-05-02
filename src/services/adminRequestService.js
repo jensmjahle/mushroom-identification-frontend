@@ -83,3 +83,17 @@ export const getNextRequestFromQueue = async () => {
     return null
   }
 }
+export const getRequestsForMonth = async ({ year, month }) => {
+  try {
+    const response = await axios.get('/api/admin/requests/export', {
+      params: { year, month },
+      headers: getAuthHeaders()
+    })
+
+    return response?.data || { content: [] }
+  } catch (error) {
+    console.error(`Error exporting requests for ${month}/${year}:`, error)
+    useToast().error('Error exporting requests')
+    return { content: [] }
+  }
+}
