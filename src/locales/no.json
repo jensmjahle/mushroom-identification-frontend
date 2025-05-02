@@ -3,6 +3,8 @@
     "title": "Innstillinger",
     "language": "Språk",
     "theme": "Tema",
+    "clearSession": "Sesjon",
+    "clearSessionButton": "Slutt sesjon",
     "languages": {
       "no": "Norsk",
       "en": "Engelsk"

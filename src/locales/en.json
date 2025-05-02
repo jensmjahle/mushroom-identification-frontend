@@ -3,6 +3,8 @@
     "title": "Settings",
     "language": "Language",
     "theme": "Theme",
+    "clearSession": "Session",
+    "clearSessionButton": "Clear session",
     "languages": {
       "no": "Norwegian",
       "en": "English"
