@@ -1,5 +1,5 @@
 <template>
-  <div class="text-left pb-2 w-full space-y-1">
+  <div class="text-left pb-2 w-full space-y-1 sm:pr-0 pr-12">
     <!-- ID at the top -->
     <p class="text-sm text-text1">
       <span class="font-semibold text-chat-other">ID:</span> {{ request.userRequestId }}
