@@ -42,20 +42,16 @@ export const getUserRequestAdmin = async (id) => {
 }
 
 export const changeUserRequestStatus = async (userRequestId, newStatus) => {
-  try {
-    const response = await axios.post('/api/admin/requests/change-status', {
-      userRequestId,
-      newStatus
-    }, {
-      headers: getAuthHeaders()
-    })
-    return response?.data || null
-  } catch (error) {
-    console.error(`Error changing status for ${userRequestId}:`, error)
-    useToast().error('Error changing request status')
-    return null
-  }
-}
+  const response = await axios.post('/api/admin/requests/change-status', {
+    userRequestId,
+    newStatus
+  }, {
+    headers: getAuthHeaders()
+  });
+
+  return response?.data || null;
+};
+
 
 export const getCountOfRequestFromStatus = async (status) => {
   try {

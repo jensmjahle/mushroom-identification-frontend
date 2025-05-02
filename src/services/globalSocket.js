@@ -24,10 +24,11 @@ export function initGlobalSocket(token, onErrorCallback, onAdminBroadcast, onNot
           (message) => {
             const error = JSON.parse(message.body);
             console.error('[GlobalSocket] Received error:', error);
-            toast.error(`Error: ${error.message}`);
+            toast.error(`${error.message}`);
 
             if (error.type === 'UNAUTHORIZED') {
               disconnectGlobalSocket();
+              toast.error('You are not authorized to perform this action');
               if (onErrorCallback) onErrorCallback(error);
             } else if (onErrorCallback) {
               onErrorCallback(error);
@@ -86,7 +87,7 @@ export function initGlobalSocket(token, onErrorCallback, onAdminBroadcast, onNot
 
 export function disconnectGlobalSocket() {
   if (globalClient) {
-    globalClient.deactivate();
+    globalClient.deactivate().then(() => console.log('[GlobalSocket] Disconnected'));
     globalClient = null;
   }
 }

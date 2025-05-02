@@ -34,6 +34,10 @@ onMounted(() => {
 
       (error) => {
         console.warn('Received WebSocket error for admin:', error);
+        if (error.type === 'UNAUTHORIZED') {
+          sessionStorage.removeItem('jwt');
+          router.push({ name: 'admin-login' });
+        }
       },
 
       (broadcast) => {
