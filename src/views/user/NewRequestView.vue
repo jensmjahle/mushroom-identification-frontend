@@ -17,7 +17,7 @@
 </template>
 
 <script setup>
-import { ref, watch } from 'vue'
+import { ref, watch, onUnmounted } from 'vue'
 import StepIndicator from '@/components/User/steps/StepIndicator.vue'
 import StepZero from '@/components/User/steps/StepZero.vue'
 import StepOne from '@/components/User/steps/StepOne.vue'
@@ -28,10 +28,15 @@ const LOCAL_STORAGE_KEY = 'currentStep'
 
 const storedStep = parseInt(localStorage.getItem(LOCAL_STORAGE_KEY))
 const currentStep = ref(!isNaN(storedStep) ? storedStep : 0)
+
 const userCode = ref(null)
 
-watch(currentStep, (newVal) => {
-  localStorage.setItem(LOCAL_STORAGE_KEY, newVal)
+watch(currentStep, (newStep) => {
+  localStorage.setItem(LOCAL_STORAGE_KEY, newStep)
+})
+
+onUnmounted(() => {
+  localStorage.removeItem(LOCAL_STORAGE_KEY)
 })
 
 function goToStepTwo(result) {
