@@ -144,7 +144,11 @@
     "mushroomListTitle": "Your mushrooms:",
     "step": "Step",
     "of": "of",
-    "copy": "Copy code",
+    "readyQuestion": "Are you ready to proceed?",
+    "readyDetail": "Once you continue, you won’t be able to return to this step.",
+    "proceedButton": "Yes, continue",
+    "cancel": "Cancel",
+    "copy": "Copy",
     "copied": "Copied!",
     "sending": "Sending in...",
     "steps": [
@@ -161,12 +165,11 @@
         "hint": "You'll get a response within 1–2 days. Use the reference code to check back."
       }
     ],
-    "stepDescription": 
-      {
-        "top": "Picture from the top of the mushroom",
-        "side": "Picture from the side of the mushroom",
-        "under": "Picture from the bottom of the mushroom"
-      },
+    "stepDescription": {
+      "top": "Picture from the top of the mushroom",
+      "side": "Picture from the side of the mushroom",
+      "under": "Picture from the bottom of the mushroom"
+    },
     "validation": {
       "errorMushroomMissing": "You must add at least one mushroom before submitting.",
       "errorCommentMissing": "Please add a brief comment."
