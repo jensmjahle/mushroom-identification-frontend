@@ -47,6 +47,7 @@
 
     <LanguageSelect />
     <ThemeSelect />
+    <ClearSession />
   </div>
 </template>
   
@@ -57,6 +58,7 @@ import { parseJwt } from '@/utils/jwt'
 import LogoButton from '@/components/LogoButton.vue'
 import LanguageSelect from '@/components/settings/LanguageSelect.vue'
 import ThemeSelect from '@/components/settings/ThemeSelect.vue'
+import ClearSession from '@/components/settings/ClearSession.vue'
 
 const chatRequestId = ref(null)
 const $route = useRoute()
