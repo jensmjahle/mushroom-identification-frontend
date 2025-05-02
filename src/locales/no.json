@@ -175,19 +175,19 @@
       "errorCommentMissing": "Vennligst legg til en kort kommentar."
     }
   },
-  "sideMenu" : {
-    "completedTitle" : "Fullførte",
-    "nextFromQueue" : "Hent neste fra køen",
-    "allRequests" : "Alle forespørsler",
-    "statistics" : "Statistikk",
-    "completeRequest" : "Fulfør forespørsel",
-    "putBackIntoQueue" : "Legg tilbake i køen",
-    "placeOnHold" : "Sett på vent",
-    "admins" : "Administratorer",
-    "allAdmins" : "Alle administratorer",
-    "createNewAdmin" : "Opprett ny administrator",
-    "settings" : "Innstillinger",
-    "logout" : "Logg ut",
+  "sideMenu": {
+    "completedTitle": "Fullførte",
+    "nextFromQueue": "Hent neste fra køen",
+    "allRequests": "Alle forespørsler",
+    "statistics": "Statistikk",
+    "completeRequest": "Fulfør forespørsel",
+    "putBackIntoQueue": "Legg tilbake i køen",
+    "placeOnHold": "Sett på vent",
+    "admins": "Administratorer",
+    "allAdmins": "Alle administratorer",
+    "createNewAdmin": "Opprett ny administrator",
+    "settings": "Innstillinger",
+    "logout": "Logg ut",
     "menuTitle": "Meny",
     "home": "Hjem",
     "newRequest": "Ny forespørsel",
@@ -199,7 +199,6 @@
       "putBackIntoQueue": "Send forespørselen tilbake til hovedkøen for vurdering. Den vil ikke gå videre før noen plukker den opp.",
       "placeOnHold": "Sett forespørselen midlertidig på vent uten å fullføre den. Den fjernes fra køen, men kan gjenopptas senere. Brukes vanligvis når mer informasjon trengs fra brukeren."
     }
-
   },
   "mushroom": {
     "title": "Sopp",
@@ -215,10 +214,13 @@
   "loginUser": {
     "heading": "Skriv inn referansekoden din",
     "refLabel": "Referansekode",
-    "placeholder": "f.eks. ABC123",
-    "button": "Fortsett",
-    "errorEmpty": "Referansekoden kan ikke være tom",
-    "errorInvalid": "Ugyldig referansekode"
+    "placeholder": "f.eks. 8f3a-1290-abcd...",
+    "button": "Logg inn",
+    "errorEmpty": "Vennligst skriv inn referansekoden din.",
+    "errorInvalid": "Ugyldig eller utløpt referansekode.",
+    "description": "Lim inn koden du fikk etter innsending for å se status og meldinger.",
+    "noCodeQuestion": "Har du ikke en kode?",
+    "homeLink": "Tilbake til forsiden"
   },
   "home": {
     "description": "Usikker på om du har plukket fleinsopp? Send inn en gratis anonym forespørsel her:",
@@ -275,16 +277,48 @@
     "of": "av"
   },
   "errors": {
-    "loadAdmins": "Det oppstod en feil ved lasting av administratorer. Vennligst prøv igjen senere."
+    "loadAdmins": "Det oppstod en feil ved lasting av administratorer. Vennligst prøv igjen senere.",
+    "invalidEmail": "Vennligst skriv inn en gyldig e-postadresse.",
+    "missingOldPassword": "Skriv inn nåværende passord for å endre passord.",
+    "passwordMismatch": "Passordene stemmer ikke overens.",
+    "invalidPasswordFormat": "Passordet må være 8–50 tegn, ha én stor bokstav og ett tall, og ikke inneholde mellomrom.",
+    "profileUpdateFailed": "Kunne ikke oppdatere profilen. Prøv igjen.",
+    "passwordChangeFailed": "Kunne ikke endre passord. Prøv igjen.",
+    "failedToLoadProfile": "Kunne ikke laste profildata."
   },
   "statuses": {
     "new": "Ny",
     "pending": "Avventer",
     "in_progress": "Under behandling",
     "completed": "Fullført"
+  },
+  "messages": {
+    "profileUpdated": "Profilen din ble oppdatert.",
+    "passwordChanged": "Passordet ditt ble endret."
+  },
+  "buttons": {
+    "savePersonalInfo": "Oppdater personlig info",
+    "changePassword": "Endre passord",
+    "confirm": "Bekreft",
+    "cancel": "Avbryt"
+  },
+  "navigation": {
+    "settings": "Innstillinger",
+    "logout": "Logg ut"
+  },
+  "basketBadge": {
+    "TOXIC_MUSHROOM_PRESENT": "Advarsel: Denne kurven inneholder minst én giftig sopp",
+    "PSYCHOACTIVE_MUSHROOM_PRESENT": "Denne kurven inneholder psykoaktive sopper",
+    "UNIDENTIFIABLE_MUSHROOM_PRESENT": "Noen av soppene i denne kurven kunne ikke identifiseres",
+    "NON_PSILOCYBIN_MUSHROOM_PRESENT": "Inneholder ikke-psilocybin-sopper",
+    "UNKNOWN_MUSHROOM_PRESENT": "Inneholder sopper av ukjent type",
+    "ALL_MUSHROOMS_PROCESSED": "Alle soppene i denne kurven er behandlet",
+    "NO_MUSHROOMS_PROCESSED": "Ingen av soppene i denne kurven er behandlet ennå",
+    "ALL_MUSHROOMS_ARE_TOXIC": "Alle soppene i denne kurven er giftige",
+    "ALL_MUSHROOMS_ARE_PSILOCYBIN": "Alle soppene i denne kurven er identifisert som psilocybin",
+    "ALL_MUSHROOMS_ARE_NON_PSILOCYBIN": "Alle soppene i denne kurven er ikke-psilocybin",
+    "ALL_MUSHROOMS_ARE_UNKNOWN": "Alle soppene i denne kurven er av ukjent type",
+    "ALL_MUSHROOMS_ARE_UNIDENTIFIABLE": "Ingen av soppene i denne kurven kunne identifiseres"
   }
+
 }
-
-
-
-
