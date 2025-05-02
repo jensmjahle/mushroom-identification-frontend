@@ -2,48 +2,31 @@ import axios from '@/config/axiosConfig'
 import { getAuthHeaders } from '@/utils/authHeaders'
 import {useToast} from "vue-toastification";
 
-export const getPaginatedRequests = async (page = 0, size = 10) => {
+export const getPaginatedRequests = async ({
+  page = 0,
+  size = 10,
+  status = null,
+  exclude = false
+} = {}) => {
   try {
+    const params = { page, size }
+
+    if (status) params.status = status
+    if (exclude) params.exclude = true
+
     const response = await axios.get('/api/admin/requests', {
-      params: { page, size },
+      params,
       headers: getAuthHeaders()
     })
-    return response?.data || { content: [], totalElements: 0 }
-  } catch (error) {
-    console.error('Error fetching paginated requests:', error)
-    useToast().error('Error fetching requests')
-    return { content: [], totalElements: 0 }
-  }
-}
-// Get NEW requests only
-export const getPaginatedNewRequests = async (page = 0, size = 10) => {
-  try {
-    const response = await axios.get('/api/admin/requests', {
-      params: { page, size, status: 'NEW' },
-      headers: getAuthHeaders()
-    })
+
     return response?.data || { content: [], totalPages: 1 }
   } catch (error) {
-    console.error('Error fetching new requests:', error)
-    useToast().error('Error fetching new requests')
+    console.error('Error fetching requests:', error)
+    useToast().error('Error fetching requests')
     return { content: [], totalPages: 1 }
   }
 }
 
-// Get all requests EXCLUDING NEW
-export const getPaginatedOtherRequests = async (page = 0, size = 10) => {
-  try {
-    const response = await axios.get('/api/admin/requests', {
-      params: { page, size, status: 'NEW', exclude: true },
-      headers: getAuthHeaders()
-    })
-    return response?.data || { content: [], totalPages: 1 }
-  } catch (error) {
-    console.error('Error fetching other requests:', error)
-    useToast().error('Error fetching other requests')
-    return { content: [], totalPages: 1 }
-  }
-}
 
 export const getUserRequestAdmin = async (id) => {
   try {
