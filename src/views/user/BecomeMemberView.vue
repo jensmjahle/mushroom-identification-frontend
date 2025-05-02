@@ -2,15 +2,12 @@
   <div class="w-full h-full flex items-center justify-center px-4 py-6">
     <div class="w-full max-w-3xl h-full flex flex-col text-center px-4 py-6 sm:py-10 sm:px-8 rounded-lg">
       
-      <!-- Tittel -->
       <h1 class="text-xl sm:text-2xl font-bold text-text1 mb-4">
         {{ t('membership.title') }}
       </h1>
 
-      <!-- Scrollbart tekstinnhold fra fil -->
       <div class="mt-4 flex-1 overflow-y-auto w-full text-left prose prose-sm sm:prose-base dark:prose-invert max-w-none mb-10" v-html="renderedContent" />
 
-      <!-- Knappeområde -->
       <div class="mt-auto pt-4">
         <a
           href="https://portal.smartorg.no/action/reg/7fd64a16"

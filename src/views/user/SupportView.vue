@@ -69,7 +69,6 @@ const email = ref('')
 const message = ref('')
 const renderedContent = ref('')
 
-// Dynamisk lasting av språkbasert tekstfil
 async function loadSupportText() {
   try {
     const lang = locale.value || 'no'
