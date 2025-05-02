@@ -17,15 +17,22 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 import StepIndicator from '@/components/User/steps/StepIndicator.vue'
 import StepZero from '@/components/User/steps/StepZero.vue'
 import StepOne from '@/components/User/steps/StepOne.vue'
 import StepTwo from '@/components/User/steps/StepTwo.vue'
 import StepThree from '@/components/User/steps/StepThree.vue'
 
-const currentStep = ref(0)
+const LOCAL_STORAGE_KEY = 'currentStep'
+
+const storedStep = parseInt(localStorage.getItem(LOCAL_STORAGE_KEY))
+const currentStep = ref(!isNaN(storedStep) ? storedStep : 0)
 const userCode = ref(null)
+
+watch(currentStep, (newVal) => {
+  localStorage.setItem(LOCAL_STORAGE_KEY, newVal)
+})
 
 function goToStepTwo(result) {
   userCode.value = result
@@ -36,3 +43,4 @@ function handleNextStep() {
   currentStep.value++
 }
 </script>
+
