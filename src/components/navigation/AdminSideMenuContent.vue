@@ -122,7 +122,6 @@ const handleStatusChange = async (newStatus) => {
     toast.success('Status updated!');
   } catch (error) {
     console.error('Failed to change status:', error);
-    toast.error(error.response?.data?.message || 'Failed to update status');
   }
 };
 
