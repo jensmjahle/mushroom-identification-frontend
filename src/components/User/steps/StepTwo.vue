@@ -5,7 +5,6 @@
       {{ t('submit.referenceHint') }}
     </p>
 
-    <!-- Referansekode + Kopier-knapp -->
     <div class="px-4 py-6 w-full rounded border-2 border-bg1 bg-bg2 flex flex-col sm:flex-row items-center justify-between gap-4">
       <div class="font-mono text-lg break-words text-text1 text-center sm:text-left">
         {{ referenceCode }}
@@ -16,12 +15,10 @@
       </BaseButton>
     </div>
 
-    <!-- Neste-knapp som åpner popup -->
     <BaseButton class="mt-6" @click="readyModalVisible = true">
       {{ t('submit.next') }}
     </BaseButton>
 
-    <!-- Modal: Er du klar? -->
     <div
       v-if="readyModalVisible"
       class="fixed inset-0 bg-black/50 flex items-center justify-center z-50"
@@ -74,7 +71,6 @@ function copyToClipboard() {
   }, 2000)
 }
 
-// === Refresh/lukking av siden ===
 function handleBeforeUnload(e) {
   e.preventDefault()
   e.returnValue = ''
@@ -86,7 +82,6 @@ onBeforeUnmount(() => {
   window.removeEventListener('beforeunload', handleBeforeUnload)
 })
 
-// === Intern Vue-navigasjon (f.eks. sidebar) ===
 onBeforeRouteLeave((to, from, next) => {
   if (!readyModalVisible.value) {
     readyModalVisible.value = true
@@ -96,7 +91,6 @@ onBeforeRouteLeave((to, from, next) => {
   }
 })
 
-// === Hvis brukeren trykker "Fortsett" ===
 function confirmAndProceed() {
   window.removeEventListener('beforeunload', handleBeforeUnload)
   if (pendingNavigation.value) {
@@ -106,7 +100,6 @@ function confirmAndProceed() {
   }
 }
 
-// === Hvis brukeren avbryter popup ===
 function cancelNavigation() {
   readyModalVisible.value = false
   pendingNavigation.value = null

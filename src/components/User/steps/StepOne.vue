@@ -247,7 +247,6 @@ async function handleSubmit() {
   }
 }
 
-// Laste inn fra localStorage
 onMounted(() => {
   const savedComment = localStorage.getItem('submit_comment')
   if (savedComment) comment.value = savedComment
