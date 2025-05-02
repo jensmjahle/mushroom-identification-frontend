@@ -77,6 +77,7 @@ const login = async () => {
     const response = await loginUser(code.value)
     const token = response.data.token
     sessionStorage.setItem('jwt', token)
+    window.dispatchEvent(new Event('storage'))
     const userRequestId = parseJwt(token)?.sub
 
     await router.push({

@@ -17,6 +17,7 @@
           <div class="flex flex-col gap-4 mt-4">
             <LanguageSelect />
             <ThemeSelect />
+            <ClearSession />
           </div>
         </div>
       </Transition>
@@ -38,6 +39,8 @@ import { ref, onMounted, onBeforeUnmount } from 'vue';
 import { Settings } from 'lucide-vue-next';
 import LanguageSelect from '@/components/settings/LanguageSelect.vue';
 import ThemeSelect from '@/components/settings/ThemeSelect.vue';
+import ClearSession from '@/components/settings/ClearSession.vue'
+
 
 const isOpen = ref(false);
 const settingsRef = ref(null);
