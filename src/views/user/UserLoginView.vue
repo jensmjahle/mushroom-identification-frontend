@@ -1,5 +1,5 @@
 <template>
-    <div class="user-display-card flex flex-col items-center justify-center px-6 py-10 text-center overflow-y-auto w-full h-full max-w-3xl gap-6">
+    <div class="flex flex-col justify-center items-center px-6 py-10 text-center overflow-y-auto w-full h-full gap-6">
     <!-- Heading & Introduction -->
     <div class="text-center mb-4">
       <h1 class="text-2xl font-bold text-text1">{{ t('loginUser.heading') }}</h1>
