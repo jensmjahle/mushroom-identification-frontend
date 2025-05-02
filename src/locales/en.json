@@ -69,6 +69,20 @@
       "totalRequests": "Total Requests",
       "totalCompleted": "Completed Requests"
     },
+    "adminDashboard": {
+      "greeting": "Hi {name} 👋",
+      "welcome": "Welcome to the admin panel. Here you get an overview of requests and shortcuts to your most important tasks.",
+      "tips": {
+        "tip1": "Click \"Next in queue\" to start a new evaluation.",
+        "tip2": "Go to \"All requests\" to view unprocessed submissions.",
+        "tip3": "Use statistics to monitor progress over time."
+      },
+      "buttons": {
+        "allRequests": "All requests ({count})",
+        "nextInQueue": "Next in queue",
+        "statistics": "Go to statistics"
+      }
+    },
     "username": "Username",
     "firstname": "First Name",
     "lastname": "Last Name",

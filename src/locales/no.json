@@ -10,15 +10,49 @@
     "themes": {
       "light": "Lyst",
       "dark": "Mørkt"
+    },
+    "personal": {
+      "title": "Kontoinnstillinger",
+      "subtitle": "Administrer din personlige informasjon",
+      "firstName": "Fornavn",
+      "lastName": "Etternavn",
+      "email": "E-post",
+      "changePassword": "Endre passord",
+      "changePasswordSubtitle": "Oppdater ditt passord",
+      "newPassword": "Nytt passord",
+      "confirmPassword": "Bekreft passord",
+      "firstNamePlaceholder": "Skriv inn ditt fornavn",
+      "lastNamePlaceholder": "Skriv inn ditt etternavn",
+      "emailPlaceholder": "du@eksempel.no",
+      "newPasswordPlaceholder": "Skriv inn nytt passord",
+      "confirmPasswordPlaceholder": "Gjenta nytt passord",
+      "oldPassword": "Nåværende passord",
+      "oldPasswordPlaceholder": "Skriv inn nåværende passord"
+    },
+    "danger": {
+      "title": "Fareområde",
+      "description": "Denne handlingen kan ikke angres. Hvis du sletter kontoen din vil all data fjernes.",
+      "button": "Slett konto",
+      "confirm": "Er du sikker på at du vil slette kontoen din?",
+      "confirmTitle": "Bekreft sletting av konto",
+      "success": "Kontoen din er nå slettet.",
+      "error": "Noe gikk galt ved sletting. Vennligst prøv igjen senere."
     }
   },
   "login": {
     "title": "Administratorinnlogging",
+    "subtitle": "Fyll inn legitimasjon for å få tilgang til adminpanelet",
     "username": "Brukernavn",
     "password": "Passord",
+    "usernamePlaceholder": "Skriv inn brukernavn",
+    "passwordPlaceholder": "Skriv inn passord",
     "submit": "Logg inn",
     "error": "Ugyldig brukernavn eller passord",
-    "fill_in_both_username_and_password": "Vennligst fyll inn både brukernavn og passord"
+    "fill_in_both_username_and_password": "Vennligst fyll inn både brukernavn og passord",
+    "goToUserSite": {
+      "question": "Leter du etter brukersiden?",
+      "link": "Gå til brukersiden"
+    }
   },
   "admin": {
     "stats": {
@@ -34,6 +68,20 @@
       "overviewTitle": "Statistikkoversikt",
       "totalRequests": "Totale forespørseler",
       "totalCompleted": "Fullførte forespørseler"
+    },
+    "adminDashboard": {
+      "greeting": "Hei {name} 👋",
+      "welcome": "Velkommen til adminpanelet. Her får du oversikt over forespørsler og snarveier til det viktigste du gjør.",
+      "tips": {
+        "tip1": "Trykk \"Hent neste fra kø\" for å starte en ny vurdering.",
+        "tip2": "Gå til \"Forespørsler venter\" for å se ubehandlede innsendinger.",
+        "tip3": "Bruk statistikk for å følge med på utvikling over tid."
+      },
+      "buttons": {
+        "allRequests": "Forespørsler venter ({count})",
+        "nextInQueue": "Hent neste fra kø",
+        "statistics": "Gå til statistikk"
+      }
     },
     "username": "Brukernavn",
     "firstname": "Fornavn",
@@ -63,8 +111,8 @@
     "UNIDENTIFIABLE": "Uidentifiserbar"
   },
   "mushroomPopup": {
-    "uploadSuccess": "Image uploaded successfully!",
-    "uploadError": "Something went wrong during image upload."
+    "uploadSuccess": "Bilde lastet opp!",
+    "uploadError": "Noe gikk galt under bildeopplasting."
   },
   "submit": {
     "title": "Send inn din sopphenvendelse",
@@ -105,8 +153,7 @@
         "hint": "Du vil få svar innen 1–2 dager. Sjekk med referansekoden du fikk."
       }
     ],
-    "stepDescription": 
-    {
+    "stepDescription": {
       "top": "Bilde fra toppen av soppen",
       "side": "Bilde fra siden av soppen",
       "under": "Bilde fra undersiden av soppen"
