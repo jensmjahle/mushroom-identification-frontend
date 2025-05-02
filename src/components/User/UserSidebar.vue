@@ -66,7 +66,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, onBeforeUnmount } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { parseJwt } from '@/utils/jwt'
 import {
@@ -83,16 +83,28 @@ const { t } = useI18n()
 
 const chatRequestId = ref(null)
 
-onMounted(() => {
+function updateFromStorage() {
   const jwt = sessionStorage.getItem('jwt') || localStorage.getItem('jwt')
-  if (!jwt) return
+  if (!jwt) {
+    chatRequestId.value = null
+    return
+  }
+
   try {
     const payload = parseJwt(jwt)
-    if (payload?.sub) {
-      chatRequestId.value = payload.sub
-    }
+    chatRequestId.value = payload?.sub || null
   } catch (e) {
     console.warn('Invalid token:', e)
+    chatRequestId.value = null
   }
+}
+
+onMounted(() => {
+  updateFromStorage()
+  window.addEventListener('storage', updateFromStorage)
+})
+
+onBeforeUnmount(() => {
+  window.removeEventListener('storage', updateFromStorage)
 })
 </script>
