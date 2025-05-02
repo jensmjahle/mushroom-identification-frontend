@@ -115,6 +115,14 @@
     "UNIDENTIFIABLE": "Unidentifiable"
   },
   "submit": {
+    "introTitle": "Before you begin",
+    "introText": "This service is free, anonymous, and supported by mycological experts. Your submissions help us improve knowledge and safety around mushroom foraging.",
+    "introBullet1": "You don't need to register or share personal information.",
+    "introBullet2": "Each mushroom must have 3 photos: top, side, and underside.",
+    "introBullet3": "You'll write a short comment about your find.",
+    "introBullet4": "After submission, you'll receive a reference code to track your report.",
+    "introBullet5": "A real expert will review your submission and send a response.",
+    "startButton": "I understand – Start",
     "title": "Submit your mushroom inquiry",
     "upload": "Upload image",
     "changeUpload": "Change image",

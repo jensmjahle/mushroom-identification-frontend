@@ -115,6 +115,14 @@
     "uploadError": "Noe gikk galt under bildeopplasting."
   },
   "submit": {
+    "introTitle": "Før du begynner",
+    "introText": "Denne tjenesten er gratis, anonym og støttet av soppeksperter. Innsendingene dine bidrar til økt kunnskap og sikkerhet rundt soppplukking.",
+    "introBullet1": "Du trenger ikke registrere deg eller oppgi personlig informasjon.",
+    "introBullet2": "Hver sopp må ha 3 bilder: topp, side og underside.",
+    "introBullet3": "Du skal skrive en kort kommentar om funnet ditt.",
+    "introBullet4": "Etter innsending får du en referansekode for å følge med på rapporten.",
+    "introBullet5": "En ekte ekspert vurderer innsendingen og sender deg svar.",
+    "startButton": "Jeg forstår – Start",
     "title": "Send inn din sopphenvendelse",
     "upload": "Last opp bilde",
     "changeUpload": "Endre bilde",
