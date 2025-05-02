@@ -63,36 +63,11 @@ async function handleExport() {
   showConfirm.value = false
 
   try {
-    const res = await getRequestsForMonth({
+    await getRequestsForMonth({
       month: selectedMonth.value,
       year: selectedYear.value
     })
 
-    const rows = (res?.content || []).map(r => [
-      r.userRequestId,
-      r.updatedAt,
-      r.status,
-      r.numberOfMushrooms
-    ])
-
-    if (!rows.length) {
-      toast.info(t('common.noData'))
-      return
-    }
-
-    const csv = [
-      ['Request ID', 'Updated At', 'Status', 'Mushrooms'],
-      ...rows
-    ].map(row => row.join(',')).join('\n')
-
-    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' })
-    const url = URL.createObjectURL(blob)
-    const link = document.createElement('a')
-    link.href = url
-    link.setAttribute('download', `requests_${selectedYear.value}_${selectedMonth.value}.csv`)
-    document.body.appendChild(link)
-    link.click()
-    document.body.removeChild(link)
   } catch (e) {
     toast.error(t('errors.exportFailed'))
     console.error(e)
