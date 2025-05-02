@@ -100,7 +100,7 @@ html, body, #app {
   }
 
   .user-sidebar-text {
-    @apply block text-text2 whitespace-normal break-words transition-opacity duration-100 ease-in-out pl-[20px] pr-[20px];
+    @apply block text-text2 whitespace-normal break-words transition-opacity duration-100 ease-in-out pl-[20px];
     opacity: 1;
     width: 100px;
     transition-delay: 0.2s;

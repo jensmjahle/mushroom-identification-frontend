@@ -14,7 +14,7 @@
         class="btn-4 block w-full text-center"
         :class="{ 'ring-2 ring-button1': $route.name === 'user-request' }"
       >
-        Go to Chat
+        {{ $t('sideMenu.chat') }}
       </RouterLink>
       
       <RouterLink to="/" class="btn-2 block w-full text-center">
