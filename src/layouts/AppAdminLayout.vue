@@ -22,6 +22,8 @@ import NavBar from "@/components/navigation/NavBar.vue";
 import {onMounted, onUnmounted} from 'vue';
 import {useRouter} from 'vue-router';
 import {disconnectGlobalSocket, initGlobalSocket} from '@/services/globalSocket';
+import {useI18n} from "vue-i18n";
+const { t } = useI18n()
 
 const router = useRouter();
 
@@ -46,7 +48,8 @@ onMounted(() => {
 
       (notif) => {
         console.log('Notification received:', notif);
-      }
+      },
+      t
   );
 });
 
