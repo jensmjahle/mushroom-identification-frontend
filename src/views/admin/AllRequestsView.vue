@@ -20,17 +20,20 @@
 
     <!-- Other Requests Section -->
     <div class="p-6 bg-bg rounded-lg">
-      <!-- Filter UI -->
-      <div class="mb-4">
-        <select v-model="filterStatus" class="p-2 rounded border border-gray-300">
-          <option value="ALL">All</option>
-          <option value="PENDING">Pending</option>
-          <option value="IN_PROGRESS">In Progress</option>
-          <option value="COMPLETED">Completed</option>
-        </select>
+      <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-2">
+        <h2 class="text-lg font-bold">Other Requests</h2>
+        <div>
+          <select v-model="filterStatus" class="p-2 rounded bg-bg3 text-text3 border border-border3">
+            <option value="ALL">All</option>
+            <option value="PENDING">Pending</option>
+            <option value="IN_PROGRESS">In Progress</option>
+            <option value="COMPLETED">Completed</option>
+          </select>
+        </div>
       </div>
 
-      <!-- Filtered List -->
+
+
       <BaseList
           :items="otherRequests"
           :columns="columns"
