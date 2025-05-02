@@ -116,10 +116,10 @@ const handleStatusChange = async (newStatus) => {
   if (!userRequestId.value) return;
 
   try {
-    await changeUserRequestStatus(userRequestId.value, newStatus);
+    const msg = await changeUserRequestStatus(userRequestId.value, newStatus);
     await fetchCounts();
     navigate('admin-dashboard');
-    toast.success('Status updated!');
+    toast.success(msg);
   } catch (error) {
     console.error('Failed to change status:', error);
   }
