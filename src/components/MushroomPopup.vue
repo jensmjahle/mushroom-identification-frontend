@@ -17,7 +17,12 @@
         </button>
 
         <!-- Status badge -->
-        <StatusBadge class="absolute top-2 left-2 z-45" :status="props.mushroom.mushroomStatus" :user-request-id="props.userRequestId" :mushroom-id="props.mushroom.mushroomId"/>
+        <StatusBadge
+          class="absolute top-2 left-2 z-45"
+          :status="props.mushroom.mushroomStatus"
+          :user-request-id="props.userRequestId"
+          :mushroom-id="props.mushroom.mushroomId"
+        />
 
         <!-- Image viewer -->
         <div class="flex flex-col items-center">
@@ -45,7 +50,13 @@
             <button @click="zoomIn" class="btn-1"><ZoomIn /></button>
             <button @click="zoomOut" class="btn-1"><ZoomOut /></button>
             <button @click="rotate" class="btn-2"><RotateCw /></button>
-            <button @click="triggerFileInput" class="btn-3"><Plus /></button>
+            <button
+              v-if="userRole === 'USER'""
+              @click="triggerFileInput"
+              class="btn-3"
+            >
+              <Plus />
+            </button>
             <input
               type="file"
               accept="image/*"
@@ -57,7 +68,7 @@
           </div>
 
           <!-- Thumbnails -->
-            <div class="w-[90%] max-w-[90%] flex gap-2 overflow-x-auto scrollbar-thin scrollbar-thumb-rounded scrollbar-thumb-gray-400">
+          <div class="w-[90%] max-w-[90%] flex gap-2 overflow-x-auto scrollbar-thin scrollbar-thumb-rounded scrollbar-thumb-gray-400">
             <img
               v-for="(img, idx) in imageUrls"
               :key="idx"
@@ -67,127 +78,133 @@
               class="w-16 h-16 object-cover rounded-md cursor-pointer border-2"
               :class="idx === currentIndex ? 'border-button1' : 'border-transparent'"
             />
-            </div>
+          </div>
         </div>
       </div>
     </div>
   </Teleport>
 </template>
-
 <script setup>
-import { ref, computed, onMounted } from 'vue';
-import { X, ZoomOut, ZoomIn, RotateCw, Plus } from 'lucide-vue-next';
-import StatusBadge from '@/components/badges/MushroomStatusBadge.vue';
-import { processImageFiles } from '@/utils/imageUtils';
-import { addImageToMushroom, getMushroomById, getUserRequestMushrooms } from '@/services/mushroomService';
-import { useToast } from 'vue-toastification';
-import { useI18n } from 'vue-i18n';
+import { ref, computed, onMounted } from 'vue'
+import { X, ZoomOut, ZoomIn, RotateCw, Plus } from 'lucide-vue-next'
+import StatusBadge from '@/components/badges/MushroomStatusBadge.vue'
+import { processImageFiles } from '@/utils/imageUtils'
+import { addImageToMushroom, getUserRequestMushrooms } from '@/services/mushroomService'
+import { useToast } from 'vue-toastification'
+import { useI18n } from 'vue-i18n'
+import { parseJwt } from '@/utils/jwt'
 
-const toast = useToast();
-const { t } = useI18n();
-const isAdmin = ref(false);
+const toast = useToast()
+const { t } = useI18n()
+
+// Get user role immediately
+const token = sessionStorage.getItem('jwt')
+const userRole = parseJwt(token)?.role || null
 
 const props = defineProps({
   mushroom: Object,
   userRequestId: String
-});
+})
 
-const emit = defineEmits(['close', 'updated']);
+const emit = defineEmits(['close', 'updated'])
 
-const BASE_URL = import.meta.env.VITE_API_URL;
-const imageUrls = ref([]);
-const currentIndex = ref(0);
-const zoom = ref(1);
-const rotation = ref(0);
-const offset = ref({ x: 0, y: 0 });
-const dragging = ref(false);
-const start = ref({ x: 0, y: 0 });
-const fileInput = ref(null);
+const BASE_URL = import.meta.env.VITE_API_URL
+const imageUrls = ref([])
+const currentIndex = ref(0)
+const zoom = ref(1)
+const rotation = ref(0)
+const offset = ref({ x: 0, y: 0 })
+const dragging = ref(false)
+const start = ref({ x: 0, y: 0 })
+const fileInput = ref(null)
 
 onMounted(() => {
-  refreshImages();
-});
+  refreshImages()
+})
 
 function refreshImages() {
   imageUrls.value = props.mushroom.imageUrls.map(
     token => `${BASE_URL}/api/images?token=${token}`
-  );
+  )
 }
 
 function triggerFileInput() {
-  fileInput.value?.click();
+  fileInput.value?.click()
 }
 
 async function handleImageUpload(e) {
-  const files = Array.from(e.target.files || []);
-  if (!files.length) return;
+  if (userRole !== 'USER') return
+
+  const files = Array.from(e.target.files || [])
+  if (!files.length) return
 
   const { processedFiles } = await processImageFiles(
     files,
     [],
     files.map((_, i) => `extra_mushroom_image${i + 1}.jpg`)
-  );
-  if (!processedFiles.length) return;
+  )
+  if (!processedFiles.length) return
 
   try {
-    await addImageToMushroom(props.userRequestId, props.mushroom.mushroomId, processedFiles);
+    await addImageToMushroom(props.userRequestId, props.mushroom.mushroomId, processedFiles)
 
-    const mushrooms = await getUserRequestMushrooms(props.userRequestId);
-    const updated = mushrooms.find(m => m.mushroomId === props.mushroom.mushroomId);
-    props.mushroom.imageUrls = updated.imageUrls;
+    const mushrooms = await getUserRequestMushrooms(props.userRequestId)
+    const updated = mushrooms.find(m => m.mushroomId === props.mushroom.mushroomId)
+    props.mushroom.imageUrls = updated.imageUrls
 
     imageUrls.value = updated.imageUrls.map(
       token => `${BASE_URL}/api/images?token=${token}`
-    );
-    currentIndex.value = imageUrls.value.length - 1;
+    )
+    currentIndex.value = imageUrls.value.length - 1
 
-    emit('updated');
-    toast.success(t('mushroomPopup.uploadSuccess'));
+    emit('updated')
+    toast.success(t('mushroomPopup.uploadSuccess'))
   } catch (err) {
-    console.error('Failed to upload image', err);
-    toast.error(t('mushroomPopup.uploadError'));
+    console.error('Failed to upload image', err)
+    toast.error(t('mushroomPopup.uploadError'))
   }
 }
 
-const zoomIn = () => (zoom.value = Math.min(zoom.value + 0.1, 3));
-const zoomOut = () => (zoom.value = Math.max(zoom.value - 0.1, 1));
-const rotate = () => (rotation.value = (rotation.value + 90) % 360);
+const zoomIn = () => (zoom.value = Math.min(zoom.value + 0.1, 3))
+const zoomOut = () => (zoom.value = Math.max(zoom.value - 0.1, 1))
+const rotate = () => (rotation.value = (rotation.value + 90) % 360)
 
 const imageStyle = computed(() => {
-  const translate = `translate(${offset.value.x}px, ${offset.value.y}px)`;
+  const translate = `translate(${offset.value.x}px, ${offset.value.y}px)`
   return {
     transform: `${translate} scale(${zoom.value}) rotate(${rotation.value}deg)`
-  };
-});
+  }
+})
 
 const startDrag = (e) => {
-  if (zoom.value === 1) return;
-  dragging.value = true;
-  start.value = { x: e.clientX, y: e.clientY };
-};
+  if (zoom.value === 1) return
+  dragging.value = true
+  start.value = { x: e.clientX, y: e.clientY }
+}
 const onDrag = (e) => {
-  if (!dragging.value || zoom.value === 1) return;
-  const dx = e.clientX - start.value.x;
-  const dy = e.clientY - start.value.y;
-  offset.value.x += dx;
-  offset.value.y += dy;
-  start.value = { x: e.clientX, y: e.clientY };
-};
-const stopDrag = () => (dragging.value = false);
+  if (!dragging.value || zoom.value === 1) return
+  const dx = e.clientX - start.value.x
+  const dy = e.clientY - start.value.y
+  offset.value.x += dx
+  offset.value.y += dy
+  start.value = { x: e.clientX, y: e.clientY }
+}
+const stopDrag = () => (dragging.value = false)
 
 const startTouch = (e) => {
-  if (zoom.value === 1) return;
-  dragging.value = true;
-  start.value = { x: e.touches[0].clientX, y: e.touches[0].clientY };
-};
+  if (zoom.value === 1) return
+  dragging.value = true
+  start.value = { x: e.touches[0].clientX, y: e.touches[0].clientY }
+}
 const onTouchMove = (e) => {
-  if (!dragging.value || zoom.value === 1) return;
-  const dx = e.touches[0].clientX - start.value.x;
-  const dy = e.touches[0].clientY - start.value.y;
-  offset.value.x += dx;
-  offset.value.y += dy;
-  start.value = { x: e.touches[0].clientX, y: e.touches[0].clientY };
-};
+  if (!dragging.value || zoom.value === 1) return
+  const dx = e.touches[0].clientX - start.value.x
+  const dy = e.touches[0].clientY - start.value.y
+  offset.value.x += dx
+  offset.value.y += dy
+  start.value = { x: e.touches[0].clientX, y: e.touches[0].clientY }
+}
 
-const handleOutsideClick = () => emit('close');
+const handleOutsideClick = () => emit('close')
 </script>
+
