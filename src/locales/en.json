@@ -65,11 +65,16 @@
       "last90Days": "Last 90 Days",
       "weeklyRate": "Weekly New Requests",
       "ftrClicks": "FTR Registrations",
-      "exportTitle": "Export statistics and history to PDF",
+      "exportTitle": "Export statistics and history to CSV",
       "exportButton": "Export",
       "overviewTitle": "Statistics Overview",
       "totalRequests": "Total Requests",
-      "totalCompleted": "Completed Requests"
+      "totalCompleted": "Completed Requests",
+      "downloadCsv": "Last ned CSV",
+      "previewTitle": "Forhåndsvisning",
+      "confirmDownload": "Are you sure you want to download this data as a CSV file?",
+      "confirmDownloadTitle": "Export CSV",
+      "confirmDownloadShort": "Are you sure you want to download this data?"
     },
     "adminDashboard": {
       "greeting": "Hi {name} 👋",
@@ -280,7 +285,8 @@
     "invalidPasswordFormat": "Password must be 8–50 characters long, include one uppercase letter, one number, and contain no spaces.",
     "profileUpdateFailed": "Failed to update profile. Please try again.",
     "passwordChangeFailed": "Failed to change password. Please try again.",
-    "failedToLoadProfile": "Failed to load your profile information."
+    "failedToLoadProfile": "Failed to load your profile information.",
+    "exportFailed": "Failed to export. Please try again."
   },
   "messages": {
     "profileUpdated": "Your profile was updated successfully.",
@@ -291,7 +297,9 @@
     "previous": "Previous",
     "next": "Next",
     "page": "Page",
-    "of": "of"
+    "of": "of",
+    "loading": "Loading...",
+    "cancel": "Cancel"
   },
   "statuses": {
     "new": "New",

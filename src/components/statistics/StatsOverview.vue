@@ -9,7 +9,7 @@
       <StatCard :title="$t('admin.stats.ftrClicks')" :value="stats.ftrClicks" />
     </div>
 
-    <ExportStatsCard @export="handleExport" />
+    <ExportStatsCard />
   </div>
 </template>
 
@@ -31,11 +31,6 @@ const stats = ref({
 
 const loadStats = async () => {
   stats.value = await fetchOverviewStats(token)
-}
-
-const handleExport = ({ month, year }) => {
-  console.log(`Export PDF for ${month}/${year}`)
-  // Later: Call export endpoint or service
 }
 
 onMounted(loadStats)

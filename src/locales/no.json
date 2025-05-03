@@ -65,11 +65,16 @@
       "last90Days": "Siste 90 Dager",
       "weeklyRate": "Ukentlig Ny Forespørseler",
       "ftrClicks": "FTR Registreringer",
-      "exportTitle": "Eksporter statistikk og historikk til PDF",
+      "exportTitle": "Eksporter statistikk og historikk til CSV",
       "exportButton": "Eksporter",
       "overviewTitle": "Statistikkoversikt",
       "totalRequests": "Totale forespørseler",
-      "totalCompleted": "Fullførte forespørseler"
+      "totalCompleted": "Fullførte forespørseler",
+      "downloadCsv": "Last ned CSV",
+      "previewTitle": "Forhåndsvisning",
+      "confirmDownload": "Er du sikker på at du vil laste ned denne dataen som en CSV-fil?",
+      "confirmDownloadTitle": "Eksporter CSV",
+      "confirmDownloadShort": "Er du sikker på at du vil laste ned denne dataen?"
     },
     "adminDashboard": {
       "greeting": "Hei {name} 👋",
@@ -277,7 +282,9 @@
     "previous": "Forrige",
     "next": "Neste",
     "page": "Side",
-    "of": "av"
+    "of": "av",
+    "loading": "Laster...",
+    "cancel": "Avbryt"
   },
   "errors": {
     "loadAdmins": "Det oppstod en feil ved lasting av administratorer. Vennligst prøv igjen senere.",
@@ -287,7 +294,8 @@
     "invalidPasswordFormat": "Passordet må være 8–50 tegn, ha én stor bokstav og ett tall, og ikke inneholde mellomrom.",
     "profileUpdateFailed": "Kunne ikke oppdatere profilen. Prøv igjen.",
     "passwordChangeFailed": "Kunne ikke endre passord. Prøv igjen.",
-    "failedToLoadProfile": "Kunne ikke laste profildata."
+    "failedToLoadProfile": "Kunne ikke laste profildata.",
+    "exportFailed": "Kunne ikke eksportere. Prøv igjen."
   },
   "statuses": {
     "new": "Ny",
