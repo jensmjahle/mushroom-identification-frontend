@@ -1,6 +1,6 @@
 <template>
   <div class="main-view space-y-6">
-    <!-- Introduksjon -->
+
     <div class="bg-bg2 p-4 rounded-lg shadow-sm">
       <h1 class="text-3xl font-bold text-text1">{{ t('admin.adminDashboard.greeting', { name }) }}</h1>
       <p class="text-muted mt-2">
@@ -13,7 +13,6 @@
       </ul>
     </div>
 
-    <!-- Hurtigtilgangsknapper -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
       <BaseButton @click="() => navigate('admin-all-requests')" block variant="2">
         {{ t('admin.adminDashboard.buttons.allRequests', { count: newRequests.length }) }}

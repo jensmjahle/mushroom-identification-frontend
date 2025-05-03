@@ -7,10 +7,10 @@
     <!-- Toggle Button -->
     <button
       @click.stop="toggleBasket"
-      class="z-40 -translate-x-3 rounded-r-md sm:translate-x-0 flex flex-col items-center justify-center bg-bg1 border border-border1 sm:border-r-0 sm:rounded-r-none rounded-l-md h-[80px] w-[40px] gap-1"
+      class="z-40 -translate-x-3 rounded-r-md sm:translate-x-0 flex flex-col items-center justify-center bg-bg1 border border-border1 sm:border-r-0 sm:rounded-r-none rounded-l-md h-[80px] w-[40px]"
     >
-      <component :is="isOpen ? ChevronRight : ChevronLeft" class="w-10 h-10 relative -left-[2px]" />
-      <ShoppingBasket class="w-7 h-7" />
+      <component :is="isOpen ? ChevronRight : ChevronLeft" class="w-10 h-10 absolute top-0 right-0" />
+      <ShoppingBasket class="w-7 h-7 absolute bottom-2" />
     </button>
 
     <!-- Basket Panel -->
@@ -27,7 +27,7 @@
       </div>
 
       <!-- Mushrooms -->
-      <div class="overflow-y-auto px-4 pb-4 space-y-6 mt-2">
+      <div class="overflow-y-auto px-4 pb-4 space-y-6 pt-2">
         <Mushroom
             v-for="(mushroom, index) in mushroomStore.mushrooms"
             :key="mushroom.mushroomId"

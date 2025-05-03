@@ -79,3 +79,29 @@ export const getNextRequestFromQueue = async () => {
     return null
   }
 }
+export const getRequestsForMonth = async ({ year, month }) => {
+  try {
+    const response = await axios.get('/api/admin/stats/export', {
+      params: { year, month },
+      headers: getAuthHeaders(),
+      responseType: 'blob'
+    });
+
+    const blob = new Blob([response.data], { type: 'text/csv' });
+    const url = window.URL.createObjectURL(blob);
+
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `requests_${year}_${month.toString().padStart(2, '0')}.csv`;
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    window.URL.revokeObjectURL(url);
+
+    // ✅ Add this toast for user feedback
+    useToast().success(`CSV file for ${month}/${year} downloaded successfully!`);
+  } catch (error) {
+    console.error(`Error exporting requests for ${month}/${year}:`, error);
+    useToast().error('Error exporting requests');
+  }
+}

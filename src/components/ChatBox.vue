@@ -15,7 +15,7 @@
             class="text-xs px-2 py-1 rounded-t-md mb-1"
             :class="[
       getSide(msg) === 'me' 
-        ? 'text-chat-me_bg' 
+        ? 'text-chat-me_bg_meta' 
         : 'text-chat-other_border'
     ]"
         >

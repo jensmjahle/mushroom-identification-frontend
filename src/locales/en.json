@@ -3,6 +3,8 @@
     "title": "Settings",
     "language": "Language",
     "theme": "Theme",
+    "clearSession": "Session",
+    "clearSessionButton": "Clear session",
     "languages": {
       "no": "Norwegian",
       "en": "English"
@@ -63,11 +65,16 @@
       "last90Days": "Last 90 Days",
       "weeklyRate": "Weekly New Requests",
       "ftrClicks": "FTR Registrations",
-      "exportTitle": "Export statistics and history to PDF",
+      "exportTitle": "Export statistics and history to CSV",
       "exportButton": "Export",
       "overviewTitle": "Statistics Overview",
       "totalRequests": "Total Requests",
-      "totalCompleted": "Completed Requests"
+      "totalCompleted": "Completed Requests",
+      "downloadCsv": "Last ned CSV",
+      "previewTitle": "Forhåndsvisning",
+      "confirmDownload": "Are you sure you want to download this data as a CSV file?",
+      "confirmDownloadTitle": "Export CSV",
+      "confirmDownloadShort": "Are you sure you want to download this data?"
     },
     "adminDashboard": {
       "greeting": "Hi {name} 👋",
@@ -115,6 +122,14 @@
     "UNIDENTIFIABLE": "Unidentifiable"
   },
   "submit": {
+    "introTitle": "Before you begin",
+    "introText": "This service is free, anonymous, and supported by mycological experts. Your submissions help us improve knowledge and safety around mushroom foraging.",
+    "introBullet1": "You don't need to register or share personal information.",
+    "introBullet2": "Each mushroom must have 3 photos: top, side, and underside.",
+    "introBullet3": "You'll write a short comment about your find.",
+    "introBullet4": "After submission, you'll receive a reference code to track your report.",
+    "introBullet5": "A real expert will review your submission and send a response.",
+    "startButton": "I understand – Start",
     "title": "Submit your mushroom inquiry",
     "upload": "Upload image",
     "changeUpload": "Change image",
@@ -136,7 +151,11 @@
     "mushroomListTitle": "Your mushrooms:",
     "step": "Step",
     "of": "of",
-    "copy": "Copy code",
+    "readyQuestion": "Are you ready to proceed?",
+    "readyDetail": "Once you continue, you won’t be able to return to this step.",
+    "proceedButton": "Yes, continue",
+    "cancel": "Cancel",
+    "copy": "Copy",
     "copied": "Copied!",
     "sending": "Sending in...",
     "steps": [
@@ -153,12 +172,11 @@
         "hint": "You'll get a response within 1–2 days. Use the reference code to check back."
       }
     ],
-    "stepDescription": 
-      {
-        "top": "Picture from the top of the mushroom",
-        "side": "Picture from the side of the mushroom",
-        "under": "Picture from the bottom of the mushroom"
-      },
+    "stepDescription": {
+      "top": "Picture from the top of the mushroom",
+      "side": "Picture from the side of the mushroom",
+      "under": "Picture from the bottom of the mushroom"
+    },
     "validation": {
       "errorMushroomMissing": "You must add at least one mushroom before submitting.",
       "errorCommentMissing": "Please add a brief comment."
@@ -175,6 +193,7 @@
     "settings" : "Settings",
     "logout" : "Logout",
     "menuTitle": "Menu",
+    "chat": "My Chat",
     "home": "Home",
     "newRequest": "New Request",
     "login": "Check Answer",
@@ -267,6 +286,7 @@
     "profileUpdateFailed": "Failed to update profile. Please try again.",
     "passwordChangeFailed": "Failed to change password. Please try again.",
     "failedToLoadProfile": "Failed to load your profile information.",
+
     "GENERIC": "An error occurred.",
     "INVALID_TOKEN": "Session expired. Please log in again.",
     "UNAUTHORIZED": "Unauthorized. Please check your credentials.",
@@ -297,6 +317,9 @@
       "newAdmin": "A new administrator has been added.",
       "removedAdmin": "An administrator has been removed."
     }
+
+    "exportFailed": "Failed to export. Please try again."
+
   },
   "messages": {
     "profileUpdated": "Your profile was updated successfully.",
@@ -307,7 +330,9 @@
     "previous": "Previous",
     "next": "Next",
     "page": "Page",
-    "of": "of"
+    "of": "of",
+    "loading": "Loading...",
+    "cancel": "Cancel"
   },
   "statuses": {
     "new": "New",
