@@ -1,56 +1,48 @@
 import { Client } from '@stomp/stompjs';
-import {useToast} from "vue-toastification";
+import SockJS from 'sockjs-client';
 
-let stompClient = null;
+let chatClient = null;
 
-export function connectToChat(userRequestId, token, onMessageCallback, onErrorCallback) {
-  
+export function connectToChat(userRequestId, token, onMessageCallback) {
   const username = token ? JSON.parse(atob(token.split('.')[1])).sub : null;
-  
-  stompClient = new Client({
-    brokerURL: `${import.meta.env.VITE_API_URL.replace(/^http/, 'ws')}/ws?token=${token}`,
+
+  chatClient = new Client({
+    webSocketFactory: () => new SockJS(`${import.meta.env.VITE_API_URL}/ws`),
     connectHeaders: {
       Authorization: `Bearer ${token}`
     },
-    debug: function (str) {
-      console.log('[WebSocket] ' + str);
-    },
-    reconnectDelay: 5000,
+    debug: (str) => console.log('[ChatSocket] ' + str),
+    reconnectDelay: 0, // no auto-reconnect for per-chat
     onConnect: () => {
-      console.log('[WebSocket] Connected');
+      console.log('[ChatSocket] Connected to chatroom');
 
-      // Subscribe to incoming chat messages
-      stompClient.subscribe(`/topic/chatroom/${userRequestId}`, (message) => {
-        const body = JSON.parse(message.body);
-        onMessageCallback(body);
-      });
-
-      // Subscribe to error messages
-      stompClient.subscribe(`/topic/errors/${username}`, (message) => {
-        const error = JSON.parse(message.body);
-        console.error('[WebSocket] Received Error:', error);
-        useToast().error(`Error: ${error.message}`);
-        if (onErrorCallback) {
-          onErrorCallback(error);
-        }
-      });
-
+      chatClient.subscribe(
+          `/topic/chatroom/${userRequestId}`,
+          (message) => {
+            const body = JSON.parse(message.body);
+            onMessageCallback(body);
+          },
+          { Authorization: `Bearer ${token}` }
+      );
     },
     onStompError: (frame) => {
-      console.error('[WebSocket] STOMP Error', frame);
+      console.error('[ChatSocket] STOMP error:', frame);
+    },
+    onWebSocketError: (event) => {
+      console.error('[ChatSocket] WebSocket error:', event);
     }
   });
 
-  stompClient.activate();
+  chatClient.activate();
 }
 
 export function sendMessage(userRequestId, token, message) {
-  if (!stompClient || !stompClient.connected) {
-    console.error('WebSocket is not connected');
+  if (!chatClient || !chatClient.connected) {
+    console.error('[ChatSocket] Not connected');
     return;
   }
 
-  stompClient.publish({
+  chatClient.publish({
     destination: `/app/chat/${userRequestId}`,
     headers: {
       Authorization: `Bearer ${token}`
@@ -60,8 +52,8 @@ export function sendMessage(userRequestId, token, message) {
 }
 
 export function disconnectFromChat() {
-  if (stompClient) {
-    stompClient.deactivate();
-    stompClient = null;
+  if (chatClient) {
+    chatClient.deactivate();
+    chatClient = null;
   }
 }

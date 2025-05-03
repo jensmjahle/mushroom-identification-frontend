@@ -113,17 +113,18 @@ function updateTooltipPosition() {
 }
 
 const handleStatusChange = async (newStatus) => {
-  if (!userRequestId.value) return
+  if (!userRequestId.value) return;
 
   try {
-    await changeUserRequestStatus(userRequestId.value, newStatus)
-    await fetchCounts()
-    navigate('admin-all-requests')
-    toast.success('Status updated!')
+    const msg = await changeUserRequestStatus(userRequestId.value, newStatus);
+    await fetchCounts();
+    navigate('admin-dashboard');
+    toast.success(msg);
   } catch (error) {
-    console.error(`Failed to change status:`, error)
+    console.error('Failed to change status:', error);
   }
-}
+};
+
 
 const getNextFromQueue = async () => {
   try {

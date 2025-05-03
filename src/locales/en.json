@@ -286,7 +286,37 @@
     "profileUpdateFailed": "Failed to update profile. Please try again.",
     "passwordChangeFailed": "Failed to change password. Please try again.",
     "failedToLoadProfile": "Failed to load your profile information.",
-    "exportFailed": "Failed to export. Please try again."
+    "exportFailed": "Failed to export. Please try again.",
+    "GENERIC": "An error occurred.",
+    "INVALID_TOKEN": "Session expired. Please log in again.",
+    "UNAUTHORIZED": "Unauthorized. Please check your credentials.",
+    "FORBIDDEN": "You do not have permission to access this.",
+    "NOT_FOUND": "The requested resource was not found.",
+    "REQUEST_LOCKED": "You cannot edit this request. It is currently being handled by another administrator.",
+    "DATABASE_ERROR": "A database error occurred.",
+    "SERVICE_UNAVAILABLE": "The external service is currently unavailable.",
+    "USERNAME_CONFLICT": "This username already exists.",
+    "INVALID_INPUT": "One or more fields are invalid.",
+    "IMAGE_PROCESSING_ERROR": "There was an error processing the image.",
+    "INVALID_IMAGE_FORMAT": "The uploaded image format is not supported.",
+    "INTERNAL_SERVER_ERROR": "Something went wrong on our side. Please try again."
+  },
+  "notification": {
+    "request": {
+      "locked": "OBS! This request is already being handled by another administrator. You can still view it, but you cannot edit it.",
+      "statusUpdated": "The status of the request has been updated successfully.",
+      "addedToQueue": "Request has been added back to the queue.",
+      "placedOnHold": "Request has been placed on hold."
+    },
+    "system": {
+      "maintenance": "The system is currently under maintenance.",
+      "connectionLost": "Connection lost. Attempting to reconnect...",
+      "reconnected": "Connection restored successfully."
+    },
+    "admin": {
+      "newAdmin": "A new administrator has been added.",
+      "removedAdmin": "An administrator has been removed."
+    }
   },
   "messages": {
     "profileUpdated": "Your profile was updated successfully.",

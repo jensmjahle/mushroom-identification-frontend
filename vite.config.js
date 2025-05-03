@@ -6,11 +6,19 @@ export default defineConfig({
   base: '/',
   resolve: {
     alias: {
-      '@': '/src', 
+      '@': '/src',
+      process: 'process/browser',
+      buffer: 'buffer',
     },
   },
+  define: {
+    global: 'globalThis',
+  },
+  optimizeDeps: {
+    include: ['buffer', 'process'],
+  },
   server: {
-    host: true, 
-    port: 5173, 
+    host: true,
+    port: 5173,
   },
 });

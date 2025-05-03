@@ -287,15 +287,37 @@
     "cancel": "Avbryt"
   },
   "errors": {
-    "loadAdmins": "Det oppstod en feil ved lasting av administratorer. Vennligst prøv igjen senere.",
-    "invalidEmail": "Vennligst skriv inn en gyldig e-postadresse.",
-    "missingOldPassword": "Skriv inn nåværende passord for å endre passord.",
-    "passwordMismatch": "Passordene stemmer ikke overens.",
-    "invalidPasswordFormat": "Passordet må være 8–50 tegn, ha én stor bokstav og ett tall, og ikke inneholde mellomrom.",
-    "profileUpdateFailed": "Kunne ikke oppdatere profilen. Prøv igjen.",
-    "passwordChangeFailed": "Kunne ikke endre passord. Prøv igjen.",
-    "failedToLoadProfile": "Kunne ikke laste profildata.",
-    "exportFailed": "Kunne ikke eksportere. Prøv igjen."
+    "exportFailed": "Kunne ikke eksportere. Prøv igjen.",
+    "loadAdmins": "Det oppsto en feil ved innlasting av administratorer. Prøv igjen senere.",
+    "invalidEmail": "Vennligst oppgi en gyldig e-postadresse.",
+    "missingOldPassword": "Vennligst skriv inn ditt nåværende passord for å endre passordet.",
+    "passwordMismatch": "Passordene samsvarer ikke.",
+    "invalidPasswordFormat": "Passordet må være mellom 8 og 50 tegn, inneholde én stor bokstav, ett tall og ikke inneholde mellomrom.",
+    "profileUpdateFailed": "Klarte ikke å oppdatere profilen. Vennligst prøv igjen.",
+    "passwordChangeFailed": "Klarte ikke å endre passordet. Vennligst prøv igjen.",
+    "failedToLoadProfile": "Klarte ikke å laste inn profilinformasjonen din.",
+    "GENERIC": "En feil har oppstått.",
+    "INVALID_TOKEN": "Økten er utløpt. Vennligst logg inn på nytt.",
+    "UNAUTHORIZED": "Uautorisert tilgang. Sjekk legitimasjonen din.",
+    "FORBIDDEN": "Du har ikke tilgang til dette.",
+    "NOT_FOUND": "Ressursen ble ikke funnet.",
+    "REQUEST_LOCKED": "Du kan ikke redigere denne forespørselen. Den behandles allerede av en annen administrator.",
+    "DATABASE_ERROR": "En databasefeil har oppstått.",
+    "SERVICE_UNAVAILABLE": "Tjenesten er midlertidig utilgjengelig.",
+    "USERNAME_CONFLICT": "Brukernavnet eksisterer allerede.",
+    "INVALID_INPUT": "Ett eller flere felt er ugyldige.",
+    "IMAGE_PROCESSING_ERROR": "Det oppsto en feil ved behandling av bildet.",
+    "INVALID_IMAGE_FORMAT": "Bildet du lastet opp har et ugyldig format.",
+    "INTERNAL_SERVER_ERROR": "Noe gikk galt hos oss. Vennligst prøv igjen."
+  },
+  "notification": {
+    "request": {
+      "locked": "OBS! Denne forespørselen behandles allerede av en annen administrator. Du kan se på den, men ikke gjøre endringer.",
+      "statusUpdated": "Statusen for forespørselen ble oppdatert.",
+      "addedToQueue": "Forespørselen er lagt tilbake i køen.",
+      "placedOnHold": "Forespørselen er satt på vent."
+    }
+
   },
   "statuses": {
     "new": "Ny",
