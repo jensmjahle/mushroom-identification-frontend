@@ -286,7 +286,7 @@
     "profileUpdateFailed": "Failed to update profile. Please try again.",
     "passwordChangeFailed": "Failed to change password. Please try again.",
     "failedToLoadProfile": "Failed to load your profile information.",
-    "exportFailed": "Failed to export. Please try again."
+    "exportFailed": "Failed to export. Please try again.",
     "GENERIC": "An error occurred.",
     "INVALID_TOKEN": "Session expired. Please log in again.",
     "UNAUTHORIZED": "Unauthorized. Please check your credentials.",
