@@ -31,7 +31,7 @@
 import { ref, onMounted } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { parseJwt } from '@/utils/jwt.js'
-import { getNextRequestFromQueue, getPaginatedRequests } from '@/services/adminRequestService.js'
+import { getNextRequestFromQueue, getPaginatedRequests } from '@/services/rest/adminRequestService.js'
 import { useRouter } from 'vue-router'
 import { useToast } from 'vue-toastification'
 import BaseButton from '@/components/base/BaseButton.vue'

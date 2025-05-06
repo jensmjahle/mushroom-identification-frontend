@@ -1,4 +1,4 @@
-import axios from '@/config/axiosConfig'
+import axios from '@/config/axiosConfig.js'
 import { useToast } from 'vue-toastification'
 
 /**

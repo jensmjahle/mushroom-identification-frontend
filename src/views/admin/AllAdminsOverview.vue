@@ -25,7 +25,7 @@ import { useI18n } from 'vue-i18n'
 import { useToast } from 'vue-toastification'
 import BaseList from '@/components/base/BaseList.vue'
 import RoleBadge from '@/components/badges/RoleBadge.vue'
-import { getPaginatedAdmins } from '@/services/adminService.js'
+import { getPaginatedAdmins } from '@/services/rest/adminService.js'
 import AdminRow from "@/components/base/rows/AdminRow.vue";
 
 const { t } = useI18n()

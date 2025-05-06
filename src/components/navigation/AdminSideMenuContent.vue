@@ -92,7 +92,7 @@ import StatusIndicator from '@/components/base/StatusIndicator.vue'
 import { useAdminSideMenu} from '@/composables/useAdminSideMenu'
 import LogoButton from "@/components/LogoButton.vue";
 import { useToast } from 'vue-toastification'
-import {changeUserRequestStatus, getNextRequestFromQueue} from "@/services/adminRequestService.js";
+import {changeUserRequestStatus, getNextRequestFromQueue} from "@/services/rest/adminRequestService.js";
 import { useRouter } from 'vue-router'
 import TooltipIcon from "@/components/base/TooltipIcon.vue";
 

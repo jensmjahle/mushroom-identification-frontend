@@ -17,7 +17,7 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import { useI18n } from 'vue-i18n'
-import { fetchMushroomCategoryStats } from '@/services/statsService.js'
+import { fetchMushroomCategoryStats } from '@/services/rest/statsService.js'
 
 const stats = ref([])
 const { t } = useI18n()

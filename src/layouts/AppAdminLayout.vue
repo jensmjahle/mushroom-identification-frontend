@@ -21,7 +21,7 @@ import NavBar from "@/components/navigation/NavBar.vue";
 
 import {onMounted, onUnmounted} from 'vue';
 import {useRouter} from 'vue-router';
-import {disconnectGlobalSocket, initGlobalSocket} from '@/services/globalSocket';
+import {disconnectGlobalSocket, initGlobalSocket} from '@/services/websocket/globalSocket.js';
 import {useI18n} from "vue-i18n";
 const { t } = useI18n()
 

@@ -41,8 +41,8 @@ import { useRoute } from 'vue-router';
 import ChatBox from '../../components/ChatBox.vue';
 import RequestStatusBox from "../../components/RequestStatusBox.vue";
 import MushroomBasket from "../../components/MushroomBasket.vue";
-import { getUserRequestAdmin } from "@/services/adminRequestService.js";
-import {getUserRequest} from "@/services/userRequestService.js";
+import { getUserRequestAdmin } from "@/services/rest/adminRequestService.js";
+import {getUserRequest} from "@/services/rest/userRequestService.js";
 import {useMushroomStore} from "@/store/mushroomStore.js";
 
 const route = useRoute();

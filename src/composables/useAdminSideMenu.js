@@ -1,6 +1,6 @@
 import { ref, onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-import {getCountOfRequestFromStatus} from "@/services/adminRequestService.js";
+import {getCountOfRequestFromStatus} from "@/services/rest/adminRequestService.js";
 
 export function useAdminSideMenu() {
   const router = useRouter()

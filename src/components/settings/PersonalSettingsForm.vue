@@ -92,7 +92,7 @@ import { useI18n } from 'vue-i18n'
 import { useToast } from 'vue-toastification'
 import BaseButton from '@/components/base/BaseButton.vue'
 import BaseInput from '@/components/base/BaseInput.vue'
-import { getAdminMe, updateAdminProfile, changeAdminPassword } from '@/services/adminService'
+import { getAdminMe, updateAdminProfile, changeAdminPassword } from '@/services/rest/adminService.js'
 
 const { t } = useI18n()
 const toast = useToast()
