@@ -83,10 +83,7 @@ const login = async () => {
     })
 
     const { connect } = useRequestSocketStore()
-    connect(userRequestId, token, t, (eventType) => {
-      if (eventType === 'basketUpdated') useToast().info(t('toast.basketUpdated'))
-      if (eventType === 'statusChanged') useToast().info(t('toast.statusChanged'))
-    })
+    connect(userRequestId, token, t, null)
   } catch (err) {
     error.value = t('loginUser.errorInvalid')
     console.error(err)

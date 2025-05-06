@@ -45,3 +45,12 @@ export function initRequestSocket(requestId, token, t, onUpdateCallback) {
 
   requestClient.activate()
 }
+
+export function disconnectRequestSocket() {
+  if (requestClient) {
+    requestClient.deactivate().then(() => console.log('[RequestSocket] Disconnected'))
+    requestClient = null
+  }
+}
+
+
