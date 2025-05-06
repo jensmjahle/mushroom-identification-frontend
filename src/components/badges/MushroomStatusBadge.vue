@@ -33,7 +33,7 @@ import { parseJwt } from '@/utils/jwt.js';
 import { useToast } from 'vue-toastification';
 import {getStatusStyles} from "@/utils/styling/mushroomStatusStyles.js";
 import {changeMushroomStatus} from "@/services/rest/mushroomService.js";
-import {useMushroomStore} from "@/store/mushroomStore.js";
+import {useMushroomStore} from "@/store/useMushroomStore.js";
 
 const props = defineProps({
   userRequestId: String,

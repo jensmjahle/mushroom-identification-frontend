@@ -68,7 +68,7 @@ import { ref, computed, onMounted, watch } from 'vue'
 import { ArrowLeft, ArrowRight } from 'lucide-vue-next'
 import StatusBadge from './badges/MushroomStatusBadge.vue'
 import MushroomPopup from './MushroomPopup.vue'
-import { useMushroomStore } from '@/store/mushroomStore.js'
+import { useMushroomStore } from '@/store/useMushroomStore.js'
 
 const props = defineProps({
   mushroomId: String,
