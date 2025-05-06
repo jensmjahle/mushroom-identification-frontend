@@ -1,6 +1,7 @@
-import {parseJwt} from '@/utils/jwt.js'
+import { useToast } from 'vue-toastification'
+import { parseJwt } from '@/utils/jwt.js'
 
-let toast
+let toast // lazy-injected
 export function injectToastLibrary(vueToast) {
   toast = vueToast
 }
@@ -11,7 +12,7 @@ export function handleRequestNotification(notif, t, requestId, token) {
   const isRequestPage = isOnRequestPage(requestId)
   const userType = parseJwt(token).role
   const isUser = userType === 'USER'
-  const isAdmin = userType === 'SUPERUSER' || userType === 'MODERATOR'
+  const isModeratorOrSuperuser = userType === 'SUPERUSER' || userType === 'MODERATOR'
 
   const fallback = notif.message || t('notification.default')
   const translated = notif.i18n
@@ -22,23 +23,15 @@ export function handleRequestNotification(notif, t, requestId, token) {
   const infoIfUser = ['REQUEST_CURRENTLY_UNDER_REVIEW', 'ADMIN_LEFT_REQUEST']
   const infoIfAdmin = ['USER_LOGGED_IN', 'USER_LOGGED_OUT']
 
-  const shouldNotify =
-      (isUser && (
-          infoIfUser.includes(notif.type) ||
-          (infoIfNotOnRequestPage.includes(notif.type) && !isRequestPage)
-      )) ||
-      (isAdmin && (
-          infoIfAdmin.includes(notif.type) ||
-          notif.type === 'ADMIN_LEFT_REQUEST'
-      ))
-
-  if (shouldNotify) {
-    toast.info(translated)
-  } else if (
-      !infoIfNotOnRequestPage.includes(notif.type) &&
-      !infoIfUser.includes(notif.type) &&
-      !infoIfAdmin.includes(notif.type)
+  if (
+      (infoIfNotOnRequestPage.includes(notif.type) && !isRequestPage) ||
+      (infoIfUser.includes(notif.type) && isUser) ||
+      (infoIfAdmin.includes(notif.type) && isModeratorOrSuperuser)
   ) {
+    toast.info(translated)
+  } else if (!infoIfNotOnRequestPage.includes(notif.type) &&
+      !infoIfUser.includes(notif.type) &&
+      !infoIfAdmin.includes(notif.type)) {
     toast(translated)
   }
 }
