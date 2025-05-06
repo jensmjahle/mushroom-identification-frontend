@@ -56,7 +56,9 @@ import BaseButton from '@/components/base/BaseButton.vue'
 import BaseInput from '@/components/base/BaseInput.vue'
 import { useI18n } from 'vue-i18n'
 import { parseJwt } from '@/utils/jwt.js'
-import { loginUser } from '@/services/authService.js'
+import { loginUser } from '@/services/rest/authService.js'
+import {useRequestSocketStore} from "@/store/useRequestSocketStore.js";
+import {useToast} from "vue-toastification";
 
 const code = ref('')
 const error = ref(null)
@@ -83,6 +85,12 @@ const login = async () => {
     await router.push({
       name: 'user-request',
       params: { userRequestId }
+    })
+
+    const { connect } = useRequestSocketStore()
+    connect(userRequestId, token, t, (eventType) => {
+      if (eventType === 'basketUpdated') useToast().info(t('toast.basketUpdated'))
+      if (eventType === 'statusChanged') useToast().info(t('toast.statusChanged'))
     })
   } catch (err) {
     error.value = t('loginUser.errorInvalid')

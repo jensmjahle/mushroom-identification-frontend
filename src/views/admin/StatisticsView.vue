@@ -34,7 +34,7 @@ import MushroomPieChart from "@/components/charts/MushroomPieChart.vue";
 import StatsOverview from "@/components/statistics/StatsOverview.vue";
 import BaseList from "@/components/base/BaseList.vue";
 import RequestRow from "@/components/base/rows/RequestRow.vue";
-import { getPaginatedRequests } from "@/services/adminRequestService.js";
+import { getPaginatedRequests } from "@/services/rest/adminRequestService.js";
 import { onMounted, ref, watch } from "vue";
 import { useToast } from "vue-toastification";
 

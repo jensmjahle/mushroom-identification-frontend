@@ -32,7 +32,7 @@ import { useI18n } from 'vue-i18n';
 import { parseJwt } from '@/utils/jwt.js';
 import { useToast } from 'vue-toastification';
 import {getStatusStyles} from "@/utils/styling/mushroomStatusStyles.js";
-import {changeMushroomStatus} from "@/services/mushroomService.js";
+import {changeMushroomStatus} from "@/services/rest/mushroomService.js";
 import {useMushroomStore} from "@/store/mushroomStore.js";
 
 const props = defineProps({

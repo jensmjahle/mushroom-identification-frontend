@@ -44,7 +44,7 @@ import { useRoute } from 'vue-router';
 import RequestStatusBox from '@/components/RequestStatusBox.vue';
 import ChatBox from '@/components/ChatBox.vue';
 import MushroomBasket from '@/components/MushroomBasket.vue';
-import { getUserRequest } from '@/services/userRequestService.js';
+import { getUserRequest } from '@/services/rest/userRequestService.js';
 
 const route = useRoute();
 const userRequestId = route.params.userRequestId;

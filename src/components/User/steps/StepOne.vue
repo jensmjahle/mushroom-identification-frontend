@@ -118,7 +118,7 @@
 import { ref, computed, onMounted, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useToast } from 'vue-toastification'
-import { sendNewUserRequest } from '@/services/userRequestService'
+import { sendNewUserRequest } from '@/services/rest/userRequestService.js'
 import { processImageFiles } from '@/utils/imageUtils'
 import { XIcon } from 'lucide-vue-next'
 import BaseButton from '@/components/base/BaseButton.vue'

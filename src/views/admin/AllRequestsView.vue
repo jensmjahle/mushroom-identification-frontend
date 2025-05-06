@@ -57,7 +57,7 @@ import { ref, onMounted, watch } from 'vue'
 import { useToast } from 'vue-toastification'
 import BaseList from '@/components/base/BaseList.vue'
 import RequestRow from '@/components/base/rows/RequestRow.vue'
-import { getPaginatedRequests } from '@/services/adminRequestService.js'
+import { getPaginatedRequests } from '@/services/rest/adminRequestService.js'
 import router from "@/router/index.js"
 
 const page1 = ref(0)

@@ -1,4 +1,4 @@
-import axios from '@/config/axiosConfig'
+import axios from '@/config/axiosConfig.js'
 
 export const loginAdmin = (username, password) => {
   console.log(username, password)

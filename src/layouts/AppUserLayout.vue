@@ -18,9 +18,13 @@ import UserDisplayCard from '../components/User/UserDisplayCard.vue'
 import SettingsWidget from '../components/User/SettingsWidget.vue'
 import MobileHamburgerMenu from '../components/navigation/MobileHamburgerMenu.vue'
 import UserSideMenuContent from '../components/navigation/UserSideMenuContent.vue'
+import {parseJwt} from "@/utils/jwt.js";
+import {useRequestSocketStore} from "@/store/useRequestSocketStore.js";
+import {useToast} from "vue-toastification";
 
 
 const collapsed = ref(false)
+const socketStore = useRequestSocketStore()
 
 onMounted(() => {
   const saved = localStorage.getItem('sidebarCollapsed')
@@ -39,6 +43,12 @@ onUnmounted(() => {
 
 watch(collapsed, (val) => {
   localStorage.setItem('sidebarCollapsed', val.toString())
+})
+
+watch(() => socketStore.latestNotification, (notif) => {
+  if (notif?.type === 'NEW_CHAT_MESSAGE') {
+    // Show toast or update badge
+  }
 })
 
 const handleResize = () => {

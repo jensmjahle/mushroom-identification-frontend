@@ -35,7 +35,7 @@ import { ref } from 'vue'
 import BaseButton from '@/components/base/BaseButton.vue'
 import ConfirmDialog from '@/components/base/ConfirmDialog.vue'
 import { useToast } from 'vue-toastification'
-import { getRequestsForMonth } from '@/services/adminRequestService.js'
+import { getRequestsForMonth } from '@/services/rest/adminRequestService.js'
 import { useI18n } from 'vue-i18n'
 
 const { t } = useI18n()
