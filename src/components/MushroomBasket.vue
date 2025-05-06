@@ -45,7 +45,7 @@ import { onMounted, ref, onBeforeUnmount } from 'vue';
 import { ShoppingBasket, ChevronLeft, ChevronRight } from 'lucide-vue-next';
 import Mushroom from './Mushroom.vue';
 import { getUserRequestMushrooms } from '@/services/rest/mushroomService.js';
-import {useMushroomStore} from "@/store/mushroomStore.js";
+import {useMushroomStore} from "@/store/useMushroomStore.js";
 
 const props = defineProps({ userRequestId: String });
 const emit = defineEmits(['basket-toggle']);
