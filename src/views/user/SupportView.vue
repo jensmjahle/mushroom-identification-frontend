@@ -23,10 +23,11 @@
           </h2>
           <form @submit.prevent="handleSubmit" class="space-y-4">
             <div>
-              <label class="block text-xs sm:text-sm font-medium text-text1 mb-1">
+              <label for="supportEmail" class="block text-xs sm:text-sm font-medium text-text1 mb-1">
                 {{ t('support.emailLabel') }}
               </label>
               <input
+                id="supportEmail"
                 type="email"
                 v-model="email"
                 required
@@ -35,10 +36,11 @@
             </div>
 
             <div>
-              <label class="block text-xs sm:text-sm font-medium text-text1 mb-1">
+              <label for="supportMessage" class="block text-xs sm:text-sm font-medium text-text1 mb-1">
                 {{ t('support.messageLabel') }}
               </label>
               <textarea
+                id="supportMessage"
                 v-model="message"
                 rows="4"
                 required
@@ -46,7 +48,7 @@
               ></textarea>
             </div>
 
-            <BaseButton type="submit" block :variant="1" class="text-sm sm:text-base">
+            <BaseButton type="submit" block :variant="'1'" class="text-sm sm:text-base">
               {{ t('support.submitButton') }}
             </BaseButton>
           </form>
@@ -55,8 +57,6 @@
     </div>
   </div>
 </template>
-
-
 
 <script setup>
 import { ref, onMounted, watch } from 'vue'
@@ -86,6 +86,5 @@ function handleSubmit() {
 }
 
 onMounted(loadSupportText)
-
 watch(locale, loadSupportText)
 </script>
