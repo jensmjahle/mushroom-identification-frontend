@@ -15,7 +15,7 @@ export function initRequestSocket(requestId, token, t, onUpdateCallback) {
       Authorization: `Bearer ${token}`
     },
     debug: str => console.log('[RequestSocket] ' + str),
-    reconnectDelay: 0,
+    reconnectDelay: 5000,
 
     onConnect: () => {
       console.log('[RequestSocket] Connected to request:', requestId)
@@ -52,5 +52,3 @@ export function disconnectRequestSocket() {
     requestClient = null
   }
 }
-
-
