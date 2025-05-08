@@ -14,6 +14,8 @@ export const i18n = createI18n({
   messages
 })
 
+i18n.global.locale.value = 'en'
+
 export function customRender(component, options = {}) {
   return render(component, {
     global: {
