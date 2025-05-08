@@ -2,12 +2,12 @@
   <div class="w-full h-full flex items-center justify-center px-4 py-6">
     <div class="w-full max-w-3xl h-full flex flex-col text-center px-4 py-6 sm:py-10 sm:px-8 rounded-lg">
 
-      <!-- Tittel -->
+      <!-- Title -->
       <h1 class="text-xl sm:text-2xl font-bold text-text1 mb-4">
         {{ t('support.title') }}
       </h1>
 
-      <!-- Scrollbart innhold med max-h og pen scroll -->
+      <!-- Scrollable content -->
       <div class="flex-1 overflow-y-auto max-h-[calc(100vh-12rem)] pr-2 custom-scrollbar">
 
         <!-- Markdown Content -->
@@ -16,7 +16,7 @@
           v-html="renderedContent"
         />
 
-        <!-- Kontaktseksjon -->
+        <!-- Contact Section -->
         <div class="text-left w-full space-y-4 mt-10">
           <h2 class="text-lg font-semibold text-text1 text-center">
             {{ t('support.contactTitle') }}
@@ -30,6 +30,7 @@
                 id="supportEmail"
                 type="email"
                 v-model="email"
+                :placeholder="t('support.emailLabel')"
                 required
                 class="w-full border border-border2 rounded p-2 text-xs sm:text-sm"
               />
@@ -43,6 +44,7 @@
                 id="supportMessage"
                 v-model="message"
                 rows="4"
+                :placeholder="t('support.messageLabel')"
                 required
                 class="w-full border border-border2 rounded p-2 text-xs sm:text-sm resize-none"
               ></textarea>
@@ -76,8 +78,8 @@ async function loadSupportText() {
     const raw = await res.text()
     renderedContent.value = marked.parse(raw)
   } catch (e) {
-    console.error(`Kunne ikke laste supporttekst for "${locale.value}"`, e)
-    renderedContent.value = '<p>Innhold ikke tilgjengelig.</p>'
+    console.error(`Could not load support text for "${locale.value}"`, e)
+    renderedContent.value = '<p>Content unavailable.</p>'
   }
 }
 
