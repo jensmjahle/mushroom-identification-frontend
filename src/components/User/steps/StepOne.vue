@@ -60,6 +60,7 @@
     <!-- Kommentar -->
     <div class="w-full relative">
       <textarea
+        data-testid="comment-input"
         class="w-full p-2 border border-border1 rounded text-sm resize-none min-h-[70px] text-text1 bg-bg1"
         rows="3"
         :placeholder="showErrorComment ? t('submit.validation.errorCommentMissing') : t('submit.commentPlaceholder')"
@@ -69,11 +70,15 @@
     </div>
 
     <!-- Send -->
-    <BaseButton class="w-full max-w-xs flex items-center justify-center gap-2" @click="handleSubmit" :disabled="loading">
+    <BaseButton
+      data-testid="submit-button"
+      class="w-full max-w-xs flex items-center justify-center gap-2"
+      @click="handleSubmit"
+      :disabled="loading"
+    >
       <svg v-if="loading" class="animate-spin h-5 w-5 text-text1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
         <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/>
-        <path class="opacity-75" fill="currentColor"
-              d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"/>
+        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"/>
       </svg>
       <span>{{ t('submit.send') }}</span>
     </BaseButton>
@@ -143,11 +148,11 @@ const imagePreviews = ref({ 1: null, 2: null, 3: null })
 
 const steps = computed(() => tm('submit.steps'))
 
-const stepDescriptions = [
+const stepDescriptions = computed(() => [
   t('submit.stepDescription.top'),
   t('submit.stepDescription.side'),
   t('submit.stepDescription.under')
-]
+])
 
 function toggleHint(step) {
   hintStep.value = hintStep.value === step ? null : step
