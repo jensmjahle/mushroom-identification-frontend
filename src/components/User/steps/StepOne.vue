@@ -253,31 +253,34 @@ async function handleSubmit() {
 }
 
 onMounted(() => {
-  const savedComment = localStorage.getItem('submit_comment')
-  if (savedComment) comment.value = savedComment
+  if (process.env.NODE_ENV !== 'test') {
+    const savedComment = localStorage.getItem('submit_comment')
+    if (savedComment) comment.value = savedComment
 
-  const savedMushrooms = localStorage.getItem('submit_mushrooms')
-  if (savedMushrooms) {
-    try {
-      const parsed = JSON.parse(savedMushrooms)
-      mushrooms.value = parsed.map(m => ({
-        id: m.id,
-        images: m.images.map(img => {
-          const arr = img.dataURL.split(',')
-          const mime = arr[0].match(/:(.*?);/)[1]
-          const bstr = atob(arr[1])
-          const u8arr = new Uint8Array(bstr.length)
-          for (let i = 0; i < bstr.length; i++) u8arr[i] = bstr.charCodeAt(i)
-          const file = new File([u8arr], img.name, { type: mime })
-          file.dataURL = img.dataURL
-          return file
-        })
-      }))
-    } catch (e) {
-      console.warn('Feil ved rekonstruksjon av sopp:', e)
+    const savedMushrooms = localStorage.getItem('submit_mushrooms')
+    if (savedMushrooms) {
+      try {
+        const parsed = JSON.parse(savedMushrooms)
+        mushrooms.value = parsed.map(m => ({
+          id: m.id,
+          images: m.images.map(img => {
+            const arr = img.dataURL.split(',')
+            const mime = arr[0].match(/:(.*?);/)[1]
+            const bstr = atob(arr[1])
+            const u8arr = new Uint8Array(bstr.length)
+            for (let i = 0; i < bstr.length; i++) u8arr[i] = bstr.charCodeAt(i)
+            const file = new File([u8arr], img.name, { type: mime })
+            file.dataURL = img.dataURL
+            return file
+          })
+        }))
+      } catch (e) {
+        console.warn('Feil ved rekonstruksjon av sopp:', e)
+      }
     }
   }
 })
+
 
 watch(comment, (val) => {
   localStorage.setItem('submit_comment', val)
