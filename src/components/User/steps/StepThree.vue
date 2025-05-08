@@ -4,7 +4,7 @@
     <p class="text-center max-w-md">{{ t('submit.thankYouHint') }}</p>
     <div class="flex gap-4">
       <RouterLink :to="{ name: 'home' }">
-        <BaseButton variant="1">
+        <BaseButton data-testid="to-front-button" @click="$emit('finish')">
           {{ t('submit.toFront') }}
         </BaseButton>
       </RouterLink>
@@ -17,5 +17,6 @@ import { useI18n } from 'vue-i18n';
 import BaseButton from '@/components/base/BaseButton.vue';
 
 const { t } = useI18n();
-defineEmits(['back']);
+defineEmits(['finish']); 
 </script>
+
