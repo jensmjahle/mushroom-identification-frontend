@@ -1,14 +1,15 @@
 <template>
   <div class="flex flex-col items-center justify-center w-[90%] h-full px-4 pt-20 pb-4 max-w-3xl mx-auto text-center gap-6 overflow-y-auto relative">
-    <h2 class="text-2xl sm:text-3xl font-bold text-text1">{{ t('submit.title') }}</h2>
+    <h2 class="text-2xl sm:text-3xl font-bold text-text1" data-testid="step-title">{{ t('submit.title') }}</h2>
 
     <!-- Tips -->
-    <div class="flex flex-col gap-4 text-left w-full">
+    <div class="flex flex-col gap-4 text-left w-full" data-testid="steps-container">
       <div
         v-for="(step, index) in steps"
         :key="index"
         class="flex items-center gap-4 p-2 rounded-md border border-border1 bg-bg1 cursor-pointer transition hover:bg-bg2 shadow-sm"
         @click="toggleHint(index + 1)"
+        data-testid="step-item"
       >
         <span class="w-8 h-8 text-sm rounded-md bg-button3 text-button3-meta flex items-center justify-center font-semibold shrink-0">
           {{ index + 1 }}
@@ -21,16 +22,16 @@
     </div>
 
     <!-- Hint Modal -->
-    <div v-if="hintStep !== null" class="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-[100] p-4" @click.self="hintStep = null">
+    <div v-if="hintStep !== null" class="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-[100] p-4" @click.self="hintStep = null" data-testid="hint-modal">
       <div class="bg-bg1 p-6 rounded-lg shadow-lg max-w-md w-full">
         <h3 class="text-lg font-semibold mb-2 text-text1">{{ t('submit.hintTitle') }}</h3>
         <p class="text-sm text-text1-faded">{{ t(`submit.steps.${hintStep - 1}.hint`) }}</p>
-        <BaseButton class="w-full mt-4" @click="hintStep = null">{{ t('submit.close') }}</BaseButton>
+        <BaseButton class="w-full mt-4" @click="hintStep = null" data-testid="close-hint">{{ t('submit.close') }}</BaseButton>
       </div>
     </div>
 
     <!-- Tidligere sopper -->
-    <div class="flex w-full flex-row gap-6 items-start">
+    <div class="flex w-full flex-row gap-6 items-start" data-testid="mushroom-list">
       <div class="flex-1 border border-border1 rounded px-2 h-[120px] overflow-y-auto bg-bg2 w-full relative">
         <div class="sticky top-0 left-0 bg-bg2 pb-2 font-semibold text-text1 text-left">{{ t('submit.mushroomListTitle') }}</div>
         <template v-if="mushrooms.length">
@@ -38,6 +39,7 @@
             v-for="mushroom in mushrooms"
             :key="mushroom.id"
             class="relative border border-border1 rounded p-2 bg-bg1 mb-2"
+            data-testid="mushroom-item"
           >
             <XIcon class="w-4 h-4 text-text1-faded hover:text-button1-meta absolute top-2 right-2 cursor-pointer" @click="removeMushroom(mushroom.id)" />
             <div class="font-semibold text-text1 text-left mb-1">{{ t('submit.mushroom') }} {{ mushroom.id }}</div>
@@ -54,7 +56,7 @@
         <p v-if="showErrorMushroom" class="text-sm text-danger mt-1">{{ t('submit.validation.errorMushroomMissing') }}</p>
       </div>
 
-      <BaseButton variant="2" class="h-full w-[10%]" @click="showMushroomPopup = true">+</BaseButton>
+      <BaseButton variant="2" class="h-full w-[10%]" @click="showMushroomPopup = true" data-testid="add-mushroom-button">+</BaseButton>
     </div>
 
     <!-- Kommentar -->
@@ -84,11 +86,11 @@
     </BaseButton>
 
     <!-- Popup -->
-    <div v-if="showMushroomPopup" class="fixed inset-0 z-[60] backdrop-blur-sm flex items-center justify-center p-4">
+    <div v-if="showMushroomPopup" class="fixed inset-0 z-[60] backdrop-blur-sm flex items-center justify-center p-4" data-testid="mushroom-popup">
       <div class="bg-bg1 p-6 rounded-lg shadow-lg w-full max-w-md space-y-4">
         <div class="flex justify-between items-center mb-4">
           <h3 class="text-lg font-semibold text-text1">{{ t('submit.step') }} {{ mushroomStep }} {{ t('submit.of') }} 3</h3>
-          <BaseButton variant="4" class="text-xs" @click="cancelMushroom">{{ t('submit.close') }}</BaseButton>
+          <BaseButton variant="4" class="text-xs" @click="cancelMushroom" data-testid="close-popup">{{ t('submit.close') }}</BaseButton>
         </div>
 
         <div class="flex justify-between mb-4">
@@ -109,8 +111,8 @@
         </div>
 
         <div class="flex justify-between">
-          <BaseButton variant="3" class="w-[45%]" @click="prevStep" :disabled="mushroomStep === 1">{{ t('submit.back') }}</BaseButton>
-          <BaseButton variant="2" class="w-[45%]" @click="nextStep" :disabled="!mushroomInProgress[mushroomStep]">
+          <BaseButton variant="3" class="w-[45%]" @click="prevStep" :disabled="mushroomStep === 1" data-testid="prev-step-button">{{ t('submit.back') }}</BaseButton>
+          <BaseButton variant="2" class="w-[45%]" @click="nextStep" :disabled="!mushroomInProgress[mushroomStep]" data-testid="next-step-button">
             {{ mushroomStep === 3 ? t('submit.finish') : t('submit.next') }}
           </BaseButton>
         </div>
