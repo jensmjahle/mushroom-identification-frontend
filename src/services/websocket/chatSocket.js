@@ -12,7 +12,7 @@ export function connectToChat(userRequestId, token, onMessageCallback) {
       Authorization: `Bearer ${token}`
     },
     debug: (str) => console.log('[ChatSocket] ' + str),
-    reconnectDelay: 0, // no auto-reconnect for per-chat
+    reconnectDelay: 5000,
     onConnect: () => {
       console.log('[ChatSocket] Connected to chatroom');
 
