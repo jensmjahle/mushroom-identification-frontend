@@ -54,7 +54,7 @@ const isMobile = ref(false);
 const mushroomStore = useMushroomStore()
 const token = sessionStorage.getItem('jwt')
 const { t } = useI18n()
-const { connect } = useRequestSocketStore()
+const { connect, disconnect } = useRequestSocketStore()
 
 
 
@@ -71,6 +71,7 @@ onMounted(() => {
 
 onBeforeUnmount(() => {
   window.removeEventListener('resize', checkMobile);
+  disconnect();
 });
 
 function checkMobile() {
