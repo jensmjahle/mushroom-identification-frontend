@@ -1,2 +1,7 @@
-// __tests__/setup.js
-import '@testing-library/jest-dom'
+// test/setup.js
+import { vi } from 'vitest'
+
+// Example: Add global mock for something like Vue Router
+globalThis.$router = {
+  push: vi.fn(),
+}

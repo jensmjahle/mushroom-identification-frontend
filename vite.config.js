@@ -22,8 +22,12 @@ export default defineConfig({
     port: 5173,
   },
   test: {
-    globals: true,
-    environment: 'jsdom',
-    setupFiles: ['./src/__tests__/setup.js']
+    globals: true,  
+    environment: 'jsdom', 
+    setupFiles: ['./src/__tests__/setup.js'],
+    coverage: {
+      provider: 'c8', 
+      all: true, 
+    },
   },
 });
