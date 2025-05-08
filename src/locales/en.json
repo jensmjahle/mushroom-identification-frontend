@@ -302,11 +302,16 @@
     "INTERNAL_SERVER_ERROR": "Something went wrong on our side. Please try again."
   },
   "notification": {
+    "default": "You have a new notification.",
     "request": {
       "locked": "OBS! This request is already being handled by another administrator. You can still view it, but you cannot edit it.",
-      "statusUpdated": "The status of the request has been updated successfully.",
+      "statusUpdated": "Your request status has been updated.",
       "addedToQueue": "Request has been added back to the queue.",
-      "placedOnHold": "Request has been placed on hold."
+      "placedOnHold": "Request has been placed on hold.",
+      "newChatMessage": "You have received a new message.",
+      "mushroomUpdated": "Your mushrooms have been updated by a reviewer.",
+      "currentlyUnderReview": "A reviewer is currently evaluating your request. Go check it out!",
+      "adminLeft": "The reviewer has left your request."
     },
     "system": {
       "maintenance": "The system is currently under maintenance.",
@@ -316,6 +321,10 @@
     "admin": {
       "newAdmin": "A new administrator has been added.",
       "removedAdmin": "An administrator has been removed."
+    },
+    "user": {
+      "loggedIn": "This request's anonymous user just entered the chatroom.",
+      "loggedOut": "This request's anonymous user just left the chatroom."
     }
   },
   "messages": {
