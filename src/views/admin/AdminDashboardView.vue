@@ -31,7 +31,7 @@
 import { ref, onMounted } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { parseJwt } from '@/utils/jwt.js'
-import { getNextRequestFromQueue, getPaginatedNewRequests } from '@/services/adminRequestService.js'
+import { getNextRequestFromQueue, getPaginatedRequests } from '@/services/adminRequestService.js'
 import { useRouter } from 'vue-router'
 import { useToast } from 'vue-toastification'
 import BaseButton from '@/components/base/BaseButton.vue'
@@ -63,7 +63,7 @@ const getNextFromQueue = async () => {
 
 onMounted(async () => {
   try {
-    const newRes = await getPaginatedNewRequests(0);
+    const newRes = await getPaginatedRequests(0);
     newRequests.value = newRes.content;
   } catch (err) {
     console.error('Feil ved henting av forespørsler', err);

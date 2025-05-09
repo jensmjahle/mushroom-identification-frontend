@@ -33,9 +33,9 @@ vi.mock('vue-toastification', () => ({
 
 vi.mock('@/services/adminRequestService.js', () => ({
   getNextRequestFromQueue: vi.fn(),
-  getPaginatedNewRequests: vi.fn()
+  getPaginatedRequests: vi.fn()
 }))
-import { getNextRequestFromQueue, getPaginatedNewRequests } from '@/services/adminRequestService.js'
+import { getNextRequestFromQueue, getPaginatedRequests } from '@/services/adminRequestService.js'
 
 describe('AdminDashboardView.vue', () => {
   let router
@@ -59,7 +59,7 @@ describe('AdminDashboardView.vue', () => {
   })
 
   it('renders greeting and tips', async () => {
-    getPaginatedNewRequests.mockResolvedValueOnce({ content: [{}, {}, {}] })
+    getPaginatedRequests.mockResolvedValueOnce({ content: [{}, {}, {}] })
 
     const wrapper = mount(AdminDashboardView, {
       global: {
@@ -75,7 +75,7 @@ describe('AdminDashboardView.vue', () => {
   })
 
   it('navigates to statistics on button click', async () => {
-    getPaginatedNewRequests.mockResolvedValueOnce({ content: [] })
+    getPaginatedRequests.mockResolvedValueOnce({ content: [] })
 
     const wrapper = mount(AdminDashboardView, {
       global: {
@@ -93,7 +93,7 @@ describe('AdminDashboardView.vue', () => {
   })
 
   it('calls getNextRequestFromQueue and navigates when request is found', async () => {
-    getPaginatedNewRequests.mockResolvedValueOnce({ content: [] })
+    getPaginatedRequests.mockResolvedValueOnce({ content: [] })
     getNextRequestFromQueue.mockResolvedValueOnce({ userRequestId: 'abc123' })
 
     const wrapper = mount(AdminDashboardView, {
@@ -113,7 +113,7 @@ describe('AdminDashboardView.vue', () => {
   })
 
   it('shows toast if no request in queue', async () => {
-    getPaginatedNewRequests.mockResolvedValueOnce({ content: [] })
+    getPaginatedRequests.mockResolvedValueOnce({ content: [] })
     getNextRequestFromQueue.mockResolvedValueOnce(null)
 
     const wrapper = mount(AdminDashboardView, {
@@ -133,7 +133,7 @@ describe('AdminDashboardView.vue', () => {
 
   it('shows error toast if getNextRequestFromQueue throws', async () => {
     const errorSpy = vi.spyOn(console, 'error').mockImplementation(() => {})
-    getPaginatedNewRequests.mockResolvedValueOnce({ content: [] })
+    getPaginatedRequests.mockResolvedValueOnce({ content: [] })
     getNextRequestFromQueue.mockRejectedValueOnce(new Error('API down'))
 
     const wrapper = mount(AdminDashboardView, {
@@ -154,7 +154,7 @@ describe('AdminDashboardView.vue', () => {
   })
 
   it('handles empty list of new requests without crashing', async () => {
-    getPaginatedNewRequests.mockResolvedValueOnce({ content: [] })
+    getPaginatedRequests.mockResolvedValueOnce({ content: [] })
 
     const wrapper = mount(AdminDashboardView, {
       global: {
@@ -167,9 +167,9 @@ describe('AdminDashboardView.vue', () => {
     expect(wrapper.text()).toContain('All requests (0)')
   })
 
-  it('logs error if getPaginatedNewRequests throws', async () => {
+  it('logs error if getPaginatedRequests throws', async () => {
     const errorSpy = vi.spyOn(console, 'error').mockImplementation(() => {})
-    getPaginatedNewRequests.mockRejectedValueOnce(new Error('Simulated fetch error'))
+    getPaginatedRequests.mockRejectedValueOnce(new Error('Simulated fetch error'))
 
     mount(AdminDashboardView, {
       global: {
