@@ -1,12 +1,22 @@
 // src/__tests__/user/views/HomeView.spec.js
-import { mount } from '@vue/test-utils'
-import { describe, it, expect } from 'vitest'
+import { mount, flushPromises } from '@vue/test-utils'
+import { describe, it, expect, vi, beforeEach } from 'vitest'
 import HomeView from '@/views/user/HomeView.vue'
-import { createI18n } from 'vue-i18n'
 import { createRouter, createWebHistory } from 'vue-router'
-import BaseButton from '@/components/base/BaseButton.vue'
 
-// Set up Vue Router for testing
+// Mock vue-i18n: return keys for t() and tm()
+vi.mock('vue-i18n', async () => {
+  const actual = await vi.importActual('vue-i18n')
+  return {
+    ...actual,
+    useI18n: () => ({
+      t: (key) => key,
+      tm: (key) => key
+    })
+  }
+})
+
+// Minimal router setup
 const router = createRouter({
   history: createWebHistory(),
   routes: [
@@ -16,47 +26,30 @@ const router = createRouter({
     { path: '/become-member', name: 'become-member' },
     { path: '/support', name: 'support' },
     { path: '/login', name: 'user-login' },
-    { path: '/:pathMatch(.*)*', redirect: '/' }, // Ensure wildcard route for any unmatched paths
-  ],
-})
-
-// Mocking the `t` function for translations
-const i18n = createI18n({
-  legacy: false, // Use Composition API
-  locale: 'en',
-  messages: {
-    en: {
-      home: {
-        description: 'Welcome to the Mushroom Identification Service',
-        sendRequest: 'Send Request',
-        becomeMember: 'Become a Member',
-        or: 'or',
-        getSupport: 'Get Support',
-      },
-    },
-  },
+    { path: '/:pathMatch(.*)*', redirect: '/' }
+  ]
 })
 
 describe('HomeView.vue', () => {
-  it('renders a description and buttons', async () => {
+  beforeEach(async () => {
+    await router.push('/')
+    await router.isReady()
+  })
+
+  it('renders a description and buttons with mocked translations', async () => {
     const wrapper = mount(HomeView, {
       global: {
-        plugins: [i18n, router], 
-      },
+        plugins: [router]
+      }
     })
 
-    // Ensure the router is pushed to the initial route for testing
-    await router.push('/')
+    await flushPromises()
 
-    // Check if the description is rendered
-    expect(wrapper.text()).toContain('Welcome to the Mushroom Identification Service')
-
-    // Check if the buttons are rendered
-    expect(wrapper.text()).toContain('Send Request')
-    expect(wrapper.text()).toContain('Become a Member')
-
-    // Check if the support link is rendered
-    expect(wrapper.text()).toContain('or')
-    expect(wrapper.text()).toContain('Get Support')
+    const text = wrapper.text()
+    expect(text).toContain('home.description')
+    expect(text).toContain('home.sendRequest')
+    expect(text).toContain('home.becomeMember')
+    expect(text).toContain('home.or')
+    expect(text).toContain('home.getSupport')
   })
 })
