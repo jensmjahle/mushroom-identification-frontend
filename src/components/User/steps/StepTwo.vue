@@ -31,11 +31,11 @@
           {{ t('submit.readyDetail') }}
         </p>
         <div class="flex justify-center gap-4">
-          <BaseButton @click="confirmAndProceed">
-            {{ t('submit.proceedButton') }}
-          </BaseButton>
           <BaseButton variant="2" @click="cancelNavigation">
             {{ t('submit.cancel') }}
+          </BaseButton>
+          <BaseButton @click="confirmAndProceed">
+            {{ t('submit.proceedButton') }}
           </BaseButton>
         </div>
       </div>
@@ -96,7 +96,7 @@ function confirmAndProceed() {
   if (pendingNavigation.value) {
     pendingNavigation.value()
   } else {
-    emit('next')
+    emit('next', props.referenceCode)
   }
 }
 

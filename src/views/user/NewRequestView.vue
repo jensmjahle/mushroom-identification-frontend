@@ -10,7 +10,12 @@
     <div class="flex items-center justify-center w-full h-full">
       <StepZero v-if="currentStep === 0" @next="handleNextStep" />
       <StepOne v-if="currentStep === 1" @next="goToStepTwo" /> 
-      <StepTwo v-else-if="currentStep === 2" :referenceCode="userCode" @next="currentStep++" @back="currentStep--" />
+      <StepTwo
+        v-else-if="currentStep === 2"
+        :referenceCode="userCode"
+        @next="goToStepThree"
+        @back="currentStep--"
+      />
       <StepThree v-else-if="currentStep === 3" :referenceCode="userCode" @back="currentStep--" />
     </div>
   </div>
@@ -42,6 +47,11 @@ onUnmounted(() => {
 function goToStepTwo(result) {
   userCode.value = result
   currentStep.value = 2
+}
+
+function goToStepThree(codeFromStepTwo) {
+  userCode.value = codeFromStepTwo
+  currentStep.value = 3
 }
 
 function handleNextStep() {
