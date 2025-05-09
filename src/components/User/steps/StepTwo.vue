@@ -14,6 +14,15 @@
         <span v-else>{{ t('submit.copy') }}</span>
       </BaseButton>
     </div>
+    <div class="flex items-center gap-2 ">
+      <span v-if="onlineAdmins > 0" class="w-2 h-2 rounded-full bg-success animate-pulse" title="Admins are online"></span>
+      <p class="text-text2-faded">
+        {{ onlineAdmins > 0
+          ? t('submit.adminOnline', { count: onlineAdmins })
+          : t('submit.noAdminsOnline') }}
+      </p>
+    </div>
+
 
     <BaseButton class="mt-6" @click="readyModalVisible = true">
       {{ t('submit.next') }}
@@ -48,6 +57,7 @@ import { ref, onMounted, onBeforeUnmount } from 'vue'
 import { useRouter, onBeforeRouteLeave } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 import BaseButton from '@/components/base/BaseButton.vue'
+import {getOnlineAdminCount} from "@/services/rest/websocketService.js";
 
 const { t } = useI18n()
 const router = useRouter()
@@ -62,6 +72,8 @@ const emit = defineEmits(['next'])
 const copied = ref(false)
 const readyModalVisible = ref(false)
 const pendingNavigation = ref(null)
+const onlineAdmins = ref(0)
+
 
 function copyToClipboard() {
   navigator.clipboard.writeText(props.referenceCode)
@@ -77,6 +89,7 @@ function handleBeforeUnload(e) {
 }
 onMounted(() => {
   window.addEventListener('beforeunload', handleBeforeUnload)
+  fetchOnlineAdmins()
 })
 onBeforeUnmount(() => {
   window.removeEventListener('beforeunload', handleBeforeUnload)
@@ -103,5 +116,8 @@ function confirmAndProceed() {
 function cancelNavigation() {
   readyModalVisible.value = false
   pendingNavigation.value = null
+}
+const fetchOnlineAdmins = async () => {
+  onlineAdmins.value = await getOnlineAdminCount()
 }
 </script>

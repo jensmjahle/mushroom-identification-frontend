@@ -17,7 +17,7 @@ import {
   Legend
 } from 'chart.js'
 import { ref, onMounted, watch } from 'vue'
-import { fetchMushroomCategoryStats } from '@/services/statsService'
+import { fetchMushroomCategoryStats } from '@/services/rest/statsService.js'
 import { useI18n } from 'vue-i18n'
 import { themeReady } from '@/composables/themeReady'
 import {getStatusStyles} from "@/utils/styling/mushroomStatusStyles.js";

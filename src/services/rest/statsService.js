@@ -1,5 +1,5 @@
-import axios from '@/config/axiosConfig'
-import { getAuthHeaders } from '@/utils/authHeaders'
+import axios from '@/config/axiosConfig.js'
+import { getAuthHeaders } from '@/utils/authHeaders.js'
 
 export const fetchMushroomCategoryStats = async () => {
   try {

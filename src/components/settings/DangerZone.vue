@@ -21,7 +21,7 @@
 import BaseButton from "@/components/base/BaseButton.vue"
 import { useI18n } from "vue-i18n"
 import { useConfirmDialog } from "@/composables/useConfirmDialog"
-import {deleteAdminAccount} from "@/services/adminService.js";
+import {deleteAdminAccount} from "@/services/rest/adminService.js";
 import {useToast} from "vue-toastification";
 import {useRouter} from "vue-router";
 

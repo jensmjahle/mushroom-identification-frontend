@@ -32,8 +32,8 @@ import { useI18n } from 'vue-i18n';
 import { parseJwt } from '@/utils/jwt.js';
 import { useToast } from 'vue-toastification';
 import {getStatusStyles} from "@/utils/styling/mushroomStatusStyles.js";
-import {changeMushroomStatus} from "@/services/mushroomService.js";
-import {useMushroomStore} from "@/store/mushroomStore.js";
+import {changeMushroomStatus} from "@/services/rest/mushroomService.js";
+import {useMushroomStore} from "@/store/useMushroomStore.js";
 
 const props = defineProps({
   userRequestId: String,
@@ -82,7 +82,8 @@ async function selectStatus(newStatus) {
     const updatedMushroom = await changeMushroomStatus(props.userRequestId, props.mushroomId, newStatus);
     if (updatedMushroom) {
       mushroomStore.updateMushroom(updatedMushroom)
-      emit('mushroom-status-updated')
+      emit('mushroom-status-updated', 'updated-locally')
+
     } else {
       console.error('Failed to update status');
     }

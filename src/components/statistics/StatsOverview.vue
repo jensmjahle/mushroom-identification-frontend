@@ -16,7 +16,7 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import { useI18n } from 'vue-i18n'
-import { fetchOverviewStats } from '@/services/statsService'
+import { fetchOverviewStats } from '@/services/rest/statsService.js'
 import StatCard from '@/components/statistics/StatCard.vue'
 import ExportStatsCard from '@/components/statistics/ExportStatsCard.vue'
 

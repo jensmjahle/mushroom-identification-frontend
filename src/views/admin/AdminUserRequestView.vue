@@ -36,14 +36,15 @@
 </template>
 
 <script setup>
-import {ref, onMounted, onBeforeUnmount, watch} from "vue";
-import { useRoute } from 'vue-router';
+import {onBeforeUnmount, onMounted, ref, watch} from "vue";
+import {useRoute} from 'vue-router';
 import ChatBox from '../../components/ChatBox.vue';
 import RequestStatusBox from "../../components/RequestStatusBox.vue";
 import MushroomBasket from "../../components/MushroomBasket.vue";
-import { getUserRequestAdmin } from "@/services/adminRequestService.js";
-import {getUserRequest} from "@/services/userRequestService.js";
-import {useMushroomStore} from "@/store/mushroomStore.js";
+import {getUserRequestAdmin} from "@/services/rest/adminRequestService.js";
+import {useMushroomStore} from "@/store/useMushroomStore.js";
+import {useRequestSocketStore} from "@/store/useRequestSocketStore.js";
+import {useI18n} from "vue-i18n";
 
 const route = useRoute();
 const userRequestId = route.params.userRequestId;
@@ -51,6 +52,10 @@ const userRequest = ref(null);
 const isBasketOpen = ref(false); 
 const isMobile = ref(false);
 const mushroomStore = useMushroomStore()
+const token = sessionStorage.getItem('jwt')
+const { t } = useI18n()
+const { connect, disconnect } = useRequestSocketStore()
+const socketStore = useRequestSocketStore()
 
 
 onMounted(() => {
@@ -60,10 +65,13 @@ onMounted(() => {
 
   checkMobile();
   window.addEventListener('resize', checkMobile);
+
+  connect(userRequestId, token, t, null )
 });
 
 onBeforeUnmount(() => {
   window.removeEventListener('resize', checkMobile);
+  disconnect();
 });
 
 function checkMobile() {
@@ -77,7 +85,14 @@ function reloadUserRequest() {
 }
 
 
-
+watch(() => socketStore.lastNotification, (notif) => {
+  if (!notif) return;
+  const type = notif.split('-')[0];
+  if (['MUSHROOM_BASKET_UPDATED', 'STATUS_CHANGED'].includes(type)) {
+    console.log('[AdminView] Triggering reload due to:', type);
+    reloadUserRequest();
+  }
+});
 watch(() => mushroomStore.mushrooms, () => {
   reloadUserRequest()
 }, { deep: true })

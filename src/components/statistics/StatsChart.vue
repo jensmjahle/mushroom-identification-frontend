@@ -24,7 +24,7 @@
 
 <script setup>
 import { ref, onMounted, watch } from 'vue'
-import { fetchCompletedStats } from '@/services/statsService.js'
+import { fetchCompletedStats } from '@/services/rest/statsService.js'
 import LineChart from '@/components/charts/LineChart.vue'
 import { useI18n } from 'vue-i18n'
 
