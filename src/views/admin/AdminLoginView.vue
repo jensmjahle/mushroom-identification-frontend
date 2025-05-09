@@ -5,7 +5,7 @@
 
 <script setup>
 import { useRouter } from "vue-router";
-import AdminLoginForm from "@/components/AdminLoginForm.vue";
+import AdminLoginForm from "@/components/admin/AdminLoginForm.vue";
 import { loginAdmin } from "@/services/authService";
 
 const router = useRouter();
