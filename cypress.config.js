@@ -2,16 +2,18 @@ import { defineConfig } from 'cypress';
 
 export default defineConfig({
   e2e: {
-    baseUrl: 'http://localhost:3000',  
+    baseUrl: 'http://localhost:5173',  
     setupNodeEvents(on, config) {
-      // You can add custom event listeners here if needed (optional)
-      on('test:before:run', (details) => {
-        console.log(`Starting test: ${details.title}`);
+
+      on('before:run', () => {
+        console.log('Tests are about to start');
       });
-      return config;
+
+      on('after:run', () => {
+        console.log('Tests have finished');
+      });
     },
     supportFile: 'cypress/support/e2e.js', 
     specPattern: 'cypress/e2e/**/*.cy.js',
     video: false,
-  },
-});
+}});
