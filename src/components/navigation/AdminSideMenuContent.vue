@@ -65,6 +65,7 @@
 
     <div class="space-y-2">
       <h3 v-if="!isRequestPage" class="text-left text-text4">{{ $t('sideMenu.admins') }}</h3>
+      <p class="text-s text-text4-faded text-left">{{ $t('sideMenu.onlineAdmins') }}: {{ onlineAdmins }}</p>
       <BaseButton v-if="!isRequestPage"  @click="navigate('admin-management')" block variant="2">
         {{ $t('sideMenu.allAdmins') }}
       </BaseButton>
@@ -95,6 +96,7 @@ import { useToast } from 'vue-toastification'
 import {changeUserRequestStatus, getNextRequestFromQueue} from "@/services/rest/adminRequestService.js";
 import { useRouter } from 'vue-router'
 import TooltipIcon from "@/components/base/TooltipIcon.vue";
+import {getOnlineAdminCount} from "@/services/rest/websocketService.js";
 
 
 
@@ -105,6 +107,7 @@ const isRequestPage = computed(() => route.name === 'admin-request')
 const userRequestId = computed(() => route.params.userRequestId)
 const toast = useToast()
 const router = useRouter()
+const onlineAdmins = ref(0)
 
 const tooltipPosition = ref('right')
 
@@ -143,7 +146,14 @@ const logout = () => {
   sessionStorage.removeItem('jwt')
   router.push({ name: 'admin-login' })
 }
+
+
+const fetchOnlineAdmins = async () => {
+  onlineAdmins.value = await getOnlineAdminCount()
+}
+
 onMounted(() => {
+  fetchOnlineAdmins()
   updateTooltipPosition()
   window.addEventListener('resize', updateTooltipPosition)
 })

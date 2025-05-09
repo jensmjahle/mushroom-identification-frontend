@@ -158,6 +158,8 @@
     "copy": "Copy",
     "copied": "Copied!",
     "sending": "Sending in...",
+    "adminOnline": "There are currently {count} mushrooms experts online",
+    "noAdminsOnline": "No mushroom experts are currently online",
     "steps": [
       {
         "title": "Click the purple button below to add the first mushroom",
@@ -202,6 +204,7 @@
     "admins" : "Administrators",
     "allAdmins" : "All Administrators",
     "createNewAdmin" : "Create New Administrator",
+    "onlineAdmins": "Admins online",
     "tooltips": {
       "completeRequest": "Mark this request as finished and reviewed. The chat will be closed.",
       "putBackIntoQueue": "Return this request to the main queue for review. It will not progress until someone else picks it up.",
