@@ -50,7 +50,9 @@
           :status="mushroom.mushroomStatus"
           :user-request-id="props.userRequestId"
           :mushroom-id="mushroom.mushroomId"
+          @mushroom-status-updated="$emit('mushroom-status-updated', $event)"
       />
+
     </div>
 
     <!-- Popup -->

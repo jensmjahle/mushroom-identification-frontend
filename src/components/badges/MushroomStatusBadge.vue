@@ -82,7 +82,8 @@ async function selectStatus(newStatus) {
     const updatedMushroom = await changeMushroomStatus(props.userRequestId, props.mushroomId, newStatus);
     if (updatedMushroom) {
       mushroomStore.updateMushroom(updatedMushroom)
-      emit('mushroom-status-updated')
+      emit('mushroom-status-updated', 'updated-locally')
+
     } else {
       console.error('Failed to update status');
     }
