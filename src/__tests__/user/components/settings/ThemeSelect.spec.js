@@ -4,7 +4,7 @@ import ThemeSelect from '@/components/settings/ThemeSelect.vue'
 import BaseButton from '@/components/base/BaseButton.vue'
 import { describe, it, expect, beforeEach, vi } from 'vitest'
 
-// 💡 Mock vue-i18n to provide $t
+
 vi.mock('vue-i18n', async () => {
   const actual = await vi.importActual('vue-i18n')
   return {
@@ -16,7 +16,6 @@ vi.mock('vue-i18n', async () => {
 })
 
 beforeEach(() => {
-  // 💡 Mock matchMedia
   vi.stubGlobal('matchMedia', vi.fn().mockImplementation((query) => ({
     matches: query.includes('dark'),
     media: query,
@@ -24,13 +23,11 @@ beforeEach(() => {
     removeEventListener: vi.fn()
   })))
 
-  // 💡 Mock localStorage
   vi.stubGlobal('localStorage', {
     getItem: vi.fn(() => 'dark'),
     setItem: vi.fn()
   })
 
-  // Fjern gammel theme-style hvis den finnes
   const old = document.getElementById('theme-style')
   if (old) old.remove()
 })
@@ -69,7 +66,7 @@ describe('ThemeSelect.vue', () => {
     })
 
     const buttons = wrapper.findAllComponents(BaseButton)
-    await buttons[0].trigger('click') // Click "light"
+    await buttons[0].trigger('click') 
 
     const link = document.getElementById('theme-style')
     expect(link.href).toContain('/themes/light.css')
