@@ -2,6 +2,7 @@
 import { mount, flushPromises } from '@vue/test-utils'
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
 import { createRouter, createWebHistory } from 'vue-router'
+import { nextTick } from 'vue'
 import StepTwo from '@/components/User/steps/StepTwo.vue'
 import BaseButton from '@/components/base/BaseButton.vue'
 
@@ -10,7 +11,10 @@ vi.mock('vue-i18n', async () => {
   const actual = await vi.importActual('vue-i18n')
   return {
     ...actual,
-    useI18n: () => ({ t: (key) => key })
+    useI18n: () => ({
+      t: (key) => key,
+      tm: (key) => key // mock tm too in case it's called
+    })
   }
 })
 
@@ -20,14 +24,10 @@ describe('StepTwo.vue', () => {
   beforeEach(async () => {
     // Create a minimal router so onBeforeRouteLeave can register without warning
     router = createRouter({
-        
       history: createWebHistory(),
-      routes: [
-        { path: '/', component: StepTwo }
-      ]
+      routes: [{ path: '/', component: StepTwo }]
     })
-    // Install router
-    await router.push('/')   
+    await router.push('/')
     await router.isReady()
 
     // Stub clipboard
@@ -41,40 +41,51 @@ describe('StepTwo.vue', () => {
   })
 
   it('displays code, copies it, and shows the ready modal flow', async () => {
-    const wrapper = mount(StepTwo, {
+    const App = {
+      template: '<router-view />'
+    }
+
+    router.addRoute({ path: '/', component: StepTwo })
+
+    const wrapper = mount(App, {
       global: {
         plugins: [router],
         components: { BaseButton }
       },
-      props: { referenceCode: 'ABC123' }
+      props: { referenceCode: 'ABC123' } // Will be passed to StepTwo
     })
 
     await flushPromises()
 
-    // Check reference code displayed
-    expect(wrapper.text()).toContain('ABC123')
+    const stepWrapper = wrapper.findComponent(StepTwo)
 
-    // Copy to clipboard
-    await wrapper.findComponent(BaseButton).trigger('click') // copy button is first BaseButton
+    // Check reference code displayed
+    expect(stepWrapper.text()).toContain('ABC123')
+
+    // Copy to clipboard (first BaseButton)
+    const [copyBtn, nextBtn] = stepWrapper.findAllComponents(BaseButton)
+    await copyBtn.trigger('click')
     expect(navigator.clipboard.writeText).toHaveBeenCalledWith('ABC123')
 
-    // Open ready modal by clicking Next button
-    const nextBtn = wrapper.findAllComponents(BaseButton).at(1)
+    // Click Next (second BaseButton)
     await nextBtn.trigger('click')
-    expect(wrapper.find('div.fixed').exists()).toBe(true)
+    await nextTick()
+    expect(stepWrapper.find('div.fixed').exists()).toBe(true)
 
-    // Proceed and cancel buttons
-    const buttons = wrapper.findAllComponents(BaseButton).filter(b => b.text() !== 'submit.copy')
-    const proceed = buttons.find(b => b.text() === 'submit.proceedButton')
-    const cancel = buttons.find(b => b.text() === 'submit.cancel')
+    // Find proceed and cancel buttons
+    const allBtns = stepWrapper.findAllComponents(BaseButton)
+    const proceedBtn = allBtns.find(b => b.text() === 'submit.proceedButton')
+    const cancelBtn = allBtns.find(b => b.text() === 'submit.cancel')
 
     // Cancel hides modal
-    await cancel.trigger('click')
-    expect(wrapper.find('div.fixed').exists()).toBe(false)
+    await cancelBtn.trigger('click')
+    await nextTick()
+    expect(stepWrapper.find('div.fixed').exists()).toBe(false)
 
-    // Re-open and proceed emits next
+    // Re-open and proceed emits "next"
     await nextBtn.trigger('click')
-    await proceed.trigger('click')
-    expect(wrapper.emitted('next')).toHaveLength(1)
+    await nextTick()
+    await proceedBtn.trigger('click')
+    expect(stepWrapper.emitted('next')).toHaveLength(1)
   })
 })
