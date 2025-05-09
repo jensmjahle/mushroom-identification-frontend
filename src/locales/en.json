@@ -158,6 +158,7 @@
     "copy": "Copy",
     "copied": "Copied!",
     "sending": "Sending in...",
+    "goToChat": "Go to Chat",
     "steps": [
       {
         "title": "Click the purple button below to add the first mushroom",
