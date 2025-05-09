@@ -28,13 +28,13 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue';
-import { useI18n } from 'vue-i18n';
-import { parseJwt } from '@/utils/jwt.js';
-import {getNextRequestFromQueue } from '@/services/adminRequestService.js';
-import { useRouter } from 'vue-router';
-import { useToast } from 'vue-toastification';
-import BaseButton from '@/components/base/BaseButton.vue';
+import { ref, onMounted } from 'vue'
+import { useI18n } from 'vue-i18n'
+import { parseJwt } from '@/utils/jwt.js'
+import { getNextRequestFromQueue, getPaginatedNewRequests } from '@/services/adminRequestService.js'
+import { useRouter } from 'vue-router'
+import { useToast } from 'vue-toastification'
+import BaseButton from '@/components/base/BaseButton.vue'
 
 const { t } = useI18n();
 const name = parseJwt(sessionStorage.getItem('jwt')).sub;
