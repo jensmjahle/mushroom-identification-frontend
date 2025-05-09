@@ -18,6 +18,8 @@ export default defineConfig({
       on('after:run', () => {
         console.log('Tests have finished');
       });
+
+      return config;
     },
     supportFile: 'cypress/support/e2e.js', 
     specPattern: 'cypress/e2e/**/*.cy.js',
