@@ -47,10 +47,12 @@
         lg:bottom-[14px] lg:right-[6%]"
     >
       <StatusBadge
-        :status="mushroom.mushroomStatus"
-        :user-request-id="props.userRequestId"
-        :mushroom-id="mushroom.mushroomId"
+          :status="mushroom.mushroomStatus"
+          :user-request-id="props.userRequestId"
+          :mushroom-id="mushroom.mushroomId"
+          @mushroom-status-updated="$emit('mushroom-status-updated', $event)"
       />
+
     </div>
 
     <!-- Popup -->
