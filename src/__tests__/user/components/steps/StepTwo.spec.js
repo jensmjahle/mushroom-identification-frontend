@@ -3,7 +3,7 @@ import { mount, flushPromises } from '@vue/test-utils'
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
 import { createRouter, createWebHistory } from 'vue-router'
 import { nextTick } from 'vue'
-import StepTwo from '@/components/User/steps/StepTwo.vue'
+import StepTwo from '@/components/user/steps/StepTwo.vue'
 import BaseButton from '@/components/base/BaseButton.vue'
 
 // Mock vue-i18n so t() returns the key

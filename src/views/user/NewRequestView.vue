@@ -23,11 +23,11 @@
 
 <script setup>
 import { ref, watch, onUnmounted } from 'vue'
-import StepIndicator from '@/components/User/steps/StepIndicator.vue'
-import StepZero from '@/components/User/steps/StepZero.vue'
-import StepOne from '@/components/User/steps/StepOne.vue'
-import StepTwo from '@/components/User/steps/StepTwo.vue'
-import StepThree from '@/components/User/steps/StepThree.vue'
+import StepIndicator from '@/components/user/steps/StepIndicator.vue'
+import StepZero from '@/components/user/steps/StepZero.vue'
+import StepOne from '@/components/user/steps/StepOne.vue'
+import StepTwo from '@/components/user/steps/StepTwo.vue'
+import StepThree from '@/components/user/steps/StepThree.vue'
 
 const LOCAL_STORAGE_KEY = 'currentStep'
 

@@ -1,7 +1,7 @@
 // src/__tests__/user/components/steps/StepOne.spec.js
 import { mount, flushPromises } from '@vue/test-utils'
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
-import StepOne from '@/components/User/steps/StepOne.vue'
+import StepOne from '@/components/user/steps/StepOne.vue'
 import BaseButton from '@/components/base/BaseButton.vue'
 
 // Partially mock vue-i18n so useI18n returns dummy t() and tm()

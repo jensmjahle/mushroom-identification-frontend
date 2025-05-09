@@ -1,7 +1,7 @@
 // src/__tests__/user/components/StepZero.spec.js
 import { mount } from '@vue/test-utils'
 import { describe, it, expect, vi } from 'vitest'
-import StepZero from '@/components/User/steps/StepZero.vue'
+import StepZero from '@/components/user/steps/StepZero.vue'
 import BaseButton from '@/components/base/BaseButton.vue'
 
 // Mock vue-i18n so that t(key) returns the key string

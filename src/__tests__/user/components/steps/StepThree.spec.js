@@ -2,7 +2,7 @@
 import { mount, flushPromises } from '@vue/test-utils'
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
 import { createRouter, createWebHistory } from 'vue-router'
-import StepThree from '@/components/User/steps/StepThree.vue'
+import StepThree from '@/components/user/steps/StepThree.vue'
 import BaseButton from '@/components/base/BaseButton.vue'
 
 // Mock vue-i18n
