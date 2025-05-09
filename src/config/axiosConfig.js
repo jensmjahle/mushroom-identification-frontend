@@ -3,7 +3,7 @@ import { useToast } from 'vue-toastification'
 import router from '@/router/index.js'
 
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || 'http://localhost:8080',
+  baseURL: import.meta.env.VITE_API_URL || 'https://mushroom-identification-backend-954531306961.us-central1.run.app',
   headers: {
     'Content-Type': 'application/json'
   }
