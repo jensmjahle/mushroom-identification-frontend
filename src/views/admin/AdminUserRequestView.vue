@@ -55,7 +55,7 @@ const mushroomStore = useMushroomStore()
 const token = sessionStorage.getItem('jwt')
 const { t } = useI18n()
 const { connect, disconnect } = useRequestSocketStore()
-
+const socketStore = useRequestSocketStore()
 
 
 onMounted(() => {
@@ -85,7 +85,14 @@ function reloadUserRequest() {
 }
 
 
-
+watch(() => socketStore.lastNotification, (notif) => {
+  if (!notif) return;
+  const type = notif.split('-')[0];
+  if (['MUSHROOM_BASKET_UPDATED', 'STATUS_CHANGED'].includes(type)) {
+    console.log('[AdminView] Triggering reload due to:', type);
+    reloadUserRequest();
+  }
+});
 watch(() => mushroomStore.mushrooms, () => {
   reloadUserRequest()
 }, { deep: true })

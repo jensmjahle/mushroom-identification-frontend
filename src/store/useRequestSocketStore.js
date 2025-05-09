@@ -4,7 +4,8 @@ import { initRequestSocket, disconnectRequestSocket } from '@/services/websocket
 export const useRequestSocketStore = defineStore('requestSocket', {
   state: () => ({
     connectedRequestId: null,
-    lastNotification: null
+    lastNotification: '',
+    notificationCounter: 0
   }),
 
   getters: {
@@ -16,11 +17,12 @@ export const useRequestSocketStore = defineStore('requestSocket', {
       if (this.connectedRequestId === requestId) return
 
       this.disconnect()
-
       this.connectedRequestId = requestId
 
       initRequestSocket(requestId, token, t, (event) => {
-        this.lastNotification = event
+        this.notificationCounter++
+        this.lastNotification = `${event}-${this.notificationCounter}`
+
         if (onUpdateCallback) onUpdateCallback(event)
       })
     },
@@ -28,7 +30,8 @@ export const useRequestSocketStore = defineStore('requestSocket', {
     disconnect() {
       disconnectRequestSocket()
       this.connectedRequestId = null
-      this.lastNotification = null
+      this.lastNotification = ''
+      this.notificationCounter = 0
     }
   }
 })

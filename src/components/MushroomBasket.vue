@@ -94,17 +94,12 @@ function handleLocalUpdate(source) {
 }
 
 
+watch(() => socketStore.lastNotification, (notif) => {
+  if (notif.startsWith('MUSHROOM_BASKET_UPDATED')) {
+    mushroomStore.fetchMushrooms(props.userRequestId)
+  }
+})
 
-watch(
-    () => socketStore.lastNotification,
-    (notif) => {
-      if (notif === 'MUSHROOM_BASKET_UPDATED' && props.userRequestId) {
-        console.log('[MushroomBasket] Refreshing due to external socket update')
-        mushroomStore.fetchMushrooms(props.userRequestId)
-      }
-      console.log('[MushroomBasket] Received notification:', notif)
-    }
-)
 
 
 onMounted(() => {
