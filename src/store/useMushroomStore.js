@@ -7,11 +7,17 @@ export const useMushroomStore = defineStore('mushroom', {
   }),
   actions: {
     setMushrooms(mushroomList) {
-      if (Array.isArray(mushroomList)) {
-        this.mushrooms = mushroomList
-      } else {
-        this.mushrooms = []
-      }
+      if (!Array.isArray(mushroomList)) return
+      const map = new Map(mushroomList.map(m => [m.mushroomId, m]))
+      this.mushrooms = this.mushrooms.map(existing =>
+          map.has(existing.mushroomId) ? map.get(existing.mushroomId) : existing
+      )
+      // add new ones
+      mushroomList.forEach(m => {
+        if (!this.mushrooms.find(x => x.mushroomId === m.mushroomId)) {
+          this.mushrooms.push(m)
+        }
+      })
     },
     updateMushroom(updated) {
       if (!Array.isArray(this.mushrooms)) {
@@ -24,9 +30,8 @@ export const useMushroomStore = defineStore('mushroom', {
     },
     async fetchMushrooms(requestId) {
       try {
-        const data = await getUserRequestMushrooms(requestId)
-        console.log('[MushroomStore] Fetched mushrooms:', data)
-        this.setMushrooms(data)
+        const response = await getUserRequestMushrooms(requestId)
+        this.setMushrooms(response.data)
       } catch (error) {
         console.error('[MushroomStore] Failed to fetch mushrooms:', error)
       }
