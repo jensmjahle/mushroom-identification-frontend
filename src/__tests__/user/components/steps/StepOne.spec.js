@@ -1,83 +1,98 @@
-import { mount } from '@vue/test-utils'
-import { describe, it, expect, vi } from 'vitest'
+// src/__tests__/user/components/steps/StepOne.spec.js
+import { mount, flushPromises } from '@vue/test-utils'
+import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
 import StepOne from '@/components/User/steps/StepOne.vue'
-import { createI18n } from 'vue-i18n'
 import BaseButton from '@/components/base/BaseButton.vue'
 
+// Partially mock vue-i18n so useI18n returns dummy t() and tm()
+vi.mock('vue-i18n', async () => {
+  const actual = await vi.importActual('vue-i18n')
+  return {
+    ...actual,
+    useI18n: () => ({
+      t: (key) => key,
+      tm: () => [
+        { title: 'submit.steps[0].title' },
+        { title: 'submit.steps[1].title' },
+        { title: 'submit.steps[2].title' }
+      ]
+    })
+  }
+})
+
+// Stub fetch globally for the tips content
+vi.stubGlobal('fetch', vi.fn(() =>
+  Promise.resolve({ text: () => Promise.resolve('# Tips\nMocked tips content.') })
+))
+
 describe('StepOne.vue', () => {
-  // Mocking the `t` function for translations based on provided en.json
-  const i18n = createI18n({
-    legacy: false, // Use Composition API
-    locale: 'en',
-    messages: {
-      en: {
-        submit: {
-          title: 'Submit your mushroom inquiry',
-          introText: 'This service is free, anonymous, and supported by mycological experts.',
-          mushroomListTitle: 'Your mushrooms:',
-          noMushrooms: 'No mushrooms added yet.',
-          validation: {
-            errorMushroomMissing: 'No mushrooms added yet.',
-            errorCommentMissing: 'Please add a brief comment.'
-          },
-          stepDescription: {
-            top: 'Picture from the top of the mushroom',
-            side: 'Picture from the side of the mushroom',
-            under: 'Picture from the bottom of the mushroom'
-          }
-        }
-      }
-    }
+  beforeEach(() => {
+    vi.useFakeTimers()
   })
 
-  // Mock the `fetch` function to simulate loading the content for tips and other information
-  vi.stubGlobal('fetch', vi.fn(() =>
-    Promise.resolve({
-      text: () => Promise.resolve('Mocked content for the mushroom upload tips.')
-    })
-  ))
+  afterEach(() => {
+    vi.useRealTimers()
+    vi.unstubAllGlobals()
+  })
 
-  it('renders the content and handles button click for uploading mushrooms', async () => {
+  it('renders structure and handles interactions via data-testid and i18n keys', async () => {
     const wrapper = mount(StepOne, {
-      global: {
-        plugins: [i18n]
-      }
+      global: { components: { BaseButton } }
     })
 
-    // Wait for content to render and ensure state updates
-    await wrapper.vm.$nextTick()
+    await flushPromises()
 
-    // Check if the intro title is rendered using the translation key
-    const introTitle = wrapper.find('[data-testid="step-title"]')
-    expect(introTitle.exists()).toBe(true)
-    expect(introTitle.text()).toContain(i18n.global.t('submit.title'))
+    // Title uses key
+    const title = wrapper.find('[data-testid="step-title"]')
+    expect(title.exists()).toBe(true)
+    expect(title.text()).toBe('submit.title')
 
-    // Check if the mushroom list title is rendered using the translation key
-    const mushroomListTitle = wrapper.find('[data-testid="mushroom-list"]')
-    expect(mushroomListTitle.exists()).toBe(true)
-    expect(mushroomListTitle.text()).toContain(i18n.global.t('submit.mushroomListTitle'))
+    // Steps list
+    const items = wrapper.findAll('[data-testid="step-item"]')
+    expect(items.length).toBe(3)
+    items.forEach((item, idx) => {
+      expect(item.text()).toContain(`submit.steps[${idx}].title`)
+    })
 
-    // Check if the no mushrooms message is rendered when no mushrooms are added
-    const noMushroomsMessage = wrapper.find('[data-testid="mushroom-list"] p')
-    expect(noMushroomsMessage.exists()).toBe(true)
-    expect(noMushroomsMessage.text()).toContain(i18n.global.t('submit.noMushrooms'))
+    // Hint modal open/close
+    await items[0].trigger('click')
+    expect(wrapper.find('[data-testid="hint-modal"]').exists()).toBe(true)
+    await wrapper.find('[data-testid="close-hint"]').trigger('click')
+    expect(wrapper.find('[data-testid="hint-modal"]').exists()).toBe(false)
 
-    // Check if the "Add Mushroom" button exists and triggers the correct action
-    const addMushroomButton = wrapper.find('[data-testid="add-mushroom-button"]')
-    expect(addMushroomButton.exists()).toBe(true)
-    await addMushroomButton.trigger('click')
+    // Empty mushroom list
+    const list = wrapper.find('[data-testid="mushroom-list"]')
+    expect(list.text()).toContain('submit.mushroomListTitle')
+    expect(list.text()).toContain('submit.noMushrooms')
 
-    // Check if the popup/modal shows up (this depends on your logic for handling modals)
-    const popup = wrapper.find('[data-testid="mushroom-popup"]')
-    expect(popup.exists()).toBe(true)
+    // Open popup
+    await wrapper.find('[data-testid="add-mushroom-button"]').trigger('click')
+    expect(wrapper.find('[data-testid="mushroom-popup"]').exists()).toBe(true)
+    // Close popup
+    await wrapper.find('[data-testid="close-popup"]').trigger('click')
+    expect(wrapper.find('[data-testid="mushroom-popup"]').exists()).toBe(false)
 
-    // Check if the submit button is present and triggers submission
-    const submitButton = wrapper.find('[data-testid="submit-button"]')
-    expect(submitButton.exists()).toBe(true)
-    await submitButton.trigger('click')
+    // Submit validations
+    await wrapper.find('[data-testid="submit-button"]').trigger('click')
+    expect(list.text()).toContain('submit.validation.errorMushroomMissing')
+  })
 
-    // Check for validation message if no mushrooms or comment are added
-    const validationMessage = wrapper.find('[data-testid="mushroom-list"] p')
-    expect(validationMessage.text()).toContain(i18n.global.t('submit.validation.errorMushroomMissing'))
+  // New test for missing comment validation when a mushroom exists
+  it('shows validation error for missing comment when a mushroom exists', async () => {
+    const wrapper = mount(StepOne, {
+      global: { components: { BaseButton } }
+    })
+    await flushPromises()
+
+    // Add a mock mushroom to avoid mushroom-missing error
+    wrapper.vm.mushrooms.push({ id: 1, images: [] })
+    await flushPromises()
+
+    // Trigger submit without entering comment
+    await wrapper.find('[data-testid="submit-button"]').trigger('click')
+
+        // Should display comment-required validation via placeholder
+    const textarea = wrapper.find('[data-testid="comment-input"]')
+    expect(textarea.attributes('placeholder')).toBe('submit.validation.errorCommentMissing')
   })
 })
