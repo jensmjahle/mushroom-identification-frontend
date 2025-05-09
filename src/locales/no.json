@@ -158,6 +158,8 @@
     "copy": "Kopier",
     "copied": "Kopiert!",
     "sending": "Sender inn...",
+    "adminOnline": "Det er {count} soppeksperter pålogget nå",
+    "noAdminsOnline": "Det er ingen soppeksperter pålogget akkurat nå",
     "goToChat": "Gå til Chat",
     "steps": [
       {
