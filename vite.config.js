@@ -26,8 +26,9 @@ export default defineConfig({
     environment: 'jsdom', 
     setupFiles: ['./src/__tests__/setup.js'],
     coverage: {
-      provider: 'c8', 
-      all: true, 
-    },
+      provider: 'v8',
+      reporter: ['text'],
+      reportsDirectory: './coverage'
+    }
   },
 });
