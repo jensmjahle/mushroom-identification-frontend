@@ -31,4 +31,7 @@ export default defineConfig({
       reportsDirectory: './coverage'
     }
   },
+  build: {
+    target: 'esnext',
+  }
 });
