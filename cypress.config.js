@@ -9,6 +9,12 @@ export default defineConfig({
         console.log('Tests are about to start');
       });
 
+      on('task', {
+        setI18nLocale(locale) {
+          config.env.locale = locale || 'en';
+          return null;
+        }
+      });
       on('after:run', () => {
         console.log('Tests have finished');
       });
@@ -16,4 +22,7 @@ export default defineConfig({
     supportFile: 'cypress/support/e2e.js', 
     specPattern: 'cypress/e2e/**/*.cy.js',
     video: false,
+    env: {
+      locale: 'en'  
+    },
 }});
