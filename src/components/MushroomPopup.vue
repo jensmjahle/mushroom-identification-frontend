@@ -42,18 +42,20 @@
               class="w-full h-full object-contain pointer-events-none select-none absolute top-0 left-0"
               :style="imageStyle"
               alt="Selected Mushroom"
+              data-testid="main-image"
             />
           </div>
 
           <!-- Controls -->
           <div class="flex gap-4 mb-4">
-            <button @click="zoomIn" class="btn-1"><ZoomIn /></button>
+            <button @click="zoomIn" class="btn-1" data-testid="zoom-in"><ZoomIn /></button>
             <button @click="zoomOut" class="btn-1"><ZoomOut /></button>
-            <button @click="rotate" class="btn-2"><RotateCw /></button>
+            <button @click="rotate" class="btn-2" data-testid="rotate"><RotateCw /></button>
             <button
-              v-if="userRole === 'USER'""
+              v-if="userRole === 'USER'"
               @click="triggerFileInput"
               class="btn-3"
+              data-testid="upload-trigger"
             >
               <Plus />
             </button>
@@ -84,6 +86,7 @@
     </div>
   </Teleport>
 </template>
+
 <script setup>
 import { ref, computed, onMounted } from 'vue'
 import { X, ZoomOut, ZoomIn, RotateCw, Plus } from 'lucide-vue-next'
