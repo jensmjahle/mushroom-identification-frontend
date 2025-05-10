@@ -78,7 +78,7 @@ const props = defineProps({
   userRequestId: String
 })
 
-const BASE_URL = import.meta.env.VITE_API_URL
+const BASE_URL = window.env.VITE_API_URL
 const popupVisible = ref(false)
 const currentIndex = ref(0)
 const imageUrls = ref([])

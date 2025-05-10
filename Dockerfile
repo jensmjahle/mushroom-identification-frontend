@@ -1,33 +1,38 @@
-# Use Debian-based Node.js image
-FROM node:18
+# --- Builder Stage ---
+FROM node:18 AS builder
 
-# Set the working directory
 WORKDIR /app
 
-# Copy only package files first to leverage Docker cache
+# Install dependencies
 COPY package.json package-lock.json ./
-
-# Install dependencies cleanly
 RUN npm ci
 
-# Copy the rest of the source code
+# Copy source code
 COPY . .
 
-# Set VITE_API_URL at build time (default to localhost)
-ARG VITE_API_URL=https://mushroom-identification-backend-954531306961.us-central1.run.app
-ENV VITE_API_URL=$VITE_API_URL
-
-# Build the app using Vite
+# Build Vite app
 RUN npm run build
 
-# Install a static file server for production
+# --- Production Stage ---
+FROM node:18-slim
+
+# Install serve for static file hosting
 RUN npm install -g serve
 
-# Use the correct working directory for production output
-WORKDIR /app/dist
+WORKDIR /app
 
-# Expose the port Cloud Run will send traffic to
+# Copy built app
+COPY --from=builder /app/dist ./
+
+# Script that injects environment variables into env.js
+COPY ./runtime-env.sh /app/runtime-env.sh
+RUN chmod +x /app/runtime-env.sh
+
+# Default fallback env.js file (optional, dev/debug)
+RUN echo "window.env = {};" > /app/env.js
+
+# Expose port
 EXPOSE 8080
 
-# Run the static server with single-page app (SPA) fallback enabled
-CMD ["serve", "-s", ".", "-l", "8080"]
+# Entry point: generate env.js and serve app
+CMD ["/bin/sh", "-c", "./runtime-env.sh && serve -s . -l 8080"]
