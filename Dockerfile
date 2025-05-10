@@ -14,7 +14,7 @@ RUN npm ci
 COPY . .
 
 # Set VITE_API_URL at build time (default to localhost)
-ARG VITE_API_URL=http://localhost:8080
+ARG VITE_API_URL=https://mushroom-identification-backend-954531306961.us-central1.run.app
 ENV VITE_API_URL=$VITE_API_URL
 
 # Build the app using Vite
