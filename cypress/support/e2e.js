@@ -1,17 +1,10 @@
-// ***********************************************************
-// This example support/e2e.js is processed and
-// loaded automatically before your test files.
-//
-// This is a great place to put global configuration and
-// behavior that modifies Cypress.
-//
-// You can change the location of this file or turn off
-// automatically serving support files with the
-// 'supportFile' configuration option.
-//
-// You can read more here:
-// https://on.cypress.io/configuration
-// ***********************************************************
+import enJson from '../../src/locales/en.json'; // Adjust the path to where your en.json is located
 
-// Import commands.js using ES2015 syntax:
-import './commands'
+Cypress.Commands.add('mockI18n', () => {
+  // Access Vue instance and mock `useI18n` directly
+  cy.window().then((win) => {
+    win.Vue.prototype.$i18n = {
+      t: (key) => enJson[key] || key,  // Use en.json for translations
+    };
+  });
+});
