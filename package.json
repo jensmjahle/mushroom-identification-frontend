@@ -10,8 +10,8 @@
     "start": "serve dist -s",
     "test:unit": "vitest",
     "test:coverage": "vitest run --coverage",
-    "test:e2e": "cypress open", 
-    "test:e2e:run": "cypress run"  
+    "test:e2e": "cypress open",
+    "test:e2e:run": "cypress run"
   },
   "dependencies": {
     "@stomp/stompjs": "^7.0.1",
@@ -43,6 +43,7 @@
     "@vue/test-utils": "^2.4.6",
     "c8": "^10.1.3",
     "cypress": "^14.3.3",
+    "cypress-file-upload": "^5.0.8",
     "happy-dom": "^17.4.6",
     "jsdom": "^26.1.0",
     "vite": "^6.1.0",
