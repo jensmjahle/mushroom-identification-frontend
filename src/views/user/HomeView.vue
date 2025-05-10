@@ -5,7 +5,7 @@
     <p class="text-text1 text-md font-semibold mb-6 max-w-lg w-[60%]">
       {{ t('home.description') }}
     </p>
-
+<p>This is a test</p>
     <div class="flex flex-row gap-4">
       <RouterLink :to="{ name: 'new-request' }">
         <BaseButton variant="1">
