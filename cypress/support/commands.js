@@ -42,3 +42,8 @@ Cypress.Commands.add('mockImageProcessing', () => {
   });
 });
 
+Cypress.Commands.add('mockClipboard', () => {
+    cy.window().then((window) => {
+        cy.stub(window.navigator.clipboard, 'writeText').resolves(); // Stub the clipboard.writeText method
+    });
+});
