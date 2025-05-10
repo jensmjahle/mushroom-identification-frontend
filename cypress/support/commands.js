@@ -10,7 +10,7 @@ Cypress.Commands.add('mockI18n', () => {
     });
 });
 
-Cypress.Commands.add('openSettingsAndSelectEnglish', () => {
+Cypress.Commands.add('openSettingsAndChangeLanguage', () => {
     cy.get('#settings-button').click();
     cy.get('select').select('en');
     cy.get('#settings-button').click();
