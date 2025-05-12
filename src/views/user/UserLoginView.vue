@@ -1,22 +1,23 @@
 <template>
-    <div class="flex flex-col justify-center items-center px-6 py-10 text-center overflow-y-auto w-full h-full gap-6">
+  <div class="flex flex-col justify-center items-center px-6 py-10 text-center overflow-y-auto w-full h-full gap-6">
     <!-- Heading & Introduction -->
     <div class="text-center mb-4">
-      <h1 class="text-2xl font-bold text-text1">{{ t('loginUser.heading') }}</h1>
-      <p class="text-sm text-text2-faded">{{ t('loginUser.description') }}</p>
+      <h1 class="text-2xl font-bold text-text1" data-testid="login-heading">{{ t('loginUser.heading') }}</h1>
+      <p class="text-sm text-text2-faded" data-testid="login-description">{{ t('loginUser.description') }}</p>
     </div>
 
     <!-- Login form -->
-    <form @submit.prevent="login" class="w-full max-w-md bg-bg2 p-4 rounded-lg space-y-4">
+    <form @submit.prevent="login" class="w-full max-w-md bg-bg2 p-4 rounded-lg space-y-4" data-testid="login-form">
       <BaseInput
-          v-model="code"
-          id="ref-code"
-          type="text"
-          :label="t('loginUser.refLabel')"
-          :placeholder="t('loginUser.placeholder')"
+        v-model="code"
+        id="ref-code"
+        type="text"
+        :label="t('loginUser.refLabel')"
+        :placeholder="t('loginUser.placeholder')"
+        data-testid="ref-code-input"
       />
 
-      <BaseButton block type="submit" :disabled="!code.trim() || loading" class="flex items-center justify-center gap-2">
+      <BaseButton block type="submit" :disabled="!code.trim() || loading" class="flex items-center justify-center gap-2" data-testid="submit-button">
         <svg
           v-if="loading"
           class="animate-spin h-5 w-5 text-text1"
@@ -30,19 +31,14 @@
         <span>{{ t('loginUser.button') }}</span>
       </BaseButton>
 
-
-        <!-- Error message -->
-      <p v-if="error" class="text-danger text-sm text-center">{{ error }}</p>
+      <!-- Error message -->
+      <p v-if="error" class="text-danger text-sm text-center" data-testid="error-message">{{ error }}</p>
     </form>
-
 
     <!-- Helper text -->
     <div class="mt-4 text-sm text-center text-text1 space-y-1">
-      <p>{{ t('loginUser.noCodeQuestion') }}</p>
-      <router-link
-          to="/"
-          class="text-button1 hover:underline font-medium"
-      >
+      <p data-testid="no-code-question">{{ t('loginUser.noCodeQuestion') }}</p>
+      <router-link to="/" class="text-button1 hover:underline font-medium" data-testid="home-link">
         {{ t('loginUser.homeLink') }}
       </router-link>
     </div>
@@ -63,7 +59,6 @@ const error = ref(null)
 const router = useRouter()
 const { t } = useI18n()
 const loading = ref(false)
-
 
 const login = async () => {
   if (!code.value.trim()) {
