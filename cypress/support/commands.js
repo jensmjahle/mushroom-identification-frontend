@@ -12,11 +12,11 @@ Cypress.Commands.add('mockI18n', () => {
     });
 });
 
-Cypress.Commands.add('openSettingsAndChangeLanguage', () => {
-    cy.get('#settings-button').click();
-    cy.get('select').select('en');
-    cy.get('#settings-button').click();
-    cy.wait(500);
+Cypress.Commands.add('openSettingsAndChangeLanguage', (language = 'en') => {
+  cy.get('#settings-button').click();
+  cy.get('select').select(language);
+  cy.get('#settings-button').click();
+  cy.wait(500);
 });
 
 // Mock ExifReader and processImageFiles in Cypress
