@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 export default {
+  darkMode: 'class',
   content: [
     './public/**/*.html',
     './src/**/*.{vue,js,ts,jsx,tsx}'
@@ -16,7 +17,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        area: ['AreaVariable', 'sans-serif'],
+        area: ['Area'],
       },
       backgroundImage: {
         hero: "url('/assets/background.svg')",
