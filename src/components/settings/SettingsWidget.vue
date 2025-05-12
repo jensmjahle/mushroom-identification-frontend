@@ -24,6 +24,7 @@
 
       <!-- Gear Icon Button -->
       <button
+        id="settings-button"
         @click="toggleOpen"
         class="p-2 rounded-full transition-transform duration-300 z-20 relative"
         :class="{ 'rotate-180': isOpen }"
@@ -33,6 +34,7 @@
     </div>
   </div>
 </template>
+
 
 <script setup>
 import { ref, onMounted, onBeforeUnmount } from 'vue';

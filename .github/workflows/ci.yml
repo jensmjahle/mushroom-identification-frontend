@@ -1,12 +1,14 @@
 name: Frontend CI
-## This workflow will build the frontend application using Node.js 18
-## It will run on push and pull request events to the main branch
-## It does not fulfill unit tests or integration tests, as those are not defined in the project
+
+# This workflow will build the frontend application using Node.js 18
+# It will run on push and pull request events to the main branch
+# It also runs unit tests using vitest (even if they aren't defined yet)
+
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
   workflow_dispatch:
 
 jobs:
@@ -17,13 +19,21 @@ jobs:
     - name: Check out code
       uses: actions/checkout@v3
 
-    - name: Use Node.js 18
+    - name: Set up Node.js 18
       uses: actions/setup-node@v3
       with:
         node-version: '18'
 
     - name: Install dependencies
       run: npm install
+
+    - name: Run unit tests
+      run: npm run test:unit
+      continue-on-error: true
+
+    - name: Run Cypress tests
+      run: npm run test:e2e:run  
+      continue-on-error: true  
 
     - name: Run build
       run: npm run build

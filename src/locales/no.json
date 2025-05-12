@@ -160,6 +160,7 @@
     "sending": "Sender inn...",
     "adminOnline": "Det er {count} soppeksperter pålogget nå",
     "noAdminsOnline": "Det er ingen soppeksperter pålogget akkurat nå",
+    "goToChat": "Gå til Chat",
     "steps": [
       {
         "title": "Trykk på den lilla knappen under for å legge til din første sopp",

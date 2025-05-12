@@ -1,22 +1,22 @@
 <template>
   <div>
     <p class="text-sm font-medium text-text1 mb-1">
-      {{ $t('settings.theme') }}
+      {{ t('settings.theme') }}
     </p>
     <div class="flex gap-2">
       <BaseButton
         block
         :variant="theme === 'light' ? '1' : '4'"
-        @click="setTheme('light')"
+        @click="updateTheme('light')"
       >
-        {{ $t('settings.themes.light') }}
+        {{ t('settings.themes.light') }}
       </BaseButton>
       <BaseButton
         block
         :variant="theme === 'dark' ? '1' : '4'"
-        @click="setTheme('dark')"
+        @click="updateTheme('dark')"
       >
-        {{ $t('settings.themes.dark') }}
+        {{ t('settings.themes.dark') }}
       </BaseButton>
     </div>
   </div>
@@ -24,26 +24,23 @@
 
 <script setup>
 import { ref, onMounted } from 'vue'
+import { useI18n } from 'vue-i18n'
 import BaseButton from '@/components/base/BaseButton.vue'
+import { setTheme, detectInitialTheme } from '@/utils/themeUtils'
+
+// Correct i18n usage
+const { t } = useI18n()
 
 const theme = ref('light')
 
-function setTheme(value) {
-  theme.value = value
-  const themePath = `/themes/${value}.css`
-  let link = document.getElementById('theme-style')
-  if (!link) {
-    link = document.createElement('link')
-    link.id = 'theme-style'
-    link.rel = 'stylesheet'
-    document.head.appendChild(link)
-  }
-  link.href = themePath
-  localStorage.setItem('theme', value)
-}
-
 onMounted(() => {
-  const stored = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')
+  const stored = detectInitialTheme()
+  theme.value = stored
   setTheme(stored)
 })
+
+function updateTheme(value) {
+  theme.value = value
+  setTheme(value)
+}
 </script>

@@ -12,12 +12,12 @@
 </template>
 
 <script setup>
-import {onMounted, onUnmounted, ref, watch} from 'vue'
-import UserSidebar from '../components/User/UserSidebar.vue'
-import UserDisplayCard from '../components/User/UserDisplayCard.vue'
-import SettingsWidget from '../components/User/SettingsWidget.vue'
-import MobileHamburgerMenu from '../components/navigation/MobileHamburgerMenu.vue'
-import UserSideMenuContent from '../components/navigation/UserSideMenuContent.vue'
+import { ref, onMounted, onUnmounted, watch } from 'vue'
+import UserSidebar from '@/components/user/UserSidebar.vue'
+import UserDisplayCard from '@/components/user/UserDisplayCard.vue'
+import SettingsWidget from '@/components/settings/SettingsWidget.vue'
+import MobileHamburgerMenu from '@/components/navigation/MobileHamburgerMenu.vue'
+import UserSideMenuContent from '@/components/navigation/UserSideMenuContent.vue'
 import {parseJwt} from "@/utils/jwt.js";
 import {useRequestSocketStore} from "@/store/useRequestSocketStore.js";
 import {useMushroomStore} from "@/store/useMushroomStore.js";

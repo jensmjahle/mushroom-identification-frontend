@@ -160,6 +160,7 @@
     "sending": "Sending in...",
     "adminOnline": "There are currently {count} mushrooms experts online",
     "noAdminsOnline": "No mushroom experts are currently online",
+    "goToChat": "Go to Chat",
     "steps": [
       {
         "title": "Click the purple button below to add the first mushroom",

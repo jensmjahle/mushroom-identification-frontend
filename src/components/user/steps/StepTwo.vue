@@ -1,17 +1,17 @@
 <template>
-  <div class="flex flex-col items-center gap-6">
-    <h2 class="text-2xl font-semibold">{{ t('submit.reference') }}</h2>
-    <p class="text-center max-w-md text-text1-faded">
+  <div class="flex flex-col items-center gap-6" data-testid="step-two">
+    <h2 class="text-2xl font-semibold" data-testid="step-two-title">{{ t('submit.reference') }}</h2>
+    <p class="text-center max-w-md text-text1-faded" data-testid="reference-hint">
       {{ t('submit.referenceHint') }}
     </p>
 
-    <div class="px-4 py-6 w-full rounded border-2 border-bg1 bg-bg2 flex flex-col sm:flex-row items-center justify-between gap-4">
-      <div class="font-mono text-lg break-words text-text1 text-center sm:text-left">
+    <div class="px-4 py-6 w-full rounded border-2 border-bg1 bg-bg2 flex flex-col sm:flex-row items-center justify-between gap-4" data-testid="reference-code-container">
+      <div class="font-mono text-lg break-words text-text1 text-center sm:text-left" data-testid="reference-code">
         {{ referenceCode }}
       </div>
-      <BaseButton variant="2" size="sm" @click="copyToClipboard">
-        <span v-if="copied">{{ t('submit.copied') }}</span>
-        <span v-else>{{ t('submit.copy') }}</span>
+      <BaseButton variant="2" size="sm" @click="copyToClipboard" data-testid="copy-button">
+        <span v-if="copied" data-testid="copied-text">{{ t('submit.copied') }}</span>
+        <span v-else data-testid="copy-text">{{ t('submit.copy') }}</span>
       </BaseButton>
     </div>
     <div class="flex items-center gap-2 ">
@@ -24,27 +24,28 @@
     </div>
 
 
-    <BaseButton class="mt-6" @click="readyModalVisible = true">
+    <BaseButton class="mt-6" @click="readyModalVisible = true" data-testid="next-step-button">
       {{ t('submit.next') }}
     </BaseButton>
 
     <div
       v-if="readyModalVisible"
       class="fixed inset-0 bg-black/50 flex items-center justify-center z-50"
+      data-testid="ready-modal"
     >
       <div class="bg-bg1 border border-border1 rounded-2xl p-6 w-[90%] max-w-md text-center shadow-xl">
-        <h3 class="text-xl font-semibold mb-4">
+        <h3 class="text-xl font-semibold mb-4" data-testid="ready-question">
           {{ t('submit.readyQuestion') }}
         </h3>
-        <p class="text-text1-faded mb-6">
+        <p class="text-text1-faded mb-6" data-testid="ready-detail">
           {{ t('submit.readyDetail') }}
         </p>
         <div class="flex justify-center gap-4">
-          <BaseButton @click="confirmAndProceed">
-            {{ t('submit.proceedButton') }}
-          </BaseButton>
-          <BaseButton variant="2" @click="cancelNavigation">
+          <BaseButton variant="2" @click="cancelNavigation" data-testid="cancel-button">
             {{ t('submit.cancel') }}
+          </BaseButton>
+          <BaseButton @click="confirmAndProceed" data-testid="proceed-button">
+            {{ t('submit.proceedButton') }}
           </BaseButton>
         </div>
       </div>
@@ -109,7 +110,7 @@ function confirmAndProceed() {
   if (pendingNavigation.value) {
     pendingNavigation.value()
   } else {
-    emit('next')
+    emit('next', props.referenceCode)
   }
 }
 

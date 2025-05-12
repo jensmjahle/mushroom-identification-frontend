@@ -28,13 +28,13 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue';
-import { useI18n } from 'vue-i18n';
-import { parseJwt } from '@/utils/jwt.js';
-import {getNextRequestFromQueue } from '@/services/rest/adminRequestService.js';
-import { useRouter } from 'vue-router';
-import { useToast } from 'vue-toastification';
-import BaseButton from '@/components/base/BaseButton.vue';
+import { ref, onMounted } from 'vue'
+import { useI18n } from 'vue-i18n'
+import { parseJwt } from '@/utils/jwt.js'
+import { getNextRequestFromQueue, getPaginatedRequests } from '@/services/rest/adminRequestService.js'
+import { useRouter } from 'vue-router'
+import { useToast } from 'vue-toastification'
+import BaseButton from '@/components/base/BaseButton.vue'
 
 const { t } = useI18n();
 const name = parseJwt(sessionStorage.getItem('jwt')).sub;
@@ -63,7 +63,7 @@ const getNextFromQueue = async () => {
 
 onMounted(async () => {
   try {
-    const newRes = await getPaginatedNewRequests(0);
+    const newRes = await getPaginatedRequests(0);
     newRequests.value = newRes.content;
   } catch (err) {
     console.error('Feil ved henting av forespørsler', err);

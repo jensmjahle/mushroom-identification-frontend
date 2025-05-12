@@ -21,4 +21,17 @@ export default defineConfig({
     host: true,
     port: 5173,
   },
+  test: {
+    globals: true,  
+    environment: 'jsdom', 
+    setupFiles: ['./src/__tests__/setup.js'],
+    coverage: {
+      provider: 'v8',
+      reporter: ['text'],
+      reportsDirectory: './coverage'
+    }
+  },
+  build: {
+    target: 'esnext',
+  }
 });

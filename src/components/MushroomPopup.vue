@@ -3,15 +3,18 @@
     <div
       class="fixed inset-0 bg-overlay/60 backdrop-blur-sm z-30 flex items-center justify-center p-4"
       @click="handleOutsideClick"
+      data-testid="popup-overlay"
     >
       <div
         class="bg-bg1 rounded-lg shadow-lg p-4 max-w-4xl w-full relative"
         @click.stop
+        data-testid="popup-container"
       >
         <!-- Close -->
         <button
           @click="$emit('close')"
           class="absolute -top-10 right-0 btn-icon-transparent-1 hover:text-danger"
+          data-testid="close-button"
         >
           <X />
         </button>
@@ -36,24 +39,27 @@
             @touchstart.prevent="startTouch"
             @touchmove.prevent="onTouchMove"
             @touchend="stopDrag"
+            data-testid="image-viewer"
           >
             <img
               :src="imageUrls[currentIndex]"
               class="w-full h-full object-contain pointer-events-none select-none absolute top-0 left-0"
               :style="imageStyle"
               alt="Selected Mushroom"
+              data-testid="main-image"
             />
           </div>
 
           <!-- Controls -->
           <div class="flex gap-4 mb-4">
-            <button @click="zoomIn" class="btn-1"><ZoomIn /></button>
-            <button @click="zoomOut" class="btn-1"><ZoomOut /></button>
-            <button @click="rotate" class="btn-2"><RotateCw /></button>
+            <button @click="zoomIn" class="btn-1" data-testid="zoom-in"><ZoomIn /></button>
+            <button @click="zoomOut" class="btn-1" data-testid="zoom-out"><ZoomOut /></button>
+            <button @click="rotate" class="btn-2" data-testid="rotate"><RotateCw /></button>
             <button
-              v-if="userRole === 'USER'""
+              v-if="userRole === 'USER'"
               @click="triggerFileInput"
               class="btn-3"
+              data-testid="upload-trigger"
             >
               <Plus />
             </button>
@@ -64,11 +70,12 @@
               class="hidden"
               multiple
               @change="handleImageUpload"
+              data-testid="file-input"
             />
           </div>
 
           <!-- Thumbnails -->
-          <div class="w-[90%] max-w-[90%] flex gap-2 overflow-x-auto scrollbar-thin scrollbar-thumb-rounded scrollbar-thumb-gray-400">
+          <div class="w-[90%] max-w-[90%] flex gap-2 overflow-x-auto scrollbar-thin scrollbar-thumb-rounded scrollbar-thumb-gray-400" data-testid="thumbnail-container">
             <img
               v-for="(img, idx) in imageUrls"
               :key="idx"
@@ -77,6 +84,7 @@
               @click="currentIndex = idx"
               class="w-16 h-16 object-cover rounded-md cursor-pointer border-2"
               :class="idx === currentIndex ? 'border-button1' : 'border-transparent'"
+              data-testid="thumbnail"
             />
           </div>
         </div>
@@ -84,6 +92,8 @@
     </div>
   </Teleport>
 </template>
+
+
 <script setup>
 import { ref, computed, onMounted } from 'vue'
 import { X, ZoomOut, ZoomIn, RotateCw, Plus } from 'lucide-vue-next'
