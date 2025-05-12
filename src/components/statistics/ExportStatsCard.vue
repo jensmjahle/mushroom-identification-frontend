@@ -3,6 +3,7 @@
     <h3 class="text-sm text-text2-faded font-medium mb-2">
       {{ t('admin.stats.exportTitle') }}
     </h3>
+
     <div class="flex flex-col sm:flex-row items-center gap-4">
       <select v-model="selectedMonth" class="border border-border1 rounded p-1 text-sm bg-bg2">
         <option v-for="(m, i) in months" :key="i" :value="i + 1">{{ m }}</option>
@@ -10,22 +11,30 @@
       <select v-model="selectedYear" class="border border-border1 rounded p-1 text-sm bg-bg2">
         <option v-for="y in years" :key="y" :value="y">{{ y }}</option>
       </select>
-      <BaseButton variant="1" @click="openConfirm" :disabled="loading">
-        <span v-if="loading">{{ t('common.loading') }}</span>
+
+      <!-- CSV Export Button -->
+      <BaseButton variant="1" @click="openConfirm" :disabled="loadingCsv">
+        <span v-if="loadingCsv">{{ t('common.loading') }}</span>
         <span v-else>{{ t('admin.stats.exportButton') }}</span>
+      </BaseButton>
+
+      <!-- PDF Export Button -->
+      <BaseButton variant="2" @click="handlePdfExport" :disabled="loadingPdf">
+        <span v-if="loadingPdf">{{ t('common.loading') }}</span>
+        <span v-else>{{ t('admin.stats.exportPdfButton') }}</span>
       </BaseButton>
     </div>
 
-    <!-- Simple confirm dialog -->
+    <!-- Confirm Dialog for CSV -->
     <ConfirmDialog
-      v-if="showConfirm"
-      :visible="showConfirm"
-      :title="t('admin.stats.confirmDownloadTitle')"
-      :message="`${t('admin.stats.confirmDownloadShort')} (${months[selectedMonth - 1]} ${selectedYear})`"
-      :confirmText="t('admin.stats.downloadCsv')"
-      :cancelText="t('common.cancel')"
-      @cancel="showConfirm = false"
-      @confirm="handleExport"
+        v-if="showConfirm"
+        :visible="showConfirm"
+        :title="t('admin.stats.confirmDownloadTitle')"
+        :message="`${t('admin.stats.confirmDownloadShort')} (${months[selectedMonth - 1]} ${selectedYear})`"
+        :confirmText="t('admin.stats.downloadCsv')"
+        :cancelText="t('common.cancel')"
+        @cancel="showConfirm = false"
+        @confirm="handleExportCsv"
     />
   </div>
 </template>
@@ -36,6 +45,7 @@ import BaseButton from '@/components/base/BaseButton.vue'
 import ConfirmDialog from '@/components/base/ConfirmDialog.vue'
 import { useToast } from 'vue-toastification'
 import { getRequestsForMonth } from '@/services/rest/adminRequestService.js'
+import { exportStatisticsPdf } from '@/services/rest/statsService.js'
 import { useI18n } from 'vue-i18n'
 
 const { t } = useI18n()
@@ -51,15 +61,16 @@ const months = [
   t('month.oct'), t('month.nov'), t('month.dec')
 ]
 
-const loading = ref(false)
+const loadingCsv = ref(false)
+const loadingPdf = ref(false)
 const showConfirm = ref(false)
 
 function openConfirm() {
   showConfirm.value = true
 }
 
-async function handleExport() {
-  loading.value = true
+async function handleExportCsv() {
+  loadingCsv.value = true
   showConfirm.value = false
 
   try {
@@ -67,12 +78,23 @@ async function handleExport() {
       month: selectedMonth.value,
       year: selectedYear.value
     })
-
   } catch (e) {
     toast.error(t('errors.exportFailed'))
     console.error(e)
   } finally {
-    loading.value = false
+    loadingCsv.value = false
+  }
+}
+
+async function handlePdfExport() {
+  loadingPdf.value = true
+  try {
+    await exportStatisticsPdf(selectedYear.value, selectedMonth.value)
+  } catch (e) {
+    toast.error(t('errors.exportFailed'))
+    console.error(e)
+  } finally {
+    loadingPdf.value = false
   }
 }
 </script>

@@ -81,7 +81,7 @@ export const getNextRequestFromQueue = async () => {
 }
 export const getRequestsForMonth = async ({ year, month }) => {
   try {
-    const response = await axios.get('/api/admin/stats/export', {
+    const response = await axios.get('/api/admin/stats/export/csv', {
       params: { year, month },
       headers: getAuthHeaders(),
       responseType: 'blob'
@@ -98,7 +98,6 @@ export const getRequestsForMonth = async ({ year, month }) => {
     link.remove();
     window.URL.revokeObjectURL(url);
 
-    // ✅ Add this toast for user feedback
     useToast().success(`CSV file for ${month}/${year} downloaded successfully!`);
   } catch (error) {
     console.error(`Error exporting requests for ${month}/${year}:`, error);

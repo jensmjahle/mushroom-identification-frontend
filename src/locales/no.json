@@ -65,8 +65,8 @@
       "last90Days": "Siste 90 Dager",
       "weeklyRate": "Ukentlig Ny Forespørseler",
       "ftrClicks": "FTR Registreringer",
-      "exportTitle": "Eksporter statistikk og historikk til CSV",
-      "exportButton": "Eksporter",
+      "exportTitle": "Eksporter statistikk og historikk",
+      "exportButton": "Eksporter som CSV",
       "overviewTitle": "Statistikkoversikt",
       "totalRequests": "Totale forespørseler",
       "totalCompleted": "Fullførte forespørseler",
@@ -74,7 +74,8 @@
       "previewTitle": "Forhåndsvisning",
       "confirmDownload": "Er du sikker på at du vil laste ned denne dataen som en CSV-fil?",
       "confirmDownloadTitle": "Eksporter CSV",
-      "confirmDownloadShort": "Er du sikker på at du vil laste ned denne dataen?"
+      "confirmDownloadShort": "Er du sikker på at du vil laste ned denne dataen?",
+      "exportPdfButton": "Eksporter som PDF"
     },
     "adminDashboard": {
       "greeting": "Hei {name} 👋",
