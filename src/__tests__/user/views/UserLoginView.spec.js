@@ -22,7 +22,7 @@ vi.mock('vue-i18n', async () => {
 })
 
 // Mock loginUser and parseJwt
-vi.mock('@/services/authService.js', () => ({
+vi.mock('@/services/rest/authService.js', () => ({
   loginUser: vi.fn((code) => {
     if (code === 'INVALID') {
       const err = new Error('Invalid code')

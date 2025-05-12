@@ -4,10 +4,10 @@ import MushroomBasket from '@/components/MushroomBasket.vue'
 import { createTestingPinia } from '@pinia/testing'
 
 // Mock mushroomService
-vi.mock('@/services/mushroomService.js', () => ({
+vi.mock('@/services/rest/mushroomService.js', () => ({
   getUserRequestMushrooms: vi.fn()
 }))
-import { getUserRequestMushrooms } from '@/services/mushroomService.js'
+import { getUserRequestMushrooms } from '@/services/rest/mushroomService.js'
 
 // Mock Mushroom component
 vi.mock('@/components/Mushroom.vue', () => ({

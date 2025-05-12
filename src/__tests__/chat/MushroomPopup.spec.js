@@ -3,7 +3,7 @@ import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
 import { nextTick } from 'vue'
 import MushroomPopup from '@/components/MushroomPopup.vue'
 
-vi.mock('@/services/mushroomService', () => ({
+vi.mock('@/services/rest/mushroomService', () => ({
   addImageToMushroom: vi.fn(() => Promise.resolve()),
   getUserRequestMushrooms: vi.fn(() =>
     Promise.resolve([

@@ -1,6 +1,6 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 import axios from '@/config/axiosConfig'
-import * as chatService from '@/services/chatService'
+import * as chatService from '@/services/rest/chatService'
 import { useToast } from 'vue-toastification'
 
 vi.mock('@/config/axiosConfig', () => ({

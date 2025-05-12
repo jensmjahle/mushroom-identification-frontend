@@ -15,7 +15,7 @@ vi.mock('vue-i18n', async () => {
 })
 
 // Mock loginUser and parseJwt
-vi.mock('@/services/authService.js', () => ({
+vi.mock('@/services/rest/authService.js', () => ({
   loginUser: vi.fn(() =>
     Promise.resolve({ data: { token: 'mock.jwt.token' } })
   )

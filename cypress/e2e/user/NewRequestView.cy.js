@@ -13,7 +13,7 @@ describe('New Request Process - Full Flow (StepZero to StepThree)', () => {
     });
 
     // Mock the backend response for submitting the mushroom inquiry
-    cy.intercept('POST', 'http://100.98.99.38:8080/api/requests/create', {
+    cy.intercept('POST', 'http://localhost:8080/api/requests/create', {
       statusCode: 200,
       body: {
         referenceCode: 'abc123', // Mocked reference code

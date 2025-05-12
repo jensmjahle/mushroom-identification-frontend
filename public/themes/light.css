@@ -1,126 +1,123 @@
 :root {
-  /**text1 should be displayed on bg1, text2 should be displayed on bg2 and so on**/
-  --color-text1: #000;
-  --color-text1-faded: #726e6e;
-  --color-text2: #000;
-  --color-text2-faded: #726e6e;
-  --color-text3: #ffffff;
-  --color-text3-faded: #726e6e;
-  --color-text4: #ffffff;
-  --color-text4-faded: #726e6e;
-
+  /* Text Colors */
+  --color-text1: #1a1a1a;
+  --color-text1-faded: #4a4a4a;
+  --color-text2: #1a1a1a;
+  --color-text2-faded: #6b6b6b;
+  --color-text3: #1a1a1a;
+  --color-text3-faded: #6b6b6b;
+  --color-text4: #1a1a1a;
+  --color-text4-faded: #6b6b6b;
+  
+  /* Backgrounds */
   --color-bg1: #ffffff;
-  --color-bg2: #E8E8E8;
-  --color-bg3: #2d3748;
-  --color-bg4: #000;
+  --color-bg2: #f5f5f5;
+  --color-bg3: #e5e7eb;
+  --color-bg4: #e5e7eb;
 
-  --color-border1: #726e6e;
-  --color-border2: #E8E8E8;
-  --color-border3: #ffffff;
-  --color-border4: #2d3748;
+  /* Borders */
+  --color-border1: #e5e7eb;
+  --color-border2: #d1d5db;
+  --color-border3: #9ca3af;
+  --color-border4: #9ca3af;
 
-  --color-button1: #4ade80;
-  --color-button1-meta: #000;
+  /* Buttons */
+  --color-button1: #4ade80; 
+  --color-button1-meta: #1a1a1a;
   --color-button1-hover: #22c55e;
   --color-button1-border: #15803d;
-
-  --color-button2: #C08CD8;
-  --color-button2-meta: #000;
+  
+  --color-button2: #8b5cf6;
+  --color-button2-meta: #1a1a1a;
   --color-button2-hover: #7c3aed;
   --color-button2-border: #5b21b6;
-
-  --color-button3: #374151;
-  --color-button3-meta: #f8f4ec;
-  --color-button3-hover: #1f2937;
-  --color-button3-border: #111827;
-
-  --color-button4: #ffffff;
-  --color-button4-meta: #000000;
-  --color-button4-border: #d1d5db;   
+  
+  /* New Button 3 (Secondary Action) */
+  --color-button3: #e5e7eb;
+  --color-button3-meta: #1a1a1a;
+  --color-button3-hover: #d1d5db;
+  --color-button3-border: #9ca3af;
+  
+  /* New Button 4 (Tertiary Action) */
+  --color-button4: #f3f4f6;
+  --color-button4-meta: #1a1a1a;
   --color-button4-hover: #d1d5db;
+  --color-button4-border: #9ca3af;
 
   --color-button-transparent: transparent;
-  --color-button-transparent-meta: #000;
-  --color-button-transparent-hover: transparent;
+  --color-button-transparent-meta: #1a1a1a;
+  --color-button-transparent-hover: rgba(0, 0, 0, 0.05);
   --color-button-transparent-border: transparent;
-  --color-button-transparent-hover-border: #2d3748;
+  --color-button-transparent-hover-border: #d1d5db;
+  
+  /* Utility */
+  --color-overlay: rgba(0, 0, 0, 0.5);
+  --color-danger: #ef4444;
+  --color-danger-hover: #dc2626;
+  --color-danger-border: #b91c1c;
+  --color-success: #10b981;
+  --color-success-hover: #059669;
+  --color-success-border: #047857;
 
-  --color-overlay: #000000;
+  /* Chat - Spicy Borders */
+  --color-chat-me-bg: #d1fae5;
+  --color-chat-me-meta: #1a1a1a;
+  --color-chat-me-border: #10b981;
+  --color-chat-other-bg: #ffffff;
+  --color-chat-other-meta: #1a1a1a;
+  --color-chat-other-border: #9ca3af;
 
-  --color-danger: #f87171;
-  --color-danger-hover: #ef4444;
-  --color-danger-border: #ef4444;
-
-  --color-success: #34d399;
-  --color-success-hover: #10b981;
-  --color-success-border: #10b981;
-
-  --color-chat-me-bg: #2F3C2C;
-  --color-chat-me-meta: #FFFFFF;
-  --color-chat-me-border: #000000;
-  --color-chat-other-bg: #FFFFFF;
-  --color-chat-other-meta: #212121;
-  --color-chat-other-border: #000000;
-
-  --color-status-pending: #F4E87F;
-  --color-status-pending-text: #18181B;
-  --color-status-pending-border: #F4E87F;
-
-  --color-status-completed: #93DA8B;
-  --color-status-completed-text: #18181B;
-  --color-status-completed-border: #93DA8B;
-
-  --color-status-rejected: #f87171;
-  --color-status-rejected-text: #ffffff;
-  --color-status-rejected-border: #ffffff;
-
-  --color-status-new: #ffffff;
-  --color-status-new-text: #C08CD8;
-  --color-status-new-border: #C08CD8;
-  --color-status-in-review: #fb923c;
-
-  --color-status-in-review-text: #ffffff;
-  --color-status-in-review-border: #ffffff;
-
-  --color-role-superuser: #fbbf24;
-  --color-role-superuser-meta: #ffffff;
-  --color-role-superuser-border: #f59e0b;
-
-  --color-role-moderator: #60a5fa;
-  --color-role-moderator-meta: #ffffff;
-  --color-role-moderator-border: #3b82f6;
-
-  --color-role-user: #4ade80;
-  --color-role-user-meta: #ffffff;
-  --color-role-user-border: #22c55e;
-
+  /* Status */
+  --color-status-pending: #fef08a;
+  --color-status-pending-text: #854d0e;
+  --color-status-pending-border: #fde047;
+  --color-status-completed: #86efac;
+  --color-status-completed-text: #166534;
+  --color-status-completed-border: #4ade80;
+  --color-status-rejected: #fca5a5;
+  --color-status-rejected-text: #991b1b;
+  --color-status-rejected-border: #f87171;
+  --color-status-new: #f3e8ff;
+  --color-status-new-text: #7e22ce;
+  --color-status-new-border: #d8b4fe;
+  --color-status-in-review: #fdba74;
+  --color-status-in-review-text: #9a3412;
+  --color-status-in-review-border: #fb923c;
+  
+  /* Roles */
+  --color-role-superuser: #fcd34d;
+  --color-role-superuser-meta: #92400e;
+  --color-role-superuser-border: #fbbf24;
+  --color-role-moderator: #93c5fd;
+  --color-role-moderator-meta: #1e40af;
+  --color-role-moderator-border: #60a5fa;
+  --color-role-user: #6ee7b7;
+  --color-role-user-meta: #047857;
+  --color-role-user-border: #34d399;
+  
+  /* Mushroom Types */
   --color-mushroom-psilocybin: #8b5cf6;
   --color-mushroom-psilocybin-text: #ffffff;
   --color-mushroom-psilocybin-border: #7c3aed;
   --color-mushroom-psilocybin-hover: #7c3aed;
-
-  --color-mushroom-non-psilocybin: #22c55e;
+  --color-mushroom-non-psilocybin: #10b981;
   --color-mushroom-non-psilocybin-text: #ffffff;
-  --color-mushroom-non-psilocybin-border: #15803d;
-  --color-mushroom-non-psilocybin-hover: #16a34a;
-
+  --color-mushroom-non-psilocybin-border: #059669;
+  --color-mushroom-non-psilocybin-hover: #059669;
   --color-mushroom-toxic: #ef4444;
   --color-mushroom-toxic-text: #ffffff;
-  --color-mushroom-toxic-border: #b91c1c;
+  --color-mushroom-toxic-border: #dc2626;
   --color-mushroom-toxic-hover: #dc2626;
-
   --color-mushroom-unknown: #facc15;
-  --color-mushroom-unknown-text: #000000;
-  --color-mushroom-unknown-border: #ca8a04;
+  --color-mushroom-unknown-text: #854d0e;
+  --color-mushroom-unknown-border: #eab308;
   --color-mushroom-unknown-hover: #eab308;
-
-  --color-mushroom-unidentifiable: #9ca3af;
-  --color-mushroom-unidentifiable-text: #000000;
-  --color-mushroom-unidentifiable-border: #6b7280;
-  --color-mushroom-unidentifiable-hover: #6b7280;
-
+  --color-mushroom-unidentifiable: #d1d5db;
+  --color-mushroom-unidentifiable-text: #4b5563;
+  --color-mushroom-unidentifiable-border: #9ca3af;
+  --color-mushroom-unidentifiable-hover: #9ca3af;
   --color-mushroom-not-processed: #60a5fa;
-  --color-mushroom-not-processed-text: #ffffff;
-  --color-mushroom-not-processed-border: #2563eb;
+  --color-mushroom-not-processed-text: #1e40af;
+  --color-mushroom-not-processed-border: #3b82f6;
   --color-mushroom-not-processed-hover: #3b82f6;
 }

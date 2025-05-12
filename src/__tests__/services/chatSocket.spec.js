@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
-import * as chatSocket from '@/services/chatSocket'
+import * as chatSocket from '@/services/websocket/chatSocket'
 
 vi.mock('@stomp/stompjs', () => {
   const subscribeMock = vi.fn()

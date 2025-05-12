@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest'
-import { sendNewUserRequest, getUserRequest } from '@/services/userRequestService'
+import { sendNewUserRequest, getUserRequest } from '@/services/rest/userRequestService'
 
 // Mock axios and toastification
 vi.mock('@/config/axiosConfig', () => ({
