@@ -1,128 +1,121 @@
 :root {
-  /**text1 should be displayed on bg1, text2 should be displayed on bg2 and so on**/
-  --color-text1: #000;
-  --color-text1-faded: #333333;
-  --color-text2: #000;
-  --color-text2-faded: #726e6e;
-  --color-text3: #000;
-  --color-text3-faded: #726e6e;
-  --color-text4: #000;
-  --color-text4-faded: #726e6e;
+  /* Text Colors */
+  --color-text1: #f8fafc;
+  --color-text1-faded: #94a3b8;
+  --color-text2: #f8fafc;
+  --color-text2-faded: #94a3b8;
+  --color-text3: #f8fafc;
+  --color-text3-faded: #94a3b8;
+  --color-text4: #f8fafc;
+  --color-text4-faded: #94a3b8;
   
-  --color-bg1: #ffffff;
-  --color-bg2: #E8E8E8;
-  --color-bg3: #2d3748;
-  --color-bg4: #2d3748;
+  /* Backgrounds */
+  --color-bg1: #0f172a;  /* Deep navy */
+  --color-bg2: #1e293b;  /* Dark slate */
+  --color-bg3: #334155;  /* Medium slate */
+  --color-bg4: #475569;  /* Light slate */
 
-  --color-border1: #ffffff;
-  --color-border2: #E8E8E8;
-  --color-border3: #2d3748;
-  --color-border4: #2d3748;
+  /* Borders */
+  --color-border1: #1e293b;
+  --color-border2: #334155;
+  --color-border3: #475569;
+  --color-border4: #64748b;
 
-  --color-button1: #4ade80; 
-  --color-button1-meta: #000;
-  --color-button1-hover: #22c55e;
-  --color-button1-border: #15803d;
+    /* Buttons - Dark Mode Specific */
+    --color-button1: #3b82f6; /* Primary button (Blue) */
+    --color-button1-meta: #ffffff; /* White text for meta */
+    --color-button1-hover: #2563eb; /* Darker blue for hover */
+    --color-button1-border: #1e40af;
+    
+    --color-button2: #f97316; /* Secondary button (Orange) */
+    --color-button2-meta: #ffffff; /* White text for contrast */
+    --color-button2-hover: #ea580c; /* Darker orange for hover */
+    --color-button2-border: #c2410c; /* Slightly darker border for definition */
 
-  --color-button2: #8b5cf6;
-  --color-button2-meta: #000;
-  --color-button2-hover: #7c3aed;
-  --color-button2-border: #5b21b6;
+  --color-button3: #334155; /* Tertiary button (Blue-Grey) */
+  --color-button3-meta: #f8fafc;
+  --color-button3-hover: #475569;
+  --color-button3-border: #64748b;
 
-  --color-button3: #374151;
-  --color-button3-meta: #f8f4ec;
-  --color-button3-hover: #1f2937;
-  --color-button3-border: #111827;
-
-  --color-button4: #374151;
-  --color-button4-meta: #f8f4ec;
-  --color-button4-hover: #1f2937;
-  --color-button4-border: #111827;
+  --color-button4: #1e293b; /* Quaternary button (Dark Blue-Grey) */
+  --color-button4-meta: #f8fafc;
+  --color-button4-hover: #334155;
+  --color-button4-border: #475569;
 
   --color-button-transparent: transparent;
-  --color-button-transparent-meta: #000;
-  --color-button-transparent-hover: transparent;
+  --color-button-transparent-meta: #f8fafc;
+  --color-button-transparent-hover: rgba(148, 163, 184, 0.1);
   --color-button-transparent-border: transparent;
-  --color-button-transparent-hover-border: #2d3748;
+  --color-button-transparent-hover-border: #64748b;
   
-  --color-overlay: #000000;
-
+  /* Utility */
+  --color-overlay: rgba(15, 23, 42, 0.9);
   --color-danger: #f87171;
   --color-danger-hover: #ef4444;
-  --color-danger-border: #ef4444;
-  
+  --color-danger-border: #b91c1c;
   --color-success: #34d399;
   --color-success-hover: #10b981;
-  --color-success-border: #10b981;
+  --color-success-border: #047857;
 
-  --color-chat-me-bg: #b4ffa3;
-  --color-chat-me-meta: #FFFFFF;
-  --color-chat-me-border: #000000;
-  --color-chat-other-bg: #FFFFFF;
-  --color-chat-other-meta: #212121;
-  --color-chat-other-border: #000000;
+  /* Chat - Dark with Blue Accents */
+  --color-chat-me-bg: #1e3a8a;
+  --color-chat-me-meta: #f8fafc;
+  --color-chat-me-border: #2563eb;
+  --color-chat-other-bg: #1e293b;
+  --color-chat-other-meta: #f8fafc;
+  --color-chat-other-border: #334155;
 
-  --color-status-pending: #F4E87F;
-  --color-status-pending-text: #18181B;
-  --color-status-pending-border: #F4E87F;
+  /* Status */
+  --color-status-pending: #fef08a;
+  --color-status-pending-text: #854d0e;
+  --color-status-pending-border: #fde047;
+  --color-status-completed: #86efac;
+  --color-status-completed-text: #166534;
+  --color-status-completed-border: #4ade80;
+  --color-status-rejected: #fca5a5;
+  --color-status-rejected-text: #991b1b;
+  --color-status-rejected-border: #f87171;
+  --color-status-new: #1e293b;
+  --color-status-new-text: #c084fc;
+  --color-status-new-border: #a78bfa;
+  --color-status-in-review: #fdba74;
+  --color-status-in-review-text: #9a3412;
+  --color-status-in-review-border: #fb923c;
   
-  --color-status-completed: #93DA8B;
-  --color-status-completed-text: #18181B;
-  --color-status-completed-border: #93DA8B;
-  
-  --color-status-rejected: #f87171;
-  --color-status-rejected-text: #ffffff;
-  --color-status-rejected-border: #ffffff;
-  
-  --color-status-new: #ffffff;
-  --color-status-new-text: #C08CD8;
-  --color-status-new-border: #C08CD8;
-  
-  --color-status-in-review: #fb923c;
-  --color-status-in-review-text: #ffffff;
-  --color-status-in-review-border: #ffffff;
-  
-  
-  --color-role-superuser: #fbbf24;
+  /* Roles */
+  --color-role-superuser: #fcd34d;
   --color-role-superuser-meta: #92400e;
-  --color-role-superuser-border: #f59e0b;
-
-  --color-role-moderator: #60a5fa;
-  --color-role-moderator-meta: #1e3a8a;
-  --color-role-moderator-border: #3b82f6;
-
-  --color-role-user: #4ade80;
-  --color-role-user-meta: #065f46;
-  --color-role-user-border: #22c55e;
+  --color-role-superuser-border: #fbbf24;
+  --color-role-moderator: #93c5fd;
+  --color-role-moderator-meta: #1e40af;
+  --color-role-moderator-border: #60a5fa;
+  --color-role-user: #6ee7b7;
+  --color-role-user-meta: #047857;
+  --color-role-user-border: #34d399;
   
-  
+  /* Mushroom Types */
   --color-mushroom-psilocybin: #8b5cf6;
-  --color-mushroom-psilocybin-text: #ffffff;
+  --color-mushroom-psilocybin-text: #f8fafc;
   --color-mushroom-psilocybin-border: #7c3aed;
   --color-mushroom-psilocybin-hover: #7c3aed;
-
-  --color-mushroom-non-psilocybin: #22c55e;
-  --color-mushroom-non-psilocybin-text: #ffffff;
-  --color-mushroom-non-psilocybin-border: #15803d;
-  --color-mushroom-non-psilocybin-hover: #16a34a;
-
+  --color-mushroom-non-psilocybin: #10b981;
+  --color-mushroom-non-psilocybin-text: #f8fafc;
+  --color-mushroom-non-psilocybin-border: #059669;
+  --color-mushroom-non-psilocybin-hover: #059669;
   --color-mushroom-toxic: #ef4444;
-  --color-mushroom-toxic-text: #ffffff;
-  --color-mushroom-toxic-border: #b91c1c;
+  --color-mushroom-toxic-text: #f8fafc;
+  --color-mushroom-toxic-border: #dc2626;
   --color-mushroom-toxic-hover: #dc2626;
-
   --color-mushroom-unknown: #facc15;
-  --color-mushroom-unknown-text: #000000;
-  --color-mushroom-unknown-border: #ca8a04;
+  --color-mushroom-unknown-text: #0f172a;
+  --color-mushroom-unknown-border: #eab308;
   --color-mushroom-unknown-hover: #eab308;
-
-  --color-mushroom-unidentifiable: #9ca3af;
-  --color-mushroom-unidentifiable-text: #000000;
-  --color-mushroom-unidentifiable-border: #6b7280;
-  --color-mushroom-unidentifiable-hover: #6b7280;
-
+  --color-mushroom-unidentifiable: #64748b;
+  --color-mushroom-unidentifiable-text: #f8fafc;
+  --color-mushroom-unidentifiable-border: #94a3b8;
+  --color-mushroom-unidentifiable-hover: #94a3b8;
   --color-mushroom-not-processed: #60a5fa;
-  --color-mushroom-not-processed-text: #ffffff;
-  --color-mushroom-not-processed-border: #2563eb;
+  --color-mushroom-not-processed-text: #f8fafc;
+  --color-mushroom-not-processed-border: #3b82f6;
   --color-mushroom-not-processed-hover: #3b82f6;
 }
