@@ -10,6 +10,7 @@
 
       <div class="mt-auto pt-4">
         <a
+          data-testid="become-member-button"
           href="https://portal.smartorg.no/action/reg/7fd64a16"
           target="_blank"
           rel="noopener noreferrer"
