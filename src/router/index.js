@@ -130,7 +130,7 @@ router.beforeEach((to, from, next) => {
     }
   }
 
-  // User request protection
+  // user request protection
   if (to.meta.requiresUser) {
     const userRequestId = to.params.userRequestId;
     if (!token || role !== 'USER' || username !== userRequestId) {
