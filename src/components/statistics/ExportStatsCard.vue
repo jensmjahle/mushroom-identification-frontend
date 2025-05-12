@@ -19,7 +19,7 @@
       </BaseButton>
 
       <!-- PDF Export Button -->
-      <BaseButton variant="2" @click="handlePdfExport" :disabled="loadingPdf">
+      <BaseButton variant="2" @click="openConfirmPdf" :disabled="loadingPdf">
         <span v-if="loadingPdf">{{ t('common.loading') }}</span>
         <span v-else>{{ t('admin.stats.exportPdfButton') }}</span>
       </BaseButton>
@@ -35,6 +35,18 @@
         :cancelText="t('common.cancel')"
         @cancel="showConfirm = false"
         @confirm="handleExportCsv"
+    />
+
+    <!-- Confirm Dialog for PDF -->
+    <ConfirmDialog
+        v-if="showConfirmPdf"
+        :visible="showConfirmPdf"
+        :title="t('admin.stats.confirmDownloadTitle')"
+        :message="`${t('admin.stats.confirmDownloadShort')} (${months[selectedMonth - 1]} ${selectedYear})`"
+        :confirmText="t('admin.stats.downloadPdf')"
+        :cancelText="t('common.cancel')"
+        @cancel="showConfirmPdf = false"
+        @confirm="handleExportPdf"
     />
   </div>
 </template>
@@ -55,46 +67,51 @@ const selectedMonth = ref(new Date().getMonth() + 1)
 const selectedYear = ref(new Date().getFullYear())
 const years = Array.from({ length: 5 }, (_, i) => selectedYear.value - i)
 const months = [
-  t('month.jan'), t('month.feb'), t('month.mar'),
-  t('month.apr'), t('month.may'), t('month.jun'),
-  t('month.jul'), t('month.aug'), t('month.sep'),
-  t('month.oct'), t('month.nov'), t('month.dec')
+t('month.jan'), t('month.feb'), t('month.mar'),
+t('month.apr'), t('month.may'), t('month.jun'),
+t('month.jul'), t('month.aug'), t('month.sep'),
+t('month.oct'), t('month.nov'), t('month.dec')
 ]
 
 const loadingCsv = ref(false)
 const loadingPdf = ref(false)
 const showConfirm = ref(false)
+const showConfirmPdf = ref(false)
 
 function openConfirm() {
-  showConfirm.value = true
+showConfirm.value = true
+}
+
+function openConfirmPdf() {
+showConfirmPdf.value = true
 }
 
 async function handleExportCsv() {
-  loadingCsv.value = true
-  showConfirm.value = false
-
-  try {
-    await getRequestsForMonth({
-      month: selectedMonth.value,
-      year: selectedYear.value
-    })
-  } catch (e) {
-    toast.error(t('errors.exportFailed'))
-    console.error(e)
-  } finally {
-    loadingCsv.value = false
-  }
+loadingCsv.value = true
+showConfirm.value = false
+try {
+await getRequestsForMonth({
+month: selectedMonth.value,
+year: selectedYear.value
+})
+} catch (e) {
+toast.error(t('errors.exportFailed'))
+console.error(e)
+} finally {
+loadingCsv.value = false
+}
 }
 
-async function handlePdfExport() {
-  loadingPdf.value = true
-  try {
-    await exportStatisticsPdf(selectedYear.value, selectedMonth.value)
-  } catch (e) {
-    toast.error(t('errors.exportFailed'))
-    console.error(e)
-  } finally {
-    loadingPdf.value = false
-  }
+async function handleExportPdf() {
+loadingPdf.value = true
+showConfirmPdf.value = false
+try {
+await exportStatisticsPdf(selectedYear.value, selectedMonth.value)
+} catch (e) {
+toast.error(t('errors.exportFailed'))
+console.error(e)
+} finally {
+loadingPdf.value = false
+}
 }
 </script>

@@ -71,11 +71,7 @@
       "totalRequests": "Totale forespørseler",
       "totalCompleted": "Fullførte forespørseler",
       "downloadCsv": "Last ned CSV",
-      "previewTitle": "Forhåndsvisning",
-      "confirmDownload": "Er du sikker på at du vil laste ned denne dataen som en CSV-fil?",
-      "confirmDownloadTitle": "Eksporter CSV",
-      "confirmDownloadShort": "Er du sikker på at du vil laste ned denne dataen?",
-      "exportPdfButton": "Eksporter som PDF"
+      "previewTitle": "Forhåndsvisning"
     },
     "adminDashboard": {
       "greeting": "Hei {name} 👋",

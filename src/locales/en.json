@@ -66,16 +66,17 @@
       "weeklyRate": "Weekly New Requests",
       "ftrClicks": "FTR Registrations",
       "exportTitle": "Export statistics and history",
-      "exportButton": "Export as CSV",
       "overviewTitle": "Statistics Overview",
       "totalRequests": "Total Requests",
       "totalCompleted": "Completed Requests",
       "downloadCsv": "Last ned CSV",
-      "previewTitle": "Forhåndsvisning",
+      "previewTitle": "Preview",
       "confirmDownload": "Are you sure you want to download this data as a CSV file?",
-      "confirmDownloadTitle": "Export CSV",
-      "confirmDownloadShort": "Are you sure you want to download this data?",
-      "exportPdfButton": "Export as PDF"
+      "exportButton": "Export CSV",
+      "exportPdfButton": "Export PDF",
+      "confirmDownloadTitle": "Confirm Download",
+      "confirmDownloadShort": "Do you want to download statistics for",
+      "downloadPdf": "Download PDF"
     },
     "adminDashboard": {
       "greeting": "Hi {name} 👋",
