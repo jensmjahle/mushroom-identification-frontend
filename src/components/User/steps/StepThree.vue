@@ -31,7 +31,7 @@ import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 import BaseButton from '@/components/base/BaseButton.vue'
-import { loginUser } from '@/services/authService.js'
+import { loginUser } from '@/services/rest/authService.js'
 import { parseJwt } from '@/utils/jwt.js'
 
 const props = defineProps({
