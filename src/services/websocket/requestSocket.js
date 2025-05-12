@@ -10,7 +10,10 @@ export function initRequestSocket(requestId, token, t, onUpdateCallback) {
   injectToastLibrary(toast)
 
   requestClient = new Client({
-    webSocketFactory: () => new SockJS(`${import.meta.env.VITE_API_URL}/ws`),
+    webSocketFactory: () => {
+      const baseUrl = window?.env?.VITE_API_URL || 'http://localhost:8080';
+      return new SockJS(`${baseUrl}/ws`);
+    },
     connectHeaders: {
       Authorization: `Bearer ${token}`
     },
