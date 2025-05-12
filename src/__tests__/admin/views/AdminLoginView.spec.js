@@ -15,11 +15,11 @@ vi.mock('vue-i18n', async () => {
 })
 
 // Mock loginAdmin
-vi.mock('@/services/authService', () => ({
+vi.mock('@/services/rest/authService', () => ({
   loginAdmin: vi.fn()
 }))
 
-import { loginAdmin } from '@/services/authService'
+import { loginAdmin } from '@/services/rest/authService'
 
 describe('AdminLoginView.vue', () => {
   let router

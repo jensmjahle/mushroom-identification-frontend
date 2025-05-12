@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest'
-import * as mushroomService from '@/services/mushroomService'
+import * as mushroomService from '@/services/rest/mushroomService'
 import api from '@/config/axiosConfig'
 import { getAuthHeaders } from '@/utils/authHeaders'
 

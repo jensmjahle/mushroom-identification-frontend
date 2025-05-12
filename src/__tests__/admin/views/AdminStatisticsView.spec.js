@@ -21,10 +21,10 @@ vi.mock('vue-toastification', () => ({
 }))
 
 // Mock API
-vi.mock('@/services/adminRequestService.js', () => ({
+vi.mock('@/services/rest/adminRequestService.js', () => ({
   getPaginatedRequests: vi.fn()
 }))
-import { getPaginatedRequests } from '@/services/adminRequestService.js'
+import { getPaginatedRequests } from '@/services/rest/adminRequestService.js'
 
 // Mock child components
 vi.mock('@/components/statistics/StatsChart.vue', () => ({

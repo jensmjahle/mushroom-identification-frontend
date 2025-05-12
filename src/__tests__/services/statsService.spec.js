@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest'
-import * as statsService from '@/services/statsService'
+import * as statsService from '@/services/rest/statsService'
 import axios from '@/config/axiosConfig'
 
 vi.mock('@/config/axiosConfig')

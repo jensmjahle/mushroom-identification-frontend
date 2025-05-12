@@ -1,6 +1,6 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 import axios from '@/config/axiosConfig'
-import * as adminService from '@/services/adminService'
+import * as adminService from '@/services/rest/adminService'
 import { getAuthHeaders } from '@/utils/authHeaders'
 
 vi.mock('@/config/axiosConfig')

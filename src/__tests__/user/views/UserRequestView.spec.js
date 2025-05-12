@@ -2,15 +2,19 @@
 import { mount, flushPromises } from '@vue/test-utils'
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
 import { createRouter, createWebHistory } from 'vue-router'
+import { createTestingPinia } from '@pinia/testing'
+import { createI18n } from 'vue-i18n'
+import en from '@/locales/en.json'
+import no from '@/locales/no.json'
 import UserRequestView from '@/views/user/UserRequestView.vue'
-import { getUserRequest } from '@/services/userRequestService.js'
+import { getUserRequest } from '@/services/rest/userRequestService.js'
 
-// Mock actual service
-vi.mock('@/services/userRequestService.js', () => ({
+// Mock service
+vi.mock('@/services/rest/userRequestService.js', () => ({
   getUserRequest: vi.fn(() => Promise.resolve({ id: 'mock-id', status: 'new' }))
 }))
 
-// Mock ChatBox and MushroomBasket to suppress errors and WebSocket
+// Mock subcomponents
 vi.mock('@/components/ChatBox.vue', () => ({
   default: {
     name: 'ChatBox',
@@ -31,6 +35,24 @@ vi.mock('@/components/RequestStatusBox.vue', () => ({
     template: '<div>MockRequestStatusBox</div>'
   }
 }))
+vi.mock('@/components/StepIndicator.vue', () => ({
+  default: {
+    name: 'StepIndicator',
+    template: '<div>MockStepIndicator</div>'
+  }
+}))
+vi.mock('@/components/layout/UserDisplayCard.vue', () => ({
+  default: {
+    name: 'UserDisplayCard',
+    template: '<div><slot /></div>'
+  }
+}))
+
+const i18n = createI18n({
+  legacy: false,
+  locale: 'en',
+  messages: { en, no }
+})
 
 describe('UserRequestView.vue', () => {
   let router
@@ -46,6 +68,7 @@ describe('UserRequestView.vue', () => {
         }
       ]
     })
+
     await router.push('/request/mock-id')
     await router.isReady()
   })
@@ -54,22 +77,25 @@ describe('UserRequestView.vue', () => {
     vi.clearAllMocks()
   })
 
-  it('renders child components and fetches request', async () => {
-    const wrapper = mount(UserRequestView, {
-      global: { plugins: [router] }
+  const createWrapper = async () => {
+    return mount(UserRequestView, {
+      global: {
+        plugins: [router, createTestingPinia({ stubActions: false }), i18n]
+      }
     })
+  }
 
+  it('renders child components and fetches request', async () => {
+    const wrapper = await createWrapper()
     await flushPromises()
+
     expect(getUserRequest).toHaveBeenCalledTimes(1)
     expect(wrapper.html()).toContain('MockChatBox')
     expect(wrapper.html()).toContain('MockRequestStatusBox')
   })
 
   it('toggles basket and reloads request on update event', async () => {
-    const wrapper = mount(UserRequestView, {
-      global: { plugins: [router] }
-    })
-
+    const wrapper = await createWrapper()
     await flushPromises()
 
     const basket = wrapper.findComponent({ name: 'MushroomBasket' })
@@ -84,22 +110,18 @@ describe('UserRequestView.vue', () => {
     global.innerWidth = 500
     global.dispatchEvent(new Event('resize'))
 
-    const wrapper = mount(UserRequestView, {
-      global: { plugins: [router] }
-    })
-
+    const wrapper = await createWrapper()
     await flushPromises()
+
     expect(wrapper.html()).toContain('MockChatBox')
   })
 
   it('removes resize event listener on unmount', async () => {
     const removeSpy = vi.spyOn(window, 'removeEventListener')
 
-    const wrapper = mount(UserRequestView, {
-      global: { plugins: [router] }
-    })
-
+    const wrapper = await createWrapper()
     wrapper.unmount()
+
     expect(removeSpy).toHaveBeenCalledWith('resize', expect.any(Function))
   })
 })

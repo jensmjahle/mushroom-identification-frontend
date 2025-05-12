@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest'
-import * as globalSocket from '@/services/globalSocket'
+import * as globalSocket from '@/services/websocket/globalSocket'
 
 vi.mock('sockjs-client', () => ({
   default: vi.fn()

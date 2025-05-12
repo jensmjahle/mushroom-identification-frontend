@@ -14,10 +14,10 @@ vi.mock('vue-i18n', async () => {
 })
 
 // Mock services
-vi.mock('@/services/adminRequestService.js', () => ({
+vi.mock('@/services/rest/adminRequestService.js', () => ({
   getUserRequestAdmin: vi.fn()
 }))
-import { getUserRequestAdmin } from '@/services/adminRequestService.js'
+import { getUserRequestAdmin } from '@/services/rest/adminRequestService.js'
 
 // Mock child components
 vi.mock('@/components/ChatBox.vue', () => ({

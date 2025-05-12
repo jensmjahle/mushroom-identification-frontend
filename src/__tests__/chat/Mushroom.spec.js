@@ -12,7 +12,7 @@ vi.mock('vue-i18n', async () => {
 })
 
 // 🔧 Mock Mushroom Store direkte
-vi.mock('@/store/mushroomStore.js', () => ({
+vi.mock('@/store/useMushroomStore.js', () => ({
   useMushroomStore: () => ({
     mushrooms: [
       {
@@ -42,7 +42,7 @@ vi.mock('@/components/MushroomPopup.vue', () => ({
   }
 }))
 
-const BASE_URL = 'https://example.com'
+const BASE_URL = 'http://localhost:8080'
 vi.stubEnv('VITE_API_URL', BASE_URL)
 
 describe('Mushroom.vue', () => {

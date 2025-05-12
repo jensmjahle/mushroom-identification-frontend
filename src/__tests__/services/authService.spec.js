@@ -1,6 +1,6 @@
 import { describe, it, expect, vi } from 'vitest'
 import axios from '@/config/axiosConfig'
-import * as authService from '@/services/authService'
+import * as authService from '@/services/rest/authService'
 
 vi.mock('@/config/axiosConfig', () => ({
   default: {

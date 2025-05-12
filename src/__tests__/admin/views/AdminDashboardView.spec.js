@@ -31,11 +31,11 @@ vi.mock('vue-toastification', () => ({
   })
 }))
 
-vi.mock('@/services/adminRequestService.js', () => ({
+vi.mock('@/services/rest/adminRequestService.js', () => ({
   getNextRequestFromQueue: vi.fn(),
   getPaginatedRequests: vi.fn()
 }))
-import { getNextRequestFromQueue, getPaginatedRequests } from '@/services/adminRequestService.js'
+import { getNextRequestFromQueue, getPaginatedRequests } from '@/services/rest/adminRequestService.js'
 
 describe('AdminDashboardView.vue', () => {
   let router
