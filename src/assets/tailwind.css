@@ -75,6 +75,7 @@ html, body, #app {
     sm:flex;
     width: 20%;
     min-height: 600px;
+    max-width: 260px;
   }
 
   .collapse-button {
