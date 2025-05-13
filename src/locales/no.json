@@ -357,6 +357,21 @@
     "ALL_MUSHROOMS_ARE_NON_PSILOCYBIN": "Alle soppene i denne kurven er ikke-psilocybin",
     "ALL_MUSHROOMS_ARE_UNKNOWN": "Alle soppene i denne kurven er av ukjent type",
     "ALL_MUSHROOMS_ARE_UNIDENTIFIABLE": "Ingen av soppene i denne kurven kunne identifiseres"
+  },
+  "request": {
+    "id": "Forespørsels-ID",
+    "lastUpdated": "Sist oppdatert",
+    "status": "Status",
+    "mushrooms": "Sopper",
+    "otherRequests": "Andre forespørsler",
+    "statusFilter": {
+      "all": "Alle",
+      "pending": "Avventer",
+      "inProgress": "Under behandling",
+      "completed": "Fullført"
+    }
   }
-
 }
+
+
+
