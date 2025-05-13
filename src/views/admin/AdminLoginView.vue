@@ -9,6 +9,7 @@
     />
 
     <AdminLoginForm :onLogin="loginUser" />
+    <SettingsWidget />
   </div>
 </template>
 
@@ -18,6 +19,7 @@ import { useRouter } from 'vue-router';
 import AdminLoginForm from '@/components/admin/AdminLoginForm.vue';
 import { loginAdmin } from '@/services/rest/authService';
 import { detectInitialTheme } from '@/utils/themeUtils';
+import SettingsWidget from '@/components/settings/SettingsWidget.vue';
 
 const theme = ref(detectInitialTheme());
 const router = useRouter();
