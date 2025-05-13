@@ -16,6 +16,16 @@ export function setTheme(value) {
 }
 
 export function detectInitialTheme() {
-  return localStorage.getItem('theme') || 
-    (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')
+  const stored = localStorage.getItem('theme');
+  if (stored) return stored;
+
+  // Only call matchMedia if it exists
+  if (typeof window !== 'undefined'
+      && typeof window.matchMedia === 'function'
+      && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    return 'dark';
+  }
+
+  return 'light';
 }
+
