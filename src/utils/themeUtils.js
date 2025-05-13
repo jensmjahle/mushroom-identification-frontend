@@ -12,6 +12,7 @@ export function setTheme(value) {
 
   link.href = themePath
   localStorage.setItem('theme', value)
+  window.dispatchEvent(new Event('theme-changed'))
 }
 
 export function detectInitialTheme() {
