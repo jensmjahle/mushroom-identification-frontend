@@ -17,7 +17,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        area: ['Area'],
+        area: ['AreaVariable', 'sans-serif'],
       },
       backgroundImage: {
         hero: "url('/assets/background.svg')",

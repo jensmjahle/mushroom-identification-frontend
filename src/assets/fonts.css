@@ -1,0 +1,8 @@
+@font-face {
+  font-family: 'AreaVariable';
+  src: url('@/assets/fonts/AreaVariable.woff2') format('woff2'),
+       url('@/assets/fonts/AreaVariable.woff')  format('woff');
+  font-weight: 100 900;      /* if it’s a variable font */
+  font-style: normal;
+  font-display: swap;
+}
