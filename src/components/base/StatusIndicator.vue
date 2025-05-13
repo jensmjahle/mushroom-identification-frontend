@@ -6,7 +6,7 @@
     >
       {{ count }}
     </div>
-    <h3 class="text-text4 capitalize">{{ label }}</h3>
+    <h3 class="text-sm text-text4 capitalize">{{ label }}</h3>
   </div>
 </template>
 
