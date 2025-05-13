@@ -6,8 +6,12 @@
         {{ t('membership.title') }}
       </h1>
 
-      <div class="mt-4 flex-1 overflow-y-auto w-full text-left prose prose-sm sm:prose-base dark:prose-invert max-w-none mb-10" v-html="renderedContent" />
+      <div
+          class="mt-4 flex-1  p-2 border rounded-lg border-border1 overflow-y-auto w-full text-left prose prose-sm sm:prose-base dark:prose-invert max-w-none mb-10"
+          v-html="renderedContent">
+      </div>
 
+      
       <div class="mt-auto pt-4">
         <a
           data-testid="become-member-button"

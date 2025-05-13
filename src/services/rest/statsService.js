@@ -37,3 +37,28 @@ export const fetchCompletedStats = async ({ interval, from, to }) => {
     return []
   }
 }
+
+export const exportStatisticsPdf = async (year, month) => {
+  try {
+    const response = await axios.get('/api/admin/stats/export/pdf', {
+      headers: {
+        ...getAuthHeaders(),
+        Accept: 'application/pdf'
+      },
+      responseType: 'blob',
+      params: { year, month }
+    })
+
+    const blob = new Blob([response.data], { type: 'application/pdf' })
+    const url = window.URL.createObjectURL(blob)
+    const link = document.createElement('a')
+    link.href = url
+    link.download = `statistics_${year}_${String(month).padStart(2, '0')}.pdf`
+    document.body.appendChild(link)
+    link.click()
+    link.remove()
+    toast.success(`Downloaded statistics for ${year}-${String(month).padStart(2, '0')}`)
+  } catch (error) {
+    console.error('Failed to export statistics PDF:', error)
+  }
+}

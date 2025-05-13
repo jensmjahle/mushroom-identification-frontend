@@ -58,23 +58,24 @@
   },
   "admin": {
     "stats": {
-      "completedTitle": "Fullførte Forespørseler",
+      "completedTitle": "Daglig fullførte forespørseler",
       "mushroomCategories": "Soppkategorier",
       "last7Days": "Siste 7 Dager",
       "last30Days": "Siste 30 Dager",
       "last90Days": "Siste 90 Dager",
-      "weeklyRate": "Ukentlig Ny Forespørseler",
-      "ftrClicks": "FTR Registreringer",
-      "exportTitle": "Eksporter statistikk og historikk til CSV",
-      "exportButton": "Eksporter",
+      "weeklyRate": "Gjeldene ukentlig nye forespørseler",
+      "ftrClicks": "Antall trykk på registreringsknapp",
+      "exportTitle": "Eksporter statistikk og historikk",
+      "exportButton": "Eksporter som CSV",
       "overviewTitle": "Statistikkoversikt",
-      "totalRequests": "Totale forespørseler",
-      "totalCompleted": "Fullførte forespørseler",
+      "totalRequests": "Totalt antall mottate forespørseler",
+      "totalCompleted": "Totalt antall fullførte forespørseler",
       "downloadCsv": "Last ned CSV",
       "previewTitle": "Forhåndsvisning",
-      "confirmDownload": "Er du sikker på at du vil laste ned denne dataen som en CSV-fil?",
-      "confirmDownloadTitle": "Eksporter CSV",
-      "confirmDownloadShort": "Er du sikker på at du vil laste ned denne dataen?"
+      "exportPdfButton": "Eksporter som PDF",
+      "confirmDownloadTitle": "Bekreft nedlasting",
+      "confirmDownloadShort": "Ønsker du å laste ned statistikken for",
+      "downloadPdf": "Last ned PDF"
     },
     "adminDashboard": {
       "greeting": "Hei {name} 👋",
@@ -205,6 +206,7 @@
     "login": "Se Svar",
     "membership": "Bli medlem",
     "support": "Support",
+    "onlineAdmins": "Administratorer pålogget",
     "tooltips": {
       "completeRequest": "Marker denne forespørselen som ferdig og vurdert. Chatten vil bli stengt.",
       "putBackIntoQueue": "Send forespørselen tilbake til hovedkøen for vurdering. Den vil ikke gå videre før noen plukker den opp.",
