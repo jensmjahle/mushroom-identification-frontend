@@ -205,7 +205,7 @@
     "newRequest": "Ny forespørsel",
     "login": "Se Svar",
     "membership": "Bli medlem",
-    "support": "Support",
+    "support": "Hjelp",
     "onlineAdmins": "Administratorer pålogget",
     "tooltips": {
       "completeRequest": "Marker denne forespørselen som ferdig og vurdert. Chatten vil bli stengt.",
@@ -243,7 +243,7 @@
     "or": "Eller"
   },
   "membership": {
-    "title": "Bli medlem – Støtt Soppidentifikasjon.no!",
+    "title": "Bli medlem – Støtt Foreningen for Tryggere Ruspolitikk!",
     "intro": "Vil du bidra til å holde Soppidentifikasjon.no i drift og hjelpe flere med trygg soppplukking? Som medlem støtter du vårt arbeid med å dekke driftskostnader og honorarer til våre soppsakkyndige.",
     "whyTitle": "Hvorfor bli medlem?",
     "why1": "🌱 <strong>Støtt driften:</strong> Bidra til vedlikehold av siden og vår gratis identifikasjonstjeneste.",
