@@ -21,18 +21,16 @@
     <!-- Other Requests Section -->
     <div class="p-6 bg-bg rounded-lg">
       <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-2">
-        <h2 class="text-lg font-bold">Other Requests</h2>
+        <h2 class="text-lg font-bold">{{ t('request.otherRequests') }}</h2>
         <div>
           <select v-model="filterStatus" class="p-2 rounded bg-bg3 text-text3 border border-border3">
-            <option value="ALL">All</option>
-            <option value="PENDING">Pending</option>
-            <option value="IN_PROGRESS">In Progress</option>
-            <option value="COMPLETED">Completed</option>
+            <option value="ALL">{{ t('request.statusFilter.all') }}</option>
+            <option value="PENDING">{{ t('request.statusFilter.pending') }}</option>
+            <option value="IN_PROGRESS">{{ t('request.statusFilter.inProgress') }}</option>
+            <option value="COMPLETED">{{ t('request.statusFilter.completed') }}</option>
           </select>
         </div>
       </div>
-
-
 
       <BaseList
           :items="otherRequests"
@@ -52,14 +50,18 @@
   </div>
 </template>
 
+
 <script setup>
-import { ref, onMounted, watch } from 'vue'
+import {ref, onMounted, watch, computed} from 'vue'
 import { useToast } from 'vue-toastification'
 import BaseList from '@/components/base/BaseList.vue'
 import RequestRow from '@/components/base/rows/RequestRow.vue'
 import { getPaginatedRequests } from '@/services/rest/adminRequestService.js'
 import router from "@/router/index.js"
+import { formatRelativeTime } from '@/utils/formatters.js';
+import { useI18n } from 'vue-i18n'
 
+const { t } = useI18n()
 const page1 = ref(0)
 const totalPages1 = ref(1)
 const newRequests = ref([])
@@ -69,13 +71,19 @@ const totalPages2 = ref(1)
 const otherRequests = ref([])
 const filterStatus = ref('ALL')
 
-const columns = [
-  { label: 'Request ID', key: 'userRequestId', class: 'col-span-5' },
-  { label: 'Last Updated', key: 'updatedAt', class: 'col-span-3' },
-  { label: 'Status', key: 'status', class: 'col-span-3' },
-  { label: 'Mushrooms', key: 'numberOfMushrooms', class: 'col-span-1' }
-]
 
+
+const columns = computed(() => [
+  { label: t('request.id'), key: 'userRequestId', class: 'col-span-5' },
+  {
+    label: t('request.lastUpdated'),
+    key: 'updatedAt',
+    class: 'col-span-3',
+    format: formatRelativeTime
+  },
+  { label: t('request.status'), key: 'status', class: 'col-span-3' },
+  { label: t('request.mushrooms'), key: 'numberOfMushrooms', class: 'col-span-1' }
+])
 
 const toast = useToast()
 

@@ -375,6 +375,19 @@
     "ALL_MUSHROOMS_ARE_NON_PSILOCYBIN": "All mushrooms in this basket are non-psilocybin",
     "ALL_MUSHROOMS_ARE_UNKNOWN": "All mushrooms in this basket are of unknown type",
     "ALL_MUSHROOMS_ARE_UNIDENTIFIABLE": "None of the mushrooms in this basket could be identified"
+  },
+  "request": {
+    "id": "Request ID",
+    "lastUpdated": "Last updated",
+    "status": "Status",
+    "mushrooms": "Mushrooms",
+    "otherRequests": "Other Requests",
+    "statusFilter": {
+      "all": "All",
+      "pending": "Pending",
+      "inProgress": "In Progress",
+      "completed": "Completed"
+    }
   }
 
 
