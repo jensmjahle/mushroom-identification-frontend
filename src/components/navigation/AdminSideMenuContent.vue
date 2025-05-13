@@ -64,8 +64,8 @@
     <hr class="my-4 border-border2" v-if="!isRequestPage" />
 
     <div class="space-y-2">
-      <h3 v-if="!isRequestPage" class="text-left text-text4">{{ $t('sideMenu.admins') }}</h3>
-      <p class="text-s text-text4-faded text-left">{{ $t('sideMenu.onlineAdmins') }}: {{ onlineAdmins }}</p>
+      <h4 v-if="!isRequestPage" class="text-left text-text4">{{ $t('sideMenu.admins') }}</h4>
+      <p class="text-xs text-text4-faded text-left">{{ $t('sideMenu.onlineAdmins') }}: {{ onlineAdmins }}</p>
       <BaseButton v-if="!isRequestPage"  @click="navigate('admin-management')" block variant="2">
         {{ $t('sideMenu.allAdmins') }}
       </BaseButton>

@@ -87,7 +87,7 @@ html, body, #app {
   }
 
   .user-sidebar-button{
-    @apply flex items-center bg-bg2 rounded-lg w-full transition-all duration-300 ease-in-out overflow-hidden min-w-[50px] min-h-[80px] max-w-[200px] h-[10%];
+    @apply flex items-center bg-bg2 border border-border2 rounded-lg w-full transition-all duration-300 ease-in-out overflow-hidden min-w-[50px] min-h-[80px] max-w-[200px] h-[10%];
   }
 
   .user-sidebar-button.active {
@@ -96,7 +96,7 @@ html, body, #app {
   }
 
   .user-sidebar-link {
-    @apply flex w-full h-full pl-4 items-center transition-all duration-300 ease-in-out overflow-hidden min-w-[50px];
+    @apply flex w-full h-full pl-3.5 items-center transition-all duration-300 ease-in-out overflow-hidden min-w-[50px];
   }
 
   .user-sidebar-text {
