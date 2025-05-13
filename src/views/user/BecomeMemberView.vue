@@ -7,7 +7,7 @@
       </h1>
 
       <div
-          class="mt-4 flex-1  p-2 border rounded-lg border-border1 overflow-y-auto w-full text-left prose prose-sm sm:prose-base dark:prose-invert max-w-none mb-10"
+          class="mt-4 flex-1 bg-bg1 rounded-2xl p-2 border shadow-md border-border1 overflow-y-auto w-full text-left prose prose-sm sm:prose-base dark:prose-invert max-w-none mb-10"
           v-html="renderedContent">
       </div>
 

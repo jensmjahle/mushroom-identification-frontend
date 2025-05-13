@@ -1,5 +1,5 @@
 <template>
-    <div class="flex flex-col items-center justify-center gap-6 p-6 text-center bg-bg1 text-text1 rounded-2xl border border-border1 shadow-md max-w-2xl mx-auto">
+    <div class="flex flex-col items-center justify-center gap-6 p-6 text-center bg-bg1 text-text1 rounded-2xl border border-border1 shadow-md max-w-2xl mx-6">
       <h1 class="text-2xl font-semibold">
         {{ t('submit.introTitle') }}
       </h1>
