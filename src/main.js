@@ -8,6 +8,7 @@ import { setTheme } from './composables/useTheme'
 import { themeReady } from './composables/themeReady'
 import Toast from 'vue-toastification'
 import 'vue-toastification/dist/index.css'
+import '@/assets/fonts.css'
 
 const saved = localStorage.getItem('theme') || 'light'
 setTheme(saved, () => {
