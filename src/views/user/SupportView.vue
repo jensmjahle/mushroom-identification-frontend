@@ -8,7 +8,7 @@
       </h1>
 
       <!-- Scrollable content -->
-      <div class="flex-1 overflow-y-auto max-h-[calc(100vh-12rem)] pr-2 custom-scrollbar">
+      <div class="flex-1 shadow-md bg-bg1 rounded-2xl p-4 overflow-y-auto max-h-[calc(100vh-12rem)] pr-2 custom-scrollbar">
 
         <!-- Markdown Content -->
         <div
