@@ -16,8 +16,8 @@
           v-html="renderedContent"
         />
 
-        <!-- Contact Section -->
-        <div class="text-left w-full space-y-4 mt-10">
+        <!-- TODO: Enable contact form once backend implementation is ready -->
+        <div v-if="false" class="text-left w-full space-y-4 mt-10">
           <h2 class="text-lg font-semibold text-text1 text-center">
             {{ t('support.contactTitle') }}
           </h2>
