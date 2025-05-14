@@ -372,7 +372,33 @@
       "inProgress": "Under behandling",
       "completed": "Fullført"
     }
+  },
+  "adminCreate": {
+    "title": "Opprett ny administrator",
+    "subtitle": "Superbrukere kan opprette moderatorer eller andre superbrukere.",
+    "username": "Brukernavn",
+    "usernamePlaceholder": "Skriv inn brukernavn",
+    "password": "Passord",
+    "passwordPlaceholder": "Skriv inn et sikkert passord",
+    "email": "E-post",
+    "emailPlaceholder": "Skriv inn e-postadressen",
+    "role": "Rolle",
+    "submit": "Opprett administrator",
+    "fillInAllFields": "Vennligst fyll ut alle feltene.",
+    "success": "Administrator opprettet.",
+    "error": "Kunne ikke opprette administrator. Prøv igjen.",
+    "confirmPassword": "Bekreft passord",
+    "confirmPasswordPlaceholder": "Gjenta passordet",
+    "invalidEmail": "E-postadressen er ikke gyldig.",
+    "passwordTooShort": "Passordet må være minst 8 tegn.",
+    "passwordTooLong": "Passordet kan være maks 50 tegn.",
+    "passwordNoSpaces": "Passordet kan ikke inneholde mellomrom.",
+    "passwordNoNumber": "Passordet må inneholde minst ett tall.",
+    "passwordNoUppercase": "Passordet må inneholde minst én stor bokstav.",
+    "passwordsDontMatch": "Passordene er ikke like."
+
   }
+
 }
 
 

@@ -1,5 +1,6 @@
 import axios from '@/config/axiosConfig.js'
 import { getAuthHeaders } from '@/utils/authHeaders.js'
+import api from "@/config/axiosConfig.js";
 
 /**
  * Fetches a paginated list of admins.
@@ -81,4 +82,8 @@ export const getAdminMe = async () => {
     console.error('Failed to load admin profile:', error)
     throw error
   }
+}
+export async function createAdmin(adminData) {
+  const response = await api.post('/api/admin/superuser/create', adminData);
+  return response.data;
 }
