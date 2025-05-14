@@ -116,7 +116,9 @@
     "NON_PSILOCYBIN": "Ikke Fleinsopp",
     "TOXIC": "Giftig",
     "UNKNOWN": "Ukjent",
-    "UNIDENTIFIABLE": "Uidentifiserbar"
+    "UNIDENTIFIABLE": "Uidentifiserbar",
+    "NOT_PROCESSED": "Ikke Behandlet",
+    "BAD_PICTURES": "Dårlige bilder"
   },
   "mushroomPopup": {
     "uploadSuccess": "Bilde lastet opp!",
@@ -223,7 +225,8 @@
       "toxic": "Giftig",
       "unknown": "Ukjent",
       "unidentifiable": "Uidentifiserbar",
-      "not-processed": "Ikke Behandlet"
+      "not-processed": "Ikke Behandlet",
+      "bad-pictures": "Dårlige bilder"
     }
   },
   "loginUser": {
@@ -358,7 +361,9 @@
     "ALL_MUSHROOMS_ARE_PSILOCYBIN": "Alle soppene i denne kurven er identifisert som psilocybin",
     "ALL_MUSHROOMS_ARE_NON_PSILOCYBIN": "Alle soppene i denne kurven er ikke-psilocybin",
     "ALL_MUSHROOMS_ARE_UNKNOWN": "Alle soppene i denne kurven er av ukjent type",
-    "ALL_MUSHROOMS_ARE_UNIDENTIFIABLE": "Ingen av soppene i denne kurven kunne identifiseres"
+    "ALL_MUSHROOMS_ARE_UNIDENTIFIABLE": "Ingen av soppene i denne kurven kunne identifiseres",
+    "BAD_PICTURES_MUSHROOM_PRESENT": "Noen av soppene i denne kurven kunne ikke behandles på grunn av dårlig bildekvalitet",
+    "ALL_MUSHROOMS_ARE_BAD_PICTURES": "Alle soppene i denne kurven kunne ikke behandles på grunn av dårlig bildekvalitet"
   },
   "request": {
     "id": "Forespørsels-ID",

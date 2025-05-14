@@ -121,7 +121,9 @@
     "NON_PSILOCYBIN": "Non-Psilocybin",
     "TOXIC": "Toxic",
     "UNKNOWN": "Unknown",
-    "UNIDENTIFIABLE": "Unidentifiable"
+    "UNIDENTIFIABLE": "Unidentifiable",
+    "NOT_PROCESSED": "Not Processed",
+    "BAD_PICTURES": "Bad Pictures"
   },
   "submit": {
     "introTitle": "Before you begin",
@@ -224,7 +226,8 @@
       "toxic": "Toxic",
       "unknown": "Unknown",
       "unidentifiable": "Unidentifiable",
-      "not-processed": "Not Processed"
+      "not-processed": "Not Processed",
+      "bad-pictures": "Bad Pictures"
     }
   },
   "loginUser": {
@@ -376,7 +379,10 @@
     "ALL_MUSHROOMS_ARE_PSILOCYBIN": "All mushrooms in this basket are identified as psilocybin",
     "ALL_MUSHROOMS_ARE_NON_PSILOCYBIN": "All mushrooms in this basket are non-psilocybin",
     "ALL_MUSHROOMS_ARE_UNKNOWN": "All mushrooms in this basket are of unknown type",
-    "ALL_MUSHROOMS_ARE_UNIDENTIFIABLE": "None of the mushrooms in this basket could be identified"
+    "ALL_MUSHROOMS_ARE_UNIDENTIFIABLE": "None of the mushrooms in this basket could be identified",
+    "BAD_PICTURES_MUSHROOM_PRESENT": "Some mushrooms in this basket could not be processed due to bad picture quality",
+    "ALL_MUSHROOMS_ARE_BAD_PICTURES": "All mushrooms in this basket could not be processed due to bad picture quality"
+    
   },
   "request": {
     "id": "Request ID",

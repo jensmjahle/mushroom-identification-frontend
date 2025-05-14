@@ -163,6 +163,11 @@ export default {
           'not-processed-text': 'var(--color-mushroom-not-processed-text)',
           'not-processed-border': 'var(--color-mushroom-not-processed-border)',
           'not-processed-hover': 'var(--color-mushroom-not-processed-hover)',
+
+          'bad-pictures': 'var(--color-mushroom-bad-pictures)',
+          'bad-pictures-text': 'var(--color-mushroom-bad-pictures-text)',
+          'bad-pictures-border': 'var(--color-mushroom-bad-pictures-border)',
+          'bad-pictures-hover': 'var(--color-mushroom-bad-pictures-hover)',
         },
       },
       typography: () => ({

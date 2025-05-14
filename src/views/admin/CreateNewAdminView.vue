@@ -87,24 +87,20 @@ const handleCreate = async () => {
 errorMessage.value = "";
 successMessage.value = "";
 
-// Trim inputs
 const uname = username.value.trim().toLowerCase();
 const mail = email.value.trim().toLowerCase();
 
-// Basic field checks
 if (!uname || !password.value || !confirmPassword.value || !mail) {
 errorMessage.value = t("adminCreate.fillInAllFields");
 return;
 }
 
-// Email regex
 const emailRegex = /^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,6}$/;
 if (!emailRegex.test(mail)) {
 errorMessage.value = t("adminCreate.invalidEmail");
 return;
 }
 
-// Password requirements
 if (password.value.length < 8) {
 errorMessage.value = t("adminCreate.passwordTooShort");
 return;

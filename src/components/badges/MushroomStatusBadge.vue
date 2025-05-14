@@ -85,6 +85,7 @@ const statusOptions = [
   'TOXIC',
   'UNKNOWN',
   'UNIDENTIFIABLE',
+  'BAD_PICTURES',
   'NOT_PROCESSED',
 ];
 

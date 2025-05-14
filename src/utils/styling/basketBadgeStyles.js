@@ -3,7 +3,8 @@ import {
   HelpCircle,
   CheckCircle,
   Info,
-  Circle
+  Circle,
+  ImageOff
 } from 'lucide-vue-next'
 
 export function getBasketBadgeStyles(badge) {
@@ -69,6 +70,12 @@ export function getBasketBadgeStyles(badge) {
       text: 'text-mushroom-unidentifiable-text',
       border: 'border border-mushroom-unidentifiable-border',
       icon: HelpCircle
+    },
+    'bad_pictures_present': {
+      bg: 'bg-mushroom-bad-pictures',
+      text: 'text-mushroom-bad-pictures-text',
+      border: 'border border-mushroom-bad-pictures-border',
+      icon: ImageOff
     },
     'all_mushrooms_processed': {
       bg: 'bg-button3',

@@ -52,7 +52,7 @@
         <TooltipIcon tooltipKey="placeOnHold" :variant="'1'" :position="tooltipPosition" />
       </div>
     </div>
-    <hr class="my-4 border-border2" />
+    <hr class="my-4 border-border2"  v-if="isRequestPage"/>
     
     <div class="flex items-center gap-2">
       <BaseButton
@@ -63,10 +63,10 @@
       >
         {{ $t('sideMenu.closeRequest') }}
       </BaseButton>
-      <TooltipIcon tooltipKey="closeRequest" :variant="'1'" :position="tooltipPosition" />
+      <TooltipIcon   v-if="isRequestPage" tooltipKey="closeRequest" :variant="'1'" :position="tooltipPosition" />
     </div>
       
-    <hr class="my-4 border-border2" />
+    <hr class="my-4 border-border2"  />
 
     <div class="space-y-2">
       <StatusIndicator label="New" :count="newCount" status="NEW" />
