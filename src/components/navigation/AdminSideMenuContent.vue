@@ -52,6 +52,19 @@
         <TooltipIcon tooltipKey="placeOnHold" :variant="'1'" :position="tooltipPosition" />
       </div>
     </div>
+    <hr class="my-4 border-border2" />
+    
+    <div class="flex items-center gap-2">
+      <BaseButton
+          v-if="isRequestPage"
+          @click="navigate('admin-dashboard')"
+          block
+          variant="3"
+      >
+        {{ $t('sideMenu.closeRequest') }}
+      </BaseButton>
+      <TooltipIcon tooltipKey="closeRequest" :variant="'1'" :position="tooltipPosition" />
+    </div>
       
     <hr class="my-4 border-border2" />
 
