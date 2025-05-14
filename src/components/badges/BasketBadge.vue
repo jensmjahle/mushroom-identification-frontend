@@ -21,10 +21,6 @@ const props = defineProps({
 const { t } = useI18n()
 
 const style = computed(() => getBasketBadgeStyles(props.badge))
-onMounted(() => {
-  
-    console.error(`Invalid badge type: ${props.badge}`)
-})
 </script>
 
 <style scoped>
