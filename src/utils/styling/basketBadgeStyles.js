@@ -71,7 +71,13 @@ export function getBasketBadgeStyles(badge) {
       border: 'border border-mushroom-unidentifiable-border',
       icon: HelpCircle
     },
-    'bad_pictures_present': {
+    'bad_pictures_mushroom_present': {
+      bg: 'bg-mushroom-bad-pictures',
+      text: 'text-mushroom-bad-pictures-text',
+      border: 'border border-mushroom-bad-pictures-border',
+      icon: ImageOff
+    },
+    'all_mushrooms_are_bad_pictures': {
       bg: 'bg-mushroom-bad-pictures',
       text: 'text-mushroom-bad-pictures-text',
       border: 'border border-mushroom-bad-pictures-border',

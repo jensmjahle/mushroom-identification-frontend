@@ -6,7 +6,7 @@
 </template>
 
 <script setup>
-import { computed } from 'vue'
+import {computed, onMounted} from 'vue'
 import { useI18n } from 'vue-i18n'
 import {getBasketBadgeStyles} from "@/utils/styling/basketBadgeStyles.js";
 
@@ -21,6 +21,10 @@ const props = defineProps({
 const { t } = useI18n()
 
 const style = computed(() => getBasketBadgeStyles(props.badge))
+onMounted(() => {
+  
+    console.error(`Invalid badge type: ${props.badge}`)
+})
 </script>
 
 <style scoped>
