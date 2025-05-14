@@ -207,10 +207,12 @@
     "membership": "Bli medlem",
     "support": "Hjelp",
     "onlineAdmins": "Administratorer pålogget",
+    "closeRequest": "Lukk forespørsel",
     "tooltips": {
       "completeRequest": "Marker denne forespørselen som ferdig og vurdert. Chatten vil bli stengt.",
       "putBackIntoQueue": "Send forespørselen tilbake til hovedkøen for vurdering. Den vil ikke gå videre før noen plukker den opp.",
-      "placeOnHold": "Sett forespørselen midlertidig på vent uten å fullføre den. Den fjernes fra køen, men kan gjenopptas senere. Brukes vanligvis når mer informasjon trengs fra brukeren."
+      "placeOnHold": "Sett forespørselen midlertidig på vent uten å fullføre den. Den fjernes fra køen, men kan gjenopptas senere. Brukes vanligvis når mer informasjon trengs fra brukeren.",
+      "closeRequest": "Lukker forespørselen og legger den tilbake i køen hvis du eier den. Hvis du ikke eier den, vil den bli lukket uten å bli lagt tilbake i køen."
     }
   },
   "mushroom": {
