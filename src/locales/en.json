@@ -124,7 +124,9 @@
     "NON_PSILOCYBIN": "Non-Psilocybin",
     "TOXIC": "Toxic",
     "UNKNOWN": "Unknown",
-    "UNIDENTIFIABLE": "Unidentifiable"
+    "UNIDENTIFIABLE": "Unidentifiable",
+    "NOT_PROCESSED": "Not Processed",
+    "BAD_PICTURES": "Bad Pictures"
   },
   "submit": {
     "introTitle": "Before you begin",
@@ -227,7 +229,8 @@
       "toxic": "Toxic",
       "unknown": "Unknown",
       "unidentifiable": "Unidentifiable",
-      "not-processed": "Not Processed"
+      "not-processed": "Not Processed",
+      "bad-pictures": "Bad Pictures"
     }
   },
   "loginUser": {
@@ -380,7 +383,10 @@
     "ALL_MUSHROOMS_ARE_PSILOCYBIN": "All mushrooms in this basket are identified as psilocybin",
     "ALL_MUSHROOMS_ARE_NON_PSILOCYBIN": "All mushrooms in this basket are non-psilocybin",
     "ALL_MUSHROOMS_ARE_UNKNOWN": "All mushrooms in this basket are of unknown type",
-    "ALL_MUSHROOMS_ARE_UNIDENTIFIABLE": "None of the mushrooms in this basket could be identified"
+    "ALL_MUSHROOMS_ARE_UNIDENTIFIABLE": "None of the mushrooms in this basket could be identified",
+    "BAD_PICTURES_MUSHROOM_PRESENT": "Some mushrooms in this basket could not be processed due to bad picture quality",
+    "ALL_MUSHROOMS_ARE_BAD_PICTURES": "All mushrooms in this basket could not be processed due to bad picture quality"
+    
   },
   "request": {
     "id": "Request ID",
@@ -394,8 +400,33 @@
       "inProgress": "In Progress",
       "completed": "Completed"
     }
-  }
+  },
 
+  "adminCreate": {
+    "title": "Create New Admin",
+    "subtitle": "Superusers can create moderators or other superusers.",
+    "username": "Username",
+    "usernamePlaceholder": "Enter a username",
+    "password": "Password",
+    "passwordPlaceholder": "Enter a secure password",
+    "email": "Email",
+    "emailPlaceholder": "Enter the email address",
+    "role": "Role",
+    "submit": "Create Admin",
+    "fillInAllFields": "Please fill in all fields.",
+    "success": "Admin created successfully.",
+    "error": "Failed to create admin. Please try again.",
+    "confirmPassword": "Confirm Password",
+    "confirmPasswordPlaceholder": "Repeat the password",
+    "invalidEmail": "Email format is invalid.",
+    "passwordTooShort": "Password must be at least 8 characters.",
+    "passwordTooLong": "Password must be no more than 50 characters.",
+    "passwordNoSpaces": "Password cannot contain spaces.",
+    "passwordNoNumber": "Password must include at least one number.",
+    "passwordNoUppercase": "Password must include at least one uppercase letter.",
+    "passwordsDontMatch": "Passwords do not match."
+
+  }
 
 }
 

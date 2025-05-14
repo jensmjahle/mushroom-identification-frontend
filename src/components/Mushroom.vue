@@ -114,7 +114,8 @@ const borderClass = computed(() => {
     'toxic': 'border-mushroom-toxic',
     'unknown': 'border-mushroom-unknown',
     'unidentifiable': 'border-mushroom-unidentifiable',
-    'not-processed': 'border-mushroom-not-processed'
+    'not-processed': 'border-mushroom-not-processed',
+    'bad-pictures': 'border-mushroom-bad-pictures',
   }[status] || 'border-gray-300'
 })
 </script>

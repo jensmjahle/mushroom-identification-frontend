@@ -1,4 +1,4 @@
-import { X, Check, HelpCircle, AlertCircle, Circle } from 'lucide-vue-next'
+import { X, Check, HelpCircle, AlertCircle, Circle, ImageOff } from 'lucide-vue-next'
 
 export function getStatusKey(status) {
   return status?.toLowerCase().replace(/_/g, '-')
@@ -14,6 +14,7 @@ export function getStatusStyles(status, t = null) {
     unknown: 'bg-mushroom-unknown',
     unidentifiable: 'bg-mushroom-unidentifiable',
     'not-processed': 'bg-mushroom-not-processed',
+    'bad-pictures': 'bg-mushroom-bad-pictures', 
   }[key] || 'bg-gray-300'
 
   const text = {
@@ -23,6 +24,7 @@ export function getStatusStyles(status, t = null) {
     unknown: 'text-mushroom-unknown-text',
     unidentifiable: 'text-mushroom-unidentifiable-text',
     'not-processed': 'text-mushroom-not-processed-text',
+    'bad-pictures': 'text-mushroom-bad-pictures-text',
   }[key] || 'text-black'
 
   const border = {
@@ -32,6 +34,7 @@ export function getStatusStyles(status, t = null) {
     unknown: 'border-mushroom-unknown-border',
     unidentifiable: 'border-mushroom-unidentifiable-border',
     'not-processed': 'border-mushroom-not-processed-border',
+    'bad-pictures': 'border-mushroom-bad-pictures-border', 
   }[key] || 'border-gray-300'
 
   const cssVar = {
@@ -41,6 +44,7 @@ export function getStatusStyles(status, t = null) {
     UNKNOWN: '--color-mushroom-unknown',
     UNIDENTIFIABLE: '--color-mushroom-unidentifiable',
     NOT_PROCESSED: '--color-mushroom-not-processed',
+    BAD_PICTURES: '--color-mushroom-bad-pictures',
   }[status]
 
   const icon = {
@@ -50,6 +54,7 @@ export function getStatusStyles(status, t = null) {
     UNKNOWN: HelpCircle,
     UNIDENTIFIABLE: AlertCircle,
     NOT_PROCESSED: Circle,
+    BAD_PICTURES: ImageOff, 
   }[status] || Circle
 
   return {

@@ -84,6 +84,12 @@ export const getAdminMe = async () => {
   }
 }
 
+export async function createAdmin(adminData) {
+  const response = await api.post('/api/admin/superuser/create', adminData);
+  return response.data;
+}
+
+
 export async function deleteAdminAsSuperuser(username) {
   const response = await api.delete(`/api/admin/superuser/delete/${username}`)
   return response.data

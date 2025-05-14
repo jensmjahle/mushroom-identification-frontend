@@ -118,4 +118,8 @@
   --color-mushroom-not-processed-text: #f8fafc;
   --color-mushroom-not-processed-border: #3b82f6;
   --color-mushroom-not-processed-hover: #3b82f6;
+  --color-mushroom-bad-pictures: #f97316;
+  --color-mushroom-bad-pictures-text: #7c2d12;
+  --color-mushroom-bad-pictures-border: #ea580c;
+  --color-mushroom-bad-pictures-hover: #ea580c;
 }

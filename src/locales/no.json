@@ -119,7 +119,9 @@
     "NON_PSILOCYBIN": "Ikke Fleinsopp",
     "TOXIC": "Giftig",
     "UNKNOWN": "Ukjent",
-    "UNIDENTIFIABLE": "Uidentifiserbar"
+    "UNIDENTIFIABLE": "Uidentifiserbar",
+    "NOT_PROCESSED": "Ikke Behandlet",
+    "BAD_PICTURES": "Dårlige bilder"
   },
   "mushroomPopup": {
     "uploadSuccess": "Bilde lastet opp!",
@@ -226,7 +228,8 @@
       "toxic": "Giftig",
       "unknown": "Ukjent",
       "unidentifiable": "Uidentifiserbar",
-      "not-processed": "Ikke Behandlet"
+      "not-processed": "Ikke Behandlet",
+      "bad-pictures": "Dårlige bilder"
     }
   },
   "loginUser": {
@@ -361,7 +364,9 @@
     "ALL_MUSHROOMS_ARE_PSILOCYBIN": "Alle soppene i denne kurven er identifisert som psilocybin",
     "ALL_MUSHROOMS_ARE_NON_PSILOCYBIN": "Alle soppene i denne kurven er ikke-psilocybin",
     "ALL_MUSHROOMS_ARE_UNKNOWN": "Alle soppene i denne kurven er av ukjent type",
-    "ALL_MUSHROOMS_ARE_UNIDENTIFIABLE": "Ingen av soppene i denne kurven kunne identifiseres"
+    "ALL_MUSHROOMS_ARE_UNIDENTIFIABLE": "Ingen av soppene i denne kurven kunne identifiseres",
+    "BAD_PICTURES_MUSHROOM_PRESENT": "Noen av soppene i denne kurven kunne ikke behandles på grunn av dårlig bildekvalitet",
+    "ALL_MUSHROOMS_ARE_BAD_PICTURES": "Alle soppene i denne kurven kunne ikke behandles på grunn av dårlig bildekvalitet"
   },
   "request": {
     "id": "Forespørsels-ID",
@@ -375,7 +380,33 @@
       "inProgress": "Under behandling",
       "completed": "Fullført"
     }
+  },
+  "adminCreate": {
+    "title": "Opprett ny administrator",
+    "subtitle": "Superbrukere kan opprette moderatorer eller andre superbrukere.",
+    "username": "Brukernavn",
+    "usernamePlaceholder": "Skriv inn brukernavn",
+    "password": "Passord",
+    "passwordPlaceholder": "Skriv inn et sikkert passord",
+    "email": "E-post",
+    "emailPlaceholder": "Skriv inn e-postadressen",
+    "role": "Rolle",
+    "submit": "Opprett administrator",
+    "fillInAllFields": "Vennligst fyll ut alle feltene.",
+    "success": "Administrator opprettet.",
+    "error": "Kunne ikke opprette administrator. Prøv igjen.",
+    "confirmPassword": "Bekreft passord",
+    "confirmPasswordPlaceholder": "Gjenta passordet",
+    "invalidEmail": "E-postadressen er ikke gyldig.",
+    "passwordTooShort": "Passordet må være minst 8 tegn.",
+    "passwordTooLong": "Passordet kan være maks 50 tegn.",
+    "passwordNoSpaces": "Passordet kan ikke inneholde mellomrom.",
+    "passwordNoNumber": "Passordet må inneholde minst ett tall.",
+    "passwordNoUppercase": "Passordet må inneholde minst én stor bokstav.",
+    "passwordsDontMatch": "Passordene er ikke like."
+
   }
+
 }
 
 
