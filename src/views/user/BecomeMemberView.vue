@@ -1,7 +1,7 @@
 <template>
   <div class="w-full h-full flex items-center justify-center px-4 py-6">
     <div class="w-full max-w-3xl h-full flex flex-col text-center px-4 py-6 sm:py-10 sm:px-8 rounded-lg">
-      
+
       <h1 class="text-xl sm:text-2xl font-bold text-text1 mb-4">
         {{ t('membership.title') }}
       </h1>
@@ -11,17 +11,14 @@
           v-html="renderedContent">
       </div>
 
-      
       <div class="mt-auto pt-4">
-        <a
-          data-testid="become-member-button"
-          href="https://portal.smartorg.no/action/reg/7fd64a16"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="btn-1 px-4 py-2 text-sm font-bold rounded shadow hover:bg-button1-hover transition duration-300"
+        <button
+            data-testid="become-member-button"
+            @click="handleBecomeMemberClick"
+            class="btn-1 px-4 py-2 text-sm font-bold rounded shadow hover:bg-button1-hover transition duration-300"
         >
           {{ t('membership.cta') }}
-        </a>
+        </button>
       </div>
     </div>
   </div>
@@ -31,6 +28,7 @@
 import { ref, onMounted, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { marked } from 'marked'
+import { logBecomeMemberPress } from '@/services/rest/statsService.js'
 
 const { t, locale } = useI18n()
 const renderedContent = ref('')
@@ -44,6 +42,16 @@ async function loadMembershipContent() {
   } catch (err) {
     console.error('Feil ved lasting av medlemskapstekst:', err)
     renderedContent.value = '<p>Innhold ikke tilgjengelig.</p>'
+  }
+}
+
+async function handleBecomeMemberClick() {
+  try {
+    await logBecomeMemberPress()
+  } catch (error) {
+    console.warn('Logging failed, redirecting anyway')
+  } finally {
+    window.open('https://portal.smartorg.no/action/reg/7fd64a16', '_blank')
   }
 }
 

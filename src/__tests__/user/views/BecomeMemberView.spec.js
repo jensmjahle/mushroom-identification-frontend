@@ -1,10 +1,9 @@
-// src/__tests__/user/views/BecomeMemberView.spec.js
 import { mount, flushPromises } from '@vue/test-utils'
-import { describe, it, expect, vi } from 'vitest'
+import { describe, it, expect, vi, beforeEach } from 'vitest'
 import BecomeMemberView from '@/views/user/BecomeMemberView.vue'
 import { ref } from 'vue'
 
-// Mock vue-i18n globally
+// Mock vue-i18n
 vi.mock('vue-i18n', async () => {
   const actual = await vi.importActual('vue-i18n')
   return {
@@ -12,36 +11,45 @@ vi.mock('vue-i18n', async () => {
     useI18n: () => ({
       t: (key) => key,
       tm: (key) => key,
-      locale: ref('en'),
-    }),
+      locale: ref('en')
+    })
   }
 })
 
-// Stub fetch to return mock markdown content
-vi.stubGlobal('fetch', vi.fn(() =>
-  Promise.resolve({
-    text: () => Promise.resolve('# Membership Content\nThis is mock membership content.')
-  })
-))
+// Stub global fetch
+global.fetch = vi.fn(() =>
+    Promise.resolve({
+      text: () => Promise.resolve('# Membership Content\nThis is mock membership content.')
+    })
+)
+
+vi.mock('@/services/rest/statsService.js', () => {
+  return {
+    logBecomeMemberPress: vi.fn().mockResolvedValue('logged')
+  }
+})
 
 describe('BecomeMemberView.vue', () => {
-  it('renders membership content and verifies form submission button', async () => {
-    const wrapper = mount(BecomeMemberView)
+  let windowOpenSpy
 
+  beforeEach(() => {
+    windowOpenSpy = vi.spyOn(window, 'open').mockImplementation(() => {})
+  })
+
+  it('renders content and triggers backend logging + redirect on button click', async () => {
+    const wrapper = mount(BecomeMemberView)
     await flushPromises()
 
-    // Title is rendered
-    expect(wrapper.text()).toContain('membership.title')
-
-    // CTA button is rendered with expected text and href
-    const ctaButton = wrapper.find('a')
-    expect(ctaButton.exists()).toBe(true)
-    expect(ctaButton.text()).toContain('membership.cta')
-    expect(ctaButton.attributes('href')).toBe('https://portal.smartorg.no/action/reg/7fd64a16')
-
-    // Rendered markdown content is loaded
     const prose = wrapper.find('.prose')
     expect(prose.exists()).toBe(true)
     expect(prose.html()).toContain('This is mock membership content.')
+
+    const button = wrapper.get('[data-testid="become-member-button"]')
+    await button.trigger('click')
+
+    const { logBecomeMemberPress } = await import('@/services/rest/statsService.js')
+    expect(logBecomeMemberPress).toHaveBeenCalled()
+
+    expect(windowOpenSpy).toHaveBeenCalledWith('https://portal.smartorg.no/action/reg/7fd64a16', '_blank')
   })
 })

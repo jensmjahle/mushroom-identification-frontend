@@ -1,5 +1,6 @@
 import axios from '@/config/axiosConfig.js'
 import { getAuthHeaders } from '@/utils/authHeaders.js'
+import api from "@/config/axiosConfig.js";
 
 export const fetchMushroomCategoryStats = async () => {
   try {
@@ -62,3 +63,14 @@ export const exportStatisticsPdf = async (year, month) => {
     console.error('Failed to export statistics PDF:', error)
   }
 }
+
+
+export const logBecomeMemberPress = async () => {
+  try {
+    const response = await api.post('/api/stats/registration-button-press');
+    return response.data;
+  } catch (error) {
+    console.error('Error logging become member button press:', error);
+  }
+};
+
