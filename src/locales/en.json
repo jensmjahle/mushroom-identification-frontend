@@ -96,7 +96,10 @@
     "firstname": "First Name",
     "lastname": "Last Name",
     "email": "Email",
-    "role": "Role"
+    "role": "Role",
+    "confirmDeleteTitle": "Delete Admin",
+    "confirmDeleteMessage": "Are you sure you want to delete admin '{username}'?",
+    "deleted": "Admin '{username}' was deleted successfully."
   },
   "month": {
     "jan": "January",
@@ -290,6 +293,7 @@
   },
   "errors": {
     "loadAdmins": "There was an error loading the admins. Please try again later.",
+    "deleteAdmin": "Failed to delete admin.",
     "invalidEmail": "Please enter a valid email address.",
     "missingOldPassword": "Please enter your current password to change your password.",
     "passwordMismatch": "Passwords do not match.",
