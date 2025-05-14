@@ -95,7 +95,10 @@
     "firstname": "Fornavn",
     "lastname": "Etternavn",
     "email": "E-post",
-    "role": "Rolle"
+    "role": "Rolle",
+    "confirmDeleteTitle": "Slett administrator",
+    "confirmDeleteMessage": "Er du sikker på at du vil slette administratoren {username}?",
+    "deleted": "Administratoren {username} ble slettet."
   },
   "month": {
     "jan": "Januar",

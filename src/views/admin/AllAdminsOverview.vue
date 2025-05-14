@@ -14,26 +14,32 @@
       </template>
     </BaseList>
   </div>
+
+
 </template>
 
 
 
 
 <script setup>
-import { ref, onMounted, watch, computed } from 'vue'
-import { useI18n } from 'vue-i18n'
-import { useToast } from 'vue-toastification'
+import {computed, onMounted, ref, watch} from 'vue'
+import {useI18n} from 'vue-i18n'
+import {useToast} from 'vue-toastification'
 import BaseList from '@/components/base/BaseList.vue'
-import RoleBadge from '@/components/badges/RoleBadge.vue'
-import { getPaginatedAdmins } from '@/services/rest/adminService.js'
+import {deleteAdminAsSuperuser, getPaginatedAdmins} from '@/services/rest/adminService.js'
 import AdminRow from "@/components/base/rows/AdminRow.vue";
+import ConfirmDialog from "@/components/base/ConfirmDialog.vue";
+import {useConfirmDialog} from '@/composables/useConfirmDialog'
 
+const { showConfirm } = useConfirmDialog()
+const toast = useToast()
 const { t } = useI18n()
-
 const page = ref(0)
 const size = 20
 const totalPages = ref(1)
 const admins = ref([])
+
+
 
 const columns = computed(() => [
   { label: t('admin.username'), key: 'username', class: 'col-span-2' },
@@ -65,8 +71,28 @@ const prevPage = () => {
 }
 
 const handleClick = (admin) => {
-  // Handle admin click event
-  console.log('Admin clicked:', admin)
-  useToast().info(`Clicked on ${admin.username}`)
+  confirmDelete(admin)
 }
+
+const confirmDelete = async (admin) => {
+  const confirmed = await showConfirm({
+    title: t('admin.confirmDeleteTitle'),
+    message: t('admin.confirmDeleteMessage', { username: admin.username }),
+    confirmText: t('buttons.confirm'),
+    cancelText: t('buttons.cancel')
+  })
+
+  if (confirmed) {
+    try {
+      await deleteAdminAsSuperuser(admin.username)
+      toast.success(t('admin.deleted', { username: admin.username }))
+      await fetchAdmins()
+    } catch (error) {
+      console.error('Failed to delete admin:', error)
+      toast.error(t('errors.deleteAdmin'))
+    }
+  }
+}
+
+
 </script>

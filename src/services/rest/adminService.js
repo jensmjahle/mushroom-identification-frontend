@@ -1,5 +1,6 @@
 import axios from '@/config/axiosConfig.js'
 import { getAuthHeaders } from '@/utils/authHeaders.js'
+import api from "@/config/axiosConfig.js";
 
 /**
  * Fetches a paginated list of admins.
@@ -81,4 +82,9 @@ export const getAdminMe = async () => {
     console.error('Failed to load admin profile:', error)
     throw error
   }
+}
+
+export async function deleteAdminAsSuperuser(username) {
+  const response = await api.delete(`/api/admin/superuser/delete/${username}`)
+  return response.data
 }
