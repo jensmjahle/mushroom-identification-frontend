@@ -37,7 +37,7 @@
 
     <div class="user-sidebar-button" :class="{ active: $route.name === 'user-login' }">
       <router-link :to="{ name: 'user-login' }" class="user-sidebar-link">
-        <CheckCircle class="user-sidebar-icon" />
+        <TextCursorInput class="user-sidebar-icon" />
         <span class="user-sidebar-text text-sm whitespace-normal break-words">
           {{ t('sideMenu.login') }}
         </span>
@@ -72,10 +72,10 @@ import { parseJwt } from '@/utils/jwt'
 import {
   HomeIcon,
   SendIcon,
-  CheckCircle,
   Star,
   HelpingHand,
-  MessageCircle
+  MessageCircle,
+  TextCursorInput,
 } from 'lucide-vue-next'
 
 defineProps({ collapsed: Boolean })
