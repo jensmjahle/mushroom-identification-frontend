@@ -27,10 +27,10 @@
   --color-button1-hover: #22c55e;
   --color-button1-border: #15803d;
   
-  --color-button2: #c4b5fd;         /* Soft lavender (base) */
-  --color-button2-meta: #1a1a1a;    /* Keeps the same dark meta background */
-  --color-button2-hover: #a78bfa;   /* Slightly richer on hover */
-  --color-button2-border: #7c3aed;  /* Muted indigo/violet border */
+  --color-button2: #c4b5fd;         
+  --color-button2-meta: #1a1a1a;    
+  --color-button2-hover: #a78bfa;   
+  --color-button2-border: #7c3aed; 
 
   /* New Button 3 (Secondary Action) */
   --color-button3: #e5e7eb;
