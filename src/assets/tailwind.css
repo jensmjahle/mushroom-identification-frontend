@@ -48,7 +48,7 @@ html, body, #app {
   .user-button {@apply inline-block bg-button1 text-button1-meta text-lg font-semibold px-6 py-3 rounded-lg shadow-md hover:bg-button1-hover transition duration-300 ease-in-out;}
 
   .user-sidebar {
-    @apply hidden flex-col justify-center gap-8 mt-[10%] pr-8 transition-[width] duration-300 ease-in-out sm:flex;
+    @apply mt-[10vh] hidden flex-col justify-center gap-8 pr-8 transition-[width] duration-300 ease-in-out sm:flex;
     width: 20%;
     min-height: 600px;
     max-width: 260px;
