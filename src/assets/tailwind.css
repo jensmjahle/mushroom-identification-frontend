@@ -38,6 +38,7 @@ html, body, #app {
   .user-display-card {
     @apply bg-bg2 text-text2 rounded-xl relative flex-grow z-[10] flex flex-col items-center justify-center sm:min-h-[90vh] min-h-[100vh];
     transition: height 1.5s ease-in-out;
+    width: 80%;
   }
 
   .user-display-card.collapsed {
