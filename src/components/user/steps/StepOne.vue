@@ -7,11 +7,11 @@
       <div
         v-for="(step, index) in steps"
         :key="index"
-        class="flex items-center gap-4 p-2 rounded-md border border-border1 bg-bg1 cursor-pointer transition hover:bg-bg2 shadow-sm"
+        class="flex items-center gap-4 p-2 rounded-md border border-border2 bg-bg1 cursor-pointer transition hover:bg-button2-hover shadow-sm"
         @click="toggleHint(index + 1)"
         data-testid="step-item"
       >
-        <span class="w-8 h-8 text-sm rounded-md bg-button3 text-button3-meta flex items-center justify-center font-semibold shrink-0">
+        <span class="w-8 h-8 text-sm rounded-md bg-button2 text-button3-meta flex items-center justify-center font-semibold shrink-0">
           {{ index + 1 }}
         </span>
         <p class="text-sm font-medium text-text1">{{ step.title }}</p>
@@ -30,36 +30,55 @@
       </div>
     </div>
 
-    <!-- Tidligere sopper -->
-    <div class="flex w-full flex-row gap-6 items-start" data-testid="mushroom-list">
-      <div class="flex-1 border border-border1 rounded px-2 h-[120px] overflow-y-auto bg-bg2 w-full relative">
-        <div class="sticky top-0 left-0 bg-bg2 pb-2 font-semibold text-text1 text-left">{{ t('submit.mushroomListTitle') }}</div>
-        <template v-if="mushrooms.length">
+    <!-- Mushroom List -->
+    <div class="flex w-full flex-row gap-6 items-start border border-border1" data-testid="mushroom-list">
+      <div class="flex-1 border-2 border-border2 rounded-lg px-3 py-2 min-h-[140px] max-h-60 overflow-y-auto bg-bg2 w-full relative">
+      <div class="sticky top-0 left-0 z-10 bg-bg2 pb-2 h-[25px] font-semibold text-text1 text-left border-b mb-2 border-border2">
+        {{ t('submit.mushroomListTitle') }}
+      </div>
+      <template v-if="mushrooms.length">
+        <div
+        v-for="mushroom in mushrooms"
+        :key="mushroom.id"
+        class="relative border border-border2 rounded-lg p-3 bg-bg1 mb-3 flex flex-col gap-2 shadow-sm hover:shadow-md transition"
+        data-testid="mushroom-item"
+        >
+        <XIcon class="w-4 h-4 text-text1-faded hover:text-button1-meta absolute top-2 right-2 cursor-pointer" @click="removeMushroom(mushroom.id)" />
+        <div class="font-semibold text-text1 text-left mb-1">
+          {{ t('submit.mushroom') }} {{ mushroom.id }}
+        </div>
+        <div class="flex flex-wrap gap-2">
           <div
-            v-for="mushroom in mushrooms"
-            :key="mushroom.id"
-            class="relative border border-border1 rounded p-2 bg-bg1 mb-2"
-            data-testid="mushroom-item"
+          v-for="(img, i) in mushroom.images"
+          :key="i"
+          class="bg-bg2 border border-border1 rounded px-3 py-1 text-xs text-text1 flex items-center"
           >
-            <XIcon class="w-4 h-4 text-text1-faded hover:text-button1-meta absolute top-2 right-2 cursor-pointer" @click="removeMushroom(mushroom.id)" />
-            <div class="font-semibold text-text1 text-left mb-1">{{ t('submit.mushroom') }} {{ mushroom.id }}</div>
-            <div class="flex flex-wrap gap-2">
-              <div v-for="(img, i) in mushroom.images" :key="i" class="bg-bg1 border border-border1 rounded px-2 py-1 text-xs text-text1">
-                {{ img.name }}
-              </div>
-            </div>
+          <svg class="w-4 h-4 mr-1 text-button2-meta" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15.172 7l-6.586 6.586a2 2 0 002.828 2.828l6.586-6.586a2 2 0 00-2.828-2.828z"/>
+            <path stroke-linecap="round" stroke-linejoin="round" d="M16 5l3 3"/>
+          </svg>
+          {{ img.name }}
           </div>
-        </template>
-        <template v-else>
-          <p class="text-text1-faded text-sm text-center">{{ t('submit.noMushrooms') }}</p>
-        </template>
-        <p v-if="showErrorMushroom" class="text-sm text-danger mt-1">{{ t('submit.validation.errorMushroomMissing') }}</p>
+        </div>
+        </div>
+      </template>
+      <template v-else>
+        <p class="text-text1-faded text-sm text-center py-6">{{ t('submit.noMushrooms') }}</p>
+      </template>
+      <p v-if="showErrorMushroom" class="text-sm text-danger mt-1">{{ t('submit.validation.errorMushroomMissing') }}</p>
       </div>
 
-      <BaseButton variant="2" class="h-full w-[10%]" @click="showMushroomPopup = true" data-testid="add-mushroom-button">+</BaseButton>
+      <BaseButton
+        variant="2"
+        class="h-full w-[15%] flex items-center justify-center min-h-[140px]"
+        @click="showMushroomPopup = true"
+        data-testid="add-mushroom-button"
+      >
+        <Upload class="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14" />
+      </BaseButton>
     </div>
 
-    <!-- Kommentar -->
+    <!-- Comment Input -->
     <div class="w-full relative">
       <textarea
         data-testid="comment-input"
@@ -101,11 +120,25 @@
 
         <div class="text-center text-sm text-text1 mb-2">
           <div v-if="!mushroomInProgress[mushroomStep]">
-            <label for="popupFileInput" class="underline cursor-pointer text-button2-meta">{{ t('submit.upload') }}</label>
+            <button
+              type="button"
+              class="underline cursor-pointer text-button2-meta focus:outline-none focus:ring"
+              @click="popupInputRef?.click()"
+              data-testid="upload-button"
+            >
+              {{ t('submit.upload') }}
+            </button>
           </div>
           <div v-else class="space-y-2">
             <img :src="imagePreviews[mushroomStep]" alt="preview" class="max-h-40 mx-auto rounded border border-border1" />
-            <label for="popupFileInput" class="text-xs underline cursor-pointer text-button2-meta">{{ t('submit.changeUpload') }}</label>
+            <button
+              type="button"
+              class="text-xs underline cursor-pointer text-button2-meta focus:outline-none focus:ring"
+              @click="popupInputRef?.click()"
+              data-testid="change-upload-button"
+            >
+              {{ t('submit.changeUpload') }}
+            </button>
           </div>
           <input id="popupFileInput" type="file" class="hidden" @change="handlePopupUpload" ref="popupInputRef" />
         </div>
@@ -122,12 +155,12 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted, watch } from 'vue'
+import { ref, computed, onMounted, onUnmounted, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useToast } from 'vue-toastification'
 import { sendNewUserRequest } from '@/services/rest/userRequestService.js'
 import { processImageFiles } from '@/utils/imageUtils'
-import { XIcon } from 'lucide-vue-next'
+import { XIcon, Upload } from 'lucide-vue-next'
 import BaseButton from '@/components/base/BaseButton.vue'
 
 const { t, tm } = useI18n()
@@ -283,6 +316,12 @@ onMounted(() => {
   }
 })
 
+onUnmounted(() => {
+  comment.value = ''
+  mushrooms.value = []
+  localStorage.removeItem('submit_comment')
+  localStorage.removeItem('submit_mushrooms')
+})
 
 watch(comment, (val) => {
   localStorage.setItem('submit_comment', val)
