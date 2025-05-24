@@ -101,11 +101,25 @@
 
         <div class="text-center text-sm text-text1 mb-2">
           <div v-if="!mushroomInProgress[mushroomStep]">
-            <label for="popupFileInput" class="underline cursor-pointer text-button2-meta">{{ t('submit.upload') }}</label>
+            <button
+              type="button"
+              class="underline cursor-pointer text-button2-meta focus:outline-none focus:ring"
+              @click="popupInputRef?.click()"
+              data-testid="upload-button"
+            >
+              {{ t('submit.upload') }}
+            </button>
           </div>
           <div v-else class="space-y-2">
             <img :src="imagePreviews[mushroomStep]" alt="preview" class="max-h-40 mx-auto rounded border border-border1" />
-            <label for="popupFileInput" class="text-xs underline cursor-pointer text-button2-meta">{{ t('submit.changeUpload') }}</label>
+            <button
+              type="button"
+              class="text-xs underline cursor-pointer text-button2-meta focus:outline-none focus:ring"
+              @click="popupInputRef?.click()"
+              data-testid="change-upload-button"
+            >
+              {{ t('submit.changeUpload') }}
+            </button>
           </div>
           <input id="popupFileInput" type="file" class="hidden" @change="handlePopupUpload" ref="popupInputRef" />
         </div>
