@@ -1,8 +1,6 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest'
+import {beforeEach, describe, expect, it, vi} from 'vitest'
 import axios from '@/config/axiosConfig'
 import * as adminRequestService from '@/services/rest/adminRequestService'
-import { useToast } from 'vue-toastification'
-import { getAuthHeaders } from '@/utils/authHeaders'
 
 vi.mock('@/config/axiosConfig')
 vi.mock('@/utils/authHeaders', () => ({ getAuthHeaders: () => ({ Authorization: 'Bearer token' }) }))

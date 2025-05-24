@@ -33,7 +33,7 @@ describe('Become a Member Page', () => {
     cy.openSettingsAndChangeLanguage('no');  // Change language to Norwegian
     
     // Check if the content changes according to Norwegian translations
-    cy.get('h1').contains('Bli medlem – Støtt Soppidentifikasjon.no!').should('exist');  // Ensure title is visible in Norwegian
+    cy.get('h1').contains('Bli medlem – Støtt Foreningen for Tryggere Ruspolitikk!').should('exist');  // Ensure title is visible in Norwegian
   });
   it('should redirect to the correct URL when clicking the "Join Now" button', () => {
     // Check if the "Join Now" button redirects to the correct URL
