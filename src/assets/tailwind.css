@@ -15,90 +15,53 @@ html, body, #app {
   body {
     @apply bg-bg1 text-text1 font-area w-full;
   }
-  h1 {
-    @apply text-3xl font-bold text-text1;
-  }
-
-  h2 {
-    @apply text-2xl font-semibold text-text1;
-  }
-
-  h3 {
-    @apply text-xl font-medium text-text1;
-  }
-
-  h4 {
-    @apply text-lg font-medium text-text1;
-  }
-
-  h5 {
-    @apply text-base font-medium text-text1;
-  }
-
-  h6 {
-    @apply text-sm font-medium text-text1;
-  }
-
-  p {
-    @apply text-base font-normal text-text1;
-  }
+  h1 {@apply text-3xl font-bold text-text1;}
+  h2 {@apply text-2xl font-semibold text-text1;}
+  h3 {@apply text-xl font-medium text-text1;}
+  h4 {@apply text-lg font-medium text-text1;}
+  h5 {@apply text-base font-medium text-text1;}
+  h6 {@apply text-sm font-medium text-text1;}
+  p {@apply text-base font-normal text-text1;}
 }
 
 @layer components {
-  .basket {
-    @apply bg-bg1 rounded-bl-lg text-text1  ml-auto w-auto;
+  .basket {@apply bg-bg1 rounded-bl-lg text-text1  ml-auto w-auto;}
+
+  .user-layout {@apply flex items-center justify-center min-h-screen w-full bg-bg1;}
+
+  .user-layout-inner {
+    @apply flex justify-start w-[100vw] sm:mt-[50px] mt-[0px] sm:w-[85vw] sm:mr-[4vw] mr-[0vw];
+    align-items: flex-start;
+    min-height: 100vh;
   }
 
-  .user-layout {
-    @apply flex items-center justify-center min-h-screen w-full bg-bg1;
-  }
-
-  .user-layout-inner{
-    @apply flex justify-center w-[100vw] h-[100vh] sm:h-[85vh] sm:w-[80vw];
-  }
   .user-display-card {
-    @apply bg-bg2 text-text2 rounded-xl relative transition-all duration-300 ease-in-out flex-grow z-[10];
-    max-height: 1000px;
-    min-height: 600px;
+    @apply bg-bg2 text-text2 rounded-xl relative flex-grow z-[10] flex flex-col items-center justify-center sm:min-h-[90vh] min-h-[100vh];
+    transition: height 1.5s ease-in-out;
   }
-  
+
   .user-display-card.collapsed {
     width: 100%;
   }
 
-  .user-button {
-    @apply inline-block bg-button1 text-button1-meta text-lg font-semibold px-6 py-3 rounded-lg shadow-md hover:bg-button1-hover transition duration-300 ease-in-out;
-  }
+  .user-button {@apply inline-block bg-button1 text-button1-meta text-lg font-semibold px-6 py-3 rounded-lg shadow-md hover:bg-button1-hover transition duration-300 ease-in-out;}
 
   .user-sidebar {
-    @apply hidden flex-col justify-center gap-8 pr-8 transition-[width] duration-300 ease-in-out
-    sm:flex;
+    @apply hidden flex-col justify-center gap-8 mt-[10%] pr-8 transition-[width] duration-300 ease-in-out sm:flex;
     width: 20%;
     min-height: 600px;
     max-width: 260px;
   }
 
-  .collapse-button {
-    @apply absolute top-4 left-0 z-[1] pointer-events-auto border border-border2 border-l-0 bg-bg1 rounded-none rounded-tr-lg rounded-br-lg transition xl2:hidden;
-  }
-  
+  .collapse-button {@apply absolute top-4 left-0 z-[1] pointer-events-auto border border-border2 border-l-0 bg-bg1 rounded-none rounded-tr-lg rounded-br-lg transition xl2:hidden;}
 
-  .user-sidebar.collapsed {
-    width: 60px; 
-  }
+  .user-sidebar.collapsed {width: 60px;}
 
-  .user-sidebar-button{
-    @apply flex items-center bg-bg2 border border-border2 rounded-lg w-full transition-all duration-300 ease-in-out overflow-hidden min-w-[50px] min-h-[80px] max-w-[200px] h-[10%];
-  }
+  .user-sidebar-button {@apply flex items-center bg-bg2 border border-border2 rounded-lg w-full transition-all duration-300 ease-in-out overflow-hidden min-w-[50px] min-h-[80px] max-w-[200px] h-[10%];}
 
-  .user-sidebar-button.active {
-    @apply max-w-[1000px] w-[200%] bg-bg2;
-    width: 20vw;
-  }
+  .user-sidebar-button.active {@apply max-w-[1000px] w-[200%] bg-bg2; width: 20vw;}
 
-  .user-sidebar-link {
-    @apply flex w-full h-full pl-3.5 items-center transition-all duration-300 ease-in-out overflow-hidden min-w-[50px];
-  }
+  .user-sidebar-link {@apply flex w-full h-full pl-3.5 items-center transition-all duration-300 ease-in-out overflow-hidden min-w-[50px];}
 
   .user-sidebar-text {
     @apply block text-text2 whitespace-normal break-words transition-opacity duration-100 ease-in-out pl-[20px];
@@ -106,131 +69,69 @@ html, body, #app {
     width: 100px;
     transition-delay: 0.2s;
   }
-
   .user-sidebar.collapsed .user-sidebar-text {
     opacity: 0;
     transition-delay: 0s;
   }
 
-  .user-sidebar-icon {
-    @apply w-5 h-5 flex-shrink-0 flex-grow-0;
-  }
-
+  .user-sidebar-icon {@apply w-5 h-5 flex-shrink-0 flex-grow-0;}
   .user-sidebar-button:hover .user-sidebar-icon,
-  .user-sidebar-button:hover .user-sidebar-text {
-    @apply text-text2-faded;
-  }
+  .user-sidebar-button:hover .user-sidebar-text {@apply text-text2-faded;}
 
-  .main-view {
-    @apply w-full min-h-screen flex flex-col flex-grow m-2 text-text1 rounded-lg;
-  }
+  .main-view {@apply w-full min-h-screen flex flex-col flex-grow m-2 text-text1 rounded-lg;}
 
-  .main-user-view {
-    @apply flex flex-col-reverse md:flex-col items-center justify-center h-screen sm:h-auto bg-bg2 text-text2 rounded-lg mx-4 sm:mx-8 md:mx-20 lg:mx-40 gap-6;
-  }
+  .main-user-view {@apply flex flex-col-reverse md:flex-col items-center justify-center sm:h-auto bg-bg2 text-text2 rounded-lg mx-4 sm:mx-8 md:mx-20 lg:mx-40 gap-6 py-16;}
 
-  .mushroom {
-    @apply relative w-full aspect-square rounded-full border-4 shadow-lg overflow-hidden max-w-full sm:max-w-sm md:max-w-md lg:max-w-lg;
-  }
+  .mushroom {@apply relative w-full aspect-square rounded-full border-4 shadow-lg overflow-hidden max-w-full sm:max-w-sm md:max-w-md lg:max-w-lg;}
 
-  .main-component {
-    @apply p-2 bg-bg1 rounded-lg text-text1 max-w-md ml-auto w-auto h-full;
-  }
-  .main-admin-component {
-    @apply p-2 bg-bg2 rounded-lg text-text2 w-auto h-auto;
-  }
+  .main-component {@apply p-2 bg-bg1 rounded-lg text-text1 max-w-md ml-auto w-auto h-full;}
+  .main-admin-component {@apply p-2 bg-bg2 rounded-lg text-text2 w-auto h-auto;}
 
-  .nav-bar {
-    @apply bg-bg1 fixed top-0 left-0 w-full z-[50] text-text1 sm:gap-2 md:gap-20 lg:gap-40;
-  }
+  .nav-bar {@apply bg-bg1 fixed top-0 left-0 w-full z-[50] text-text1 sm:gap-2 md:gap-20 lg:gap-40;}
 
-  .become-member {
-    @apply absolute flex flex-col justify-center items-center h-full w-full text-center;
-  }
+  .become-member {@apply flex flex-col justify-center items-center w-full text-center; min-height: 100vh; padding-top: 3rem; padding-bottom: 3rem;}
 
   .support-page {
-    @apply flex flex-row items-center justify-center h-full pr-10 text-center overflow-x-hidden overflow-scroll;
+    @apply w-full text-center px-4 py-6 sm:py-10 sm:px-8;
+    transition: height 1.5s ease-in-out;
+    overflow-y: visible;
+    height: auto;
   }
 
-  .vertical-box {
-    @apply items-center flex flex-col flex-1 justify-center rounded-lg p-2;
-  }
-  .horizontal-box {
-    @apply items-center flex-1 flex flex-row justify-center rounded-lg p-2;
-  }
+  .vertical-box {@apply items-center flex flex-col flex-1 justify-center rounded-lg p-2;}
+  .horizontal-box {@apply items-center flex-1 flex flex-row justify-center rounded-lg p-2;}
 
-  .slide-right-enter-active, .slide-right-leave-active {
-    transition: all 0.3s ease;
-  }
-
+  .slide-right-enter-active, .slide-right-leave-active {transition: all 0.3s ease;}
   .slide-right-enter-from, .slide-right-leave-to {
     transform: translateX(100%);
     opacity: 0;
   }
-
   .slide-right-enter-to, .slide-right-leave-from {
     transform: translateX(0%);
     opacity: 1;
   }
 
-  /* Tilpasset scrollbar-stil */
-.custom-scrollbar::-webkit-scrollbar {
-  width: 6px;
+  .custom-scrollbar::-webkit-scrollbar {width: 6px;}
+  .custom-scrollbar::-webkit-scrollbar-track {background: transparent;}
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background-color: rgba(120, 120, 120, 0.4);
+    border-radius: 6px;
+  }
+  .custom-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(120, 120, 120, 0.4) transparent;
+  }
+
+  .btn {@apply font-semibold text-sm px-2 py-1 rounded transition duration-200 disabled:opacity-50;}
+  .btn-1 {@apply btn bg-button1 text-button1-meta border border-button1-border hover:bg-button1-hover;}
+  .btn-2 {@apply btn bg-button2 text-button2-meta border border-button2-border hover:bg-button2-hover;}
+  .btn-3 {@apply btn bg-button3 text-button3-meta border border-button3-border hover:bg-button3-hover;}
+  .btn-4 {@apply btn bg-button4 text-button4-meta border border-button4-border hover:bg-button4-hover;}
+
+  .btn-icon {@apply font-semibold p-1 rounded-full transition duration-200 hover:scale-105 disabled:opacity-50;}
+  .btn-icon-1 {@apply btn-icon btn-1;}
+  .btn-icon-2 {@apply btn-icon btn-2;}
+  .btn-icon-3 {@apply btn-icon btn-3;}
+  .btn-icon-4 {@apply btn-icon btn-4;}
+  .btn-icon-transparent-1 {@apply btn-icon border border-button-transparent-border bg-button-transparent text-button-transparent-meta hover:bg-button-transparent-hover hover:border-button-transparent-hover-border;}
 }
-.custom-scrollbar::-webkit-scrollbar-track {
-  background: transparent;
-}
-.custom-scrollbar::-webkit-scrollbar-thumb {
-  background-color: rgba(120, 120, 120, 0.4);
-  border-radius: 6px;
-}
-.custom-scrollbar {
-  scrollbar-width: thin;
-  scrollbar-color: rgba(120, 120, 120, 0.4) transparent;
-}
-
-
-  .btn {
-    @apply font-semibold text-sm px-2 py-1 rounded transition duration-200 disabled:opacity-50;
-  }
-
-  .btn-1 {
-    @apply btn bg-button1 text-button1-meta border border-button1-border hover:bg-button1-hover;
-  }
-
-  .btn-2 {
-    @apply btn bg-button2 text-button2-meta border border-button2-border hover:bg-button2-hover;
-  }
-
-  .btn-3 {
-    @apply btn bg-button3 text-button3-meta border border-button3-border hover:bg-button3-hover;
-  }
-
-  .btn-4 {
-    @apply btn bg-button4 text-button4-meta border border-button4-border hover:bg-button4-hover;
-  }
-
-  .btn-icon {
-    @apply font-semibold p-1 rounded-full transition duration-200 hover:scale-105 disabled:opacity-50;
-  }
-
-  .btn-icon-1 {
-    @apply btn-icon btn-1;
-  }
-
-  .btn-icon-2 {
-    @apply btn-icon btn-2;
-  }
-
-  .btn-icon-3 {
-    @apply btn-icon btn-3;
-  }
-
-  .btn-icon-4 {
-    @apply btn-icon btn-4;
-  }
-
-  .btn-icon-transparent-1 {
-    @apply btn-icon border border-button-transparent-border bg-button-transparent text-button-transparent-meta hover:bg-button-transparent-hover hover:border-button-transparent-hover-border;
-  }
-} 
