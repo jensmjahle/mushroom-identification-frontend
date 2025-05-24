@@ -9,6 +9,7 @@
         :key="index"
         class="flex items-center gap-4 p-2 rounded-md border border-border2 bg-bg1 cursor-pointer transition hover:bg-button2-hover shadow-sm"
         @click="toggleHint(index + 1)"
+        tabindex="0"
         data-testid="step-item"
       >
         <span class="w-8 h-8 text-sm rounded-md bg-button2 text-button3-meta flex items-center justify-center font-semibold shrink-0">
@@ -43,7 +44,7 @@
         class="relative border border-border2 rounded-lg p-3 bg-bg1 mb-3 flex flex-col gap-2 shadow-sm hover:shadow-md transition"
         data-testid="mushroom-item"
         >
-        <XIcon class="w-4 h-4 text-text1-faded hover:text-button1-meta absolute top-2 right-2 cursor-pointer" @click="removeMushroom(mushroom.id)" />
+        <XIcon class="w-4 h-4 text-text1-faded hover:text-button1-meta absolute top-2 right-2 cursor-pointer" tabindex="0" @click="removeMushroom(mushroom.id)" />
         <div class="font-semibold text-text1 text-left mb-1">
           {{ t('submit.mushroom') }} {{ mushroom.id }}
         </div>
