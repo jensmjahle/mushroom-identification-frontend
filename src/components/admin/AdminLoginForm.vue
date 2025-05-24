@@ -34,7 +34,7 @@
       {{ t("login.goToUserSite.question") }}
       <router-link
           to="/"
-          class="text-button1 hover:underline font-medium"
+          class="text-success-border hover:underline font-medium"
       >
         {{ t("login.goToUserSite.link") }}
       </router-link>
