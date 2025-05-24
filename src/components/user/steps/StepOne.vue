@@ -153,12 +153,37 @@
       </div>
     </div>
   </div>
+
+      <!-- Navigation warning modal -->
+    <div
+      v-if="navigationWarningVisible"
+      class="fixed inset-0 bg-black/50 flex items-center justify-center z-[100]"
+      data-testid="leave-warning"
+    >
+      <div class="bg-bg1 border border-border1 rounded-2xl p-6 w-[90%] max-w-md text-center shadow-xl">
+        <h3 class="text-xl font-semibold mb-4" data-testid="ready-question">
+          {{ t('submit.readyQuestion') }}
+        </h3>
+        <p class="text-text1-faded mb-6" data-testid="ready-detail">
+          {{ t('submit.readyDetail') }}
+        </p>
+        <div class="flex justify-center gap-4">
+          <BaseButton variant="2" @click="cancelNavigation" data-testid="cancel-leave">
+            {{ t('submit.cancel') }}
+          </BaseButton>
+          <BaseButton @click="confirmAndLeave" data-testid="confirm-leave">
+            {{ t('submit.proceedButton') }}
+          </BaseButton>
+        </div>
+      </div>
+  </div>
 </template>
 
 <script setup>
 import { ref, computed, onMounted, onUnmounted, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useToast } from 'vue-toastification'
+import { useRouter, onBeforeRouteLeave } from 'vue-router'
 import { sendNewUserRequest } from '@/services/rest/userRequestService.js'
 import { processImageFiles } from '@/utils/imageUtils'
 import { XIcon, Upload } from 'lucide-vue-next'
@@ -166,6 +191,7 @@ import BaseButton from '@/components/base/BaseButton.vue'
 
 const { t, tm } = useI18n()
 const toast = useToast()
+const router = useRouter()
 const emit = defineEmits(['next'])
 
 const hintStep = ref(null)
@@ -182,6 +208,9 @@ const popupInputRef = ref(null)
 const mushroomInProgress = ref({ 1: null, 2: null, 3: null })
 const imagePreviews = ref({ 1: null, 2: null, 3: null })
 
+const navigationWarningVisible = ref(false)
+const pendingNavigation = ref(null)
+
 const steps = computed(() => tm('submit.steps'))
 
 const stepDescriptions = computed(() => [
@@ -189,6 +218,27 @@ const stepDescriptions = computed(() => [
   t('submit.stepDescription.side'),
   t('submit.stepDescription.under')
 ])
+
+onBeforeRouteLeave((to, from, next) => {
+  if (!navigationWarningVisible.value && (comment.value || mushrooms.value.length)) {
+    navigationWarningVisible.value = true
+    pendingNavigation.value = next
+  } else {
+    next()
+  }
+})
+
+function confirmAndLeave() {
+  if (pendingNavigation.value) {
+    pendingNavigation.value()
+    pendingNavigation.value = null
+  }
+}
+
+function cancelNavigation() {
+  navigationWarningVisible.value = false
+  pendingNavigation.value = null
+}
 
 function toggleHint(step) {
   hintStep.value = hintStep.value === step ? null : step
