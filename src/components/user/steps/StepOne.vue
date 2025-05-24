@@ -30,7 +30,7 @@
       </div>
     </div>
 
-    <!-- Tidligere sopper -->
+    <!-- Mushroom List -->
     <div class="flex w-full flex-row gap-6 items-start border border-border1" data-testid="mushroom-list">
       <div class="flex-1 border-2 border-border2 rounded-lg px-3 py-2 min-h-[140px] max-h-60 overflow-y-auto bg-bg2 w-full relative">
       <div class="sticky top-0 left-0 z-10 bg-bg2 pb-2 h-[25px] font-semibold text-text1 text-left border-b mb-2 border-border2">
@@ -78,7 +78,7 @@
       </BaseButton>
     </div>
 
-    <!-- Kommentar -->
+    <!-- Comment Input -->
     <div class="w-full relative">
       <textarea
         data-testid="comment-input"
