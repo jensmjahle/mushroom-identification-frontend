@@ -56,7 +56,9 @@
         <p v-if="showErrorMushroom" class="text-sm text-danger mt-1">{{ t('submit.validation.errorMushroomMissing') }}</p>
       </div>
 
-      <BaseButton variant="2" class="h-full w-[10%]" @click="showMushroomPopup = true" data-testid="add-mushroom-button">+</BaseButton>
+      <BaseButton variant="2" class="h-full w-[15%] flex items-center justify-center" @click="showMushroomPopup = true" data-testid="add-mushroom-button">
+        <Upload class="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14" />
+      </BaseButton>
     </div>
 
     <!-- Kommentar -->
@@ -141,7 +143,7 @@ import { useI18n } from 'vue-i18n'
 import { useToast } from 'vue-toastification'
 import { sendNewUserRequest } from '@/services/rest/userRequestService.js'
 import { processImageFiles } from '@/utils/imageUtils'
-import { XIcon } from 'lucide-vue-next'
+import { XIcon, Upload } from 'lucide-vue-next'
 import BaseButton from '@/components/base/BaseButton.vue'
 
 const { t, tm } = useI18n()
