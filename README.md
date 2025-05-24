@@ -126,6 +126,13 @@ We use Vitest and Testing Library for unit and component tests.
 ### End-to-End Tests (Cypress)
 
 Cypress is used for end-to-end testing to ensure the application works across full user flows.
+>Note: The frontend must be running for Cypress tests to work.
+
+- Install Cypress:
+    ```bash
+    npm install cypress --save-dev
+    ```
+
 
 - Interactive Mode (opens the Cypress Test Runner GUI):
     ```bash
