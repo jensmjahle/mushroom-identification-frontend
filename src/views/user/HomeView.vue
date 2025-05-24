@@ -25,7 +25,7 @@
 
     <p class="text-text1 text-sm mt-6">
       {{ t('home.or') }}
-      <RouterLink to="/support" class="text-success-border hover:underline">
+      <RouterLink to="/support" class="text-button1-hover hover:underline">
         {{ t('home.getSupport') }}
       </RouterLink>
     </p>
