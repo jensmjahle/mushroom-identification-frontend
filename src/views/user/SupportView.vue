@@ -1,6 +1,6 @@
 <template>
-  <div class="w-full flex justify-center py-6">
-    <div class="w-[90%] max-w-4xl flex flex-col text-center py-6 sm:py-10 rounded-lg">
+  <div class="w-full flex justify-center px-4 py-6">
+    <div class="w-[90%] max-w-4xl flex flex-col text-center px-4 py-6 sm:py-10 sm:px-0 rounded-lg">
       <!-- Title -->
       <h1 class="text-xl sm:text-2xl font-bold text-text1 mb-4">
         {{ t('support.title') }}
