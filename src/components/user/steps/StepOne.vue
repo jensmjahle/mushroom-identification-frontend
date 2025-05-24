@@ -68,7 +68,12 @@
       <p v-if="showErrorMushroom" class="text-sm text-danger mt-1">{{ t('submit.validation.errorMushroomMissing') }}</p>
       </div>
 
-      <BaseButton variant="2" class="h-full w-[15%] flex items-center justify-center" @click="showMushroomPopup = true" data-testid="add-mushroom-button">
+      <BaseButton
+        variant="2"
+        class="h-full w-[15%] flex items-center justify-center min-h-[140px]"
+        @click="showMushroomPopup = true"
+        data-testid="add-mushroom-button"
+      >
         <Upload class="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14" />
       </BaseButton>
     </div>
