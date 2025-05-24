@@ -38,7 +38,7 @@
     <!-- Helper text -->
     <div class="mt-4 text-sm text-center text-text1 space-y-1">
       <p data-testid="no-code-question">{{ t('loginUser.noCodeQuestion') }}</p>
-      <router-link to="/" class="text-button1 hover:underline font-medium" data-testid="home-link">
+      <router-link to="/" class="text-success-border hover:underline font-medium" data-testid="home-link">
         {{ t('loginUser.homeLink') }}
       </router-link>
     </div>
