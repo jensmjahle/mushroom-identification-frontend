@@ -191,6 +191,7 @@ import BaseButton from '@/components/base/BaseButton.vue'
 
 const { t, tm } = useI18n()
 const toast = useToast()
+const router = useRouter()
 const emit = defineEmits(['next'])
 
 const hintStep = ref(null)
