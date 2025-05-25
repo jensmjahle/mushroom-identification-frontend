@@ -1,7 +1,7 @@
 <template>
   <div class="sm:hidden fixed top-4 right-[11px] z-50">
     <button ref="toggleRef" @click="menuOpen = !menuOpen" class="btn-btn1 flex justify-center items-center border border-border1 h-[40px] w-[39px] bg-bg1 rounded-md">
-      <Menu v-if="!menuOpen" />
+      <Menu v-if="menuOpen" />
       <X v-else />
     </button>
 
