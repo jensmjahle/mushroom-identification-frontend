@@ -36,7 +36,7 @@ describe('AdminLoginView.vue', () => {
     await router.push('/')
     await router.isReady()
 
-    // 🔥 This is what fixes the error
+    
     vi.stubGlobal('sessionStorage', {
       getItem: vi.fn().mockReturnValue(null),
       setItem: vi.fn(),
