@@ -28,7 +28,7 @@
       </div>
 
       <!-- Mushrooms -->
-      <div class="overflow-y-auto px-4 pb-4 space-y-6 pt-2">
+      <div class="overflow-y-auto h-full px-4 pb-4 space-y-6 pt-2">
         <Mushroom
             v-for="(mushroom, index) in mushroomStore.mushrooms"
             :key="mushroom.mushroomId"
