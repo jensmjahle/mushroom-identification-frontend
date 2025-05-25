@@ -292,6 +292,8 @@
     "user": "User"
   },
   "errors": {
+    "sendingUserRequest": "There was an error sending your request. Please try again.",
+    "fetchingUserRequest": "There was an error fetching the user request. Please try again.",
     "FileTooLarge": "The file is too large. Please upload a file smaller than 10 MB.",
     "loadAdmins": "There was an error loading the admins. Please try again later.",
     "deleteAdmin": "Failed to delete admin.",
