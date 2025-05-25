@@ -35,25 +35,25 @@ api.interceptors.response.use(
     switch (status) {
       case 401:
         if (type === 'INVALID_TOKEN') {
-          toast.error(message || t('errors.INVALID_TOKEN'))
+          toast.error(t('errors.INVALID_TOKEN') || message)
           sessionStorage.removeItem('jwt')
           router.push({ name: isAdmin ? 'admin-login' : 'home' })
         } else {
-          toast.error(message || t('errors.UNAUTHORIZED'))
+          toast.error(t('errors.UNAUTHORIZED') || message)
         }
         break
 
       case 403:
-        toast.warning(message || t('errors.FORBIDDEN'))
+        toast.warning(t('errors.FORBIDDEN') || message)
         break
 
       case 404:
-        toast.error(message || t('errors.NOT_FOUND'))
+        toast.error(t('errors.NOT_FOUND') || message)
         break
 
       default:
         if (status >= 500) {
-          toast.error(message || t('errors.INTERNAL_SERVER_ERROR'))
+          toast.error(t('errors.INTERNAL_SERVER_ERROR') || message)
           console.error('Server error:', error)
         } else if (message) {
             toast.error(message)
