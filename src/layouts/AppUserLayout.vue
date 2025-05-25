@@ -38,7 +38,7 @@ const refreshBasket = async () => {
 
 
 onMounted(() => {
-  const saved = localStorage.getItem('sidebarCollapsed')
+  const saved = sessionStorage.getItem('sidebarCollapsed')
   if (saved !== null) {
     collapsed.value = saved === 'true'
   } else {
@@ -64,7 +64,7 @@ onUnmounted(() => {
 })
 
 watch(collapsed, (val) => {
-  localStorage.setItem('sidebarCollapsed', val.toString())
+  sessionStorage.setItem('sidebarCollapsed', val.toString())
 })
 
 watch(() => socketStore.latestNotification, (notif) => {

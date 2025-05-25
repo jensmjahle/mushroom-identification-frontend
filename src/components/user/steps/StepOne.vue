@@ -325,8 +325,8 @@ async function handleSubmit() {
   try {
     const result = await sendNewUserRequest(comment.value, mushrooms.value)
     if (result) {
-      localStorage.removeItem('submit_comment')
-      localStorage.removeItem('submit_mushrooms')
+      sessionStorage.removeItem('submit_comment')
+      sessionStorage.removeItem('submit_mushrooms')
       emit('next', result)
     } else {
       toast.error('Noe gikk galt. Prøv igjen.')
@@ -340,10 +340,10 @@ async function handleSubmit() {
 
 onMounted(() => {
   if (process.env.NODE_ENV !== 'test') {
-    const savedComment = localStorage.getItem('submit_comment')
+    const savedComment = sessionStorage.getItem('submit_comment')
     if (savedComment) comment.value = savedComment
 
-    const savedMushrooms = localStorage.getItem('submit_mushrooms')
+    const savedMushrooms = sessionStorage.getItem('submit_mushrooms')
     if (savedMushrooms) {
       try {
         const parsed = JSON.parse(savedMushrooms)
@@ -370,12 +370,12 @@ onMounted(() => {
 onUnmounted(() => {
   comment.value = ''
   mushrooms.value = []
-  localStorage.removeItem('submit_comment')
-  localStorage.removeItem('submit_mushrooms')
+  sessionStorage.removeItem('submit_comment')
+  sessionStorage.removeItem('submit_mushrooms')
 })
 
 watch(comment, (val) => {
-  localStorage.setItem('submit_comment', val)
+  sessionStorage.setItem('submit_comment', val)
 })
 
 watch(mushrooms, async (val) => {
@@ -389,6 +389,6 @@ watch(mushrooms, async (val) => {
     )
     simplified.push({ id: m.id, images })
   }
-  localStorage.setItem('submit_mushrooms', JSON.stringify(simplified))
+  sessionStorage.setItem('submit_mushrooms', JSON.stringify(simplified))
 }, { deep: true })
 </script>

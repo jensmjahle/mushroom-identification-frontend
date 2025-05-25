@@ -37,11 +37,11 @@ const applyTheme = () => {
   }
 
   link.href = themePath
-  localStorage.setItem('theme', currentTheme.value)
+  sessionStorage.setItem('theme', currentTheme.value)
 }
 
 onMounted(() => {
-  currentTheme.value = localStorage.getItem('theme') || 'light'
+  currentTheme.value = sessionStorage.getItem('theme') || 'light'
   applyTheme()
 })
 </script>

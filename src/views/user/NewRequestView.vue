@@ -31,17 +31,17 @@ import StepThree from '@/components/user/steps/StepThree.vue'
 
 const LOCAL_STORAGE_KEY = 'currentStep'
 
-const storedStep = parseInt(localStorage.getItem(LOCAL_STORAGE_KEY))
+const storedStep = parseInt(sessionStorage.getItem(LOCAL_STORAGE_KEY))
 const currentStep = ref(!isNaN(storedStep) ? storedStep : 0)
 
 const userCode = ref(null)
 
 watch(currentStep, (newStep) => {
-  localStorage.setItem(LOCAL_STORAGE_KEY, newStep)
+  sessionStorage.setItem(LOCAL_STORAGE_KEY, newStep)
 })
 
 onUnmounted(() => {
-  localStorage.removeItem(LOCAL_STORAGE_KEY)
+  sessionStorage.removeItem(LOCAL_STORAGE_KEY)
 })
 
 function goToStepTwo(result) {

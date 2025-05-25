@@ -4,7 +4,7 @@ import no from '../locales/no.json'; // Import Norwegian translations
 
 export const useLanguageStore = defineStore('language', {
   state: () => ({
-    locale: localStorage.getItem('locale') || 'no',
+    locale: sessionStorage.getItem('locale') || 'no',
     messages: {
       en,
       no,
@@ -14,7 +14,7 @@ export const useLanguageStore = defineStore('language', {
     setLanguage(lang) {
       if (this.messages[lang]) {
         this.locale = lang;
-        localStorage.setItem('locale', lang);
+        sessionStorage.setItem('locale', lang);
       }
     },
   },
