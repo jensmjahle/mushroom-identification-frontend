@@ -337,7 +337,7 @@ async function handleSubmit() {
       emit('next', result)
     }
   } catch (err) {
-    // handled via backend error response
+    toast.error(t('errors.sendingUserRequest'))
   } finally {
     loading.value = false
   }
@@ -366,7 +366,7 @@ onMounted(() => {
           })
         }))
       } catch (e) {
-        console.warn('Feil ved rekonstruksjon av sopp:', e)
+        console.warn('Error when reconstructing the mushroom:', e)
       }
     }
   }

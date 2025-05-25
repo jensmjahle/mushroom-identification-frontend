@@ -1,5 +1,6 @@
 import axios from '@/config/axiosConfig.js'
 import { useToast } from 'vue-toastification'
+import { useI18n } from 'vue-i18n'
 
 /**
  * Send a new user request (no auth required).
@@ -10,6 +11,7 @@ import { useToast } from 'vue-toastification'
  */
 export const sendNewUserRequest = async (text, mushrooms) => {
   const formData = new FormData()
+  const { t } = usei18n()
 
   formData.append('text', text)
 
@@ -28,18 +30,19 @@ export const sendNewUserRequest = async (text, mushrooms) => {
     return response?.data || null
   } catch (error) {
     console.error('Error sending new user request:', error)
-    useToast().error('Error sending new user request')
+    toast.error(t('error.sendingUserRequest'))
     return null
   }
 }
 
 export const getUserRequest = async () => {
+  const { t } = usei18n()
   try {
     const response = await axios.get('/api/requests/me')
     return response?.data || null
   } catch (error) {
     console.error('Error fetching user request')
-    useToast().error('Error fetching user request')
+    useToast().error(t('error.fetchingUserRequest'))
     return null
   }
 }
