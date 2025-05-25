@@ -13,5 +13,5 @@ export const setTheme = (themeName, onLoadCallback) => {
   }
 
   document.head.appendChild(link)
-  localStorage.setItem('theme', themeName)
+  sessionStorage.setItem('theme', themeName)
 }
