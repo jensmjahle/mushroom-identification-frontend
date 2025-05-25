@@ -1,5 +1,5 @@
 <template>
-  <div class="relative flex justify-between w-[60%] items-center gap-4 mb-6">
+  <div class="absolute flex justify-between w-[60%] items-center gap-4">
     <!-- Bakgrunnslinje -->
     <div class="absolute top-1/2 w-full h-0.5 bg-overlay transform -translate-y-1/2 z-[-1]"></div>
 

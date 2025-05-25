@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col items-center justify-center w-[90%] h-full px-4 pt-20 pb-4 max-w-3xl mx-auto text-center gap-6 overflow-y-auto relative">
+  <div class="flex flex-col items-center justify-center w-[90%] h-full px-4 pt-5 pb-4 max-w-3xl mx-auto text-center gap-6 overflow-y-auto relative">
     <h2 class="text-2xl sm:text-3xl font-bold text-text1" data-testid="step-title">{{ t('submit.title') }}</h2>
 
     <!-- Tips -->
@@ -338,6 +338,7 @@ async function handleSubmit() {
     }
   } catch (err) {
     toast.error(t('errors.sendingUserRequest'))
+    console.error(err)
   } finally {
     loading.value = false
   }
