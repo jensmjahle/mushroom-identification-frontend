@@ -50,7 +50,13 @@ import {useRequestSocketStore} from "@/store/useRequestSocketStore.js";
 const route = useRoute();
 const userRequestId = route.params.userRequestId;
 const userRequest = ref(null);
-const isBasketOpen = ref(false);
+const isBasketOpen = ref(
+  sessionStorage.getItem('isBasketOpen') !== 'false' // defaults to true
+)
+watch(isBasketOpen, (newVal) => {
+  sessionStorage.setItem('isBasketOpen', newVal.toString())
+})
+
 const isMobile = ref(false);
 const socketStore = useRequestSocketStore();
 

@@ -53,7 +53,14 @@ import {getUserRequestMushrooms} from "@/services/rest/mushroomService.js";
 const props = defineProps({ userRequestId: String });
 const emit = defineEmits(['basket-toggle']);
 
-const isOpen = ref(false);
+const isOpen = ref(
+  sessionStorage.getItem('isBasketPanelOpen') !== 'false'
+)
+
+watch(isOpen, (newVal) => {
+  sessionStorage.setItem('isBasketPanelOpen', newVal.toString())
+})
+
 const basketRef = ref(null);
 
 const mushroomStore = useMushroomStore();
