@@ -2,7 +2,7 @@
   <nav :class="['user-sidebar', collapsed ? 'collapsed' : '']">
 
     <router-link
-      v-if="chatRequestId"
+      v-if="chatRequestId && parseJwt((sessionStorage.getItem('jwt') || localStorage.getItem('jwt')))?.role !== 'admin'"
       :to="{ name: 'user-request', params: { userRequestId: chatRequestId } }"
       class="user-sidebar-button"
       :class="{ active: $route.name === 'user-request' }"
