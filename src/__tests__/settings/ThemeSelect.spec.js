@@ -23,7 +23,7 @@ beforeEach(() => {
     removeEventListener: vi.fn()
   })))
 
-  vi.stubGlobal('localStorage', {
+  vi.stubGlobal('sessionStorage', {
     getItem: vi.fn(() => 'dark'),
     setItem: vi.fn()
   })
@@ -70,6 +70,6 @@ describe('ThemeSelect.vue', () => {
 
     const link = document.getElementById('theme-style')
     expect(link.href).toContain('/themes/light.css')
-    expect(localStorage.setItem).toHaveBeenCalledWith('theme', 'light')
+    expect(sessionStorage.setItem).toHaveBeenCalledWith('theme', 'light')
   })
 })

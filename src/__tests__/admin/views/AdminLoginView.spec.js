@@ -32,14 +32,20 @@ describe('AdminLoginView.vue', () => {
         { path: '/admin/dashboard', name: 'admin-dashboard', component: { template: '<div>Dashboard</div>' } }
       ]
     })
+
     await router.push('/')
     await router.isReady()
 
+    // 🔥 This is what fixes the error
     vi.stubGlobal('sessionStorage', {
-      setItem: vi.fn()
+      getItem: vi.fn().mockReturnValue(null),
+      setItem: vi.fn(),
+      removeItem: vi.fn()
     })
+
     vi.spyOn(console, 'error').mockImplementation(() => {}) // suppress error log
   })
+
 
   afterEach(() => {
     vi.unstubAllGlobals()

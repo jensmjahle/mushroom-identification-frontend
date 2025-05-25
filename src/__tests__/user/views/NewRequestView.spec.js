@@ -37,9 +37,9 @@ describe('NewRequestView.vue', () => {
   let router
 
   beforeEach(async () => {
-    localStorage.removeItem('currentStep')
-    localStorage.removeItem('submit_comment')
-    localStorage.removeItem('submit_mushrooms')
+    sessionStorage.removeItem('currentStep')
+    sessionStorage.removeItem('submit_comment')
+    sessionStorage.removeItem('submit_mushrooms')
 
     router = createRouter({
       history: createWebHistory(),
