@@ -9,6 +9,7 @@ import axios from '@/config/axiosConfig.js'
  */
 export const sendNewUserRequest = async (text, mushrooms) => {
   const formData = new FormData()
+  const { t } = usei18n()
 
   formData.append('text', text)
 
@@ -32,6 +33,7 @@ export const sendNewUserRequest = async (text, mushrooms) => {
 }
 
 export const getUserRequest = async () => {
+  const { t } = usei18n()
   try {
     const response = await axios.get('/api/requests/me')
     return response?.data || null
