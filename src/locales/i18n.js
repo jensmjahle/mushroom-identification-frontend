@@ -1,12 +1,12 @@
 import { createI18n } from 'vue-i18n'
 
 // Dynamically load all JSON files in the current folder
-const languageFiles = import.meta.glob('./*.json', { eager: true })
+const languageFiles = import.meta.glob('./languages/*.json', { eager: true })
 
 const messages = {}
 
 for (const path in languageFiles) {
-  const matched = path.match(/\.\/([a-z]{2})\.json$/)
+  const matched = path.match(/languages\/([a-z]{2})\.json$/)
   if (matched) {
     const locale = matched[1]
     messages[locale] = languageFiles[path].default
