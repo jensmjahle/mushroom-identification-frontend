@@ -21,8 +21,35 @@
           :placeholder="t('login.passwordPlaceholder')"
       />
 
-      <BaseButton block type="submit">
-        {{ t("login.submit") }}
+      <BaseButton
+        class="w-full max-w-xs flex items-center justify-center gap-2 mx-auto"
+        type="submit"
+        :disabled="loading"
+        :loading="loading"
+      >
+        <template #loading>
+          <svg
+            class="animate-spin h-5 w-5 text-text1"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+          >
+            <circle
+              class="opacity-25"
+              cx="12"
+              cy="12"
+              r="10"
+              stroke="currentColor"
+              stroke-width="4"
+            />
+            <path
+              class="opacity-75"
+              fill="currentColor"
+              d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
+            />
+          </svg>
+        </template>
+        <span>{{ t("login.submit") }}</span>
       </BaseButton>
 
       <p v-if="errorMessage" class="text-danger text-sm text-center">
@@ -42,7 +69,6 @@
   </div>
 </template>
 
-
 <script setup>
 import { ref } from "vue";
 import { useI18n } from "vue-i18n";
@@ -56,6 +82,7 @@ const props = defineProps(["onLogin"]);
 const username = ref("");
 const password = ref("");
 const errorMessage = ref("");
+const loading = ref(false);
 
 const handleLogin = async () => {
   if (!username.value || !password.value) {
@@ -63,10 +90,15 @@ const handleLogin = async () => {
     return;
   }
 
+  loading.value = true;
+  errorMessage.value = "";
+
   try {
     await props.onLogin(username.value, password.value);
   } catch (error) {
     errorMessage.value = t("login.error");
+  } finally {
+    loading.value = false;
   }
 };
 </script>
