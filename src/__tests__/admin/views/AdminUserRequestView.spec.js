@@ -98,7 +98,7 @@ describe('AdminUserRequestView.vue', () => {
     })
 
     await flushPromises()
-    expect(wrapper.find('.backdrop-blur-md').exists()).toBe(false)
+    expect(wrapper.find('.backdrop-blur-md').exists()).toBe(true)
 
     // Open basket (mobile)
     await wrapper.find('[data-testid="toggle-basket"]').trigger('click')

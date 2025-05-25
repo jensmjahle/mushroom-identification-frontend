@@ -29,7 +29,7 @@ const i18n = createI18n({
 describe('LanguageSelect.vue', () => {
   beforeEach(() => {
     setActivePinia(createPinia())
-    localStorage.clear()
+    sessionStorage.clear()
   })
 
   it('renders correctly with real store and i18n', () => {
@@ -46,7 +46,7 @@ describe('LanguageSelect.vue', () => {
     expect(options[1].text()).toBe('Norwegian')
   })
 
-  it('changes language and updates localStorage on selection', async () => {
+  it('changes language and updates sessionStorage on selection', async () => {
     const wrapper = mount(LanguageSelect, {
       global: {
         plugins: [i18n]
@@ -57,6 +57,6 @@ describe('LanguageSelect.vue', () => {
     await select.setValue('no')
 
     expect(i18n.global.locale.value).toBe('no')
-    expect(localStorage.getItem('locale')).toBe('no')
+    expect(sessionStorage.getItem('locale')).toBe('no')
   })
 })

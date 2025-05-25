@@ -19,17 +19,26 @@ vi.mock('@/components/Mushroom.vue', () => ({
 }))
 
 describe('MushroomBasket.vue', () => {
-  let clickHandler
-
   beforeEach(() => {
-    clickHandler = vi.fn()
-    Object.defineProperty(window, 'innerWidth', { writable: true, configurable: true, value: 500 }) // simulate mobile
+    Object.defineProperty(window, 'innerWidth', {
+      writable: true,
+      configurable: true,
+      value: 500 // simulate mobile
+    })
+
+    // sessionStorage mocks
+    vi.stubGlobal('sessionStorage', {
+      getItem: vi.fn(() => 'true'),
+      setItem: vi.fn()
+    })
+
     vi.spyOn(document, 'addEventListener')
     vi.spyOn(document, 'removeEventListener')
   })
 
   afterEach(() => {
     vi.clearAllMocks()
+    vi.unstubAllGlobals()
   })
 
   it('loads mushrooms on mount and renders Mushroom components', async () => {
@@ -70,13 +79,11 @@ describe('MushroomBasket.vue', () => {
     await flushPromises()
 
     const toggleButton = wrapper.find('button')
-    await toggleButton.trigger('click')
+    await toggleButton.trigger('click') // close
+    expect(wrapper.emitted('basket-toggle')[0]).toEqual([false])
 
-    expect(wrapper.emitted('basket-toggle')).toBeTruthy()
-    expect(wrapper.emitted('basket-toggle')[0]).toEqual([true])
-
-    await toggleButton.trigger('click')
-    expect(wrapper.emitted('basket-toggle')[1]).toEqual([false])
+    await toggleButton.trigger('click') // open again
+    expect(wrapper.emitted('basket-toggle')[1]).toEqual([true])
   })
 
   it('closes basket on outside click when open and mobile', async () => {
@@ -94,17 +101,14 @@ describe('MushroomBasket.vue', () => {
 
     await flushPromises()
 
-    // Open basket
-    await wrapper.find('button').trigger('click')
-    expect(wrapper.emitted('basket-toggle')[0]).toEqual([true])
+    // basket already open by default due to sessionStorage mock
 
-    // Simulate outside click
     const clickEvent = new MouseEvent('mousedown', { bubbles: true })
     document.dispatchEvent(clickEvent)
     await flushPromises()
 
     // Should emit closed
-    expect(wrapper.emitted('basket-toggle')[1]).toEqual([false])
+    expect(wrapper.emitted('basket-toggle')[0]).toEqual([false])
   })
 
   it('does not close basket on outside click if desktop width', async () => {
@@ -124,12 +128,11 @@ describe('MushroomBasket.vue', () => {
 
     await flushPromises()
 
-    await wrapper.find('button').trigger('click') // open
     const clickEvent = new MouseEvent('mousedown', { bubbles: true })
     document.dispatchEvent(clickEvent)
     await flushPromises()
 
-    // Should not emit another toggle (remains open)
-    expect(wrapper.emitted('basket-toggle').length).toBe(1)
+    // Should not emit toggle (still open)
+    expect(wrapper.emitted('basket-toggle')).toBeFalsy()
   })
 })
