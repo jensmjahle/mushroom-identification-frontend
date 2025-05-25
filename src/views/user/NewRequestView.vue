@@ -1,13 +1,12 @@
 <template>
-  <div class="flex flex-col items-center justify-center h-full w-full relative">
-    <div
-      v-if="currentStep !== 0"
-      class="absolute top-6 w-full flex justify-center"
-    >
-      <StepIndicator :step="currentStep" />
-    </div>
-
-    <div class="flex items-center justify-center w-full h-full">
+  <div
+    v-if="currentStep !== 0"
+    class="absolute top-6 flex flex-col items-center justify-center w-full h-auto">
+  >
+    <StepIndicator :step="currentStep" />
+  </div>
+  <div class="flex items-center justify-center h-full w-full relative">
+    <div class="relative mt-10 flex items-center justify-center w-full h-full">
       <StepZero v-if="currentStep === 0" @next="handleNextStep" />
       <StepOne v-if="currentStep === 1" @next="goToStepTwo" /> 
       <StepTwo
