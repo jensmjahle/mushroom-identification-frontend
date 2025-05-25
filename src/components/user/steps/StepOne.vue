@@ -191,7 +191,6 @@ import BaseButton from '@/components/base/BaseButton.vue'
 
 const { t, tm } = useI18n()
 const toast = useToast()
-const router = useRouter()
 const emit = defineEmits(['next'])
 
 const hintStep = ref(null)
@@ -271,6 +270,14 @@ function fileToBase64(file) {
 async function handlePopupUpload(event) {
   const file = event.target.files?.[0]
   if (!file) return
+
+  // Check file size before anything else
+  if (file.size > 10 * 1024 * 1024) {
+    toast.error(t('errors.FileTooLarge'))
+    event.target.value = null
+    return
+  }
+
   const dataURL = await fileToBase64(file)
   file.dataURL = dataURL
   mushroomInProgress.value[mushroomStep.value] = file
@@ -286,7 +293,7 @@ async function nextStep() {
       .filter(([_, file]) => file)
       .map(([step, file]) => ({ file, name: `angle_${getStepName(Number(step))}.jpg` }))
 
-    const { processedFiles } = await processImageFiles(
+    const { processedFiles, error } = await processImageFiles(
       imagesRaw.map(i => i.file),
       mushrooms.value.flatMap(m => m.images),
       imagesRaw.map(i => i.name)
@@ -328,11 +335,9 @@ async function handleSubmit() {
       sessionStorage.removeItem('submit_comment')
       sessionStorage.removeItem('submit_mushrooms')
       emit('next', result)
-    } else {
-      toast.error('Noe gikk galt. Prøv igjen.')
     }
   } catch (err) {
-    toast.error('Innsending feilet.')
+    // handled via backend error response
   } finally {
     loading.value = false
   }
@@ -379,6 +384,7 @@ watch(comment, (val) => {
 })
 
 watch(mushrooms, async (val) => {
+  if (val.length > 0) showErrorMushroom.value = false
   const simplified = []
   for (const m of val) {
     const images = await Promise.all(
