@@ -11,12 +11,12 @@ export function setTheme(value) {
   }
 
   link.href = themePath
-  localStorage.setItem('theme', value)
+  sessionStorage.setItem('theme', value)
   window.dispatchEvent(new Event('theme-changed'))
 }
 
 export function detectInitialTheme() {
-  const stored = localStorage.getItem('theme');
+  const stored = sessionStorage.getItem('theme');
   if (stored) return stored;
 
   // Only call matchMedia if it exists
@@ -28,4 +28,3 @@ export function detectInitialTheme() {
 
   return 'light';
 }
-

@@ -1,5 +1,4 @@
 import axios from '@/config/axiosConfig.js'
-import { useToast } from 'vue-toastification'
 
 /**
  * Send a new user request (no auth required).
@@ -28,7 +27,6 @@ export const sendNewUserRequest = async (text, mushrooms) => {
     return response?.data || null
   } catch (error) {
     console.error('Error sending new user request:', error)
-    useToast().error('Error sending new user request')
     return null
   }
 }
@@ -39,7 +37,6 @@ export const getUserRequest = async () => {
     return response?.data || null
   } catch (error) {
     console.error('Error fetching user request')
-    useToast().error('Error fetching user request')
     return null
   }
 }

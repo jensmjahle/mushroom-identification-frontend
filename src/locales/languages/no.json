@@ -150,7 +150,7 @@
     "next": "Neste",
     "finish": "Fullfør",
     "thankYou": "Takk!",
-    "thankYouHint": "Du får svar så snart en ekspert har sett på bildene dine.",
+    "thankYouHint": "Du får svar så snart en ekspert har sett på bildene dine. Du kan også sjekke med en gang ved å gå til «Se Svar» i sidemenyen og skrive inn referansekoden din.",
     "toFront": "Gå til forsiden",
     "mushroom": "Sopp",
     "noMushrooms": "Ingen sopper lagt til ennå.",
@@ -300,6 +300,9 @@
     "cancel": "Avbryt"
   },
   "errors": {
+    "sendingUserRequest": "Klarte ikke å sende forespørselen. Vennligst prøv igjen.",
+    "fetchingUserRequest": "Klarte ikke å hente forespørselen din. Vennligst prøv igjen.",
+    "FileTooLarge": "Filen er for stor. Vennligst last opp en fil som er mindre enn 10 MB.",
     "exportFailed": "Kunne ikke eksportere. Prøv igjen.",
     "loadAdmins": "Det oppsto en feil ved innlasting av administratorer. Prøv igjen senere.",
     "invalidEmail": "Vennligst oppgi en gyldig e-postadresse.",

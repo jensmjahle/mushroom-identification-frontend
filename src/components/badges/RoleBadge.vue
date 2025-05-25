@@ -1,7 +1,7 @@
 <template>
   <div class="role-badge" :class="roleClass">
     <component :is="icon" class="w-4 h-4" />
-    <span class="capitalize">{{ t(`roles.${role.toLowerCase()}`) }}</span>
+    <span class="capitalize">{{ t(`roles.${role?.toLowerCase?.() || 'user'}`) }}</span>
   </div>
 </template>
 

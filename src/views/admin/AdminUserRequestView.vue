@@ -49,7 +49,13 @@ import {useI18n} from "vue-i18n";
 const route = useRoute();
 const userRequestId = route.params.userRequestId;
 const userRequest = ref(null);
-const isBasketOpen = ref(false); 
+const isBasketOpen = ref(
+  sessionStorage.getItem('isBasketOpen') !== 'false'
+)
+
+watch(isBasketOpen, (newVal) => {
+  sessionStorage.setItem('isBasketOpen', newVal.toString())
+})
 const isMobile = ref(false);
 const mushroomStore = useMushroomStore()
 const token = sessionStorage.getItem('jwt')

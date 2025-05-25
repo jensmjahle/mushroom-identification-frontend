@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col items-center justify-center w-[90%] h-full px-4 pt-20 pb-4 max-w-3xl mx-auto text-center gap-6 overflow-y-auto relative">
+  <div class="flex flex-col items-center justify-center w-[90%] h-full px-4 pt-5 pb-4 max-w-3xl mx-auto text-center gap-6 overflow-y-auto relative">
     <h2 class="text-2xl sm:text-3xl font-bold text-text1" data-testid="step-title">{{ t('submit.title') }}</h2>
 
     <!-- Tips -->
@@ -9,6 +9,7 @@
         :key="index"
         class="flex items-center gap-4 p-2 rounded-md border border-border2 bg-bg1 cursor-pointer transition hover:bg-button2-hover shadow-sm"
         @click="toggleHint(index + 1)"
+        tabindex="0"
         data-testid="step-item"
       >
         <span class="w-8 h-8 text-sm rounded-md bg-button2 text-button3-meta flex items-center justify-center font-semibold shrink-0">
@@ -43,7 +44,7 @@
         class="relative border border-border2 rounded-lg p-3 bg-bg1 mb-3 flex flex-col gap-2 shadow-sm hover:shadow-md transition"
         data-testid="mushroom-item"
         >
-        <XIcon class="w-4 h-4 text-text1-faded hover:text-button1-meta absolute top-2 right-2 cursor-pointer" @click="removeMushroom(mushroom.id)" />
+        <XIcon class="w-4 h-4 text-text1-faded hover:text-button1-meta absolute top-2 right-2 cursor-pointer" tabindex="0" @click="removeMushroom(mushroom.id)" />
         <div class="font-semibold text-text1 text-left mb-1">
           {{ t('submit.mushroom') }} {{ mushroom.id }}
         </div>
@@ -152,12 +153,37 @@
       </div>
     </div>
   </div>
+
+      <!-- Navigation warning modal -->
+    <div
+      v-if="navigationWarningVisible"
+      class="fixed inset-0 bg-black/50 flex items-center justify-center z-[100]"
+      data-testid="leave-warning"
+    >
+      <div class="bg-bg1 border border-border1 rounded-2xl p-6 w-[90%] max-w-md text-center shadow-xl">
+        <h3 class="text-xl font-semibold mb-4" data-testid="ready-question">
+          {{ t('submit.readyQuestion') }}
+        </h3>
+        <p class="text-text1-faded mb-6" data-testid="ready-detail">
+          {{ t('submit.readyDetail') }}
+        </p>
+        <div class="flex justify-center gap-4">
+          <BaseButton variant="2" @click="cancelNavigation" data-testid="cancel-leave">
+            {{ t('submit.cancel') }}
+          </BaseButton>
+          <BaseButton @click="confirmAndLeave" data-testid="confirm-leave">
+            {{ t('submit.proceedButton') }}
+          </BaseButton>
+        </div>
+      </div>
+  </div>
 </template>
 
 <script setup>
 import { ref, computed, onMounted, onUnmounted, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useToast } from 'vue-toastification'
+import { useRouter, onBeforeRouteLeave } from 'vue-router'
 import { sendNewUserRequest } from '@/services/rest/userRequestService.js'
 import { processImageFiles } from '@/utils/imageUtils'
 import { XIcon, Upload } from 'lucide-vue-next'
@@ -181,6 +207,9 @@ const popupInputRef = ref(null)
 const mushroomInProgress = ref({ 1: null, 2: null, 3: null })
 const imagePreviews = ref({ 1: null, 2: null, 3: null })
 
+const navigationWarningVisible = ref(false)
+const pendingNavigation = ref(null)
+
 const steps = computed(() => tm('submit.steps'))
 
 const stepDescriptions = computed(() => [
@@ -188,6 +217,27 @@ const stepDescriptions = computed(() => [
   t('submit.stepDescription.side'),
   t('submit.stepDescription.under')
 ])
+
+onBeforeRouteLeave((to, from, next) => {
+  if (!navigationWarningVisible.value && (comment.value || mushrooms.value.length)) {
+    navigationWarningVisible.value = true
+    pendingNavigation.value = next
+  } else {
+    next()
+  }
+})
+
+function confirmAndLeave() {
+  if (pendingNavigation.value) {
+    pendingNavigation.value()
+    pendingNavigation.value = null
+  }
+}
+
+function cancelNavigation() {
+  navigationWarningVisible.value = false
+  pendingNavigation.value = null
+}
 
 function toggleHint(step) {
   hintStep.value = hintStep.value === step ? null : step
@@ -220,6 +270,14 @@ function fileToBase64(file) {
 async function handlePopupUpload(event) {
   const file = event.target.files?.[0]
   if (!file) return
+
+  // Check file size before anything else
+  if (file.size > 10 * 1024 * 1024) {
+    toast.error(t('errors.FileTooLarge'))
+    event.target.value = null
+    return
+  }
+
   const dataURL = await fileToBase64(file)
   file.dataURL = dataURL
   mushroomInProgress.value[mushroomStep.value] = file
@@ -235,7 +293,7 @@ async function nextStep() {
       .filter(([_, file]) => file)
       .map(([step, file]) => ({ file, name: `angle_${getStepName(Number(step))}.jpg` }))
 
-    const { processedFiles } = await processImageFiles(
+    const { processedFiles, error } = await processImageFiles(
       imagesRaw.map(i => i.file),
       mushrooms.value.flatMap(m => m.images),
       imagesRaw.map(i => i.name)
@@ -274,14 +332,13 @@ async function handleSubmit() {
   try {
     const result = await sendNewUserRequest(comment.value, mushrooms.value)
     if (result) {
-      localStorage.removeItem('submit_comment')
-      localStorage.removeItem('submit_mushrooms')
+      sessionStorage.removeItem('submit_comment')
+      sessionStorage.removeItem('submit_mushrooms')
       emit('next', result)
-    } else {
-      toast.error('Noe gikk galt. Prøv igjen.')
     }
   } catch (err) {
-    toast.error('Innsending feilet.')
+    toast.error(t('errors.sendingUserRequest'))
+    console.error(err)
   } finally {
     loading.value = false
   }
@@ -289,10 +346,10 @@ async function handleSubmit() {
 
 onMounted(() => {
   if (process.env.NODE_ENV !== 'test') {
-    const savedComment = localStorage.getItem('submit_comment')
+    const savedComment = sessionStorage.getItem('submit_comment')
     if (savedComment) comment.value = savedComment
 
-    const savedMushrooms = localStorage.getItem('submit_mushrooms')
+    const savedMushrooms = sessionStorage.getItem('submit_mushrooms')
     if (savedMushrooms) {
       try {
         const parsed = JSON.parse(savedMushrooms)
@@ -310,7 +367,7 @@ onMounted(() => {
           })
         }))
       } catch (e) {
-        console.warn('Feil ved rekonstruksjon av sopp:', e)
+        console.warn('Error when reconstructing the mushroom:', e)
       }
     }
   }
@@ -319,15 +376,16 @@ onMounted(() => {
 onUnmounted(() => {
   comment.value = ''
   mushrooms.value = []
-  localStorage.removeItem('submit_comment')
-  localStorage.removeItem('submit_mushrooms')
+  sessionStorage.removeItem('submit_comment')
+  sessionStorage.removeItem('submit_mushrooms')
 })
 
 watch(comment, (val) => {
-  localStorage.setItem('submit_comment', val)
+  sessionStorage.setItem('submit_comment', val)
 })
 
 watch(mushrooms, async (val) => {
+  if (val.length > 0) showErrorMushroom.value = false
   const simplified = []
   for (const m of val) {
     const images = await Promise.all(
@@ -338,6 +396,6 @@ watch(mushrooms, async (val) => {
     )
     simplified.push({ id: m.id, images })
   }
-  localStorage.setItem('submit_mushrooms', JSON.stringify(simplified))
+  sessionStorage.setItem('submit_mushrooms', JSON.stringify(simplified))
 }, { deep: true })
 </script>

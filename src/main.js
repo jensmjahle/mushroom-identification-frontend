@@ -10,7 +10,7 @@ import Toast from 'vue-toastification'
 import 'vue-toastification/dist/index.css'
 import '@/assets/fonts.css'
 
-const saved = localStorage.getItem('theme') || 'light'
+const saved = sessionStorage.getItem('theme') || 'light'
 setTheme(saved, () => {
   themeReady.value = true
 })

@@ -14,7 +14,7 @@
     </button>
 
     <!-- Basket Panel -->
-    <div class="basket w-[280px] h-full max-h-[80vh] flex flex-col bg-bg1 shadow-lg rounded-bl-lg">
+    <div class="basket w-[280px] h-full min-h-[80vh] max-h-[80vh] flex flex-col bg-bg1 shadow-lg rounded-bl-lg">
       <!-- Header -->
       <div class="mb-2 text-center px-4 pt-4">
         <div class="flex justify-center items-center space-x-2 text-text1">
@@ -28,7 +28,7 @@
       </div>
 
       <!-- Mushrooms -->
-      <div class="overflow-y-auto px-4 pb-4 space-y-6 pt-2">
+      <div class="overflow-y-auto h-full min-h-[80vh] px-4 pb-4 space-y-6 pt-2">
         <Mushroom
             v-for="(mushroom, index) in mushroomStore.mushrooms"
             :key="mushroom.mushroomId"
@@ -53,7 +53,14 @@ import {getUserRequestMushrooms} from "@/services/rest/mushroomService.js";
 const props = defineProps({ userRequestId: String });
 const emit = defineEmits(['basket-toggle']);
 
-const isOpen = ref(false);
+const isOpen = ref(
+  sessionStorage.getItem('isBasketPanelOpen') !== 'false'
+)
+
+watch(isOpen, (newVal) => {
+  sessionStorage.setItem('isBasketPanelOpen', newVal.toString())
+})
+
 const basketRef = ref(null);
 
 const mushroomStore = useMushroomStore();
@@ -72,14 +79,16 @@ function closeBasket() {
 
 function handleClickOutside(event) {
   if (
-      isOpen.value &&
-      basketRef.value &&
-      !basketRef.value.contains(event.target) &&
-      window.innerWidth <= 640
+    isOpen.value &&
+    basketRef.value &&
+    !basketRef.value.contains(event.target) &&
+    typeof window !== 'undefined' &&
+    window.innerWidth <= 640
   ) {
     closeBasket();
   }
 }
+
 
 async function loadMushrooms() {
   if (!props.userRequestId) return

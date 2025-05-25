@@ -54,7 +54,7 @@ html, body, #app {
     max-width: 260px;
   }
 
-  .collapse-button {@apply absolute top-4 left-0 z-[1] pointer-events-auto border border-border2 border-l-0 bg-bg1 rounded-none rounded-tr-lg rounded-br-lg transition xl2:hidden;}
+  .collapse-button {@apply absolute top-6 left-0 z-[1] pointer-events-auto border border-border2 border-l-0 bg-bg1 rounded-none rounded-tr-lg rounded-br-lg transition xl2:hidden;}
 
   .user-sidebar.collapsed {width: 60px;}
 
