@@ -2,7 +2,7 @@
   <nav :class="['user-sidebar', collapsed ? 'collapsed' : '']">
 
     <router-link
-      v-if="chatRequestId && parseJwt((sessionStorage.getItem('jwt') || localStorage.getItem('jwt')))?.role !== 'admin'"
+      v-if="chatRequestId"
       :to="{ name: 'user-request', params: { userRequestId: chatRequestId } }"
       class="user-sidebar-button"
       :class="{ active: $route.name === 'user-request' }"
@@ -100,20 +100,27 @@ defineProps({ collapsed: Boolean })
 const { t } = useI18n()
 
 const chatRequestId = ref(null)
+const platformRole = ref(false) // true if user is NOT admin or superuser
 
 function updateFromStorage() {
-  const jwt = sessionStorage.getItem('jwt') || localStorage.getItem('jwt')
+  if (typeof window === 'undefined') return
+
+  const jwt = sessionStorage?.getItem('jwt') || localStorage?.getItem('jwt')
   if (!jwt) {
     chatRequestId.value = null
+    platformRole.value = false
     return
   }
 
   try {
     const payload = parseJwt(jwt)
-    chatRequestId.value = payload?.sub || null
+    const role = payload?.role?.toUpperCase?.() || ''
+    platformRole.value = role !== 'ADMIN' && role !== 'SUPERUSER'
+    chatRequestId.value = platformRole.value ? payload?.sub || null : null
   } catch (e) {
     console.warn('Invalid token:', e)
     chatRequestId.value = null
+    platformRole.value = false
   }
 }
 
