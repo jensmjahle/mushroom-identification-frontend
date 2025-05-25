@@ -1,19 +1,26 @@
-import { createI18n } from 'vue-i18n';
-import { useLanguageStore } from '../store/useLanguageStore'; // Import Pinia store
+import { createI18n } from 'vue-i18n'
+import en from './en.json'
+import no from './no.json'
 
-// Create i18n instance with no default messages
 const i18n = createI18n({
-  legacy: false, // Use Composition API mode
-  locale: 'en',  // Default language
-  fallbackLocale: 'en', // Fallback language
-  messages: {}, // We'll set the messages dynamically
-});
+  legacy: false,
+  locale: 'en', 
+  fallbackLocale: 'en',
+  messages: {
+    en,
+    no
+  }
+})
 
-// Function to update the i18n locale and messages based on Pinia store
 export function updateI18nLocale() {
-  const languageStore = useLanguageStore(); // Access the Pinia store
-  i18n.global.locale.value = languageStore.locale; // Set the locale dynamically
-  i18n.global.setLocaleMessage(languageStore.locale, languageStore.messages[languageStore.locale]); // Update the messages
+  const stored = sessionStorage.getItem('locale')
+  if (stored && ['en', 'no'].includes(stored)) {
+    i18n.global.locale.value = stored
+  } else {
+    i18n.global.locale.value = 'en'
+    sessionStorage.setItem('locale', 'en')
+  }
 }
 
-export default i18n;
+
+export default i18n
