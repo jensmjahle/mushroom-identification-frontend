@@ -14,14 +14,17 @@ for (const path in languageFiles) {
 
 export const useLanguageStore = defineStore('language', {
   state: () => ({
-    locale: sessionStorage.getItem('locale') || 'en',
-    messages,
+    locale: sessionStorage.getItem('locale') || 'no',
+    messages: {
+      en,
+      no,
+    },
   }),
   actions: {
     setLanguage(lang) {
       if (this.messages[lang]) {
-        this.locale = lang
-        sessionStorage.setItem('locale', lang)
+        this.locale = lang;
+        sessionStorage.setItem('locale', lang);
       }
     },
   },
