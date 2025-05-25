@@ -7,7 +7,8 @@
     "clearSessionButton": "Clear session",
     "languages": {
       "no": "Norwegian",
-      "en": "English"
+      "en": "English",
+      "fr": "French"
     },
     "themes": {
       "light": "Light",
