@@ -70,7 +70,7 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 import { useI18n } from "vue-i18n";
 import BaseInput from "@/components/base/BaseInput.vue";
 import BaseButton from "@/components/base/BaseButton.vue";
@@ -101,4 +101,13 @@ const handleLogin = async () => {
     loading.value = false;
   }
 };
+
+onMounted(() => {
+  window.addEventListener("keydown", e => {
+    if (e.key === "Enter" && document.activeElement.tagName !== "TEXTAREA") {
+      const button = document.querySelector('button[type="submit"]');
+      button?.click();
+    }
+  });
+});
 </script>
