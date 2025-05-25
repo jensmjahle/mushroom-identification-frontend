@@ -9,7 +9,7 @@
     <div class="space-y-2">
       <!-- Go to Chat (if token is present) -->
       <RouterLink
-        v-if="chatRequestId"
+        v-if="chatRequestId && platformRole"
         :to="{ name: 'user-request', params: { userRequestId: chatRequestId } }"
         class="btn-4 block w-full text-center"
         :class="{ 'ring-2 ring-button1': $route.name === 'user-request' }"
@@ -61,18 +61,25 @@ import ThemeSelect from '@/components/settings/ThemeSelect.vue'
 import ClearSession from '@/components/settings/ClearSession.vue'
 
 const chatRequestId = ref(null)
+const platformRole = ref(false)
 const $route = useRoute()
 
 onMounted(() => {
-  const jwt = sessionStorage.getItem('jwt') || localStorage.getItem('jwt')
+  const jwt = typeof window !== 'undefined'
+    ? sessionStorage?.getItem('jwt') || localStorage?.getItem('jwt')
+    : null
+
   if (!jwt) return
+
   try {
     const payload = parseJwt(jwt)
-    if (payload?.sub) {
-      chatRequestId.value = payload.sub
-    }
+    const role = payload?.role?.toUpperCase?.() || ''
+    platformRole.value = role !== 'ADMIN' && role !== 'SUPERUSER'
+    chatRequestId.value = platformRole.value ? payload?.sub || null : null
   } catch (e) {
     console.warn('Invalid JWT:', e)
+    chatRequestId.value = null
+    platformRole.value = false
   }
 })
 </script>
