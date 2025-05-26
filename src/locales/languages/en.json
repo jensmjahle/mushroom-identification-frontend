@@ -171,7 +171,7 @@
     "steps": [
       {
         "title": "Click the purple button below to add the first mushroom",
-        "hint": "Take one photo from the top, one from the side, and one from underneath. Good lighting and a neutral background help the identification."
+        "hint": "Take one photo from the top, one from the side, and one from underneath. Good lighting and a neutral background help the identification. All metadata will be removed from the images when uploaded. This means all EXIF data, including GPS coordinates, will be stripped from the images to protect your privacy."
       },
       {
         "title": "Remember the reference code after submission",
@@ -183,9 +183,9 @@
       }
     ],
     "stepDescription": {
-      "top": "Picture from the top of the mushroom",
-      "side": "Picture from the side of the mushroom",
-      "under": "Picture from the bottom of the mushroom"
+      "top": "Picture from the top of the mushroom. Make sure the cap is clearly visible.",
+      "side": "Picture from the side of the mushroom. This helps to see the stem and gills.",
+      "under": "Picture from the bottom of the mushroom. This shows the gills or pores."
     },
     "validation": {
       "errorMushroomMissing": "You must add at least one mushroom before submitting.",
