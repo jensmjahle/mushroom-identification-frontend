@@ -1,202 +1,161 @@
-# mushroom-identification-frontend
+# Mushroom Identification Frontend
 
-A Vue 3/Vite/Tailwind CSS frontend for mushroom identification, created as a bachelor project by Anders Emil Bergan and Jens Martin Jahle.
+Vue 3 / Vite / Tailwind CSS interface for the Mushroom Identification System  
+(Bachelor thesis – Anders Emil Bergan & Jens Martin Jahle)
 
-## Table of Contents
+---
 
-* [Features](#features)
-* [Tech Stack](#tech-stack)
-* [Prerequisites](#prerequisites)
-* [Environment Variables](#environment-variables)
-* [Installation](#installation)
-* [Running Locally](#running-locally)
-* [Running with Docker](#running-with-docker)
-* [Building for Production](#building-for-production)
-* [Previewing Production Build](#previewing-production-build)
-* [Running Tests](#running-tests)
-* [Project Structure](#project-structure)
-* [Routes](#routes)
-* [Contributing](#contributing)
-* [License](#license)
+## Table of Contents
+- [Features](#features)
+- [Tech Stack](#tech-stack)
+- [Project Structure](#project-structure)
+- [Running Locally](#running-locally)
+    - [Step 1 – Configure env.js](#step-1--configure-envjs)
+    - [Step 2 – Install Dependencies](#step-2--install-dependencies)
+    - [Step 3 – Start Dev Server](#step-3--start-dev-server)
+- [Production Deployment (Docker)](#production-deployment-docker)
+    - [Recipe A – Default (fallback)](#recipe-a--default-fallback)
+    - [Recipe B – Override API URL](#recipe-b--override-api-url)
+- [Other Useful Commands](#other-useful-commands)
+- [License](#license)
+
+---
 
 ## Features
+- Submit mushroom ID requests with multi‑image upload & comments
+- Anonymous tracking via reference codes
+- Admin dashboard: review, classify, export statistics
+- i18n (English / Norwegian) & light/dark theme
 
-* Submit mushroom identification requests with multi-step image uploads and comments.
-* Anonymous user tracking via reference codes.
-* Admin dashboard for processing requests, managing administrators, and exporting statistics.
-* Role-based authentication for users and admins.
-* Internationalization (Norwegian & English).
-* Light and dark theme support.
-* Toast notifications for real-time feedback.
+## Tech Stack
+| Layer            | Choice                    |
+| ---------------- | ------------------------- |
+| Framework        | Vue 3                     |
+| Build Tool       | Vite                     |
+| State            | Pinia                    |
+| Styling          | Tailwind CSS             |
+| Charts           | Chart.js + vue‑chartjs   |
+| Notifications    | Vue Toastification       |
+| Tests            | Vitest & Cypress         |
+| Containerisation | Docker & Docker Compose  |
 
-## Tech Stack
-
-* **Framework:** Vue 3
-* **Build Tool:** Vite
-* **State Management:** Pinia
-* **Routing:** Vue Router 4
-* **Styling:** Tailwind CSS
-* **Charts:** Chart.js & vue-chartjs
-* **HTTP Client:** Axios
-* **Notifications:** Vue Toastification
-* **Testing:** Vitest & Testing Library
-* **Containerization:** Docker & Docker Compose
-
-## Prerequisites
-
-* [Node.js](https://nodejs.org) v16+ and npm v8+ (or Yarn)
-* [Docker](https://www.docker.com/get-started) & [Docker Compose](https://docs.docker.com/compose/install/)
-
-## Environment Variables
-
-Copy the example `.env` files and adjust for your setup:
-
-```bash
-cp .env
+## Project Structure
+```
+public/            # Static assets ‑‑ env.js lives here
+src/               # Vue components, views, store, router …
+runtime-env.sh     # Only runs in Docker to OPTIONAL override env.js
+Dockerfile         # Multi‑stage build (builder + slim runtime)
+docker-compose.yml # Production recipe
 ```
 
-Then edit:
+---
 
-```dotenv
-# .env.local (development)
-VITE_API_URL=http://localhost:8080  # Backend API URL for development
+## Running Locally
+
+### Step 1 – Configure env.js
+`public/env.js` holds the **fallback** backend URL:
+```js
+window.env = {
+  VITE_API_URL: 'http://localhost:8080'   // change if your backend runs elsewhere
+};
 ```
 
-## Installation
-
-Install dependencies:
-
+### Step 2 – Install Dependencies
 ```bash
 npm install
 ```
 
-## Running Locally
-
-Start the dev server with hot reloading:
-
+### Step 3 – Start Dev Server
 ```bash
 npm run dev
 ```
+Open <http://localhost:5173>.
 
-Open your browser at `http://localhost:5173`.
+---
 
-## Running with Docker
+## Production Deployment (Docker)
 
-### Production-like (no hot reloading)
-
-Build and run with Docker Compose:
-
-```bash
-docker-compose up --build
-```
-
-Access the app at `http://localhost:5173`.
-
-## Building for Production
-
-Generate optimized static assets:
+### Recipe A – Default (fallback)
+Uses the value already baked into `dist/env.js`.
 
 ```bash
-npm run build
+docker compose up --build -d   # build image, start container
+open http://localhost:5173     # app talks to URL from env.js
 ```
 
-## Previewing Production Build
-
-Locally preview the production build:
+### Recipe B – Override API URL
+Only if the backend URL is **not** the one in `env.js`.
+>Note: For production, it is recommended to set the backend URL via environment variable in the operation system.
 
 ```bash
-npm run preview
+# Bash / zsh
+export VITE_API_URL=https://api.my‑backend.com
+docker compose up --build -d
+
+# PowerShell
+$Env:VITE_API_URL = 'https://api.my‑backend.com'
+docker compose up --build -d
 ```
 
-## Running Tests
+- `runtime-env.sh` detects `VITE_API_URL` and rewrites `/app/env.js` **once** at container start.
+- No variable → script exits → fallback remains.
 
-### Unit Tests
+---
+## Route Overview
 
-We use Vitest and Testing Library for unit and component tests.
+### Public / User Routes
+| Path                           | Name           | Guards          | Description                          |
+| ------------------------------ | -------------- | --------------- | ------------------------------------ |
+| `/`                            | home           | –               | Landing page                         |
+| `/new`                         | new‑request    | –               | Submit a new identification request  |
+| `/request/:userRequestId`      | user‑request   | requiresUser    | View status & chat for a request     |
+| `/become-member`               | become‑member  | –               | Membership information               |
+| `/support`                     | support        | –               | FAQ & support                        |
+| `/login`                       | user‑login     | –               | Retrieve request via reference code  |
 
-- Run tests:
-    ```bash
-    npm run test:unit
-    ```
-- Coverage report:
-    ```bash
-    npm run test:unit -- --coverage
-    ```
+### Admin Routes (under `/admin`) – requireAdmin
+| Path                                    | Name                    | Description                          |
+| --------------------------------------- | ----------------------- | ------------------------------------ |
+| `/admin/dashboard`                      | admin‑dashboard         | Admin overview & quick actions       |
+| `/admin/requests/:userRequestId`        | admin‑request           | Review & complete a specific request |
+| `/admin/requests`                       | admin‑all‑requests      | List all pending requests            |
+| `/admin/statistics`                     | admin‑statistics        | Processing statistics & exports      |
+| `/admin/management`                     | admin‑management        | Administrator accounts               |
+| `/admin/new`                            | admin‑new‑administrator | Create a new administrator           |
+| `/admin/settings`                       | admin‑settings          | Application & account settings       |
 
-### End-to-End Tests (Cypress)
+### Stand‑alone Admin Login
+| Path            | Name        |
+| --------------- | ----------- |
+| `/admin/login`  | admin‑login |
 
-Cypress is used for end-to-end testing to ensure the application works across full user flows.
->Note: The frontend must be running for Cypress tests to work.
+### Catch‑All Redirect
+`/:pathMatch(.*)*` → `/`
 
-- Install Cypress:
-    ```bash
-    npm install cypress --save-dev
-    ```
+### Running Tests
 
+### 1 – Unit & Component Tests (Vitest)
 
-- Interactive Mode (opens the Cypress Test Runner GUI):
-    ```bash
-    npm run cypress:open
-    ```
+| Action            | Command                                   |
+| ----------------- | ----------------------------------------- |
+| Run all tests     | npm run test:unit                         |
+| Watch mode        | npm run test:unit -- --watch              |
+| Coverage report   | npm run test:unit -- --coverage           |
+| Open coverage UI  | open coverage/index.html   # mac / Linux  |
+|                   | start coverage\index.html  # Windows     |
 
-- Headless Mode (runs all tests in the terminal):
-    ```bash
-    npm run cypress:run
-    ```
+### 2 – End‑to‑End Tests (Cypress)
 
-## Project Structure
+Prerequisite: the frontend (or a built preview) must be running on **http://localhost:5173**.
 
-```
-.
-├── public/                # Static assets (index.html, favicon, etc.)
-├── src/
-│   ├── assets/            # Fonts, CSS, images
-│   ├── components/        # Reusable Vue components
-│   ├── composables/       # Vue 3 composition utilities
-│   ├── layouts/           # AppUserLayout & AppAdminLayout
-│   ├── locales/           # i18n setup and translation files
-│   ├── router/            # Vue Router configuration
-│   ├── store/             # Pinia stores
-│   ├── utils/             # Helper functions and formatters
-│   ├── views/             # Page-level components (user & admin)
-│   ├── App.vue            # Root component
-│   └── main.js            # Entry point
-├── .env                   # Dev environment variables
-├── docker-compose.yml     # Docker Compose config
-├── package.json           # Scripts & dependencies
-└── README.md              # This documentation
-```
+| Mode            | Command                                                | Notes                                |
+| --------------- | ------------------------------------------------------ | ------------------------------------ |
+| Interactive GUI | npm run cypress:open                                   | Opens Cypress Test Runner            |
+| Headless        | npm run cypress:run                                    | Runs all specs in terminal           |
+| Single spec     | npm run cypress:run -- --spec "cypress/e2e/login.cy.js" | Run one test file                    |
 
-## Routes
-
-### Public (User)
-
-| Path             | Name          | Description                                   |
-| ---------------- | ------------- | --------------------------------------------- |
-| `/`              | home          | Landing page                                  |
-| `/new`           | new-request   | Submit a new mushroom request                 |
-| `/request/:id`   | user-request  | View status & chat for a submitted request    |
-| `/login`         | user-login    | Enter reference code to retrieve your request |
-| `/become-member` | become-member | Membership signup page                        |
-| `/support`       | support       | Support & FAQ page                            |
-
-### Admin
-
-| Path                    | Name                    | Description                          |
-| ----------------------- | ----------------------- | ------------------------------------ |
-| `/admin/login`          | admin-login             | Admin login page                     |
-| `/admin/dashboard`      | admin-dashboard         | Admin overview & quick actions       |
-| `/admin/all-requests`   | admin-all-requests      | List of all pending requests         |
-| `/admin/request/:id`    | admin-request           | Review & complete a specific request |
-| `/admin/statistics`     | admin-statistics        | Stats dashboard & CSV export         |
-| `/admin/management`     | admin-management        | List of administrators               |
-| `/admin/management/new` | admin-new-administrator | Create a new administrator           |
-| `/admin/settings`       | admin-settings          | Account & application settings       |
-
-## Contributing
-
-Contributions are welcome! Feel free to open issues and submit pull requests.
+---
 
 ## License
-
-This project is licensed under the MIT License. See [LICENSE](LICENSE) for details.
+This project is licensed under the MIT License.  
+See the [LICENSE](LICENSE) file for full details.
