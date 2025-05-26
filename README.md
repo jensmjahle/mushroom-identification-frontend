@@ -80,8 +80,8 @@ Uses the value already baked into `dist/env.js`.
 
 ```bash
 docker compose up --build -d   # build image, start container
-open http://localhost:5173     # app talks to URL from env.js
 ```
+open http://localhost:5173     # app talks to URL from env.js
 
 ### Recipe B – Override API URL
 Only if the backend URL is **not** the one in `env.js`.
