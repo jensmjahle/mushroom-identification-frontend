@@ -1,7 +1,6 @@
 import axios from '@/config/axiosConfig.js'
 
 export const loginAdmin = (username, password) => {
-  console.log(username, password)
   return axios.post('/auth/admin/login', { username, password })
 }
 
