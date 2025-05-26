@@ -4,20 +4,21 @@ Vue 3 / Vite / Tailwind CSS interface for the Mushroom Identification System
 (Bachelor thesis – Anders Emil Bergan & Jens Martin Jahle)
 
 ---
-
-## Table of Contents
+## Table of Contents
 - [Features](#features)
-- [Tech Stack](#tech-stack)
-- [Project Structure](#project-structure)
-- [Running Locally](#running-locally)
-    - [Step 1 – Configure env.js](#step-1--configure-envjs)
-    - [Step 2 – Install Dependencies](#step-2--install-dependencies)
-    - [Step 3 – Start Dev Server](#step-3--start-dev-server)
-- [Production Deployment (Docker)](#production-deployment-docker)
-    - [Recipe A – Default (fallback)](#recipe-a--default-fallback)
-    - [Recipe B – Override API URL](#recipe-b--override-api-url)
-- [Other Useful Commands](#other-useful-commands)
+- [Tech Stack](#tech-stack)
+- [Project Structure](#project-structure)
+- [Running Locally](#running-locally)
+  - [Step 1 – Configure env.js](#step-1--configure-envjs)
+  - [Step 2 – Install Dependencies](#step-2--install-dependencies)
+  - [Step 3 – Start Dev Server](#step-3--start-dev-server)
+- [Production Deployment (Docker)](#production-deployment-docker)
+  - [Recipe A – Default (fallback)](#recipe-a--default-fallback)
+  - [Recipe B – Override API URL](#recipe-b--override-api-url)
+- [Route Overview](#route-overview)
+- [Running Tests](#running-tests)
 - [License](#license)
+
 
 ---
 
@@ -132,7 +133,7 @@ docker compose up --build -d
 ### Catch‑All Redirect
 `/:pathMatch(.*)*` → `/`
 
-### Running Tests
+## Running Tests
 
 ### 1 – Unit & Component Tests (Vitest)
 
