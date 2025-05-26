@@ -28,9 +28,6 @@ COPY --from=builder /app/dist ./
 COPY ./runtime-env.sh /app/runtime-env.sh
 RUN chmod +x /app/runtime-env.sh
 
-# Default fallback env.js file (optional, dev/debug)
-RUN echo "window.env = {};" > /app/env.js
-
 # Expose port
 EXPOSE 8080
 
