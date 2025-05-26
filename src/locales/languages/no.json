@@ -170,7 +170,7 @@
     "steps": [
       {
         "title": "Trykk på den lilla knappen under for å legge til din første sopp",
-        "hint": "Ta ett bilde ovenfra, ett fra siden, og ett av undersiden. Godt lys og nøytral bakgrunn hjelper til med identifiseringen."
+        "hint": "Ta ett bilde ovenfra, ett fra siden og ett av undersiden. Godt lys og nøytral bakgrunn hjelper til med identifiseringen. All metadata fjernes fra bildene når de lastes opp. Dette betyr at all EXIF-data, inkludert GPS-koordinater, blir fjernet for å beskytte personvernet ditt."
       },
       {
         "title": "Husk referansekoden etter innsending",
@@ -182,9 +182,9 @@
       }
     ],
     "stepDescription": {
-      "top": "Bilde tatt ovenfra av soppen",
-      "side": "Bilde tatt fra siden av soppen",
-      "under": "Bilde av undersiden av soppen"
+      "top": "Bilde tatt ovenfra av soppen. Pass på at hatten er tydelig synlig.",
+      "side": "Bilde tatt fra siden av soppen. Dette hjelper å se stilken og skivene.",
+      "under": "Bilde av undersiden av soppen. Dette viser skivene eller porene."
     },
     "validation": {
       "errorMushroomMissing": "Du må legge til minst én sopp før du kan sende inn.",
