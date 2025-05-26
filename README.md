@@ -1,7 +1,7 @@
-# Mushroom Identification Frontend
+# Mushroom Identification Frontend
 
 Vue 3 / Vite / Tailwind CSS interface for the Mushroom Identification System  
-(Bachelor thesis – Anders Emil Bergan & Jens Martin Jahle)
+(Bachelor thesis - Anders Emil Bergan & Jens Martin Jahle)
 
 ---
 ## Table of Contents
@@ -9,15 +9,11 @@ Vue 3 / Vite / Tailwind CSS interface for the Mushroom Identification System
 - [Tech Stack](#tech-stack)
 - [Project Structure](#project-structure)
 - [Running Locally](#running-locally)
-  - [Step 1 – Configure env.js](#step-1--configure-envjs)
-  - [Step 2 – Install Dependencies](#step-2--install-dependencies)
-  - [Step 3 – Start Dev Server](#step-3--start-dev-server)
 - [Production Deployment (Docker)](#production-deployment-docker)
-  - [Recipe A – Default (fallback)](#recipe-a--default-fallback)
-  - [Recipe B – Override API URL](#recipe-b--override-api-url)
 - [Route Overview](#route-overview)
 - [Running Tests](#running-tests)
 - [License](#license)
+
 
 
 ---
@@ -28,19 +24,19 @@ Vue 3 / Vite / Tailwind CSS interface for the Mushroom Identification System
 - Admin dashboard: review, classify, export statistics
 - i18n (English / Norwegian) & light/dark theme
 
-## Tech Stack
+## Tech Stack
 | Layer            | Choice                    |
 | ---------------- | ------------------------- |
-| Framework        | Vue 3                     |
-| Build Tool       | Vite                     |
+| Framework        | Vue 3                     |
+| Build Tool       | Vite                     |
 | State            | Pinia                    |
-| Styling          | Tailwind CSS             |
-| Charts           | Chart.js + vue‑chartjs   |
-| Notifications    | Vue Toastification       |
-| Tests            | Vitest & Cypress         |
-| Containerisation | Docker & Docker Compose  |
+| Styling          | Tailwind CSS             |
+| Charts           | Chart.js + vue‑chartjs   |
+| Notifications    | Vue Toastification       |
+| Tests            | Vitest & Cypress         |
+| Containerisation | Docker & Docker Compose  |
 
-## Project Structure
+## Project Structure
 ```
 public/            # Static assets ‑‑ env.js lives here
 src/               # Vue components, views, store, router …
@@ -51,9 +47,9 @@ docker-compose.yml # Production recipe
 
 ---
 
-## Running Locally
+## Running Locally
 
-### Step 1 – Configure env.js
+### Step 1 - Configure env.js
 `public/env.js` holds the **fallback** backend URL:
 ```js
 window.env = {
@@ -61,12 +57,12 @@ window.env = {
 };
 ```
 
-### Step 2 – Install Dependencies
+### Step 2 - Install Dependencies
 ```bash
 npm install
 ```
 
-### Step 3 – Start Dev Server
+### Step 3 - Start Dev Server
 ```bash
 npm run dev
 ```
@@ -74,9 +70,9 @@ Open <http://localhost:5173>.
 
 ---
 
-## Production Deployment (Docker)
+## Production Deployment (Docker)
 
-### Recipe A – Default (fallback)
+### Recipe A - Default (fallback)
 Uses the value already baked into `dist/env.js`.
 
 ```bash
@@ -84,7 +80,7 @@ docker compose up --build -d   # build image, start container
 ```
 open http://localhost:5173     # app talks to URL from env.js
 
-### Recipe B – Override API URL
+### Recipe B - Override API URL
 Only if the backend URL is **not** the one in `env.js`.
 >Note: For production, it is recommended to set the backend URL via environment variable in the operation system.
 
@@ -107,14 +103,14 @@ docker compose up --build -d
 ### Public / User Routes
 | Path                           | Name           | Guards          | Description                          |
 | ------------------------------ | -------------- | --------------- | ------------------------------------ |
-| `/`                            | home           | –               | Landing page                         |
-| `/new`                         | new‑request    | –               | Submit a new identification request  |
+| `/`                            | home           | -               | Landing page                         |
+| `/new`                         | new‑request    | -               | Submit a new identification request  |
 | `/request/:userRequestId`      | user‑request   | requiresUser    | View status & chat for a request     |
-| `/become-member`               | become‑member  | –               | Membership information               |
-| `/support`                     | support        | –               | FAQ & support                        |
-| `/login`                       | user‑login     | –               | Retrieve request via reference code  |
+| `/become-member`               | become‑member  | -               | Membership information               |
+| `/support`                     | support        | -               | FAQ & support                        |
+| `/login`                       | user‑login     | -               | Retrieve request via reference code  |
 
-### Admin Routes (under `/admin`) – requireAdmin
+### Admin Routes (under `/admin`) - requireAdmin
 | Path                                    | Name                    | Description                          |
 | --------------------------------------- | ----------------------- | ------------------------------------ |
 | `/admin/dashboard`                      | admin‑dashboard         | Admin overview & quick actions       |
@@ -135,7 +131,7 @@ docker compose up --build -d
 
 ## Running Tests
 
-### 1 – Unit & Component Tests (Vitest)
+### 1 - Unit & Component Tests (Vitest)
 
 | Action            | Command                                   |
 | ----------------- | ----------------------------------------- |
@@ -145,7 +141,7 @@ docker compose up --build -d
 | Open coverage UI  | open coverage/index.html   # mac / Linux  |
 |                   | start coverage\index.html  # Windows     |
 
-### 2 – End‑to‑End Tests (Cypress)
+### 2 - End‑to‑End Tests (Cypress)
 
 Prerequisite: the frontend (or a built preview) must be running on **http://localhost:5173**.
 
