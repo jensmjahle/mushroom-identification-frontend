@@ -71,7 +71,7 @@
 
       <BaseButton
         variant="2"
-        class="h-full w-[15%] flex items-center justify-center min-h-[140px]"
+        class="self-stretch w-[15%] flex items-center justify-center min-h-[140px]"
         @click="showMushroomPopup = true"
         data-testid="add-mushroom-button"
       >
