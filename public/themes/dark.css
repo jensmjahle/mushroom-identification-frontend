@@ -1,55 +1,57 @@
 :root {
   /* Text Colors */
-  --color-text1: #f8fafc;
-  --color-text1-faded: #94a3b8;
-  --color-text2: #f8fafc;
-  --color-text2-faded: #94a3b8;
-  --color-text3: #f8fafc;
-  --color-text3-faded: #94a3b8;
-  --color-text4: #f8fafc;
-  --color-text4-faded: #94a3b8;
-  
-  /* Backgrounds */
-  --color-bg1: #0f172a;  /* Deep navy */
-  --color-bg2: #1e293b;  /* Dark slate */
-  --color-bg3: #334155;  /* Medium slate */
-  --color-bg4: #475569;  /* Light slate */
+  --color-text1: #f1f5f9;
+  --color-text1-faded: #a9b7c3;
+  --color-text2: #f1f5f9;
+  --color-text2-faded: #a9b7c3;
+  --color-text3: #f1f5f9;
+  --color-text3-faded: #a9b7c3;
+  --color-text4: #f1f5f9;
+  --color-text4-faded: #a9b7c3;
+
+  /* Backgrounds - rusopplysningen.no has no official dark mode, so these are a
+     navy extrapolation of its light-mode steel-blue/navy brand family (button1-border
+     below is literally their navy, #2c4b6b) rather than a color pulled from their site. */
+  --color-bg1: #14212f;  /* Deep navy */
+  --color-bg2: #1c3040;  /* Dark slate-navy */
+  --color-bg3: #26404f;  /* Medium slate-navy */
+  --color-bg4: #33505f;  /* Light slate-navy */
 
   /* Borders */
-  --color-border1: #1e293b;
-  --color-border2: #334155;
-  --color-border3: #475569;
-  --color-border4: #64748b;
+  --color-border1: #1c3040;
+  --color-border2: #26404f;
+  --color-border3: #33505f;
+  --color-border4: #4a7186;
 
-    /* Buttons - Dark Mode Specific */
-    --color-button1: #3b82f6; /* Primary button (Blue) */
-    --color-button1-meta: #ffffff; /* White text for meta */
-    --color-button1-hover: #2563eb; /* Darker blue for hover */
-    --color-button1-border: #1e40af;
-    
-    --color-button2: #f97316; /* Secondary button (Orange) */
-    --color-button2-meta: #ffffff; /* White text for contrast */
-    --color-button2-hover: #ea580c; /* Darker orange for hover */
-    --color-button2-border: #c2410c; /* Slightly darker border for definition */
+    /* Buttons - Dark Mode Specific, brightened for contrast on navy backgrounds */
+    --color-button1: #6a9cc0; /* Primary button (brand steel-blue, lightened) */
+    --color-button1-meta: #14212f; /* Dark text for contrast */
+    --color-button1-hover: #85b0cf; /* Lighter blue for hover */
+    --color-button1-border: #4a7186;
 
-  --color-button3: #334155; /* Tertiary button (Blue-Grey) */
-  --color-button3-meta: #f8fafc;
-  --color-button3-hover: #475569;
-  --color-button3-border: #64748b;
+    --color-button2: #7aaab4; /* Secondary button (brand teal) */
+    --color-button2-meta: #14212f; /* Dark text for contrast */
+    --color-button2-hover: #93bfc7; /* Lighter teal for hover */
+    --color-button2-border: #4a7186;
 
-  --color-button4: #1e293b; /* Quaternary button (Dark Blue-Grey) */
-  --color-button4-meta: #f8fafc;
-  --color-button4-hover: #334155;
-  --color-button4-border: #475569;
+  --color-button3: #26404f; /* Tertiary button (dark slate-navy) */
+  --color-button3-meta: #f1f5f9;
+  --color-button3-hover: #33505f;
+  --color-button3-border: #4a7186;
+
+  --color-button4: #1c3040; /* Quaternary button (darker slate-navy) */
+  --color-button4-meta: #f1f5f9;
+  --color-button4-hover: #26404f;
+  --color-button4-border: #33505f;
 
   --color-button-transparent: transparent;
-  --color-button-transparent-meta: #f8fafc;
-  --color-button-transparent-hover: rgba(148, 163, 184, 0.1);
+  --color-button-transparent-meta: #f1f5f9;
+  --color-button-transparent-hover: rgba(122, 170, 180, 0.12);
   --color-button-transparent-border: transparent;
-  --color-button-transparent-hover-border: #64748b;
-  
+  --color-button-transparent-hover-border: #4a7186;
+
   /* Utility */
-  --color-overlay: rgba(15, 23, 42, 0.9);
+  --color-overlay: rgba(20, 33, 47, 0.9);
   --color-danger: #f87171;
   --color-danger-hover: #ef4444;
   --color-danger-border: #b91c1c;

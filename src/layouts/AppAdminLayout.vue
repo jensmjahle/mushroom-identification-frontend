@@ -22,10 +22,12 @@ import NavBar from "@/components/navigation/NavBar.vue";
 import {onMounted, onUnmounted} from 'vue';
 import {useRouter} from 'vue-router';
 import {disconnectGlobalSocket, initGlobalSocket} from '@/services/websocket/globalSocket.js';
+import {useAdminBroadcastStore} from '@/store/useAdminBroadcastStore.js';
 import {useI18n} from "vue-i18n";
 const { t } = useI18n()
 
 const router = useRouter();
+const adminBroadcastStore = useAdminBroadcastStore();
 
 onMounted(() => {
   const token = sessionStorage.getItem('jwt');
@@ -43,7 +45,7 @@ onMounted(() => {
       },
 
       (broadcast) => {
-        console.log('Admin broadcast:', broadcast);
+        adminBroadcastStore.recordBroadcast(broadcast.type);
       },
 
       (notif) => {

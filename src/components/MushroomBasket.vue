@@ -19,7 +19,7 @@
       <div class="mb-2 text-center px-4 pt-4">
         <div class="flex justify-center items-center space-x-2 text-text1">
           <ShoppingBasket class="w-5 h-5 text-button3" />
-          <h2 class="text-lg font-semibold">Mushroom Basket</h2>
+          <h2 class="text-lg font-semibold">Mushroom basket</h2>
         </div>
         <p class="text-xs text-text1-faded mt-1 font-medium">
           {{ mushroomStore.mushrooms?.length || 0 }} mushroom{{ mushroomStore.mushrooms?.length === 1 ? '' : 's' }} in the basket

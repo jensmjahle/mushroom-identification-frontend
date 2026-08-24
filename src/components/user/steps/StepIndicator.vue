@@ -5,7 +5,7 @@
 
     <!-- Steg -->
     <div
-      v-for="n in 3"
+      v-for="n in 2"
       :key="n"
       class="w-8 h-8 flex items-center justify-center rounded-md border text-center text-sm font-medium border-border3"
       :class="step === n ? 'bg-button1 text-text1' : 'bg-bg2 text-text2'"

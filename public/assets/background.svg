@@ -57,7 +57,7 @@
   />
 
   <!-- Plasser flere eksemplarer av fleinsopp rundt i bildet med ulike posisjoner/skaleringer -->
-  <!-- (Justér gjerne antall og plassering for din egen layout) -->
+  <!-- (Juster gjerne antall og plassering for din egen layout) -->
   <use href="#fleinsoppBetter" transform="translate(300, 400) scale(1.5)" />
   <use href="#fleinsoppBetter" transform="translate(700, 450) scale(2.0)" />
   <use href="#fleinsoppBetter" transform="translate(1200, 300) scale(1.8)" />

@@ -14,7 +14,7 @@ describe('Become a Member Page', () => {
 
   it('should render the Become a Member page content', () => {
     // Check if the Become a Member title is rendered
-    cy.get('h1').contains('Become a Member – Support Soppidentifikasjon.no!').should('exist');  // Ensure the title is visible
+    cy.get('h1').contains('Become a Member - Support Tryggere Ruspolitikk!').should('exist');  // Ensure the title is visible
 
     // Check if the content section is rendered correctly
     cy.get('.text-left').should('exist');  // Ensure the content section is visible
@@ -27,13 +27,13 @@ describe('Become a Member Page', () => {
 
   it('should display the correct content based on language change', () => {
     // First, check if the content is in English
-    cy.get('h1').contains('Become a Member – Support Soppidentifikasjon.no!').should('exist');  // Ensure title is visible in English
+    cy.get('h1').contains('Become a Member - Support Tryggere Ruspolitikk!').should('exist');  // Ensure title is visible in English
 
     // Switch to Norwegian
     cy.openSettingsAndChangeLanguage('no');  // Change language to Norwegian
     
     // Check if the content changes according to Norwegian translations
-    cy.get('h1').contains('Bli medlem – Støtt Foreningen for Tryggere Ruspolitikk!').should('exist');  // Ensure title is visible in Norwegian
+    cy.get('h1').contains('Bli medlem - Støtt Foreningen for Tryggere Ruspolitikk!').should('exist');  // Ensure title is visible in Norwegian
   });
   it('should redirect to the correct URL when clicking the "Join Now" button', () => {
     // Check if the "Join Now" button redirects to the correct URL

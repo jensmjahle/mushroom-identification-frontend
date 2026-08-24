@@ -1,7 +1,7 @@
 # Mushroom Identification Frontend
 
-Vue 3 / Vite / Tailwind CSS interface for the Mushroom Identification System  
-(Bachelor thesis - Anders Emil Bergan & Jens Martin Jahle)
+Vue 3 / Vite / Tailwind CSS interface for the Mushroom Identification System  
+(Bachelor thesis - Anders Emil Bergan & Jens Martin Jahle)
 
 ---
 ## Table of Contents
@@ -19,10 +19,10 @@ Vue 3 / Vite / Tailwind CSS interface for the Mushroom Identification System
 ---
 
 ## Features
-- Submit mushroom ID requests with multi‑image upload & comments
+- Submit mushroom ID requests with multi-image upload & comments
 - Anonymous tracking via reference codes
 - Admin dashboard: review, classify, export statistics
-- i18n (English / Norwegian) & light/dark theme
+- i18n (English / Norwegian) & light/dark theme
 
 ## Tech Stack
 | Layer            | Choice                    |
@@ -31,17 +31,17 @@ Vue 3 / Vite / Tailwind CSS interface for the Mushroom Identification System
 | Build Tool       | Vite                     |
 | State            | Pinia                    |
 | Styling          | Tailwind CSS             |
-| Charts           | Chart.js + vue‑chartjs   |
+| Charts           | Chart.js + vue-chartjs   |
 | Notifications    | Vue Toastification       |
 | Tests            | Vitest & Cypress         |
 | Containerisation | Docker & Docker Compose  |
 
 ## Project Structure
 ```
-public/            # Static assets ‑‑ env.js lives here
-src/               # Vue components, views, store, router …
+public/            # Static assets -- env.js lives here
+src/               # Vue components, views, store, router ...
 runtime-env.sh     # Only runs in Docker to OPTIONAL override env.js
-Dockerfile         # Multi‑stage build (builder + slim runtime)
+Dockerfile         # Multi-stage build (builder + slim runtime)
 docker-compose.yml # Production recipe
 ```
 
@@ -86,16 +86,16 @@ Only if the backend URL is **not** the one in `env.js`.
 
 ```bash
 # Bash / zsh
-export VITE_API_URL=https://api.my‑backend.com
+export VITE_API_URL=https://api.my-backend.com
 docker compose up --build -d
 
 # PowerShell
-$Env:VITE_API_URL = 'https://api.my‑backend.com'
+$Env:VITE_API_URL = 'https://api.my-backend.com'
 docker compose up --build -d
 ```
 
 - `runtime-env.sh` detects `VITE_API_URL` and rewrites `/app/env.js` **once** at container start.
-- No variable → script exits → fallback remains.
+- No variable -> script exits -> fallback remains.
 
 ---
 ## Route Overview
@@ -104,30 +104,30 @@ docker compose up --build -d
 | Path                           | Name           | Guards          | Description                          |
 | ------------------------------ | -------------- | --------------- | ------------------------------------ |
 | `/`                            | home           | -               | Landing page                         |
-| `/new`                         | new‑request    | -               | Submit a new identification request  |
-| `/request/:userRequestId`      | user‑request   | requiresUser    | View status & chat for a request     |
-| `/become-member`               | become‑member  | -               | Membership information               |
+| `/new`                         | new-request    | -               | Submit a new identification request  |
+| `/request/:userRequestId`      | user-request   | requiresUser    | View status & chat for a request     |
+| `/become-member`               | become-member  | -               | Membership information               |
 | `/support`                     | support        | -               | FAQ & support                        |
-| `/login`                       | user‑login     | -               | Retrieve request via reference code  |
+| `/login`                       | user-login     | -               | Retrieve request via reference code  |
 
 ### Admin Routes (under `/admin`) - requireAdmin
 | Path                                    | Name                    | Description                          |
 | --------------------------------------- | ----------------------- | ------------------------------------ |
-| `/admin/dashboard`                      | admin‑dashboard         | Admin overview & quick actions       |
-| `/admin/requests/:userRequestId`        | admin‑request           | Review & complete a specific request |
-| `/admin/requests`                       | admin‑all‑requests      | List all pending requests            |
-| `/admin/statistics`                     | admin‑statistics        | Processing statistics & exports      |
-| `/admin/management`                     | admin‑management        | Administrator accounts               |
-| `/admin/new`                            | admin‑new‑administrator | Create a new administrator           |
-| `/admin/settings`                       | admin‑settings          | Application & account settings       |
+| `/admin/dashboard`                      | admin-dashboard         | Admin overview & quick actions       |
+| `/admin/requests/:userRequestId`        | admin-request           | Review & complete a specific request |
+| `/admin/requests`                       | admin-all-requests      | List all pending requests            |
+| `/admin/statistics`                     | admin-statistics        | Processing statistics & exports      |
+| `/admin/management`                     | admin-management        | Administrator accounts               |
+| `/admin/new`                            | admin-new-administrator | Create a new administrator           |
+| `/admin/settings`                       | admin-settings          | Application & account settings       |
 
-### Stand‑alone Admin Login
+### Stand-alone Admin Login
 | Path            | Name        |
 | --------------- | ----------- |
-| `/admin/login`  | admin‑login |
+| `/admin/login`  | admin-login |
 
-### Catch‑All Redirect
-`/:pathMatch(.*)*` → `/`
+### Catch-All Redirect
+`/:pathMatch(.*)*` -> `/`
 
 ## Running Tests
 
@@ -141,7 +141,7 @@ docker compose up --build -d
 | Open coverage UI  | open coverage/index.html   # mac / Linux  |
 |                   | start coverage\index.html  # Windows     |
 
-### 2 - End‑to‑End Tests (Cypress)
+### 2 - End-to-End Tests (Cypress)
 
 Prerequisite: the frontend (or a built preview) must be running on **http://localhost:5173**.
 

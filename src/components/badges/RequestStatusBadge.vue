@@ -1,7 +1,7 @@
 <template>
   <div class="status-badge" :class="statusClass">
     <component :is="icon" class="w-4 h-4" />
-    <span class="capitalize">{{ t(`statuses.${status.toLowerCase()}`) }}</span>
+    <span>{{ t(`statuses.${status.toLowerCase()}`) }}</span>
   </div>
 </template>
 

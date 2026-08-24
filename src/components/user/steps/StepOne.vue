@@ -44,22 +44,18 @@
         class="relative border border-border2 rounded-lg p-3 bg-bg1 mb-3 flex flex-col gap-2 shadow-sm hover:shadow-md transition"
         data-testid="mushroom-item"
         >
-        <XIcon class="w-4 h-4 text-text1-faded hover:text-button1-meta absolute top-2 right-2 cursor-pointer" tabindex="0" @click="removeMushroom(mushroom.id)" />
+        <XIcon class="w-4 h-4 text-text1-faded hover:text-danger absolute top-2 right-2 cursor-pointer" tabindex="0" @click="removeMushroom(mushroom.id)" />
         <div class="font-semibold text-text1 text-left mb-1">
           {{ t('submit.mushroom') }} {{ mushroom.id }}
         </div>
         <div class="flex flex-wrap gap-2">
-          <div
-          v-for="(img, i) in mushroom.images"
-          :key="i"
-          class="bg-bg2 border border-border1 rounded px-3 py-1 text-xs text-text1 flex items-center"
-          >
-          <svg class="w-4 h-4 mr-1 text-button2-meta" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M15.172 7l-6.586 6.586a2 2 0 002.828 2.828l6.586-6.586a2 2 0 00-2.828-2.828z"/>
-            <path stroke-linecap="round" stroke-linejoin="round" d="M16 5l3 3"/>
-          </svg>
-          {{ img.name }}
-          </div>
+          <img
+            v-for="(img, i) in mushroom.images"
+            :key="i"
+            :src="getImagePreviewUrl(img)"
+            :alt="img.name"
+            class="w-12 h-12 rounded object-cover border border-border1"
+          />
         </div>
         </div>
       </template>
@@ -75,7 +71,7 @@
         @click="showMushroomPopup = true"
         data-testid="add-mushroom-button"
       >
-        <Upload class="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14" />
+        <MushroomAddIcon class="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14" />
       </BaseButton>
     </div>
 
@@ -109,45 +105,75 @@
     <div v-if="showMushroomPopup" class="fixed inset-0 z-[60] backdrop-blur-sm flex items-center justify-center p-4" data-testid="mushroom-popup">
       <div class="bg-bg1 p-6 rounded-lg shadow-lg w-full max-w-md space-y-4">
         <div class="flex justify-between items-center mb-4">
-          <h3 class="text-lg font-semibold text-text1">{{ t('submit.step') }} {{ mushroomStep }} {{ t('submit.of') }} 3</h3>
+          <h3 class="text-lg font-semibold text-text1">{{ t('submit.addMushroomTitle') }}</h3>
           <BaseButton variant="4" class="text-xs" @click="cancelMushroom" data-testid="close-popup">{{ t('submit.close') }}</BaseButton>
         </div>
 
-        <div class="flex justify-between mb-4">
-          <div v-for="n in 3" :key="n" class="flex-1 h-2 mx-1 rounded-md" :class="{ 'bg-button1': mushroomStep >= n, 'bg-border2': mushroomStep < n }"></div>
-        </div>
+        <p class="text-text1-faded text-sm mb-2">{{ t('submit.addMushroomHint') }}</p>
 
-        <p class="text-text1-faded text-sm mb-2">{{ stepDescriptions[mushroomStep - 1] }}</p>
+        <!-- All three angles shown at once, fillable in any order -->
+        <div class="grid grid-cols-3 gap-3">
+          <div
+            v-for="angle in angles"
+            :key="angle.key"
+            class="flex flex-col items-center gap-1 text-center"
+            :title="angle.description"
+            :data-testid="`angle-slot-${angle.key}`"
+          >
+            <p class="text-xs font-semibold text-text1">{{ angle.label }}</p>
 
-        <div class="text-center text-sm text-text1 mb-2">
-          <div v-if="!mushroomInProgress[mushroomStep]">
-            <button
-              type="button"
-              class="underline cursor-pointer text-button2-meta focus:outline-none focus:ring"
-              @click="popupInputRef?.click()"
-              data-testid="upload-button"
+            <div
+              v-if="!angleFiles[angle.key]"
+              class="w-full aspect-square border-2 border-dashed border-border2 rounded-lg flex items-center justify-center p-1"
             >
-              {{ t('submit.upload') }}
-            </button>
+              <button
+                type="button"
+                class="text-xs underline cursor-pointer text-button2 focus:outline-none focus:ring"
+                @click="fileInputs[angle.key]?.click()"
+                :data-testid="`upload-button-${angle.key}`"
+              >
+                {{ t('submit.upload') }}
+              </button>
+            </div>
+            <div v-else class="w-full space-y-1">
+              <img
+                :src="angleFiles[angle.key].dataURL"
+                alt="preview"
+                class="w-full aspect-square object-cover rounded border border-border1"
+              />
+              <button
+                type="button"
+                class="text-[11px] underline cursor-pointer text-button2 focus:outline-none focus:ring"
+                @click="fileInputs[angle.key]?.click()"
+                :data-testid="`change-upload-button-${angle.key}`"
+              >
+                {{ t('submit.changeUpload') }}
+              </button>
+            </div>
+
+            <input
+              type="file"
+              accept="image/*"
+              class="hidden"
+              :ref="(el) => (fileInputs[angle.key] = el)"
+              @change="(e) => handleAngleUpload(angle.key, e)"
+              :data-testid="`file-input-${angle.key}`"
+            />
           </div>
-          <div v-else class="space-y-2">
-            <img :src="imagePreviews[mushroomStep]" alt="preview" class="max-h-40 mx-auto rounded border border-border1" />
-            <button
-              type="button"
-              class="text-xs underline cursor-pointer text-button2-meta focus:outline-none focus:ring"
-              @click="popupInputRef?.click()"
-              data-testid="change-upload-button"
-            >
-              {{ t('submit.changeUpload') }}
-            </button>
-          </div>
-          <input id="popupFileInput" type="file" class="hidden" @change="handlePopupUpload" ref="popupInputRef" />
         </div>
 
         <div class="flex justify-between">
-          <BaseButton variant="3" class="w-[45%]" @click="prevStep" :disabled="mushroomStep === 1" data-testid="prev-step-button">{{ t('submit.back') }}</BaseButton>
-          <BaseButton variant="2" class="w-[45%]" @click="nextStep" :disabled="!mushroomInProgress[mushroomStep]" data-testid="next-step-button">
-            {{ mushroomStep === 3 ? t('submit.finish') : t('submit.next') }}
+          <BaseButton variant="3" class="w-[45%]" @click="cancelMushroom" data-testid="cancel-mushroom-button">
+            {{ t('submit.cancel') }}
+          </BaseButton>
+          <BaseButton
+            variant="2"
+            class="w-[45%]"
+            :disabled="!allAnglesFilled"
+            @click="addMushroom"
+            data-testid="add-mushroom-confirm-button"
+          >
+            {{ t('submit.addMushroom') }}
           </BaseButton>
         </div>
       </div>
@@ -186,8 +212,9 @@ import { useToast } from 'vue-toastification'
 import { useRouter, onBeforeRouteLeave } from 'vue-router'
 import { sendNewUserRequest } from '@/services/rest/userRequestService.js'
 import { processImageFiles } from '@/utils/imageUtils'
-import { XIcon, Upload } from 'lucide-vue-next'
+import { XIcon } from 'lucide-vue-next'
 import BaseButton from '@/components/base/BaseButton.vue'
+import MushroomAddIcon from '@/components/base/MushroomAddIcon.vue'
 
 const { t, tm } = useI18n()
 const toast = useToast()
@@ -201,22 +228,29 @@ const showErrorMushroom = ref(false)
 const loading = ref(false)
 
 const showMushroomPopup = ref(false)
-const mushroomStep = ref(1)
-const popupInputRef = ref(null)
 
-const mushroomInProgress = ref({ 1: null, 2: null, 3: null })
-const imagePreviews = ref({ 1: null, 2: null, 3: null })
+// Three independently-fillable angle slots, rather than a forced sequential
+// wizard - lets the user upload whichever photo they have on hand first,
+// while still keeping the top/side/underside distinction the identification
+// actually depends on.
+const ANGLE_FILENAME_SUFFIX = { top: 'top', side: 'side', under: 'bot' }
+const fileInputs = {}
+const angleFiles = ref({ top: null, side: null, under: null })
+
+const angles = computed(() => [
+  { key: 'top', label: t('submit.angleTop'), description: t('submit.stepDescription.top') },
+  { key: 'side', label: t('submit.angleSide'), description: t('submit.stepDescription.side') },
+  { key: 'under', label: t('submit.angleUnder'), description: t('submit.stepDescription.under') }
+])
+
+const allAnglesFilled = computed(() =>
+  angles.value.every((angle) => angleFiles.value[angle.key])
+)
 
 const navigationWarningVisible = ref(false)
 const pendingNavigation = ref(null)
 
 const steps = computed(() => tm('submit.steps'))
-
-const stepDescriptions = computed(() => [
-  t('submit.stepDescription.top'),
-  t('submit.stepDescription.side'),
-  t('submit.stepDescription.under')
-])
 
 onBeforeRouteLeave((to, from, next) => {
   if (!navigationWarningVisible.value && (comment.value || mushrooms.value.length)) {
@@ -243,10 +277,6 @@ function toggleHint(step) {
   hintStep.value = hintStep.value === step ? null : step
 }
 
-function getStepName(step) {
-  return step === 1 ? 'top' : step === 2 ? 'side' : 'bot'
-}
-
 function getNextAvailableId() {
   const usedIds = new Set(mushrooms.value.map(m => m.id))
   let id = 1
@@ -254,7 +284,25 @@ function getNextAvailableId() {
   return id
 }
 
+// Thumbnails in the mushroom list read from a File's dataURL when it has one
+// (set for images restored from sessionStorage), otherwise from a blob URL
+// created lazily and cached on the File itself so it isn't recreated on every
+// render.
+function getImagePreviewUrl(img) {
+  if (img.dataURL) return img.dataURL
+  if (!img.previewUrl) img.previewUrl = URL.createObjectURL(img)
+  return img.previewUrl
+}
+
+function revokeImagePreviewUrls(images) {
+  for (const img of images) {
+    if (img.previewUrl) URL.revokeObjectURL(img.previewUrl)
+  }
+}
+
 function removeMushroom(id) {
+  const removed = mushrooms.value.find(m => m.id === id)
+  if (removed) revokeImagePreviewUrls(removed.images)
   mushrooms.value = mushrooms.value.filter(m => m.id !== id)
 }
 
@@ -267,12 +315,15 @@ function fileToBase64(file) {
   })
 }
 
-async function handlePopupUpload(event) {
+async function handleAngleUpload(angleKey, event) {
   const file = event.target.files?.[0]
   if (!file) return
 
-  // Check file size before anything else
-  if (file.size > 10 * 1024 * 1024) {
+  // Check file size before anything else. This is the raw, pre-downscale source
+  // file - processImageFiles() will shrink it well below this regardless, so this
+  // is really just a guard against trying to load something absurd (e.g. a RAW
+  // file) into memory, not the limit users are expected to normally hit.
+  if (file.size > 50 * 1024 * 1024) {
     toast.error(t('errors.FileTooLarge'))
     event.target.value = null
     return
@@ -280,36 +331,29 @@ async function handlePopupUpload(event) {
 
   const dataURL = await fileToBase64(file)
   file.dataURL = dataURL
-  mushroomInProgress.value[mushroomStep.value] = file
-  imagePreviews.value[mushroomStep.value] = dataURL
+  angleFiles.value = { ...angleFiles.value, [angleKey]: file }
   event.target.value = null
 }
 
-async function nextStep() {
-  if (mushroomStep.value < 3) {
-    mushroomStep.value++
-  } else {
-    const imagesRaw = Object.entries(mushroomInProgress.value)
-      .filter(([_, file]) => file)
-      .map(([step, file]) => ({ file, name: `angle_${getStepName(Number(step))}.jpg` }))
+async function addMushroom() {
+  if (!allAnglesFilled.value) return
 
-    const { processedFiles, error } = await processImageFiles(
-      imagesRaw.map(i => i.file),
-      mushrooms.value.flatMap(m => m.images),
-      imagesRaw.map(i => i.name)
-    )
+  const imagesRaw = Object.entries(angleFiles.value)
+    .filter(([_, file]) => file)
+    .map(([key, file]) => ({ file, name: `angle_${ANGLE_FILENAME_SUFFIX[key]}.jpg` }))
 
-    mushrooms.value.push({
-      id: getNextAvailableId(),
-      images: processedFiles
-    })
+  const { processedFiles, error } = await processImageFiles(
+    imagesRaw.map(i => i.file),
+    mushrooms.value.flatMap(m => m.images),
+    imagesRaw.map(i => i.name)
+  )
 
-    resetMushroomPopup()
-  }
-}
+  mushrooms.value.push({
+    id: getNextAvailableId(),
+    images: processedFiles
+  })
 
-function prevStep() {
-  if (mushroomStep.value > 1) mushroomStep.value--
+  resetMushroomPopup()
 }
 
 function cancelMushroom() {
@@ -317,9 +361,7 @@ function cancelMushroom() {
 }
 
 function resetMushroomPopup() {
-  mushroomInProgress.value = { 1: null, 2: null, 3: null }
-  imagePreviews.value = { 1: null, 2: null, 3: null }
-  mushroomStep.value = 1
+  angleFiles.value = { top: null, side: null, under: null }
   showMushroomPopup.value = false
 }
 
@@ -374,6 +416,7 @@ onMounted(() => {
 })
 
 onUnmounted(() => {
+  for (const mushroom of mushrooms.value) revokeImagePreviewUrls(mushroom.images)
   comment.value = ''
   mushrooms.value = []
   sessionStorage.removeItem('submit_comment')

@@ -3,7 +3,7 @@
     <img
       :src="logoSrc"
       class="w-48 mb-6"
-      alt="Fleinsoppkontroll logo"
+      alt="Fleinkontroll logo"
     />
 
     <p class="text-text1 text-md font-semibold mb-6 max-w-lg w-[60%]">

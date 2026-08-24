@@ -2,7 +2,7 @@ import { mount, flushPromises } from '@vue/test-utils'
 import { describe, it, expect, vi, afterEach } from 'vitest'
 import Mushroom from '@/components/Mushroom.vue'
 
-// 🔧 Mock i18n
+// Mock i18n
 vi.mock('vue-i18n', async () => {
   const actual = await vi.importActual('vue-i18n')
   return {
@@ -11,7 +11,7 @@ vi.mock('vue-i18n', async () => {
   }
 })
 
-// 🔧 Mock Mushroom Store direkte
+// Mock Mushroom Store direkte
 vi.mock('@/store/useMushroomStore.js', () => ({
   useMushroomStore: () => ({
     mushrooms: [
@@ -24,7 +24,7 @@ vi.mock('@/store/useMushroomStore.js', () => ({
   })
 }))
 
-// 🔧 Mock subcomponents
+// Mock subcomponents
 vi.mock('@/components/badges/MushroomStatusBadge.vue', () => ({
   default: {
     name: 'StatusBadge',

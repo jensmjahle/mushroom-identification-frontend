@@ -13,7 +13,6 @@
         id="ref-code"
         type="text"
         :label="t('loginUser.refLabel')"
-        :placeholder="t('loginUser.placeholder')"
         data-testid="ref-code-input"
       />
 

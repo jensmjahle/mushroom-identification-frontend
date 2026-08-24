@@ -13,16 +13,22 @@
         <li>{{ t('submit.introBullet4') }}</li>
         <li>{{ t('submit.introBullet5') }}</li>
       </ul>
-      <BaseButton @click="$emit('next')" class="mt-4">
+      <BaseButton @click="handleStart" class="mt-4">
         {{ t('submit.startButton') }}
       </BaseButton>
     </div>
   </template>
-  
+
   <script setup>
   import { useI18n } from 'vue-i18n'
   import BaseButton from '@/components/base/BaseButton.vue'
-  
+  import { SUBMIT_INTRO_SEEN_KEY } from '@/components/user/steps/introStorage.js'
+
   const { t } = useI18n()
+  const emit = defineEmits(['next'])
+
+  function handleStart() {
+    localStorage.setItem(SUBMIT_INTRO_SEEN_KEY, '1')
+    emit('next')
+  }
   </script>
-  

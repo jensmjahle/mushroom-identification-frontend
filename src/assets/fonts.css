@@ -1,8 +1,4 @@
-@font-face {
-  font-family: 'AreaVariable';
-  src: url('@/assets/fonts/AreaVariable.woff2') format('woff2'),
-       url('@/assets/fonts/AreaVariable.woff')  format('woff');
-  font-weight: 100 900;      /* if it’s a variable font */
-  font-style: normal;
-  font-display: swap;
-}
+/* Urbanist: a free (SIL OFL) geometric sans, used as a look-alike for
+   rusopplysningen.no's commercially-licensed FuturaPT, which we can't
+   redistribute here. Self-hosted via @fontsource-variable/urbanist. */
+@import '@fontsource-variable/urbanist/wght.css';

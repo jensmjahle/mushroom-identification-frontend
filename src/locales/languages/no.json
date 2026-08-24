@@ -60,9 +60,9 @@
     "stats": {
       "completedTitle": "Daglig fullførte forespørseler",
       "mushroomCategories": "Soppkategorier",
-      "last7Days": "Siste 7 Dager",
-      "last30Days": "Siste 30 Dager",
-      "last90Days": "Siste 90 Dager",
+      "last7Days": "Siste 7 dager",
+      "last30Days": "Siste 30 dager",
+      "last90Days": "Siste 90 dager",
       "weeklyRate": "Gjeldene ukentlig nye forespørseler",
       "ftrClicks": "Antall trykk på registreringsknapp",
       "exportTitle": "Eksporter statistikk og historikk",
@@ -78,7 +78,7 @@
       "downloadPdf": "Last ned PDF"
     },
     "adminDashboard": {
-      "greeting": "Hei {name} 👋",
+      "greeting": "Hei {name}",
       "welcome": "Velkommen til adminpanelet. Her får du oversikt over forespørsler og snarveier til det viktigste du gjør.",
       "tips": {
         "tip1": "Trykk \"Hent neste fra kø\" for å starte en ny vurdering.",
@@ -116,11 +116,11 @@
   },
   "mushroomStatus": {
     "PSILOCYBIN": "Fleinsopp",
-    "NON_PSILOCYBIN": "Ikke Fleinsopp",
+    "NON_PSILOCYBIN": "Ikke fleinsopp",
     "TOXIC": "Giftig",
     "UNKNOWN": "Ukjent",
     "UNIDENTIFIABLE": "Uidentifiserbar",
-    "NOT_PROCESSED": "Ikke Behandlet",
+    "NOT_PROCESSED": "Ikke behandlet",
     "BAD_PICTURES": "Dårlige bilder"
   },
   "mushroomPopup": {
@@ -135,7 +135,7 @@
     "introBullet3": "Du skal skrive en kort kommentar om funnet ditt.",
     "introBullet4": "Etter innsending får du en referansekode for å følge med på rapporten.",
     "introBullet5": "En ekte ekspert vurderer innsendingen og sender deg svar.",
-    "startButton": "Jeg forstår – Start",
+    "startButton": "Jeg forstår - start",
     "title": "Send inn en soppforespørsel",
     "upload": "Last opp bilde",
     "changeUpload": "Endre bilde",
@@ -144,19 +144,19 @@
     "send": "Send inn bilder",
     "close": "Lukk",
     "hintTitle": "Tips",
-    "reference": "Referansekode",
     "referenceHint": "Bruk denne koden for å finne innsendingen din senere:",
-    "back": "Tilbake",
-    "next": "Neste",
-    "finish": "Fullfør",
     "thankYou": "Takk!",
-    "thankYouHint": "Du får svar så snart en ekspert har sett på bildene dine. Du kan også sjekke med en gang ved å gå til «Se Svar» i sidemenyen og skrive inn referansekoden din.",
+    "thankYouHint": "Du får svar så snart en ekspert har sett på bildene dine. Du kan også sjekke med en gang ved å gå til \"Se svar\" i sidemenyen og skrive inn referansekoden din.",
     "toFront": "Gå til forsiden",
     "mushroom": "Sopp",
     "noMushrooms": "Ingen sopper lagt til ennå.",
     "mushroomListTitle": "Soppene dine:",
-    "step": "Steg",
-    "of": "av",
+    "addMushroomTitle": "Legg til en sopp",
+    "addMushroomHint": "Last opp alle tre bildene, i valgfri rekkefølge.",
+    "addMushroom": "Legg til sopp",
+    "angleTop": "Topp",
+    "angleSide": "Side",
+    "angleUnder": "Undersiden",
     "readyQuestion": "Er du klar til å gå videre?",
     "readyDetail": "Når du fortsetter, kan du ikke gå tilbake til dette steget.",
     "proceedButton": "Ja, fortsett",
@@ -166,10 +166,10 @@
     "sending": "Sender inn...",
     "adminOnline": "Det er {count} soppeksperter pålogget nå",
     "noAdminsOnline": "Det er ingen soppeksperter pålogget akkurat nå",
-    "goToChat": "Gå til Chat",
+    "goToChat": "Gå til chat",
     "steps": [
       {
-        "title": "Trykk på den lilla knappen under for å legge til din første sopp",
+        "title": "Trykk på opplastingsknappen under for å legge til din første sopp",
         "hint": "Ta ett bilde ovenfra, ett fra siden og ett av undersiden. Godt lys og nøytral bakgrunn hjelper til med identifiseringen. All metadata fjernes fra bildene når de lastes opp. Dette betyr at all EXIF-data, inkludert GPS-koordinater, blir fjernet for å beskytte personvernet ditt."
       },
       {
@@ -178,7 +178,7 @@
       },
       {
         "title": "Våre eksperter vurderer bildene dine",
-        "hint": "Du får svar innen 1–2 dager. Bruk referansekoden for å sjekke tilbake."
+        "hint": "Du får svar innen 1-2 dager. Bruk referansekoden for å sjekke tilbake."
       }
     ],
     "stepDescription": {
@@ -187,7 +187,7 @@
       "under": "Bilde av undersiden av soppen. Dette viser skivene eller porene."
     },
     "validation": {
-      "errorMushroomMissing": "Du må legge til minst én sopp før du kan sende inn.",
+      "errorMushroomMissing": "Du må legge til minst en sopp før du kan sende inn.",
       "errorCommentMissing": "Vennligst legg til en kort kommentar."
     }
   },
@@ -196,7 +196,7 @@
     "nextFromQueue": "Hent neste fra køen",
     "allRequests": "Alle forespørsler",
     "statistics": "Statistikk",
-    "completeRequest": "Fulfør forespørsel",
+    "completeRequest": "Fullfør forespørsel",
     "putBackIntoQueue": "Legg tilbake i køen",
     "placeOnHold": "Sett på vent",
     "admins": "Administratorer",
@@ -208,7 +208,7 @@
     "chat": "Min forespørsel",
     "home": "Hjem",
     "newRequest": "Ny forespørsel",
-    "login": "Se Svar",
+    "login": "Se svar",
     "membership": "Bli medlem",
     "support": "Hjelp",
     "onlineAdmins": "Administratorer pålogget",
@@ -224,18 +224,17 @@
     "title": "Sopp",
     "status": {
       "psilocybin": "Fleinsopp",
-      "non-psilocybin": "Ikke Fleinsopp",
+      "non-psilocybin": "Ikke fleinsopp",
       "toxic": "Giftig",
       "unknown": "Ukjent",
       "unidentifiable": "Uidentifiserbar",
-      "not-processed": "Ikke Behandlet",
+      "not-processed": "Ikke behandlet",
       "bad-pictures": "Dårlige bilder"
     }
   },
   "loginUser": {
     "heading": "Skriv inn referansekoden din",
     "refLabel": "Referansekode",
-    "placeholder": "f.eks. 8f3a-1290-abcd...",
     "button": "Logg inn",
     "errorEmpty": "Vennligst skriv inn referansekoden din.",
     "errorInvalid": "Ugyldig eller utløpt referansekode.",
@@ -246,20 +245,20 @@
   "home": {
     "description": "Usikker på om du har plukket fleinsopp? Send inn en gratis anonym forespørsel her:",
     "sendRequest": "Send forespørsel",
-    "becomeMember": "Bli Medlem",
+    "becomeMember": "Bli medlem",
     "getSupport": "få hjelp fra vår support",
     "or": "Eller"
   },
   "membership": {
-    "title": "Bli medlem – Støtt Foreningen for Tryggere Ruspolitikk!",
+    "title": "Bli medlem - støtt Foreningen for Tryggere Ruspolitikk!",
     "intro": "Vil du bidra til å holde Soppidentifikasjon.no i drift og hjelpe flere med trygg soppplukking? Som medlem støtter du vårt arbeid med å dekke driftskostnader og honorarer til våre soppsakkyndige.",
     "whyTitle": "Hvorfor bli medlem?",
-    "why1": "🌱 <strong>Støtt driften:</strong> Bidra til vedlikehold av siden og vår gratis identifikasjonstjeneste.",
-    "why2": "🍄 <strong>Lær mer om sopp:</strong> Få tilgang til eksklusivt innhold om soppidentifikasjon, matsopp og forvekslingsarter.",
-    "why3": "🧐 <strong>Bli soppsakkyndig:</strong> Medlemmer kan søke om å bli en del av vårt team av soppsakkyndige og hjelpe andre.",
+    "why1": "<strong>Støtt driften:</strong> Bidra til vedlikehold av siden og vår gratis identifikasjonstjeneste.",
+    "why2": "<strong>Lær mer om sopp:</strong> Få tilgang til eksklusivt innhold om soppidentifikasjon, matsopp og forvekslingsarter.",
+    "why3": "<strong>Bli soppsakkyndig:</strong> Medlemmer kan søke om å bli en del av vårt team av soppsakkyndige og hjelpe andre.",
     "typesTitle": "Medlemskapstyper",
-    "type1": "💛 <strong>Støttemedlem:</strong> Bidra økonomisk og få tilgang til medlemseksklusivt innhold.",
-    "type2": "🔬 <strong>Soppsakkyndig medlem:</strong> For deg med erfaring og kunnskap, som ønsker å identifisere sopper.",
+    "type1": "<strong>Støttemedlem:</strong> Bidra økonomisk og få tilgang til medlemseksklusivt innhold.",
+    "type2": "<strong>Soppsakkyndig medlem:</strong> For deg med erfaring og kunnskap, som ønsker å identifisere sopper.",
     "closing": "Sammen gjør vi soppidentifikasjon tryggere for alle! Bli medlem i dag og støtt vårt arbeid.",
     "cta": "Meld deg inn her"
   },
@@ -269,7 +268,7 @@
     "faqTitle": "Vanlige spørsmål",
     "faq1": {
       "question": "Hvordan fungerer soppidentifikasjonstjenesten?",
-      "answer": "Du sender inn bilder og får svar innen 1–2 dager."
+      "answer": "Du sender inn bilder og får svar innen 1-2 dager."
     },
     "faq2": {
       "question": "Hvordan bruker jeg referansekoden min?",
@@ -301,14 +300,15 @@
   },
   "errors": {
     "sendingUserRequest": "Klarte ikke å sende forespørselen. Vennligst prøv igjen.",
+    "enteringChat": "Klarte ikke å åpne chatten. Vennligst prøv igjen.",
     "fetchingUserRequest": "Klarte ikke å hente forespørselen din. Vennligst prøv igjen.",
-    "FileTooLarge": "Filen er for stor. Vennligst last opp en fil som er mindre enn 10 MB.",
+    "FileTooLarge": "Filen er for stor. Vennligst last opp en fil som er mindre enn 50 MB.",
     "exportFailed": "Kunne ikke eksportere. Prøv igjen.",
     "loadAdmins": "Det oppsto en feil ved innlasting av administratorer. Prøv igjen senere.",
     "invalidEmail": "Vennligst oppgi en gyldig e-postadresse.",
     "missingOldPassword": "Vennligst skriv inn ditt nåværende passord for å endre passordet.",
     "passwordMismatch": "Passordene samsvarer ikke.",
-    "invalidPasswordFormat": "Passordet må være mellom 8 og 50 tegn, inneholde én stor bokstav, ett tall og ikke inneholde mellomrom.",
+    "invalidPasswordFormat": "Passordet må være mellom 8 og 50 tegn, inneholde en stor bokstav, ett tall og ikke inneholde mellomrom.",
     "profileUpdateFailed": "Klarte ikke å oppdatere profilen. Vennligst prøv igjen.",
     "passwordChangeFailed": "Klarte ikke å endre passordet. Vennligst prøv igjen.",
     "failedToLoadProfile": "Klarte ikke å laste inn profilinformasjonen din.",
@@ -331,7 +331,9 @@
       "locked": "OBS! Denne forespørselen behandles allerede av en annen administrator. Du kan se på den, men ikke gjøre endringer.",
       "statusUpdated": "Statusen for forespørselen ble oppdatert.",
       "addedToQueue": "Forespørselen er lagt tilbake i køen.",
-      "placedOnHold": "Forespørselen er satt på vent."
+      "placedOnHold": "Forespørselen er satt på vent.",
+      "newInQueue": "En ny forespørsel ble lagt til i køen.",
+      "followUp": "En bruker svarte på en forespørsel du fullførte."
     }
 
   },
@@ -356,7 +358,7 @@
     "logout": "Logg ut"
   },
   "basketBadge": {
-    "TOXIC_MUSHROOM_PRESENT": "Advarsel: Denne kurven inneholder minst én giftig sopp",
+    "TOXIC_MUSHROOM_PRESENT": "Advarsel: Denne kurven inneholder minst en giftig sopp",
     "PSYCHOACTIVE_MUSHROOM_PRESENT": "Denne kurven inneholder psykoaktive sopper",
     "UNIDENTIFIABLE_MUSHROOM_PRESENT": "Noen av soppene i denne kurven kunne ikke identifiseres",
     "NON_PSILOCYBIN_MUSHROOM_PRESENT": "Inneholder ikke-psilocybin-sopper",
@@ -373,16 +375,30 @@
   },
   "request": {
     "id": "Forespørsels-ID",
+    "submitted": "Innsendt",
     "lastUpdated": "Sist oppdatert",
     "status": "Status",
     "mushrooms": "Sopper",
+    "decision": "Avgjørelse",
+    "mushroomDecisionAllOf": "Alle {status}",
+    "mushroomDecisionAndMore": "{status} og {count} til",
+    "mushroomDecisionNone": "-",
+    "owner": "Eier",
+    "unassigned": "Ikke tildelt",
+    "release": "Frigi",
+    "hasFollowUp": "Bruker svarte etter fullføring",
     "otherRequests": "Andre forespørsler",
     "statusFilter": {
       "all": "Alle",
       "pending": "Avventer",
       "inProgress": "Under behandling",
       "completed": "Fullført"
-    }
+    },
+    "dateFilter": {
+      "from": "Fra",
+      "to": "Til"
+    },
+    "sortBy": "Sorter etter"
   },
   "adminCreate": {
     "title": "Opprett ny administrator",
@@ -405,12 +421,9 @@
     "passwordTooLong": "Passordet kan være maks 50 tegn.",
     "passwordNoSpaces": "Passordet kan ikke inneholde mellomrom.",
     "passwordNoNumber": "Passordet må inneholde minst ett tall.",
-    "passwordNoUppercase": "Passordet må inneholde minst én stor bokstav.",
+    "passwordNoUppercase": "Passordet må inneholde minst en stor bokstav.",
     "passwordsDontMatch": "Passordene er ikke like."
 
   }
 
 }
-
-
-

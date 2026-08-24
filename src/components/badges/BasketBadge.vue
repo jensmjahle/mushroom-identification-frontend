@@ -1,7 +1,7 @@
 <template>
   <div class="basket-badge" :class="[style.bg, style.text, style.border]">
     <component :is="style.icon" class="w-4 h-4" />
-    <span class="capitalize">{{ t(`basketBadge.${props.badge}`) }}</span>
+    <span>{{ t(`basketBadge.${props.badge}`) }}</span>
   </div>
 </template>
 

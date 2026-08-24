@@ -7,9 +7,11 @@
         <div
             v-for="col in columns"
             :key="col.key"
-            :class="col.class || 'col-span-4'"
+            :class="[col.class || 'col-span-4', col.sortable ? 'cursor-pointer select-none hover:text-text1 transition flex items-center gap-1' : '']"
+            @click="col.sortable ? $emit('sort-change', col.key) : null"
         >
           {{ col.label }}
+          <span v-if="col.sortable && sortKey === col.key" class="text-xs">{{ sortDirection === 'asc' ? '▲' : '▼' }}</span>
         </div>
       </div>
 
@@ -72,11 +74,13 @@ defineProps({
   items: Array,
   columns: Array,
   pagination: Object,
+  sortKey: String,
+  sortDirection: String,
   clickable: {
     type: Boolean,
     default: false
   }
 })
 
-defineEmits(['next-page', 'prev-page', 'item-click'])
+defineEmits(['next-page', 'prev-page', 'item-click', 'sort-change'])
 </script>

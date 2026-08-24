@@ -27,7 +27,7 @@ const props = defineProps({ data: Array })
 const chartConfig = computed(() => ({
   labels: props.data.map(p => p.date),
   datasets: [{
-    label: 'Completed Requests',
+    label: 'Completed requests',
     data: props.data.map(p => p.count),
     fill: false,
     borderColor: '#4ade80',

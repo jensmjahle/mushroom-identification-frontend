@@ -2,12 +2,11 @@
 import { mount, flushPromises } from '@vue/test-utils'
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
 import { createRouter, createWebHistory } from 'vue-router'
-import { h } from 'vue'
 import NewRequestView from '@/views/user/NewRequestView.vue'
 import StepZero from '@/components/user/steps/StepZero.vue'
 import StepOne from '@/components/user/steps/StepOne.vue'
 import StepTwo from '@/components/user/steps/StepTwo.vue'
-import StepThree from '@/components/user/steps/StepThree.vue'
+import { SUBMIT_INTRO_SEEN_KEY } from '@/components/user/steps/introStorage.js'
 
 // Mock vue-i18n so t() returns the key
 vi.mock('vue-i18n', async () => {
@@ -20,6 +19,11 @@ vi.mock('vue-i18n', async () => {
     })
   }
 })
+
+// StepTwo is mounted for real in these tests; stub what it calls on mount
+vi.mock('@/services/rest/websocketService.js', () => ({
+  getOnlineAdminCount: vi.fn(() => Promise.resolve(0))
+}))
 
 const waitForComponent = async (wrapper, component, timeout = 300) => {
   let tries = 0
@@ -40,6 +44,7 @@ describe('NewRequestView.vue', () => {
     sessionStorage.removeItem('currentStep')
     sessionStorage.removeItem('submit_comment')
     sessionStorage.removeItem('submit_mushrooms')
+    localStorage.removeItem(SUBMIT_INTRO_SEEN_KEY)
 
     router = createRouter({
       history: createWebHistory(),
@@ -76,30 +81,36 @@ describe('NewRequestView.vue', () => {
     })
   }
 
-  it('renders step zero initially', async () => {
+  it('renders step zero initially for a first-time visitor', async () => {
     const wrapper = mountInsideRouterView()
     const stepZero = await waitForComponent(wrapper, StepZero)
     expect(stepZero).not.toBeNull()
     expect(stepZero.exists()).toBe(true)
   })
 
-  it('transitions from step 0 to 1 after event', async () => {
+  it('skips step zero for a returning visitor who has already seen the intro', async () => {
+    localStorage.setItem(SUBMIT_INTRO_SEEN_KEY, '1')
+    const wrapper = mountInsideRouterView()
+    const stepOne = await waitForComponent(wrapper, StepOne)
+    expect(stepOne).not.toBeNull()
+    expect(wrapper.findComponent(StepZero).exists()).toBe(false)
+  })
+
+  it('transitions from step 0 to 1 after event, and remembers the intro was seen', async () => {
     const wrapper = mountInsideRouterView()
     const stepZero = await waitForComponent(wrapper, StepZero)
     expect(stepZero).not.toBeNull()
-    await stepZero.vm.$emit('next')
+    await stepZero.find('button').trigger('click')
     await flushPromises()
     const stepOne = await waitForComponent(wrapper, StepOne)
     expect(stepOne).not.toBeNull()
     expect(stepOne.exists()).toBe(true)
+    expect(localStorage.getItem(SUBMIT_INTRO_SEEN_KEY)).toBe('1')
   })
 
-  it('advances to step 2 with userCode on StepOne next', async () => {
+  it('advances directly to the final (merged reference code + chat) step on StepOne next', async () => {
+    localStorage.setItem(SUBMIT_INTRO_SEEN_KEY, '1')
     const wrapper = mountInsideRouterView()
-    const stepZero = await waitForComponent(wrapper, StepZero)
-    expect(stepZero).not.toBeNull()
-    await stepZero.vm.$emit('next')
-    await flushPromises()
     const stepOne = await waitForComponent(wrapper, StepOne)
     expect(stepOne).not.toBeNull()
     await stepOne.vm.$emit('next', 'mock-code')
@@ -108,25 +119,5 @@ describe('NewRequestView.vue', () => {
     expect(stepTwo).not.toBeNull()
     expect(stepTwo.exists()).toBe(true)
     expect(stepTwo.props('referenceCode')).toBe('mock-code')
-  })
-
-  it('goes to step 3 on StepTwo next and passes code', async () => {
-    const wrapper = mountInsideRouterView()
-    const stepZero = await waitForComponent(wrapper, StepZero)
-    expect(stepZero).not.toBeNull()
-    await stepZero.vm.$emit('next')
-    await flushPromises()
-    const stepOne = await waitForComponent(wrapper, StepOne)
-    expect(stepOne).not.toBeNull()
-    await stepOne.vm.$emit('next', 'mock-code')
-    await flushPromises()
-    const stepTwo = await waitForComponent(wrapper, StepTwo)
-    expect(stepTwo).not.toBeNull()
-    await stepTwo.vm.$emit('next', 'mock-code')
-    await flushPromises()
-    const stepThree = await waitForComponent(wrapper, StepThree)
-    expect(stepThree).not.toBeNull()
-    expect(stepThree.exists()).toBe(true)
-    expect(stepThree.props('referenceCode')).toBe('mock-code')
   })
 })

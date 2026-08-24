@@ -7,11 +7,11 @@
 
     <!-- Created/Updated row -->
     <div class="flex justify-between text-sm text-text1-faded">
-      <p><span class="font-semibold">Sent In:</span></p>
+      <p><span class="font-semibold">Sent in:</span></p>
       <p>{{ formatDate(request.createdAt) }}</p>
     </div>
     <div class="flex justify-between text-sm text-textAltFaded">
-      <p><span class="font-semibold">Last Updated:</span></p>
+      <p><span class="font-semibold">Last updated:</span></p>
       <p>{{ formatDate(request.updatedAt) }}</p>
     </div>
 
@@ -23,6 +23,15 @@
       ]"
     >
       {{ request.status.toLowerCase() }}
+    </div>
+
+    <!-- Follow-up after completion -->
+    <div
+      v-if="request.hasFollowUp"
+      class="flex items-center gap-1 text-sm text-danger"
+    >
+      <MessageCircleWarning class="w-4 h-4 shrink-0" />
+      <span>{{ t('request.hasFollowUp') }}</span>
     </div>
 
     <!-- Mushroom Basket Summary -->
@@ -40,6 +49,7 @@
 <script setup>
 import { formatDate } from '../utils/formatters';
 import { useI18n } from 'vue-i18n';
+import { MessageCircleWarning } from 'lucide-vue-next';
 import BasketBadge from "@/components/badges/BasketBadge.vue";
 
 const { t } = useI18n();

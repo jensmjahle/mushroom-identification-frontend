@@ -2,7 +2,6 @@
 import { mount, flushPromises } from '@vue/test-utils'
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
 import { createRouter, createWebHistory } from 'vue-router'
-import { nextTick } from 'vue'
 import StepTwo from '@/components/user/steps/StepTwo.vue'
 import BaseButton from '@/components/base/BaseButton.vue'
 
@@ -13,79 +12,127 @@ vi.mock('vue-i18n', async () => {
     ...actual,
     useI18n: () => ({
       t: (key) => key,
-      tm: (key) => key // mock tm too in case it's called
+      tm: (key) => key
     })
   }
 })
+
+// Mock loginUser and parseJwt (used by the merged "go to chat" action)
+vi.mock('@/services/rest/authService.js', () => ({
+  loginUser: vi.fn(() =>
+    Promise.resolve({ data: { token: 'mock.jwt.token' } })
+  )
+}))
+vi.mock('@/utils/jwt.js', () => ({
+  parseJwt: () => ({ sub: 'mock-user-id' })
+}))
+
+// getOnlineAdminCount is called on mount; stub it so tests don't depend on
+// the real websocket service
+vi.mock('@/services/rest/websocketService.js', () => ({
+  getOnlineAdminCount: vi.fn(() => Promise.resolve(0))
+}))
 
 describe('StepTwo.vue', () => {
   let router
 
   beforeEach(async () => {
-    // Create a minimal router so onBeforeRouteLeave can register without warning
     router = createRouter({
       history: createWebHistory(),
-      routes: [{ path: '/', component: StepTwo }]
+      routes: [
+        { path: '/', name: 'home', component: { template: '<div>Home</div>' } },
+        { path: '/submit', name: 'submit-request', component: StepTwo, props: true },
+        { path: '/request/:userRequestId', name: 'user-request', component: { template: '<div>Chat</div>' } }
+      ]
     })
-    await router.push('/')
+    await router.push('/submit')
     await router.isReady()
 
-    // Stub clipboard
     vi.stubGlobal('navigator', {
       clipboard: { writeText: vi.fn() }
     })
+    vi.stubGlobal('sessionStorage', {
+      setItem: vi.fn(),
+      removeItem: vi.fn(),
+      getItem: vi.fn()
+    })
+    vi.spyOn(window, 'dispatchEvent')
   })
 
   afterEach(() => {
     vi.unstubAllGlobals()
+    vi.clearAllMocks()
   })
 
-  it('displays code, copies it, and shows the ready modal flow', async () => {
-    const App = {
-      template: '<router-view />'
-    }
-
-    router.addRoute({ path: '/', component: StepTwo })
-
-    const wrapper = mount(App, {
+  const mountStepTwo = () => {
+    const App = { template: '<router-view />' }
+    return mount(App, {
       global: {
         plugins: [router],
         components: { BaseButton }
       },
-      props: { referenceCode: 'ABC123' } // Will be passed to StepTwo
+      props: { referenceCode: 'ABC123' }
     })
+  }
 
+  it('displays and copies the reference code', async () => {
+    const wrapper = mountStepTwo()
     await flushPromises()
-
     const stepWrapper = wrapper.findComponent(StepTwo)
 
-    // Check reference code displayed
     expect(stepWrapper.text()).toContain('ABC123')
 
-    // Copy to clipboard (first BaseButton)
-    const [copyBtn, nextBtn] = stepWrapper.findAllComponents(BaseButton)
-    await copyBtn.trigger('click')
+    await stepWrapper.find('[data-testid="copy-button"]').trigger('click')
     expect(navigator.clipboard.writeText).toHaveBeenCalledWith('ABC123')
+  })
 
-    // Click Next (second BaseButton)
-    await nextBtn.trigger('click')
-    await nextTick()
-    expect(stepWrapper.find('div.fixed').exists()).toBe(true)
+  it('goes straight to chat on one click, with no extra confirmation step', async () => {
+    const wrapper = mountStepTwo()
+    await flushPromises()
+    const stepWrapper = wrapper.findComponent(StepTwo)
 
-    // Find proceed and cancel buttons
-    const allBtns = stepWrapper.findAllComponents(BaseButton)
-    const proceedBtn = allBtns.find(b => b.text() === 'submit.proceedButton')
-    const cancelBtn = allBtns.find(b => b.text() === 'submit.cancel')
+    // No confirmation modal should appear just from being on the page
+    expect(stepWrapper.find('[data-testid="ready-modal"]').exists()).toBe(false)
 
-    // Cancel hides modal
-    await cancelBtn.trigger('click')
-    await nextTick()
-    expect(stepWrapper.find('div.fixed').exists()).toBe(false)
+    await stepWrapper.find('[data-testid="chat-button"]').trigger('click')
+    await flushPromises()
 
-    // Re-open and proceed emits "next"
-    await nextBtn.trigger('click')
-    await nextTick()
-    await proceedBtn.trigger('click')
-    expect(stepWrapper.emitted('next')).toHaveLength(1)
+    // Still no confirmation modal - the click itself is the confirmation
+    expect(stepWrapper.find('[data-testid="ready-modal"]').exists()).toBe(false)
+
+    expect(sessionStorage.setItem).toHaveBeenCalledWith('jwt', 'mock.jwt.token')
+    expect(window.dispatchEvent).toHaveBeenCalled()
+    expect(router.currentRoute.value.name).toBe('user-request')
+    expect(router.currentRoute.value.params.userRequestId).toBe('mock-user-id')
+  })
+
+  it('navigates home on one click, with no extra confirmation step', async () => {
+    const wrapper = mountStepTwo()
+    await flushPromises()
+    const stepWrapper = wrapper.findComponent(StepTwo)
+
+    await stepWrapper.find('[data-testid="home-button"]').trigger('click')
+    await flushPromises()
+
+    expect(stepWrapper.find('[data-testid="ready-modal"]').exists()).toBe(false)
+    expect(router.currentRoute.value.name).toBe('home')
+  })
+
+  it('still warns before an unrelated/accidental navigation away', async () => {
+    const wrapper = mountStepTwo()
+    await flushPromises()
+    const stepWrapper = wrapper.findComponent(StepTwo)
+
+    // Simulate an accidental navigation (e.g. browser back, a sidebar link)
+    // rather than clicking Chat/Home
+    router.push('/')
+    await flushPromises()
+
+    expect(stepWrapper.find('[data-testid="ready-modal"]').exists()).toBe(true)
+
+    await stepWrapper.find('[data-testid="cancel-button"]').trigger('click')
+    await flushPromises()
+    expect(stepWrapper.find('[data-testid="ready-modal"]').exists()).toBe(false)
+    expect(router.currentRoute.value.name).toBe('submit-request')
   })
 })

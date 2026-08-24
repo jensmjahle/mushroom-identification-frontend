@@ -95,4 +95,84 @@ describe('StepOne.vue', () => {
     const textarea = wrapper.find('[data-testid="comment-input"]')
     expect(textarea.attributes('placeholder')).toBe('submit.validation.errorCommentMissing')
   })
+
+  it('shows all three angle slots at once and only enables Add once all three are filled, in any order', async () => {
+    const wrapper = mount(StepOne, {
+      global: { components: { BaseButton } }
+    })
+    await flushPromises()
+
+    await wrapper.find('[data-testid="add-mushroom-button"]').trigger('click')
+
+    // All three slots visible simultaneously, not gated behind a wizard step
+    expect(wrapper.find('[data-testid="angle-slot-top"]').exists()).toBe(true)
+    expect(wrapper.find('[data-testid="angle-slot-side"]').exists()).toBe(true)
+    expect(wrapper.find('[data-testid="angle-slot-under"]').exists()).toBe(true)
+
+    const addButton = wrapper.find('[data-testid="add-mushroom-confirm-button"]')
+    expect(addButton.attributes('disabled')).toBeDefined()
+
+    const file = new File(['x'], 'photo.jpg', { type: 'image/jpeg' })
+    const setFile = (input) => {
+      Object.defineProperty(input.element, 'files', { value: [file] })
+    }
+
+    // Fill out of order: side, then under, then top. FileReader's onload
+    // fires on a real timer under the hood, so fake timers need a nudge.
+    setFile(wrapper.find('[data-testid="file-input-side"]'))
+    await wrapper.find('[data-testid="file-input-side"]').trigger('change')
+    await vi.runAllTimersAsync()
+    await flushPromises()
+    expect(addButton.attributes('disabled')).toBeDefined()
+
+    setFile(wrapper.find('[data-testid="file-input-under"]'))
+    await wrapper.find('[data-testid="file-input-under"]').trigger('change')
+    await vi.runAllTimersAsync()
+    await flushPromises()
+    expect(addButton.attributes('disabled')).toBeDefined()
+
+    setFile(wrapper.find('[data-testid="file-input-top"]'))
+    await wrapper.find('[data-testid="file-input-top"]').trigger('change')
+    await vi.runAllTimersAsync()
+    await flushPromises()
+
+    expect(wrapper.find('[data-testid="add-mushroom-confirm-button"]').attributes('disabled')).toBeUndefined()
+  })
+
+  it('shows a photo thumbnail per image in the mushroom list, not a filename', async () => {
+    vi.stubGlobal('createImageBitmap', vi.fn(() => Promise.resolve({ width: 800, height: 600 })))
+    vi.spyOn(HTMLCanvasElement.prototype, 'getContext').mockReturnValue({ drawImage: vi.fn() })
+    vi.spyOn(HTMLCanvasElement.prototype, 'toBlob').mockImplementation(function (cb) {
+      cb(new Blob(['fake-jpeg-bytes'], { type: 'image/jpeg' }))
+    })
+    vi.stubGlobal('URL', { ...URL, createObjectURL: vi.fn(() => 'blob:fake-preview-url'), revokeObjectURL: vi.fn() })
+
+    const wrapper = mount(StepOne, {
+      global: { components: { BaseButton } }
+    })
+    await flushPromises()
+
+    await wrapper.find('[data-testid="add-mushroom-button"]').trigger('click')
+
+    const file = new File(['x'], 'photo.jpg', { type: 'image/jpeg' })
+    const setFile = (input) => {
+      Object.defineProperty(input.element, 'files', { value: [file] })
+    }
+
+    for (const angle of ['top', 'side', 'under']) {
+      setFile(wrapper.find(`[data-testid="file-input-${angle}"]`))
+      await wrapper.find(`[data-testid="file-input-${angle}"]`).trigger('change')
+      await vi.runAllTimersAsync()
+      await flushPromises()
+    }
+
+    await wrapper.find('[data-testid="add-mushroom-confirm-button"]').trigger('click')
+    await flushPromises()
+
+    const mushroomItem = wrapper.find('[data-testid="mushroom-item"]')
+    const thumbnails = mushroomItem.findAll('img')
+    expect(thumbnails).toHaveLength(3)
+    thumbnails.forEach(img => expect(img.attributes('src')).toBe('blob:fake-preview-url'))
+    expect(mushroomItem.text()).not.toContain('.jpg')
+  })
 })

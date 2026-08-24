@@ -6,7 +6,7 @@
       @click="toggleDropdown"
     >
       <component :is="icon" class="w-4 h-4" />
-      <span class="capitalize">{{ t(`mushroom.status.${statusKey}`) }}</span>
+      <span>{{ t(`mushroom.status.${statusKey}`) }}</span>
     </div>
 
     <!-- Dropdown -->
@@ -18,7 +18,7 @@
         v-for="option in statusOptions"
         :key="option"
         @click="selectStatus(option)"
-        class="px-3 py-1 hover:bg-text3-faded cursor-pointer capitalize"
+        class="px-3 py-1 hover:bg-text3-faded cursor-pointer"
       >
         {{ t(`mushroom.status.${option.toLowerCase().replace(/_/g, '-')}`) }}
       </div>

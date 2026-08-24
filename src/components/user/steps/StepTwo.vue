@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-col items-center gap-6" data-testid="step-two">
-    <h2 class="text-2xl font-semibold" data-testid="step-two-title">{{ t('submit.reference') }}</h2>
+    <h2 class="text-2xl font-semibold" data-testid="step-two-title">{{ t('submit.thankYou') }}</h2>
     <p class="text-center max-w-md text-text1-faded" data-testid="reference-hint">
       {{ t('submit.referenceHint') }}
     </p>
@@ -14,7 +14,8 @@
         <span v-else data-testid="copy-text">{{ t('submit.copy') }}</span>
       </BaseButton>
     </div>
-    <div class="flex items-center gap-2 ">
+
+    <div class="flex items-center gap-2">
       <span v-if="onlineAdmins > 0" class="w-2 h-2 rounded-full bg-success animate-pulse" title="Admins are online"></span>
       <p class="text-text2-faded">
         {{ onlineAdmins > 0
@@ -23,10 +24,36 @@
       </p>
     </div>
 
+    <p class="text-center max-w-md text-text1-faded" data-testid="thank-you-hint">
+      {{ t('submit.thankYouHint') }}
+    </p>
 
-    <BaseButton class="mt-6" @click="readyModalVisible = true" data-testid="next-step-button">
-      {{ t('submit.next') }}
-    </BaseButton>
+    <div class="flex flex-col sm:flex-row gap-4 mt-2">
+      <BaseButton
+        data-testid="chat-button"
+        @click="goToChat"
+        :disabled="loading"
+        class="flex items-center justify-center gap-2"
+      >
+        <svg
+          v-if="loading"
+          class="animate-spin h-5 w-5 text-text1"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+        >
+          <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" />
+          <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z" />
+        </svg>
+        <span>{{ t('submit.goToChat') }}</span>
+      </BaseButton>
+      <RouterLink :to="{ name: 'home' }">
+        <BaseButton variant="3" data-testid="home-button" @click="allowNavigation = true">
+          {{ t('submit.toFront') }}
+        </BaseButton>
+      </RouterLink>
+    </div>
+    <p v-if="error" class="text-sm text-danger mt-2" data-testid="chat-error">{{ error }}</p>
 
     <div
       v-if="readyModalVisible"
@@ -58,7 +85,9 @@ import { ref, onMounted, onBeforeUnmount } from 'vue'
 import { useRouter, onBeforeRouteLeave } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 import BaseButton from '@/components/base/BaseButton.vue'
-import {getOnlineAdminCount} from "@/services/rest/websocketService.js";
+import { getOnlineAdminCount } from '@/services/rest/websocketService.js'
+import { loginUser } from '@/services/rest/authService.js'
+import { parseJwt } from '@/utils/jwt.js'
 
 const { t } = useI18n()
 const router = useRouter()
@@ -68,13 +97,20 @@ const props = defineProps({
     required: true
   }
 })
-const emit = defineEmits(['next'])
 
 const copied = ref(false)
+const onlineAdmins = ref(0)
+const loading = ref(false)
+const error = ref(null)
+
+// Guards against accidentally losing the reference code via the browser back
+// button, closing the tab, or clicking away to another page - but not
+// against the in-page "Go to Chat" / "Home" buttons themselves, which are
+// the intended ways to leave this screen and shouldn't need a second
+// confirmation on top of the click that already expressed that intent.
 const readyModalVisible = ref(false)
 const pendingNavigation = ref(null)
-const onlineAdmins = ref(0)
-
+const allowNavigation = ref(false)
 
 function copyToClipboard() {
   navigator.clipboard.writeText(props.referenceCode)
@@ -88,29 +124,31 @@ function handleBeforeUnload(e) {
   e.preventDefault()
   e.returnValue = ''
 }
+
 onMounted(() => {
   window.addEventListener('beforeunload', handleBeforeUnload)
   fetchOnlineAdmins()
 })
+
 onBeforeUnmount(() => {
   window.removeEventListener('beforeunload', handleBeforeUnload)
 })
 
 onBeforeRouteLeave((to, from, next) => {
-  if (!readyModalVisible.value) {
-    readyModalVisible.value = true
-    pendingNavigation.value = next
-  } else {
+  if (allowNavigation.value) {
     next()
+    return
   }
+  readyModalVisible.value = true
+  pendingNavigation.value = next
 })
 
 function confirmAndProceed() {
+  readyModalVisible.value = false
   window.removeEventListener('beforeunload', handleBeforeUnload)
   if (pendingNavigation.value) {
     pendingNavigation.value()
-  } else {
-    emit('next', props.referenceCode)
+    pendingNavigation.value = null
   }
 }
 
@@ -118,7 +156,31 @@ function cancelNavigation() {
   readyModalVisible.value = false
   pendingNavigation.value = null
 }
+
 const fetchOnlineAdmins = async () => {
   onlineAdmins.value = await getOnlineAdminCount()
+}
+
+const goToChat = async () => {
+  try {
+    loading.value = true
+    const response = await loginUser(props.referenceCode)
+    const token = response.data.token
+    sessionStorage.setItem('jwt', token)
+    window.dispatchEvent(new Event('storage'))
+    const userRequestId = parseJwt(token)?.sub
+
+    allowNavigation.value = true
+    window.removeEventListener('beforeunload', handleBeforeUnload)
+    await router.push({
+      name: 'user-request',
+      params: { userRequestId }
+    })
+  } catch (err) {
+    console.error(err)
+    error.value = t('errors.enteringChat')
+  } finally {
+    loading.value = false
+  }
 }
 </script>

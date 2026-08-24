@@ -15,8 +15,8 @@ for (const path in languageFiles) {
 
 const i18n = createI18n({
   legacy: false,
-  locale: 'en',
-  fallbackLocale: 'en',
+  locale: 'no',
+  fallbackLocale: 'no',
   messages,
 })
 
@@ -25,8 +25,8 @@ export function updateI18nLocale() {
   if (stored && Object.keys(messages).includes(stored)) {
     i18n.global.locale.value = stored
   } else {
-    i18n.global.locale.value = 'en'
-    sessionStorage.setItem('locale', 'en')
+    i18n.global.locale.value = 'no'
+    sessionStorage.setItem('locale', 'no')
   }
 }
 

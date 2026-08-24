@@ -4,7 +4,7 @@
     <!-- Reactive horizontal logo -->
     <img
       :src="logoSrc"
-      alt="Fleinsoppkontroll logo"
+      alt="Fleinkontroll logo"
       class="absolute top-4 left-4 w-52 h-auto"
     />
 

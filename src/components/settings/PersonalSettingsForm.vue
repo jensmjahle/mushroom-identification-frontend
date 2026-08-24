@@ -120,7 +120,7 @@ onMounted(async () => {
   }
 })
 
-// Regex: 8–50 chars, at least one uppercase, one digit, no spaces
+// Regex: 8-50 chars, at least one uppercase, one digit, no spaces
 const passwordValidPattern = /^(?=.*[A-Z])(?=.*\d)[^\s]{8,50}$/
 
 // Validation

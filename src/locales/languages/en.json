@@ -14,35 +14,35 @@
       "dark": "Dark"
     },
     "personal": {
-      "title": "Account Settings",
+      "title": "Account settings",
       "subtitle": "Manage your personal information",
-      "firstName": "First Name",
-      "lastName": "Last Name",
+      "firstName": "First name",
+      "lastName": "Last name",
       "email": "Email",
-      "changePassword": "Change Password",
+      "changePassword": "Change password",
       "changePasswordSubtitle": "Update your password",
-      "newPassword": "New Password",
-      "confirmPassword": "Confirm Password",
+      "newPassword": "New password",
+      "confirmPassword": "Confirm password",
       "firstNamePlaceholder": "Enter your first name",
       "lastNamePlaceholder": "Enter your last name",
       "emailPlaceholder": "you@example.com",
       "newPasswordPlaceholder": "Enter a new password",
       "confirmPasswordPlaceholder": "Repeat your new password",
-      "oldPassword": "Current Password",
+      "oldPassword": "Current password",
       "oldPasswordPlaceholder": "Enter your current password"
     },
     "danger": {
-      "title": "Danger Zone",
+      "title": "Danger zone",
       "description": "This action is irreversible. Deleting your account will remove all your data.",
-      "button": "Delete Account",
+      "button": "Delete account",
       "confirm": "Are you sure you want to delete your account?",
-      "confirmTitle": "Confirm Account Deletion",
+      "confirmTitle": "Confirm account deletion",
       "success": "Your account has been successfully deleted.",
       "error": "There was an error deleting your account. Please try again later."
     }
   },
   "login": {
-    "title": "Admin Login",
+    "title": "Admin login",
     "subtitle": "Enter your credentials to access the admin dashboard",
     "username": "Username",
     "password": "Password",
@@ -59,27 +59,27 @@
   "admin": {
     "stats": {
       "completedTitle": "Daily completed requests",
-      "mushroomCategories": "Mushroom Categories",
-      "last7Days": "Last 7 Days",
-      "last30Days": "Last 30 Days",
-      "last90Days": "Last 90 Days",
+      "mushroomCategories": "Mushroom categories",
+      "last7Days": "Last 7 days",
+      "last30Days": "Last 30 days",
+      "last90Days": "Last 90 days",
       "weeklyRate": "Current weekly request rate",
       "ftrClicks": "Total clicks on registration button",
       "exportTitle": "Export statistics and history",
-      "overviewTitle": "Statistics Overview",
+      "overviewTitle": "Statistics overview",
       "totalRequests": "Total requests received",
       "totalCompleted": "Total completed requests",
-      "downloadCsv": "Last ned CSV",
+      "downloadCsv": "Download CSV",
       "previewTitle": "Preview",
       "confirmDownload": "Are you sure you want to download this data as a CSV file?",
       "exportButton": "Export CSV",
       "exportPdfButton": "Export PDF",
-      "confirmDownloadTitle": "Confirm Download",
+      "confirmDownloadTitle": "Confirm download",
       "confirmDownloadShort": "Do you want to download statistics for",
       "downloadPdf": "Download PDF"
     },
     "adminDashboard": {
-      "greeting": "Hi {name} 👋",
+      "greeting": "Hi {name}",
       "welcome": "Welcome to the admin panel. Here you get an overview of requests and shortcuts to your most important tasks.",
       "tips": {
         "tip1": "Click \"Next in queue\" to start a new evaluation.",
@@ -93,11 +93,11 @@
       }
     },
     "username": "Username",
-    "firstname": "First Name",
-    "lastname": "Last Name",
+    "firstname": "First name",
+    "lastname": "Last name",
     "email": "Email",
     "role": "Role",
-    "confirmDeleteTitle": "Delete Admin",
+    "confirmDeleteTitle": "Delete admin",
     "confirmDeleteMessage": "Are you sure you want to delete admin '{username}'?",
     "deleted": "Admin '{username}' was deleted successfully."
   },
@@ -120,13 +120,13 @@
     "uploadError": "Something went wrong during image upload."
   },
   "mushroomStatus": {
-    "PSILOCYBIN": "Psilocybin Mushroom",
-    "NON_PSILOCYBIN": "Non-Psilocybin",
+    "PSILOCYBIN": "Psilocybin mushroom",
+    "NON_PSILOCYBIN": "Non-psilocybin",
     "TOXIC": "Toxic",
     "UNKNOWN": "Unknown",
     "UNIDENTIFIABLE": "Unidentifiable",
-    "NOT_PROCESSED": "Not Processed",
-    "BAD_PICTURES": "Bad Pictures"
+    "NOT_PROCESSED": "Not processed",
+    "BAD_PICTURES": "Bad pictures"
   },
   "submit": {
     "introTitle": "Before you begin",
@@ -136,7 +136,7 @@
     "introBullet3": "You'll write a short comment about your find.",
     "introBullet4": "After submission, you'll receive a reference code to track your report.",
     "introBullet5": "A real expert will review your submission and send a response.",
-    "startButton": "I understand – Start",
+    "startButton": "I understand - start",
     "title": "Submit your mushroom inquiry",
     "upload": "Upload image",
     "changeUpload": "Change image",
@@ -145,21 +145,21 @@
     "send": "Submit images",
     "close": "Close",
     "hintTitle": "Tip",
-    "reference": "Reference Code",
     "referenceHint": "Use this code to find your submission later:",
-    "back": "Back",
-    "next": "Next",
-    "finish": "Finish",
     "thankYou": "Thank you!",
-    "thankYouHint": "You'll receive a reply as soon as an expert has reviewed your images. You can check right away by heading to the 'Check Answer' page on the sidemenu and entering your reference code.",
+    "thankYouHint": "You'll receive a reply as soon as an expert has reviewed your images. You can check right away by heading to the 'Check answer' page on the sidemenu and entering your reference code.",
     "toFront": "Go to homepage",
     "mushroom": "Mushroom",
     "noMushrooms": "No mushrooms added yet.",
     "mushroomListTitle": "Your mushrooms:",
-    "step": "Step",
-    "of": "of",
+    "addMushroomTitle": "Add a mushroom",
+    "addMushroomHint": "Upload all three photos, in any order.",
+    "addMushroom": "Add mushroom",
+    "angleTop": "Top",
+    "angleSide": "Side",
+    "angleUnder": "Underside",
     "readyQuestion": "Are you ready to proceed?",
-    "readyDetail": "Once you continue, you won’t be able to return to this step.",
+    "readyDetail": "Once you continue, you won't be able to return to this step.",
     "proceedButton": "Yes, continue",
     "cancel": "Cancel",
     "copy": "Copy",
@@ -167,19 +167,19 @@
     "sending": "Sending in...",
     "adminOnline": "There are currently {count} mushrooms experts online",
     "noAdminsOnline": "No mushroom experts are currently online",
-    "goToChat": "Go to Chat",
+    "goToChat": "Go to chat",
     "steps": [
       {
-        "title": "Click the purple button below to add the first mushroom",
+        "title": "Click the upload button below to add the first mushroom",
         "hint": "Take one photo from the top, one from the side, and one from underneath. Good lighting and a neutral background help the identification. All metadata will be removed from the images when uploaded. This means all EXIF data, including GPS coordinates, will be stripped from the images to protect your privacy."
       },
       {
         "title": "Remember the reference code after submission",
-        "hint": "You’ll receive a reference code when you submit. Use this code to check your results later."
+        "hint": "You'll receive a reference code when you submit. Use this code to check your results later."
       },
       {
         "title": "Our experts will review your photos",
-        "hint": "You'll get a response within 1–2 days. Use the reference code to check back."
+        "hint": "You'll get a response within 1-2 days. Use the reference code to check back."
       }
     ],
     "stepDescription": {
@@ -194,26 +194,26 @@
   },
   "sideMenu" : {
     "completedTitle" : "Completed",
-    "nextFromQueue" : "Next from Que",
-    "allRequests" : "All Requests",
+    "nextFromQueue" : "Next from queue",
+    "allRequests" : "All requests",
     "statistics" : "Statistics",
-    "completeRequest" : "Complete Request",
-    "putBackIntoQueue" : "Put Back into Queue",
-    "placeOnHold" : "Place on Hold",
+    "completeRequest" : "Complete request",
+    "putBackIntoQueue" : "Put back into queue",
+    "placeOnHold" : "Place on hold",
     "settings" : "Settings",
     "logout" : "Logout",
     "menuTitle": "Menu",
-    "chat": "My Chat",
+    "chat": "My chat",
     "home": "Home",
-    "newRequest": "New Request",
-    "login": "Check Answer",
-    "membership": "Become a Member",
+    "newRequest": "New request",
+    "login": "Check answer",
+    "membership": "Become a member",
     "support": "Support",
     "admins" : "Administrators",
-    "allAdmins" : "All Administrators",
-    "createNewAdmin" : "Create New Administrator",
+    "allAdmins" : "All administrators",
+    "createNewAdmin" : "Create new administrator",
     "onlineAdmins": "Admins online",
-    "closeRequest": "Close Request",
+    "closeRequest": "Close request",
     "tooltips": {
       "completeRequest": "Mark this request as finished and reviewed. The chat will be closed.",
       "putBackIntoQueue": "Return this request to the main queue for review. It will not progress until someone else picks it up.",
@@ -225,52 +225,51 @@
     "title": "Mushroom",
     "status": {
       "psilocybin": "Psilocybin",
-      "non-psilocybin": "Non-Psilocybin",
+      "non-psilocybin": "Non-psilocybin",
       "toxic": "Toxic",
       "unknown": "Unknown",
       "unidentifiable": "Unidentifiable",
-      "not-processed": "Not Processed",
-      "bad-pictures": "Bad Pictures"
+      "not-processed": "Not processed",
+      "bad-pictures": "Bad pictures"
     }
   },
   "loginUser": {
-    "heading": "Enter Your Reference Code",
+    "heading": "Enter your reference code",
     "description": "Paste the code you received after submitting your request to view its status and messages.",
-    "refLabel": "Reference Code",
-    "placeholder": "e.g. 8f3a-1290-abcd...",
-    "button": "Log In",
+    "refLabel": "Reference code",
+    "button": "Log in",
     "errorEmpty": "Please enter your reference code.",
     "errorInvalid": "Invalid or expired reference code.",
-    "noCodeQuestion": "Don’t have a code?",
+    "noCodeQuestion": "Don't have a code?",
     "homeLink": "Go back to homepage"
   },
   "home": {
     "description": "Not sure if you've picked liberty caps? Submit a free and anonymous request here:",
-    "sendRequest": "Submit Request",
-    "becomeMember": "Become a Member",
+    "sendRequest": "Submit request",
+    "becomeMember": "Become a member",
     "getSupport": "get help from our support",
     "or": "Or"
   },
   "membership": {
-    "title": "Become a Member – Support Soppidentifikasjon.no!",
+    "title": "Become a member - support Tryggere Ruspolitikk!",
     "intro": "Would you like to help keep Soppidentifikasjon.no running and assist others with safe mushroom picking? As a member, you support our work in covering operational costs and compensating our mushroom experts.",
-    "whyTitle": "Why Become a Member?",
-    "why1": "🌱 <strong>Support the platform:</strong> Help maintain the website and keep our identification service free.",
-    "why2": "🍄 <strong>Learn about mushrooms:</strong> Gain access to exclusive content on mushroom identification, edible species, and lookalikes.",
-    "why3": "🧐 <strong>Become an expert:</strong> Members can apply to join our team of mushroom experts and assist others in safe identification.",
-    "typesTitle": "Membership Types",
-    "type1": "💛 <strong>Supporter:</strong> Contribute financially and get access to exclusive member content.",
-    "type2": "🔬 <strong>Expert Member:</strong> For those with experience and knowledge, willing to identify mushrooms for our users.",
+    "whyTitle": "Why become a member?",
+    "why1": "<strong>Support the platform:</strong> Help maintain the website and keep our identification service free.",
+    "why2": "<strong>Learn about mushrooms:</strong> Gain access to exclusive content on mushroom identification, edible species, and lookalikes.",
+    "why3": "<strong>Become an expert:</strong> Members can apply to join our team of mushroom experts and assist others in safe identification.",
+    "typesTitle": "Membership types",
+    "type1": "<strong>Supporter:</strong> Contribute financially and get access to exclusive member content.",
+    "type2": "<strong>Expert member:</strong> For those with experience and knowledge, willing to identify mushrooms for our users.",
     "closing": "Together, we make mushroom identification safer for everyone! Become a member today and support our mission.",
-    "cta": "Join Now"
+    "cta": "Join now"
   },
   "support": {
     "title": "Need help?",
-    "intro": "Here you’ll find answers to common questions and how to contact us.",
-    "faqTitle": "Frequently Asked Questions",
+    "intro": "Here you'll find answers to common questions and how to contact us.",
+    "faqTitle": "Frequently asked questions",
     "faq1": {
       "question": "How does the mushroom identification service work?",
-      "answer": "You upload photos and receive a response within 1–2 days."
+      "answer": "You upload photos and receive a response within 1-2 days."
     },
     "faq2": {
       "question": "How do I use my reference code?",
@@ -293,14 +292,15 @@
   },
   "errors": {
     "sendingUserRequest": "There was an error sending your request. Please try again.",
+    "enteringChat": "There was an error entering the chat. Please try again.",
     "fetchingUserRequest": "There was an error fetching the user request. Please try again.",
-    "FileTooLarge": "The file is too large. Please upload a file smaller than 10 MB.",
+    "FileTooLarge": "The file is too large. Please upload a file smaller than 50 MB.",
     "loadAdmins": "There was an error loading the admins. Please try again later.",
     "deleteAdmin": "Failed to delete admin.",
     "invalidEmail": "Please enter a valid email address.",
     "missingOldPassword": "Please enter your current password to change your password.",
     "passwordMismatch": "Passwords do not match.",
-    "invalidPasswordFormat": "Password must be 8–50 characters long, include one uppercase letter, one number, and contain no spaces.",
+    "invalidPasswordFormat": "Password must be 8-50 characters long, include one uppercase letter, one number, and contain no spaces.",
     "profileUpdateFailed": "Failed to update profile. Please try again.",
     "passwordChangeFailed": "Failed to change password. Please try again.",
     "failedToLoadProfile": "Failed to load your profile information.",
@@ -322,14 +322,16 @@
   "notification": {
     "default": "You have a new notification.",
     "request": {
-      "locked": "OBS! This request is already being handled by another administrator. You can still view it, but you cannot edit it.",
+      "locked": "Note! This request is already being handled by another administrator. You can still view it, but you cannot edit it.",
       "statusUpdated": "Your request status has been updated.",
       "addedToQueue": "Request has been added back to the queue.",
       "placedOnHold": "Request has been placed on hold.",
       "newChatMessage": "You have received a new message.",
       "mushroomUpdated": "Your mushrooms have been updated by a reviewer.",
       "currentlyUnderReview": "A reviewer is currently evaluating your request. Go check it out!",
-      "adminLeft": "The reviewer has left your request."
+      "adminLeft": "The reviewer has left your request.",
+      "newInQueue": "A new request was added to the queue.",
+      "followUp": "A user replied to a request you completed."
     },
     "system": {
       "maintenance": "The system is currently under maintenance.",
@@ -361,12 +363,12 @@
   "statuses": {
     "new": "New",
     "pending": "Pending",
-    "in_progress": "In Progress",
+    "in_progress": "In progress",
     "completed": "Completed"
   },
   "buttons": {
-    "savePersonalInfo": "Update Personal Info",
-    "changePassword": "Change Password",
+    "savePersonalInfo": "Update personal info",
+    "changePassword": "Change password",
     "confirm": "Confirm",
     "cancel": "Cancel"
   },
@@ -389,24 +391,38 @@
     "ALL_MUSHROOMS_ARE_UNIDENTIFIABLE": "None of the mushrooms in this basket could be identified",
     "BAD_PICTURES_MUSHROOM_PRESENT": "Some mushrooms in this basket could not be processed due to bad picture quality",
     "ALL_MUSHROOMS_ARE_BAD_PICTURES": "All mushrooms in this basket could not be processed due to bad picture quality"
-    
+
   },
   "request": {
     "id": "Request ID",
+    "submitted": "Submitted",
     "lastUpdated": "Last updated",
     "status": "Status",
     "mushrooms": "Mushrooms",
-    "otherRequests": "Other Requests",
+    "decision": "Decision",
+    "mushroomDecisionAllOf": "All {status}",
+    "mushroomDecisionAndMore": "{status} and {count} more",
+    "mushroomDecisionNone": "-",
+    "owner": "Owner",
+    "unassigned": "Unassigned",
+    "release": "Release",
+    "hasFollowUp": "User replied after completion",
+    "otherRequests": "Other requests",
     "statusFilter": {
       "all": "All",
       "pending": "Pending",
-      "inProgress": "In Progress",
+      "inProgress": "In progress",
       "completed": "Completed"
-    }
+    },
+    "dateFilter": {
+      "from": "From",
+      "to": "To"
+    },
+    "sortBy": "Sort by"
   },
 
   "adminCreate": {
-    "title": "Create New Admin",
+    "title": "Create new admin",
     "subtitle": "Superusers can create moderators or other superusers.",
     "username": "Username",
     "usernamePlaceholder": "Enter a username",
@@ -415,11 +431,11 @@
     "email": "Email",
     "emailPlaceholder": "Enter the email address",
     "role": "Role",
-    "submit": "Create Admin",
+    "submit": "Create admin",
     "fillInAllFields": "Please fill in all fields.",
     "success": "Admin created successfully.",
     "error": "Failed to create admin. Please try again.",
-    "confirmPassword": "Confirm Password",
+    "confirmPassword": "Confirm password",
     "confirmPasswordPlaceholder": "Repeat the password",
     "invalidEmail": "Email format is invalid.",
     "passwordTooShort": "Password must be at least 8 characters.",
@@ -432,8 +448,3 @@
   }
 
 }
-
-
-
-
-

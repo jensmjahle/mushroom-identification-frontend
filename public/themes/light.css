@@ -1,55 +1,55 @@
 :root {
-  /* Text Colors */
-  --color-text1: #1a1a1a;
-  --color-text1-faded: #4a4a4a;
-  --color-text2: #1a1a1a;
-  --color-text2-faded: #6b6b6b;
-  --color-text3: #1a1a1a;
-  --color-text3-faded: #6b6b6b;
-  --color-text4: #1a1a1a;
-  --color-text4-faded: #6b6b6b;
-  
+  /* Text Colors - matched to rusopplysningen.no's body/heading grays */
+  --color-text1: #333333;
+  --color-text1-faded: #4d4d4d;
+  --color-text2: #333333;
+  --color-text2-faded: #4d4d4d;
+  --color-text3: #333333;
+  --color-text3-faded: #4d4d4d;
+  --color-text4: #333333;
+  --color-text4-faded: #4d4d4d;
+
   /* Backgrounds */
   --color-bg1: #ffffff;
-  --color-bg2: #e7e7e7;
-  --color-bg3: #e5e7eb;
-  --color-bg4: #e5e7eb;
+  --color-bg2: #f5f5f5;
+  --color-bg3: #ebebeb;
+  --color-bg4: #e6e6e6;
 
   /* Borders */
-  --color-border1: #e5e7eb;
-  --color-border2: #d1d5db;
+  --color-border1: #ebebeb;
+  --color-border2: #e0ecff;
   --color-border3: #9ca3af;
   --color-border4: #9ca3af;
 
-  /* Buttons */
-  --color-button1: #4ade80; 
-  --color-button1-meta: #1a1a1a;
-  --color-button1-hover: #22c55e;
-  --color-button1-border: #15803d;
-  
-  --color-button2: #c4b5fd;         
-  --color-button2-meta: #1a1a1a;    
-  --color-button2-hover: #a78bfa;   
-  --color-button2-border: #7c3aed; 
+  /* Buttons - rusopplysningen.no steel-blue/navy brand family */
+  --color-button1: #5583a4;
+  --color-button1-meta: #ffffff;
+  --color-button1-hover: #3b5978;
+  --color-button1-border: #2c4b6b;
+
+  --color-button2: #6b9eaa;
+  --color-button2-meta: #ffffff;
+  --color-button2-hover: #517d9c;
+  --color-button2-border: #334b69;
 
   /* New Button 3 (Secondary Action) */
-  --color-button3: #e5e7eb;
-  --color-button3-meta: #1a1a1a;
-  --color-button3-hover: #d1d5db;
-  --color-button3-border: #9ca3af;
-  
+  --color-button3: #ebebeb;
+  --color-button3-meta: #333333;
+  --color-button3-hover: #e0ecff;
+  --color-button3-border: #d1d5db;
+
   /* New Button 4 (Tertiary Action) */
-  --color-button4: #f3f4f6;
-  --color-button4-meta: #1a1a1a;
-  --color-button4-hover: #d1d5db;
-  --color-button4-border: #9ca3af;
+  --color-button4: #f5f5f5;
+  --color-button4-meta: #333333;
+  --color-button4-hover: #ebebeb;
+  --color-button4-border: #e6e6e6;
 
   --color-button-transparent: transparent;
-  --color-button-transparent-meta: #1a1a1a;
-  --color-button-transparent-hover: rgba(0, 0, 0, 0.05);
+  --color-button-transparent-meta: #333333;
+  --color-button-transparent-hover: rgba(85, 131, 164, 0.08);
   --color-button-transparent-border: transparent;
-  --color-button-transparent-hover-border: #d1d5db;
-  
+  --color-button-transparent-hover-border: #e0ecff;
+
   /* Utility */
   --color-overlay: rgba(0, 0, 0, 0.5);
   --color-danger: #ef4444;

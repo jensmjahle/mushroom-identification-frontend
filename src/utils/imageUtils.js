@@ -10,9 +10,17 @@ async function checkExif(file) {
   return tags;
 }
 
+// Longest edge a processed photo is allowed to keep, and the JPEG quality it's
+// re-encoded at. Phone cameras routinely produce 4000px+, multi-megabyte
+// originals; mushroom identification doesn't need anywhere near that much
+// detail, so downscaling here keeps uploads fast and small without a
+// meaningfully worse photo to work from.
+const MAX_DIMENSION = 1920;
+const JPEG_QUALITY = 0.82;
+
 /**
- * Removes metadata from image files and renames them to mushroomX.jpg
- * based on existing file names in uploadedFiles
+ * Removes metadata from image files, downscales them to a sensible size, and
+ * renames them to mushroomX.jpg based on existing file names in uploadedFiles
  */
 export async function processImageFiles(files, existingFiles = [], customNames = []) {
   const processedFiles = [];
@@ -37,13 +45,14 @@ export async function processImageFiles(files, existingFiles = [], customNames =
     }
 
     const imageBitmap = await createImageBitmap(file);
+    const scale = Math.min(1, MAX_DIMENSION / Math.max(imageBitmap.width, imageBitmap.height));
     const canvas = document.createElement('canvas');
-    canvas.width = imageBitmap.width;
-    canvas.height = imageBitmap.height;
+    canvas.width = Math.round(imageBitmap.width * scale);
+    canvas.height = Math.round(imageBitmap.height * scale);
     const ctx = canvas.getContext('2d');
-    ctx.drawImage(imageBitmap, 0, 0);
+    ctx.drawImage(imageBitmap, 0, 0, canvas.width, canvas.height);
 
-    const blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/jpeg', 0.92));
+    const blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/jpeg', JPEG_QUALITY));
     if (!blob) {
       error = 'Could not process image.';
       continue;

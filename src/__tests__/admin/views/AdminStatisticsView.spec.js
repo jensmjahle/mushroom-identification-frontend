@@ -1,5 +1,5 @@
 import { mount, flushPromises } from '@vue/test-utils'
-import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
+import { describe, it, expect, vi, afterEach } from 'vitest'
 import { createTestingPinia } from '@pinia/testing'
 import AdminStatisticsView from '@/views/admin/StatisticsView.vue'
 
@@ -41,12 +41,11 @@ vi.mock('@/components/charts/MushroomPieChart.vue', () => ({
 }))
 vi.mock('@/components/base/BaseList.vue', () => ({
   default: {
-    props: ['items', 'columns', 'pagination'],
-    emits: ['next-page', 'prev-page'],
+    props: ['items', 'columns', 'sortKey', 'sortDirection'],
+    emits: ['sort-change'],
     template: `
       <div data-testid="base-list">
-        <button data-testid="next" @click="$emit('next-page')">Next</button>
-        <button data-testid="prev" @click="$emit('prev-page')">Prev</button>
+        <button data-testid="sort-updatedAt" @click="$emit('sort-change', 'updatedAt')">Sort</button>
       </div>
     `
   }
@@ -58,15 +57,19 @@ vi.mock('@/components/base/rows/RequestRow.vue', () => ({
   }
 }))
 
+const currentYearBounds = () => {
+  const year = new Date().getFullYear()
+  return { from: `${year}-01-01`, to: `${year}-12-31` }
+}
+
 describe('AdminStatisticsView.vue', () => {
   afterEach(() => {
     vi.clearAllMocks()
   })
 
-  it('renders stats components and fetches requests on mount', async () => {
+  it('renders stats components and fetches all matching requests on mount', async () => {
     getPaginatedRequests.mockResolvedValueOnce({
-      content: [{ id: 1 }, { id: 2 }],
-      totalPages: 3
+      content: [{ id: 1 }, { id: 2 }]
     })
 
     const wrapper = mount(AdminStatisticsView, {
@@ -77,10 +80,13 @@ describe('AdminStatisticsView.vue', () => {
 
     await flushPromises()
 
+    const { from, to } = currentYearBounds()
     expect(getPaginatedRequests).toHaveBeenCalledWith({
-      page: 0,
       status: 'NEW',
-      exclude: true
+      exclude: true,
+      from,
+      to,
+      unpaged: true
     })
 
     expect(wrapper.find('[data-testid="chart"]').exists()).toBe(true)
@@ -90,8 +96,8 @@ describe('AdminStatisticsView.vue', () => {
     expect(wrapper.find('[data-testid="base-list"]').exists()).toBe(true)
   })
 
-  it('loads next and previous pages', async () => {
-    getPaginatedRequests.mockResolvedValue({ content: [], totalPages: 2 })
+  it('refetches when the date filter changes', async () => {
+    getPaginatedRequests.mockResolvedValue({ content: [] })
 
     const wrapper = mount(AdminStatisticsView, {
       global: {
@@ -99,16 +105,14 @@ describe('AdminStatisticsView.vue', () => {
       }
     })
     await flushPromises()
+    getPaginatedRequests.mockClear()
 
-    // Trigger next page
-    await wrapper.find('[data-testid="next"]').trigger('click')
+    await wrapper.find('input[type="date"]').setValue('2020-01-01')
     await flushPromises()
-    expect(getPaginatedRequests).toHaveBeenCalledWith({ page: 1, status: 'NEW', exclude: true })
 
-    // Trigger previous page
-    await wrapper.find('[data-testid="prev"]').trigger('click')
-    await flushPromises()
-    expect(getPaginatedRequests).toHaveBeenCalledWith({ page: 0, status: 'NEW', exclude: true })
+    expect(getPaginatedRequests).toHaveBeenCalledWith(
+      expect.objectContaining({ from: '2020-01-01' })
+    )
   })
 
   it('shows toast if fetch fails', async () => {
@@ -121,6 +125,6 @@ describe('AdminStatisticsView.vue', () => {
     })
 
     await flushPromises()
-    expect(toastError).toHaveBeenCalledWith('Failed to fetch other requests')
+    expect(toastError).toHaveBeenCalledWith('Error fetching requests')
   })
 })
